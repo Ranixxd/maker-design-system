@@ -1,0 +1,44 @@
+:root {
+  /* ── Easing (Standard type only) ────────────────────────────────────────────
+     요소의 이동 방향(화면 유지·진입·이탈)에 따라 선택한다. */
+
+  /* 화면 안에서 시작·종료 — 상태 변화, 탭 전환, 토글 등 */
+  --motion-easing-standard:            cubic-bezier(0.2, 0, 0, 1);
+  /* 화면 밖에서 진입 — 최고 속도로 시작해 부드럽게 착지 */
+  --motion-easing-standard-decelerate: cubic-bezier(0, 0, 0, 1);
+  /* 화면 밖으로 이탈 — 정지에서 시작해 최고 속도로 퇴장 */
+  --motion-easing-standard-accelerate: cubic-bezier(0.3, 0, 1, 1);
+
+  /* ── Duration (M3 full set) ─────────────────────────────────────────────────
+     요소가 차지하는 화면 영역에 비례해 선택한다.
+     이탈 전환은 진입보다 한 단계 짧은 그룹을 사용한다. */
+
+  /* Short — 버튼·아이콘·칩 등 아주 작은 요소 / 이탈 */
+  --motion-duration-short-1: 50ms;
+  --motion-duration-short-2: 100ms;
+  --motion-duration-short-3: 150ms;
+  --motion-duration-short-4: 200ms;
+
+  /* Medium — 드롭다운·메뉴·스낵바 등 중간 크기 요소 */
+  --motion-duration-medium-1: 250ms;
+  --motion-duration-medium-2: 300ms;
+  --motion-duration-medium-3: 350ms;
+  --motion-duration-medium-4: 400ms;
+
+  /* Long — 바텀시트·모달 등 큰 요소 / 진입 */
+  --motion-duration-long-1: 450ms;
+  --motion-duration-long-2: 500ms;
+  --motion-duration-long-3: 550ms;
+  --motion-duration-long-4: 600ms;
+
+  /* Extra long — 화면 전체를 덮는 전환 / 온보딩 등 */
+  --motion-duration-extra-long-1: 700ms;
+  --motion-duration-extra-long-2: 800ms;
+  --motion-duration-extra-long-3: 900ms;
+  --motion-duration-extra-long-4: 1000ms;
+
+  /* ── Semantic aliases (기존 코드 호환) ─────────────────────────────── */
+  --motion-duration-short:  var(--motion-duration-short-4);   /* 200ms */
+  --motion-duration-medium: var(--motion-duration-medium-4);  /* 400ms */
+  --motion-duration-long:   var(--motion-duration-long-2);    /* 500ms */
+}

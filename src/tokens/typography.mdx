@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { TypographyTable } from './TokenComponents';
+
+<Meta title="Tokens/Typography" />
+
+# Typography
+
+텍스트 스타일 프리셋. CSS 클래스(`.text-*`)로 제공되며, `font-size` · `font-weight` · `line-height`를 묶어서 정의한다.
+
+**`--font-size-*` `--font-weight-*` `--line-height-*` 낱개 토큰을 컴포넌트에서 직접 쓰지 않는다.**
+반드시 아래 클래스 세트 중 하나를 선택해서 쓴다.
+
+```jsx
+{/* ✅ JSX에서 글로벌 클래스로 */}
+<span className="text-label-2">라벨</span>
+```
+
+```css
+/* ✅ CSS Module에서 composes로 */
+.title {
+  composes: text-heading-2 from global;
+}
+
+/* ❌ 낱개 토큰 직접 참조 — 금지 */
+.title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+}
+```
+
+---
+
+<TypographyTable />

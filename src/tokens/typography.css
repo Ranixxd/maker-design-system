@@ -1,0 +1,73 @@
+:root {
+  /* ── Primitive: Font family ── */
+  --font-family-base: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* ── Primitive: Font size ── */
+  --font-size-xs:  11px;
+  --font-size-sm:  13px;
+  --font-size-md:  15px;
+  --font-size-lg:  17px;
+  --font-size-xl:  20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 28px;
+
+  /* ── Primitive: Font weight ── */
+  --font-weight-regular:  400;
+  --font-weight-medium:   500;
+  --font-weight-semibold: 600;
+
+  /* ── Primitive: Line height ── */
+  --line-height-single: 1;
+  --line-height-multi:  1.5;
+}
+
+/* ── Semantic: Heading — semibold / single-line ── */
+.text-heading-1 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-single);
+}
+.text-heading-2 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-single);
+}
+.text-heading-3 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-single);
+}
+
+/* ── Semantic: Body — regular / multi-line ── */
+.text-body-1 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-multi);
+}
+.text-body-2 {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-multi);
+}
+.text-body-3 {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-multi);
+}
+
+/* ── Semantic: Label — medium / single-line ── */
+.text-label-1 {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-single);
+}
+.text-label-2 {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-single);
+}
+.text-label-3 {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-single);
+}

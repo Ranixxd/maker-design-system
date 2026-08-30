@@ -1,0 +1,85 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { ColorSwatch } from './TokenComponents';
+
+<Meta title="Tokens/Color" />
+
+# Color — Primitive
+
+팔레트 원형 토큰. **`colors.css` 내부에서 시멘틱 토큰을 정의할 때만 쓴다.**
+컴포넌트나 레이아웃 CSS에서 직접 참조하면 안 된다.
+
+```css
+/* ❌ 컴포넌트에서 직접 참조 — 금지 */
+color: var(--color-gray-500);
+background: var(--color-sky-100);
+
+/* ✅ 시멘틱 토큰을 통해 참조 */
+color: var(--color-text-secondary);
+background: var(--color-bg-accent-subtle);
+```
+
+---
+
+## Black & Alpha
+
+<ColorSwatch token="--color-black"          label="100%" />
+<ColorSwatch token="--color-black-alpha-80" label="80%" />
+<ColorSwatch token="--color-black-alpha-60" label="60%" />
+<ColorSwatch token="--color-black-alpha-40" label="40%" />
+<ColorSwatch token="--color-black-alpha-20" label="20%" />
+<ColorSwatch token="--color-black-alpha-12" label="12%" />
+<ColorSwatch token="--color-black-alpha-08" label="8%" />
+<ColorSwatch token="--color-black-alpha-04" label="4%" border />
+
+## White & Alpha
+
+<ColorSwatch token="--color-white"          label="100%" border />
+<ColorSwatch token="--color-white-alpha-80" label="80%"  border />
+<ColorSwatch token="--color-white-alpha-60" label="60%"  border />
+<ColorSwatch token="--color-white-alpha-40" label="40%"  border />
+<ColorSwatch token="--color-white-alpha-20" label="20%"  border />
+<ColorSwatch token="--color-white-alpha-12" label="12%"  border />
+<ColorSwatch token="--color-white-alpha-08" label="8%"   border />
+<ColorSwatch token="--color-white-alpha-04" label="4%"   border />
+
+## Gray Scale
+
+<ColorSwatch token="--color-gray-900" label="900" />
+<ColorSwatch token="--color-gray-800" label="800" />
+<ColorSwatch token="--color-gray-700" label="700" />
+<ColorSwatch token="--color-gray-600" label="600" />
+<ColorSwatch token="--color-gray-500" label="500" />
+<ColorSwatch token="--color-gray-400" label="400" />
+<ColorSwatch token="--color-gray-300" label="300" />
+<ColorSwatch token="--color-gray-200" label="200" />
+<ColorSwatch token="--color-gray-150" label="150" />
+<ColorSwatch token="--color-gray-100" label="100" />
+<ColorSwatch token="--color-gray-50"  label="50"  border />
+
+## Sky
+
+<ColorSwatch token="--color-sky-900" label="900" />
+<ColorSwatch token="--color-sky-800" label="800" />
+<ColorSwatch token="--color-sky-700" label="700" />
+<ColorSwatch token="--color-sky-600" label="600" />
+<ColorSwatch token="--color-sky-500" label="500" />
+<ColorSwatch token="--color-sky-400" label="400" />
+<ColorSwatch token="--color-sky-300" label="300" />
+<ColorSwatch token="--color-sky-200" label="200" />
+<ColorSwatch token="--color-sky-150" label="150" border />
+<ColorSwatch token="--color-sky-100" label="100" border />
+<ColorSwatch token="--color-sky-50"  label="50"  border />
+
+## Red
+
+<ColorSwatch token="--color-red-900" label="900" />
+<ColorSwatch token="--color-red-800" label="800" />
+<ColorSwatch token="--color-red-700" label="700" />
+<ColorSwatch token="--color-red-600" label="600" />
+<ColorSwatch token="--color-red-500" label="500" />
+<ColorSwatch token="--color-red-400" label="400" />
+<ColorSwatch token="--color-red-300" label="300" />
+<ColorSwatch token="--color-red-200" label="200" />
+<ColorSwatch token="--color-red-150" label="150" border />
+<ColorSwatch token="--color-red-100" label="100" border />
+<ColorSwatch token="--color-red-50"  label="50"  border />

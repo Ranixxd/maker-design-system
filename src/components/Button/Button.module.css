@@ -1,0 +1,115 @@
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  border-radius: var(--radius-md);
+  transition: opacity var(--motion-duration-short) var(--motion-easing-standard),
+              transform var(--motion-duration-short) var(--motion-easing-standard);
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* hover/pressed 오버레이 — 버튼 자체 배경색은 절대 변경하지 않는다.
+   background-color는 ::after에서만 조작한다 */
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: transparent;
+  pointer-events: none;
+  transition: background-color var(--motion-duration-short) var(--motion-easing-standard);
+}
+
+.btn:hover:not(:disabled):not([data-loading])::after {
+  background-color: var(--color-bg-hover);
+}
+
+.btn:active:not(:disabled):not([data-loading])::after {
+  background-color: var(--color-bg-pressed);
+}
+
+.btn:active:not(:disabled):not([data-loading]) {
+  transform: scale(0.9);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.btn[data-loading] {
+  pointer-events: none;
+  cursor: default;
+}
+
+/* ── Size ── */
+.sm {
+  height: 36px;
+  padding: 0 var(--spacing-3);
+  font-size: var(--font-size-sm);      /* 13px */
+  font-weight: var(--font-weight-medium); /* 500 = label-2 ✓ */
+  border-radius: var(--radius-sm);
+}
+
+.md {
+  height: 48px;
+  padding: 0 var(--spacing-5);
+  font-size: var(--font-size-md);      /* 15px */
+  font-weight: var(--font-weight-medium); /* 500 = label-1 ✓ (기존 semibold 600은 오류) */
+}
+
+/* ── Variant ── */
+.primary {
+  background-color: var(--color-bg-inverse);
+  color: var(--color-text-oninverse);
+}
+
+/* fill 스타일 — outline(border) 아님 */
+.secondary {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-default);
+}
+
+.neutral {
+  background-color: transparent;
+  color: var(--color-text-default);
+}
+
+.accent {
+  background-color: transparent;
+  color: var(--color-text-accent);
+}
+
+/* ── Loading ── */
+.label {
+  display: contents;
+}
+
+.labelHidden {
+  opacity: 0;
+}
+
+.spinner {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* 터치 디바이스에서 hover 오버레이 무시 */
+@media (hover: none) {
+  .btn:hover::after { background-color: transparent; }
+}

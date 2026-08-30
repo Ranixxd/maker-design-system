@@ -1,0 +1,96 @@
+:root {
+  /* ── Primitive: Black & alpha ── */
+  --color-black:            #000000;
+  --color-black-alpha-80:   rgba(0, 0, 0, 0.80);
+  --color-black-alpha-60:   rgba(0, 0, 0, 0.60);
+  --color-black-alpha-40:   rgba(0, 0, 0, 0.40);
+  --color-black-alpha-20:   rgba(0, 0, 0, 0.20);
+  --color-black-alpha-12:   rgba(0, 0, 0, 0.12);
+  --color-black-alpha-08:   rgba(0, 0, 0, 0.08);
+  --color-black-alpha-04:   rgba(0, 0, 0, 0.04);
+
+  /* ── Primitive: White & alpha ── */
+  --color-white:            #ffffff;
+  --color-white-alpha-80:   rgba(255, 255, 255, 0.80);
+  --color-white-alpha-60:   rgba(255, 255, 255, 0.60);
+  --color-white-alpha-40:   rgba(255, 255, 255, 0.40);
+  --color-white-alpha-20:   rgba(255, 255, 255, 0.20);
+  --color-white-alpha-12:   rgba(255, 255, 255, 0.12);
+  --color-white-alpha-08:   rgba(255, 255, 255, 0.08);
+  --color-white-alpha-04:   rgba(255, 255, 255, 0.04);
+
+  /* ── Primitive: Gray scale ── */
+  --color-gray-900: #111111;
+  --color-gray-800: #1e1e1e;
+  --color-gray-700: #333333;
+  --color-gray-600: #4d4d4d;
+  --color-gray-500: #6e6e6e;
+  --color-gray-400: #999999;
+  --color-gray-300: #b3b3b3;
+  --color-gray-200: #d6d6d6;
+  --color-gray-150: #e5e5e5;
+  --color-gray-100: #f0f0f0;
+  --color-gray-50:  #f7f7f7;
+
+  /* ── Primitive: Sky ── */
+  --color-sky-900: #0c4a6e;
+  --color-sky-800: #075985;
+  --color-sky-700: #0369a1;
+  --color-sky-600: #0284c7;
+  --color-sky-500: #0ea5e9;
+  --color-sky-400: #38bdf8;
+  --color-sky-300: #7dd3fc;
+  --color-sky-200: #bae6fd;
+  --color-sky-150: #caedfb;
+  --color-sky-100: #e0f2fe;
+  --color-sky-50:  #f0f9ff;
+
+  /* ── Primitive: Red ── */
+  --color-red-900: #7f1d1d;
+  --color-red-800: #991b1b;
+  --color-red-700: #b91c1c;
+  --color-red-600: #dc2626;
+  --color-red-500: #ef4444;
+  --color-red-400: #f87171;
+  --color-red-300: #fca5a5;
+  --color-red-200: #fecaca;
+  --color-red-150: #fee2e2;
+  --color-red-100: #fff1f2;
+  --color-red-50:  #fff5f5;
+
+  /* ── Semantic: Background ── */
+  --color-bg-default:   var(--color-white);
+  --color-bg-secondary: var(--color-gray-50);
+  --color-bg-tertiary:  var(--color-gray-100);
+  --color-bg-hover:     var(--color-black-alpha-04);
+  --color-bg-pressed:   var(--color-black-alpha-08);
+  --color-bg-accent:        var(--color-sky-500);
+  --color-bg-accent-subtle: var(--color-sky-100);
+  --color-bg-overlay:   var(--color-black-alpha-60);
+  --color-bg-inverse:   var(--color-gray-900);
+  --color-bg-critical:          var(--color-red-600);
+  --color-bg-critical-subtle:   var(--color-red-150);
+
+  /* ── Semantic: Text ── */
+  --color-text-default:   var(--color-gray-900);
+  --color-text-secondary: var(--color-gray-500);
+  --color-text-tertiary:  var(--color-gray-300);
+  --color-text-accent:    var(--color-sky-600);
+  --color-text-onaccent:  var(--color-white);
+  --color-text-oninverse: var(--color-white);
+  --color-text-link:      var(--color-sky-700);
+  --color-text-critical:     var(--color-red-600);
+  --color-text-oncritical:   var(--color-white);
+
+  /* ── Semantic: Border ── */
+  --color-border-default: var(--color-gray-200);
+  --color-border-strong:  var(--color-gray-400);
+
+  /* ── Semantic: Icon ── */
+  --color-icon-default:   var(--color-gray-900);
+  --color-icon-secondary: var(--color-gray-500);
+  --color-icon-accent:    var(--color-sky-500);
+  --color-icon-onaccent:  var(--color-white);
+  --color-icon-oninverse: var(--color-white);
+  --color-icon-critical:  var(--color-red-600);
+}

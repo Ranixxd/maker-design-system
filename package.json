@@ -1,0 +1,44 @@
+{
+  "name": "maker-design-system",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "description": "카톡테마 메이커와 배경화면 메이커가 함께 쓰는 디자인 시스템",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "main": "./dist/mds.js",
+  "exports": {
+    ".": "./dist/mds.js",
+    "./styles": "./dist/mds.css",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "scripts": {
+    "dev": "storybook dev -p 6007",
+    "build": "vite build",
+    "build-storybook": "storybook build",
+    "prepare": "vite build"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "dependencies": {
+    "lucide-react": "^1.31.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "^10.5.8",
+    "@storybook/addon-docs": "^10.5.8",
+    "@storybook/react-vite": "^10.5.8",
+    "@vitejs/plugin-react": "^6.0.4",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "remark-gfm": "^4.0.1",
+    "storybook": "^10.5.8",
+    "vite": "^8.2.0"
+  }
+}

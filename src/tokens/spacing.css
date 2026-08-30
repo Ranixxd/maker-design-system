@@ -1,0 +1,24 @@
+:root {
+  /* ── Primitive: 4px base grid ── */
+  --spacing-1:  4px;
+  --spacing-2:  8px;
+  --spacing-3:  12px;
+  --spacing-4:  16px;
+  --spacing-5:  20px;
+  --spacing-6:  24px;
+  --spacing-8:  32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+
+  /* ── Semantic: Global layout padding ── */
+  --global-padding-t: 16px;
+  --global-padding-b: 24px;
+  --global-padding-l: 20px;
+  --global-padding-r: 20px;
+
+  /* ── Semantic: Gap scales ── */
+  --section-gap:   32px;
+  --component-gap: 16px;
+  --item-gap:       8px;
+}

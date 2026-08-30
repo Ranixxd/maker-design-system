@@ -1,0 +1,98 @@
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  font-family: inherit;
+  color: var(--color-text-default);
+  cursor: default;
+  text-decoration: none;
+}
+
+/* Clickable state */
+button.item {
+  cursor: pointer;
+  transition: background-color var(--motion-duration-short-3) var(--motion-easing-standard);
+}
+
+button.item:hover {
+  background-color: var(--color-bg-hover);
+}
+
+button.item:active {
+  background-color: var(--color-bg-pressed);
+}
+
+/* ── Normal ── */
+.normal {
+  height: 52px;
+  padding: 0 var(--spacing-4);
+  border-radius: var(--radius-sm);
+}
+
+/* ── Box ── */
+.box {
+  padding: var(--spacing-4);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  align-items: flex-start;
+  transition: border-color var(--motion-duration-short-3) var(--motion-easing-standard),
+              background-color var(--motion-duration-short-3) var(--motion-easing-standard);
+}
+
+button.box:hover {
+  border-color: var(--color-border-strong);
+}
+
+/* ── Slots ── */
+.leading {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--color-icon-secondary);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.label {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-default);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sub {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trailing {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--color-icon-secondary);
+}
+
+/* 터치 디바이스에서 hover 오버레이 무시 */
+@media (hover: none) {
+  button.item:hover { background-color: transparent; }
+  button.box:hover {
+    border-color: var(--color-border-default);
+    background-color: transparent;
+  }
+}

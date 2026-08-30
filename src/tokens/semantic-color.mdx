@@ -1,0 +1,56 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { ColorSwatch, BgDescTable, TextDescTable, IconDescTable } from './TokenComponents';
+
+<Meta title="Tokens/Semantic Color" />
+
+# Color — Semantic
+
+역할 기반 토큰. 네이밍 패턴: `분류-용도`. 컴포넌트는 이 토큰만 참조한다.
+
+---
+
+## Background
+
+<BgDescTable />
+
+<ColorSwatch token="--color-bg-default"   label="bg-default"   border />
+<ColorSwatch token="--color-bg-secondary" label="bg-secondary" border />
+<ColorSwatch token="--color-bg-tertiary"  label="bg-tertiary"  border />
+<ColorSwatch token="--color-bg-hover"     label="bg-hover"     border />
+<ColorSwatch token="--color-bg-pressed"   label="bg-pressed"   border />
+<ColorSwatch token="--color-bg-accent"         label="bg-accent" />
+<ColorSwatch token="--color-bg-accent-subtle"   label="bg-accent-subtle" border />
+<ColorSwatch token="--color-bg-overlay"          label="bg-overlay" />
+<ColorSwatch token="--color-bg-inverse"          label="bg-inverse" />
+<ColorSwatch token="--color-bg-critical"         label="bg-critical" />
+<ColorSwatch token="--color-bg-critical-subtle"  label="bg-critical-subtle" border />
+
+## Text
+
+<TextDescTable />
+
+<ColorSwatch token="--color-text-default"   label="text-default" />
+<ColorSwatch token="--color-text-secondary" label="text-secondary" />
+<ColorSwatch token="--color-text-tertiary"  label="text-tertiary" />
+<ColorSwatch token="--color-text-accent"    label="text-accent" />
+<ColorSwatch token="--color-text-onaccent"  label="text-onaccent"  border />
+<ColorSwatch token="--color-text-oninverse" label="text-oninverse" border />
+<ColorSwatch token="--color-text-link"        label="text-link" />
+<ColorSwatch token="--color-text-critical"    label="text-critical" />
+<ColorSwatch token="--color-text-oncritical"  label="text-oncritical" border />
+
+## Border
+
+<ColorSwatch token="--color-border-default" label="border-default" border />
+<ColorSwatch token="--color-border-strong"  label="border-strong"  border />
+
+## Icon
+
+<IconDescTable />
+
+<ColorSwatch token="--color-icon-default"   label="icon-default" />
+<ColorSwatch token="--color-icon-secondary" label="icon-secondary" />
+<ColorSwatch token="--color-icon-accent"    label="icon-accent" />
+<ColorSwatch token="--color-icon-onaccent"   label="icon-onaccent"  border />
+<ColorSwatch token="--color-icon-oninverse"  label="icon-oninverse" border />
+<ColorSwatch token="--color-icon-critical"   label="icon-critical" />

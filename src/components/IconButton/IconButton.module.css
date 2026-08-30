@@ -1,0 +1,64 @@
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+  transition: opacity var(--motion-duration-short) var(--motion-easing-standard),
+              transform var(--motion-duration-short) var(--motion-easing-standard);
+}
+
+/* hover/pressed 오버레이 — Button과 동일한 패턴 */
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: transparent;
+  pointer-events: none;
+  transition: background-color var(--motion-duration-short) var(--motion-easing-standard);
+}
+
+.btn:hover:not(:disabled)::after  { background-color: var(--color-bg-hover); }
+.btn:active:not(:disabled)::after { background-color: var(--color-bg-pressed); }
+.btn:active:not(:disabled)        { transform: scale(0.9); }
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-bg-accent);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ── Size — Button 높이와 동일 ── */
+.sm { width: 36px; height: 36px; border-radius: var(--radius-sm); }
+.md { width: 48px; height: 48px; }
+
+/* ── Variant ── */
+.primary {
+  background-color: var(--color-bg-inverse);
+  color: var(--color-text-oninverse);
+}
+
+.secondary {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-default);
+}
+
+.neutral {
+  background-color: transparent;
+  color: var(--color-icon-default);
+}
+
+/* 터치 디바이스에서 hover 오버레이 무시 */
+@media (hover: none) {
+  .btn:hover::after { background-color: transparent; }
+}
