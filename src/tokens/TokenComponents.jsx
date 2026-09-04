@@ -155,6 +155,7 @@ export function BgDescTable() {
     { token: 'bg-pressed',          desc: '프레스 상태' },
     { token: 'bg-accent',           desc: '강조 배경 (sky-500)' },
     { token: 'bg-overlay',          desc: '딤 레이어' },
+    { token: 'bg-overlay-blur',     desc: '흰 블러 딤 레이어 (--blur-overlay와 함께 쓴다)' },
     { token: 'bg-inverse',          desc: '인버스 컴포넌트 배경 (프라이머리 버튼 등)' },
     { token: 'bg-critical',         desc: '크리티컬 배경 (red-600)' },
     { token: 'bg-critical-subtle',  desc: '크리티컬 보조 배경 (red-150)' },

@@ -21,9 +21,21 @@ import { ColorSwatch, BgDescTable, TextDescTable, IconDescTable } from './TokenC
 <ColorSwatch token="--color-bg-accent"         label="bg-accent" />
 <ColorSwatch token="--color-bg-accent-subtle"   label="bg-accent-subtle" border />
 <ColorSwatch token="--color-bg-overlay"          label="bg-overlay" />
+<ColorSwatch token="--color-bg-overlay-blur"     label="bg-overlay-blur" border />
 <ColorSwatch token="--color-bg-inverse"          label="bg-inverse" />
 <ColorSwatch token="--color-bg-critical"         label="bg-critical" />
 <ColorSwatch token="--color-bg-critical-subtle"  label="bg-critical-subtle" border />
+
+`bg-overlay-blur`는 `bg-overlay`의 흰 블러 버전이다. 검정 딤은 그 위 버튼·글자가
+잘 안 보인다는 지적이 있어서 만들었다 — 이미지처럼 밝기를 예측할 수 없는 콘텐츠를
+전체 화면으로 덮을 때 쓴다. 아래처럼 `--blur-overlay`(backdrop-filter 값)와 항상
+함께 쓴다:
+
+```css
+background: var(--color-bg-overlay-blur);
+backdrop-filter: blur(var(--blur-overlay));
+-webkit-backdrop-filter: blur(var(--blur-overlay));
+```
 
 ## Text
 

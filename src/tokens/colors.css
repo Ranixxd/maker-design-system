@@ -67,6 +67,7 @@
   --color-bg-accent:        var(--color-sky-500);
   --color-bg-accent-subtle: var(--color-sky-100);
   --color-bg-overlay:   var(--color-black-alpha-60);
+  --color-bg-overlay-blur: rgba(255, 255, 255, 0.88);
   --color-bg-inverse:   var(--color-gray-900);
   --color-bg-critical:          var(--color-red-600);
   --color-bg-critical-subtle:   var(--color-red-150);
@@ -93,4 +94,9 @@
   --color-icon-onaccent:  var(--color-white);
   --color-icon-oninverse: var(--color-white);
   --color-icon-critical:  var(--color-red-600);
+
+  /* ── Blur ──
+     --color-bg-overlay-blur와 짝이다. 색이 아니라 backdrop-filter 값이지만,
+     늘 그 토큰과 함께 쓰여서 따로 파일을 만들지 않고 여기 둔다. */
+  --blur-overlay: 24px;
 }
