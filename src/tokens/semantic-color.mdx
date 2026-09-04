@@ -37,6 +37,16 @@ backdrop-filter: blur(var(--blur-overlay));
 -webkit-backdrop-filter: blur(var(--blur-overlay));
 ```
 
+**언제 쓰나** — 콘텐츠(이미지 등)에 시선을 집중시키고 싶을 때 쓴다. LayerPopup
+(모달·바텀시트) 같은 기능적 overlay와는 맥락이 다르다 — 그쪽은 어떤 화면에서든
+쓰는 범용 그릇이라 `--color-bg-overlay`(검정)를 그대로 쓰고 바꾸지 않는다.
+
+**레이아웃 규칙**
+- 우상단엔 항상 닫기 버튼을 둬서, 언제든 페이지를 벗어날 수 있게 한다.
+- 좌상단엔 보조로 필요한 기능(삭제 등)을 둔다. 없으면 비워둔다.
+- 위 두 자리는 IconButton을 쓴다 — 텍스트 버튼은 라벨 길이가 다 달라 두 자리가
+  서로 안 맞고, 콘텐츠에 집중시키는 화면에서 글자가 이미지보다 눈에 먼저 들어온다.
+
 ## Text
 
 <TextDescTable />
