@@ -7,14 +7,21 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'Lucide React 기반 아이콘 래퍼. 사이즈 규칙(sm=16 / md=20)과 strokeWidth=1.5를 강제하여 앱 전체의 아이콘 일관성을 유지한다.',
+        component: `Lucide React 기반 아이콘 래퍼. 사이즈 규칙(sm=16 / md=20)과 strokeWidth=1.5를 강제하여 앱 전체의 아이콘 일관성을 유지한다.
+
+**등록된 이름만 된다.** Lucide 전체(\`import *\`)를 끌어오면 어떤 이름이 실제 쓰이는지
+빌드 타임에 알 수 없어 tree-shaking이 안 되고, IconButton 하나만 써도 번들이
++650KB(gzip +163KB) 뛴다. 그래서 아래 CommonIcons 목록만 \`Icon.jsx\`에 정적으로
+import해 등록해뒀다 — 목록에 없는 이름을 넘기면 조용히 아무것도 렌더링하지 않는다.
+새 아이콘이 필요하면 \`Icon.jsx\`의 import·ICONS와 이 페이지의 CommonIcons 목록에
+함께 추가한다.`,
       },
     },
   },
   argTypes: {
     name: {
       control: 'text',
-      description: 'Lucide 아이콘 이름 (PascalCase). [전체 목록](https://lucide.dev/icons/)',
+      description: '등록된 아이콘 이름 (PascalCase). 아래 CommonIcons 참고 — 목록에 없으면 렌더링되지 않는다.',
     },
     size: {
       control: 'radio',
@@ -53,6 +60,7 @@ export const CommonIcons = {
       'Home', 'Palette', 'Bell', 'Settings', 'ChevronRight', 'ChevronLeft',
       'ChevronDown', 'X', 'Plus', 'Minus', 'Check', 'Info',
       'Upload', 'Download', 'Pencil', 'Trash2', 'Image', 'Layers',
+      'Menu', 'MoreHorizontal',
     ];
     return (
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24 }}>

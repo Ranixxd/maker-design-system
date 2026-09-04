@@ -29,7 +29,7 @@ export default {
     },
   },
   argTypes: {
-    icon: { control: 'text', description: 'Lucide 아이콘 이름 (예: X, Menu, Plus)' },
+    icon: { control: 'text', description: '등록된 아이콘 이름 (Icon 컴포넌트 참고 — 목록에 없으면 렌더링되지 않는다)' },
     size: {
       control: 'radio',
       options: ['sm', 'md'],
