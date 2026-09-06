@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/addon-docs/blocks';
-import { ColorSwatch, BgDescTable, TextDescTable, IconDescTable } from './TokenComponents';
+import { BgColorTable, TextColorTable, BorderColorTable, IconColorTable } from './TokenComponents';
 
 <Meta title="Tokens/Semantic Color" />
 
@@ -7,24 +7,15 @@ import { ColorSwatch, BgDescTable, TextDescTable, IconDescTable } from './TokenC
 
 역할 기반 토큰. 네이밍 패턴: `분류-용도`. 컴포넌트는 이 토큰만 참조한다.
 
+**"참조 팔레트" 칸은 이 토큰이 실제로 무엇을 가리키는지다.** 컴포넌트에서 팔레트를
+직접 쓰지 말라는 규칙이 있어 평소에는 몰라도 되지만, 새 토큰을 정할 때 옆 토큰이
+어느 단계를 쓰는지 보면 고르기가 쉽다.
+
 ---
 
 ## Background
 
-<BgDescTable />
-
-<ColorSwatch token="--color-bg-default"   label="bg-default"   border />
-<ColorSwatch token="--color-bg-secondary" label="bg-secondary" border />
-<ColorSwatch token="--color-bg-tertiary"  label="bg-tertiary"  border />
-<ColorSwatch token="--color-bg-hover"     label="bg-hover"     border />
-<ColorSwatch token="--color-bg-pressed"   label="bg-pressed"   border />
-<ColorSwatch token="--color-bg-accent"         label="bg-accent" />
-<ColorSwatch token="--color-bg-accent-subtle"   label="bg-accent-subtle" border />
-<ColorSwatch token="--color-bg-overlay"          label="bg-overlay" />
-<ColorSwatch token="--color-bg-overlay-blur"     label="bg-overlay-blur" border />
-<ColorSwatch token="--color-bg-inverse"          label="bg-inverse" />
-<ColorSwatch token="--color-bg-critical"         label="bg-critical" />
-<ColorSwatch token="--color-bg-critical-subtle"  label="bg-critical-subtle" border />
+<BgColorTable />
 
 `bg-overlay-blur`는 `bg-overlay`의 흰 블러 버전이다. 검정 딤은 그 위 버튼·글자가
 잘 안 보인다는 지적이 있어서 만들었다 — 이미지처럼 밝기를 예측할 수 없는 콘텐츠를
@@ -49,30 +40,15 @@ backdrop-filter: blur(var(--blur-overlay));
 
 ## Text
 
-<TextDescTable />
+<TextColorTable />
 
-<ColorSwatch token="--color-text-default"   label="text-default" />
-<ColorSwatch token="--color-text-secondary" label="text-secondary" />
-<ColorSwatch token="--color-text-tertiary"  label="text-tertiary" />
-<ColorSwatch token="--color-text-accent"    label="text-accent" />
-<ColorSwatch token="--color-text-onaccent"  label="text-onaccent"  border />
-<ColorSwatch token="--color-text-oninverse" label="text-oninverse" border />
-<ColorSwatch token="--color-text-link"        label="text-link" />
-<ColorSwatch token="--color-text-critical"    label="text-critical" />
-<ColorSwatch token="--color-text-oncritical"  label="text-oncritical" border />
+`text-default`는 gray-900이었다가 **gray-800으로 한 단계 눅였다**(2026-09-06).
+순검정에 가까우면 긴 글에서 눈이 빨리 지친다.
 
 ## Border
 
-<ColorSwatch token="--color-border-default" label="border-default" border />
-<ColorSwatch token="--color-border-strong"  label="border-strong"  border />
+<BorderColorTable />
 
 ## Icon
 
-<IconDescTable />
-
-<ColorSwatch token="--color-icon-default"   label="icon-default" />
-<ColorSwatch token="--color-icon-secondary" label="icon-secondary" />
-<ColorSwatch token="--color-icon-accent"    label="icon-accent" />
-<ColorSwatch token="--color-icon-onaccent"   label="icon-onaccent"  border />
-<ColorSwatch token="--color-icon-oninverse"  label="icon-oninverse" border />
-<ColorSwatch token="--color-icon-critical"   label="icon-critical" />
+<IconColorTable />

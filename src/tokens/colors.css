@@ -73,7 +73,9 @@
   --color-bg-critical-subtle:   var(--color-red-150);
 
   /* ── Semantic: Text ── */
-  --color-text-default:   var(--color-gray-900);
+  /* gray-900(#111)은 순검정에 가까워 긴 글에서 눈이 빨리 지친다.
+     한 단계 눅인 gray-800을 기본 글자색으로 둔다 (2026-09-06) */
+  --color-text-default:   var(--color-gray-800);
   --color-text-secondary: var(--color-gray-500);
   --color-text-tertiary:  var(--color-gray-300);
   --color-text-accent:    var(--color-sky-600);

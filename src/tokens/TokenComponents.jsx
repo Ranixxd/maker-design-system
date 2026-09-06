@@ -146,56 +146,137 @@ function DescTable({ rows, col1 = 'Token', col2 = '용도' }) {
   );
 }
 
-export function BgDescTable() {
-  return <DescTable rows={[
-    { token: 'bg-default',          desc: '기본 페이지 배경' },
-    { token: 'bg-secondary',        desc: '카드·패널 배경' },
-    { token: 'bg-tertiary',         desc: '입력 필드·구분 영역 배경' },
-    { token: 'bg-hover',            desc: '호버 상태 오버레이' },
-    { token: 'bg-pressed',          desc: '프레스 상태' },
-    { token: 'bg-accent',           desc: '강조 배경 (sky-500)' },
-    { token: 'bg-overlay',          desc: '딤 레이어' },
-    { token: 'bg-overlay-blur',     desc: '흰 블러 딤 레이어 (--blur-overlay와 함께 쓴다)' },
-    { token: 'bg-inverse',          desc: '인버스 컴포넌트 배경 (프라이머리 버튼 등)' },
-    { token: 'bg-critical',         desc: '크리티컬 배경 (red-600)' },
-    { token: 'bg-critical-subtle',  desc: '크리티컬 보조 배경 (red-150)' },
+/* 색 하나를 판단하려면 세 가지를 한눈에 봐야 한다 — 어떤 색인지(미리보기),
+   무엇을 참조하는지(팔레트), 어디에 쓰는지(용도). 예전에는 표와 미리보기가
+   따로 떨어져 있어 눈이 위아래를 오갔다. 한 줄에 모은다.
+
+   palette는 colors.css의 실제 참조를 그대로 적는다 — 바꾸면 여기도 함께 고친다 */
+function SemanticColorTable({ rows }) {
+  return (
+    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+      <thead>
+        <tr style={tableHead}>
+          <th style={th}>미리보기</th>
+          <th style={th}>Token</th>
+          <th style={th}>참조 팔레트</th>
+          <th style={th}>용도</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((r) => (
+          <tr key={r.token}>
+            <td style={{ ...td, width: 56 }}>
+              <div style={{
+                width: 40, height: 40,
+                background: `var(--color-${r.token})`,
+                borderRadius: 8,
+                /* 흰색·투명에 가까운 것은 테두리가 없으면 어디까지가 색인지 안 보인다 */
+                border: r.border ? '1px solid var(--color-border-default)' : undefined,
+              }} />
+            </td>
+            <td style={{ ...td, whiteSpace: 'nowrap' }}>
+              <code style={{ fontSize: 12 }}>--color-{r.token}</code>
+            </td>
+            <td style={{ ...td, color: 'var(--color-text-secondary)', whiteSpace: 'nowrap' }}>
+              <code style={{ fontSize: 12 }}>{r.palette}</code>
+            </td>
+            <td style={{ ...td, color: 'var(--color-text-secondary)' }}>{r.desc}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
+
+export function BgColorTable() {
+  return <SemanticColorTable rows={[
+    { token: 'bg-default',         palette: 'white',            desc: '기본 페이지 배경', border: true },
+    { token: 'bg-secondary',       palette: 'gray-50',          desc: '카드·패널 배경', border: true },
+    { token: 'bg-tertiary',        palette: 'gray-100',         desc: '입력칸·구분 영역 배경', border: true },
+    { token: 'bg-hover',           palette: 'black-alpha-04',   desc: '호버 오버레이', border: true },
+    { token: 'bg-pressed',         palette: 'black-alpha-08',   desc: '눌림 오버레이', border: true },
+    { token: 'bg-accent',          palette: 'sky-500',          desc: '강조 배경' },
+    { token: 'bg-accent-subtle',   palette: 'sky-100',          desc: '강조 보조 배경', border: true },
+    { token: 'bg-overlay',         palette: 'black-alpha-60',   desc: '딤 레이어' },
+    { token: 'bg-overlay-blur',    palette: 'rgba(255,255,255,.88)', desc: '흰 블러 딤 (--blur-overlay와 함께)', border: true },
+    { token: 'bg-inverse',         palette: 'gray-900',         desc: '인버스 배경 (프라이머리 버튼 등)' },
+    { token: 'bg-critical',        palette: 'red-600',          desc: '크리티컬 배경' },
+    { token: 'bg-critical-subtle', palette: 'red-150',          desc: '크리티컬 보조 배경', border: true },
   ]} />;
 }
 
-export function TextDescTable() {
-  return <DescTable rows={[
-    { token: 'text-default',     desc: '기본 본문' },
-    { token: 'text-secondary',   desc: '보조 텍스트' },
-    { token: 'text-tertiary',    desc: '비활성·플레이스홀더' },
-    { token: 'text-accent',      desc: '강조 텍스트 (sky 계열)' },
-    { token: 'text-onaccent',    desc: 'bg-accent 위 텍스트' },
-    { token: 'text-oninverse',   desc: 'bg-inverse 위 텍스트' },
-    { token: 'text-link',        desc: '하이퍼링크' },
-    { token: 'text-critical',    desc: '크리티컬 텍스트 (red-600)' },
-    { token: 'text-oncritical',  desc: 'bg-critical 위 텍스트' },
+export function TextColorTable() {
+  return <SemanticColorTable rows={[
+    { token: 'text-default',    palette: 'gray-800', desc: '기본 본문' },
+    { token: 'text-secondary',  palette: 'gray-500', desc: '보조 텍스트' },
+    { token: 'text-tertiary',   palette: 'gray-300', desc: '비활성·플레이스홀더' },
+    { token: 'text-accent',     palette: 'sky-600',  desc: '강조 텍스트' },
+    { token: 'text-onaccent',   palette: 'white',    desc: 'bg-accent 위 텍스트', border: true },
+    { token: 'text-oninverse',  palette: 'white',    desc: 'bg-inverse 위 텍스트', border: true },
+    { token: 'text-link',       palette: 'sky-700',  desc: '하이퍼링크' },
+    { token: 'text-critical',   palette: 'red-600',  desc: '크리티컬 텍스트' },
+    { token: 'text-oncritical', palette: 'white',    desc: 'bg-critical 위 텍스트', border: true },
   ]} />;
 }
 
-export function IconDescTable() {
-  return <DescTable rows={[
-    { token: 'icon-default',    desc: '기본 아이콘' },
-    { token: 'icon-secondary',  desc: '보조 아이콘' },
-    { token: 'icon-accent',     desc: '강조 아이콘 (sky 계열)' },
-    { token: 'icon-onaccent',   desc: 'bg-accent 위 아이콘' },
-    { token: 'icon-oninverse',  desc: 'bg-inverse 위 아이콘' },
-    { token: 'icon-critical',   desc: '크리티컬 아이콘 (red-600)' },
+export function BorderColorTable() {
+  return <SemanticColorTable rows={[
+    { token: 'border-default', palette: 'gray-200', desc: '기본 구분선·테두리', border: true },
+    { token: 'border-strong',  palette: 'gray-400', desc: '강조 테두리', border: true },
   ]} />;
 }
 
+export function IconColorTable() {
+  return <SemanticColorTable rows={[
+    { token: 'icon-default',   palette: 'gray-900', desc: '기본 아이콘' },
+    { token: 'icon-secondary', palette: 'gray-500', desc: '보조 아이콘' },
+    { token: 'icon-accent',    palette: 'sky-500',  desc: '강조 아이콘' },
+    { token: 'icon-onaccent',  palette: 'white',    desc: 'bg-accent 위 아이콘', border: true },
+    { token: 'icon-oninverse', palette: 'white',    desc: 'bg-inverse 위 아이콘', border: true },
+    { token: 'icon-critical',  palette: 'red-600',  desc: '크리티컬 아이콘' },
+  ]} />;
+}
+
+/* 값만 적힌 표로는 12px과 16px의 차이가 손에 안 잡힌다 — 고를 때 눈으로
+   대보라고 같은 크기의 상자에 실제 반경을 입혀 나란히 놓는다 */
 export function RadiusTable() {
-  return <DescTable col2="Value" rows={[
-    { token: '--radius-xs',   desc: '4px' },
-    { token: '--radius-sm',   desc: '8px' },
-    { token: '--radius-md',   desc: '12px' },
-    { token: '--radius-lg',   desc: '16px' },
-    { token: '--radius-xl',   desc: '20px' },
-    { token: '--radius-full', desc: '9999px' },
-  ]} />;
+  const rows = [
+    { token: '--radius-xs',   value: '4px',    use: '태그, 작은 배지' },
+    { token: '--radius-sm',   value: '8px',    use: '입력칸, 메뉴 줄, 작은 버튼' },
+    { token: '--radius-md',   value: '12px',   use: '버튼, 카드, 팝오버' },
+    { token: '--radius-lg',   value: '16px',   use: '큰 카드, 시트' },
+    { token: '--radius-xl',   value: '20px',   use: '모달, 바텀시트' },
+    { token: '--radius-full', value: '9999px', use: '알약 버튼, 아바타, 토글' },
+  ];
+  return (
+    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+      <thead>
+        <tr style={tableHead}>
+          <th style={th}>Token</th>
+          <th style={th}>Sample</th>
+          <th style={th}>Value</th>
+          <th style={th}>어디에 쓰나</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((r) => (
+          <tr key={r.token}>
+            <td style={{ ...td, whiteSpace: 'nowrap' }}><code style={{ fontSize: 12 }}>{r.token}</code></td>
+            <td style={{ ...td, padding: '8px 12px' }}>
+              <div style={{
+                width: 56, height: 40,
+                background: 'var(--color-bg-tertiary)',
+                border: '1px solid var(--color-border-default)',
+                borderRadius: `var(${r.token})`,
+              }} />
+            </td>
+            <td style={{ ...td, color: 'var(--color-text-secondary)', whiteSpace: 'nowrap' }}>{r.value}</td>
+            <td style={{ ...td, color: 'var(--color-text-secondary)' }}>{r.use}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
 }
 
 export function ShadowTable() {
