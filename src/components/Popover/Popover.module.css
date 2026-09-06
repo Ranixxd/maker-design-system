@@ -5,11 +5,15 @@
 }
 
 .panel {
+  /* 화면 가장자리에 남기는 여백. Popover.jsx가 밀어 넣을 때도 이 값을 읽는다 —
+     두 곳에 따로 적으면 한쪽만 고쳐 어긋난다 */
+  --popover-edge: var(--spacing-2);
+
   position: absolute;
   min-width: 160px;
   /* 좁은 화면에서 패널이 화면보다 넓어지지 않게. 밀어 넣는 보정(Popover.jsx)은
      넘친 만큼 옮길 뿐이라, 애초에 화면보다 넓으면 반대쪽이 잘린다 */
-  max-width: calc(100vw - 16px);
+  max-width: calc(100vw - var(--popover-edge) * 2);
   /* 좌우는 띄우지 않는다. 안으로 들어갈지는 담기는 것이 정한다 —
      MenuItem은 스스로 4px 물러나 상자로 보이고, Divider는 끝까지 가서
      패널을 가로지른다. 패널이 좌우를 띄우면 구분선까지 딸려 들어와

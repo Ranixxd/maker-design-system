@@ -3,8 +3,12 @@ import {
 } from 'react';
 import styles from './Popover.module.css';
 
-/* 화면 밖으로 나가지 않게 남겨두는 가장자리 여백 */
-const EDGE = 8;
+/* 화면 가장자리에 남기는 여백은 CSS(--popover-edge)가 갖는다. 여기서 숫자로
+   또 적으면 한쪽만 고쳤을 때 조용히 어긋난다. 못 읽으면 spacing-2와 같은 8로 둔다 */
+const 가장자리여백 = (el) => {
+  const v = parseFloat(getComputedStyle(el).getPropertyValue('--popover-edge'));
+  return Number.isFinite(v) ? v : 8;
+};
 
 /* 무언가를 눌렀을 때 그 자리 옆에 뜨는 작은 패널.
 
@@ -76,6 +80,7 @@ export default function Popover({
       if (!el) return;
 
       el.style.transform = '';
+      const EDGE = 가장자리여백(el);
       const r = el.getBoundingClientRect();
       const 폭 = window.innerWidth;
       const 높이 = window.innerHeight;
