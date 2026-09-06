@@ -16,6 +16,8 @@ export { default as Icon } from './components/Icon/index.js';
 export { default as IconButton } from './components/IconButton/index.js';
 export { default as LayerPopup } from './components/LayerPopup/index.js';
 export { default as ListItem } from './components/ListItem/index.js';
+export { default as MenuItem } from './components/MenuItem/index.js';
+export { default as Popover } from './components/Popover/index.js';
 export { default as TextField } from './components/TextField/index.js';
 export { default as Thumbnail } from './components/Thumbnail/index.js';
 

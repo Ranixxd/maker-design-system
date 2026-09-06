@@ -60,7 +60,7 @@ export const CommonIcons = {
       'Home', 'Palette', 'Bell', 'Settings', 'ChevronRight', 'ChevronLeft',
       'ChevronDown', 'X', 'Plus', 'Minus', 'Check', 'Info',
       'Upload', 'Download', 'Pencil', 'Trash2', 'Image', 'Layers',
-      'Menu', 'MoreHorizontal',
+      'Menu', 'MoreHorizontal', 'User', 'LogOut',
     ];
     return (
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24 }}>

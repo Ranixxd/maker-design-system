@@ -11,6 +11,7 @@ import {
   X, Plus, Minus, Check, Info,
   Upload, Download, Pencil, Trash2,
   Image, Layers, Menu, MoreHorizontal,
+  User, LogOut,
 } from 'lucide-react';
 
 const ICONS = {
@@ -19,6 +20,7 @@ const ICONS = {
   X, Plus, Minus, Check, Info,
   Upload, Download, Pencil, Trash2,
   Image, Layers, Menu, MoreHorizontal,
+  User, LogOut,
 };
 
 const SIZES = { sm: 16, md: 20 };
