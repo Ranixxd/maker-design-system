@@ -10,11 +10,30 @@ export default {
   parameters: {
     docs: {
       description: {
-        component:
-          '누른 것 옆에 붙어 뜨는 작은 패널. 바깥을 누르거나 Esc를 치면 닫히고, 닫힐 때 포커스가 트리거로 돌아간다.\n\n' +
-          '화면을 덮고 집중을 가져가야 하면 LayerPopup을 쓴다. Popover는 잠깐 고르고 마는 일에 쓴다.\n\n' +
-          '`role="menu"`를 붙이지 않는다 — ARIA의 menu는 화살표 키 이동까지가 약속인데, 그것을 하지 않으면서 ' +
-          '이름만 붙이면 화면 낭독기를 쓰는 사람이 되지 않는 조작을 안내받는다.',
+        /* 여러 줄 그대로 쓴다 — 마크다운은 빈 줄로 문단을 나누므로
+           템플릿 리터럴의 진짜 줄바꿈이 그대로 맞는다 */
+        component: `누른 것 옆에 붙어 뜨는 작은 패널. 바깥을 누르거나 Esc를 치면 닫히고,
+닫힐 때 포커스가 트리거로 돌아온다.
+
+화면을 덮고 집중을 가져가야 하면 LayerPopup을 쓴다. Popover는 잠깐 고르고 마는 일에 쓴다.
+
+ARIA의 menu role을 붙이지 않는다 — 그것은 화살표 키 이동까지가 약속인데, 하지 않으면서
+이름만 붙이면 화면 낭독기를 쓰는 사람이 되지 않는 조작을 안내받는다.
+
+### side·align은 희망이지 확정이 아니다
+
+연 뒤에 실제로 재서, 화면 밖으로 나가면 스스로 밀어 넣고 위아래를 뒤집는다. 부르는 쪽이
+트리거가 화면 어디에 있는지까지 계산해서 넘길 수는 없다 — 같은 헤더라도 화면이 좁아지면
+트리거가 끝에 붙기 때문이다.
+
+### 안에 무엇을 담나
+
+MenuItem만 담는 자리가 아니다. **성격이 다른 기능을 나눌 때는 Divider를 섞어 쓴다.**
+"지금 누구인지"를 적어둔 줄과 "누르면 무슨 일이 일어나는" 줄처럼, 종류가 다른 것이 한
+패널에 있을 때 선 하나로 갈라 준다. 아래 "계정 메뉴" 참고.
+
+다만 선을 남발하지 않는다. **같은 종류의 줄 사이에는 두지 않는다** — 나눌 것이 없는데
+선을 그으면 무리가 몇 개인지 세게 만든다.`,
       },
     },
   },
@@ -24,7 +43,6 @@ export default {
   },
 };
 
-/* children에 함수를 주면 close를 받는다 — 항목을 고르면 스스로 닫히게 한다 */
 export const Default = {
   args: { side: 'bottom', align: 'end' },
   render: (args) => (
@@ -34,10 +52,12 @@ export const Default = {
         label="더보기"
         trigger={<IconButton icon="MoreHorizontal" aria-label="더보기" />}
       >
+        {/* 둘뿐이라 아이콘을 달지 않는다. 초기화는 화면 안에서 끝나는 일이라
+            critical도 아니다 — 둘 다 MenuItem 문서의 규칙 */}
         {(close) => (
           <>
-            <MenuItem label="이름 바꾸기" icon="Pencil" onClick={close} />
-            <MenuItem label="지우기" icon="Trash2" variant="critical" onClick={close} />
+            <MenuItem label="이름 바꾸기" onClick={close} />
+            <MenuItem label="초기화" onClick={close} />
           </>
         )}
       </Popover>

@@ -21,7 +21,9 @@ export default function MenuItem({
       {...props}
     >
       {icon && <Icon name={icon} size="sm" className={styles.leading} />}
-      <span className={`text-body-2 ${styles.label}`}>{label}</span>
+      {/* body가 아니라 label이다 — 읽는 글이 아니라 누르는 것의 이름이고,
+          한 줄로 끝나므로 행간도 single이 맞다 */}
+      <span className={`text-label-1 ${styles.label}`}>{label}</span>
       {trailing !== undefined && <span className={styles.trailing}>{trailing}</span>}
     </button>
   );
