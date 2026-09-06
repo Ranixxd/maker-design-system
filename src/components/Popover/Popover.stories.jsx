@@ -53,16 +53,18 @@ export const 계정메뉴 = {
       <Popover
         label="내 계정"
         align="end"
-        trigger={<IconButton icon="User" size="sm" aria-label="내 계정" />}
+        trigger={<IconButton icon="User" aria-label="내 계정" />}
       >
         {(close) => (
-          <div style={{ minWidth: 180 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '4px 12px' }}>
-              <span className="text-label-3" style={{ flex: 1 }}>바다코끼리</span>
+          /* 배경화면 메이커의 UserMenu와 같은 짜임 — 글자 시작점이 두 줄에서
+             어긋나지 않는지 여기서 본다. 메뉴 줄에 아이콘을 달면 그만큼 밀린다 */
+          <div style={{ minWidth: 176 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingInline: 12 }}>
+              <span className="text-body-2" style={{ flex: 1 }}>바다코끼리</span>
               <IconButton icon="Pencil" size="sm" aria-label="닉네임 바꾸기" onClick={close} />
             </div>
             <Divider />
-            <MenuItem label="로그아웃" icon="LogOut" onClick={close} />
+            <MenuItem label="로그아웃" onClick={close} />
           </div>
         )}
       </Popover>

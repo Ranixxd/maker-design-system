@@ -5,7 +5,9 @@
   width: 100%;
   padding: var(--spacing-2) var(--spacing-3);
   border: none;
-  border-radius: var(--radius-sm);
+  /* 패널 좌우에 여백이 없어 줄이 테두리까지 꽉 찬다 — 자기 모서리를 둥글리면
+     패널의 둥근 모서리와 어긋나 틈이 보인다. 모서리는 패널이 잘라낸다 */
+  border-radius: 0;
   background: transparent;
   color: var(--color-text-default);
   text-align: start;
