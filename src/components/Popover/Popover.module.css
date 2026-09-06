@@ -18,7 +18,9 @@
   overflow: hidden;
   border-radius: var(--radius-md);
   background: var(--color-bg-default);
-  border: 1px solid var(--color-border-default);
+  /* 테두리를 두지 않는다 — 떠 있는 것은 그림자가 이미 말하고 있다.
+     테두리까지 두면 선이 겹쳐 보이고, 안쪽 구분선과 굵기가 같아
+     어디까지가 패널이고 어디부터가 줄인지 흐려진다 */
   box-shadow: var(--shadow-overlay);
   z-index: var(--z-anchored);
 }
