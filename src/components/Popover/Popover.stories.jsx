@@ -60,7 +60,7 @@ export const 계정메뉴 = {
              어긋나지 않는지 여기서 본다. 메뉴 줄에 아이콘을 달면 그만큼 밀린다 */
           <div style={{ minWidth: 176 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingInline: 12 }}>
-              <span className="text-body-2" style={{ flex: 1 }}>바다코끼리</span>
+              <span className="text-label-1" style={{ flex: 1, color: 'var(--color-text-secondary)' }}>바다코끼리</span>
               <IconButton icon="Pencil" size="sm" aria-label="닉네임 바꾸기" onClick={close} />
             </div>
             <Divider />
