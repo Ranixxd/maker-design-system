@@ -10,10 +10,15 @@
   /* 좁은 화면에서 패널이 화면보다 넓어지지 않게. 밀어 넣는 보정(Popover.jsx)은
      넘친 만큼 옮길 뿐이라, 애초에 화면보다 넓으면 반대쪽이 잘린다 */
   max-width: calc(100vw - 16px);
-  /* 사방을 4px 띄운다 — 줄이 눌릴 때 뜨는 배경이 패널 안의 한 덩이 상자로
-     보여야 어디까지가 눌리는 자리인지 읽힌다. 꽉 채우면 패널과 줄의 경계가
-     사라진다. overflow는 그래도 남긴다 — 모서리 밖으로 새는 것은 따로 막는다 */
-  padding: var(--spacing-1);
+  /* 좌우는 띄우지 않는다. 안으로 들어갈지는 담기는 것이 정한다 —
+     MenuItem은 스스로 4px 물러나 상자로 보이고, Divider는 끝까지 가서
+     패널을 가로지른다. 패널이 좌우를 띄우면 구분선까지 딸려 들어와
+     선이 어중간하게 짧아진다.
+
+     위아래만 4px 둔다. 이건 담기는 것과 상관없이 첫 줄과 끝 줄이
+     모서리에 붙지 않게 하는, 패널 자신의 몫이다 */
+  padding-block: var(--spacing-1);
+  padding-inline: 0;
   overflow: hidden;
   border-radius: var(--radius-md);
   background: var(--color-bg-default);

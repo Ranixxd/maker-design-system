@@ -2,7 +2,12 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-2);
-  width: 100%;
+  /* 스스로 좌우로 물러난다 — 패널이 아니라 줄이 자기 상자를 갖는다.
+     패널이 띄우면 같은 패널의 Divider까지 딸려 들어간다 */
+  /* button은 width:auto면 내용만큼만 줄어든다(shrink-to-fit) — 줄이 아니라
+     글자 크기의 상자가 되어버린다. 남는 폭에서 좌우 여백만 뺀다 */
+  width: calc(100% - var(--spacing-1) * 2);
+  margin-inline: var(--spacing-1);
   padding: var(--spacing-2) var(--spacing-3);
   border: none;
   /* 패널 안에서 한 덩이의 상자로 보여야 한다 — 눌리는 자리가 어디까지인지
