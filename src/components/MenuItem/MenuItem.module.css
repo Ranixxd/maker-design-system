@@ -1,4 +1,5 @@
 .item {
+  position: relative;
   display: flex;
   align-items: center;
   gap: var(--spacing-2);
@@ -18,6 +19,20 @@
   color: var(--color-text-default);
   text-align: start;
   cursor: pointer;
+  transition: transform var(--motion-duration-short) var(--motion-easing-standard);
+}
+
+/* hover·눌림 오버레이 — Button·IconButton과 같은 방식이다.
+   배경을 직접 바꾸지 않고 반투명 판을 덮는 이유는, 줄마다 배경색이 달라도
+   (critical) 같은 세기로 어두워지기 때문이다. 토큰이 4%·8% 알파라 글자를 가리지 않는다 */
+.item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: transparent;
+  pointer-events: none;
+  transition: background-color var(--motion-duration-short) var(--motion-easing-standard);
 }
 
 .leading { color: var(--color-icon-secondary); flex: 0 0 auto; }
@@ -26,19 +41,29 @@
 
 /* 손가락에는 hover가 없다 — 터치에서 눌린 채로 남는 자국을 만들지 않는다 */
 @media (hover: hover) {
-  .item:hover { background: var(--color-bg-hover); }
+  .item:hover:not(:disabled)::after { background-color: var(--color-bg-hover); }
 }
-.item:active { background: var(--color-bg-pressed); }
+.item:active:not(:disabled)::after { background-color: var(--color-bg-pressed); }
+
+/* 눌리면 살짝 줄어든다. Button·IconButton은 0.9인데 여기는 0.98이다 —
+   그것들은 작고 네모나서 0.9가 "눌렸다"로 읽히지만, 이 줄은 패널 폭을 다 쓰므로
+   같은 값이면 17px이 움직여 튀어 보인다. 넓은 것은 덜 줄어야 같은 세기로 느껴진다 */
+.item:active:not(:disabled) { transform: scale(0.98); }
+
+/* 움직임을 줄여달라고 한 사람에게는 크기를 건드리지 않는다 — 색만으로도 충분히 전해진다 */
+@media (prefers-reduced-motion: reduce) {
+  .item { transition: none; }
+  .item:active:not(:disabled) { transform: none; }
+}
 
 .item:disabled {
   color: var(--color-text-tertiary);
   cursor: default;
-  background: transparent;
 }
 .item:disabled .leading { color: var(--color-text-tertiary); }
 
-/* 지우기·로그아웃처럼 되돌리기 어려운 줄 */
-/* 글자와 아이콘만 붉다. 배경까지 붉히지 않는 이유 —
+/* 지우기·로그아웃처럼 되돌리기 어려운 줄.
+   글자와 아이콘만 붉다. 배경까지 붉히지 않는 이유 —
    손이 지나가다 얹히는 것만으로 경고가 켜지면, 정작 누를 때의 무게가 닳는다.
    위험하다는 것은 글자색이 이미 말하고 있다 */
 .critical { color: var(--color-text-critical); }

@@ -2,7 +2,6 @@ import Popover from './Popover';
 import MenuItem from '../MenuItem/MenuItem';
 import IconButton from '../IconButton/IconButton';
 import Button from '../Button/Button';
-import Divider from '../Divider/Divider';
 
 export default {
   title: 'Components/Popover',
@@ -28,12 +27,18 @@ ARIA의 menu role을 붙이지 않는다 — 그것은 화살표 키 이동까�
 
 ### 안에 무엇을 담나
 
-MenuItem만 담는 자리가 아니다. **성격이 다른 기능을 나눌 때는 Divider를 섞어 쓴다.**
-"지금 누구인지"를 적어둔 줄과 "누르면 무슨 일이 일어나는" 줄처럼, 종류가 다른 것이 한
-패널에 있을 때 선 하나로 갈라 준다. 아래 "계정 메뉴" 참고.
+MenuItem만 담는 자리가 아니다. 아래 "계정 메뉴"처럼 글과 버튼을 섞어도 된다.
 
-다만 선을 남발하지 않는다. **같은 종류의 줄 사이에는 두지 않는다** — 나눌 것이 없는데
-선을 그으면 무리가 몇 개인지 세게 만든다.`,
+**성격이 다른 기능을 나눌 때는 Divider를 섞어 쓸 수 있다.** "지금 누구인지"를 적어둔
+줄과 "누르면 무슨 일이 일어나는" 줄처럼, 종류가 다른 것이 한 패널에 있을 때 선 하나로
+갈라 준다.
+
+**다만 줄이 적으면 굳이 나누지 않는다.** 두세 줄뿐인 패널에 선을 그으면 나뉜 무리가
+줄보다 많아 보인다. 배경화면 메이커의 계정 메뉴가 그래서 선을 걷어냈다(2026-09-06) —
+닉네임과 로그아웃 둘뿐이라 선이 없어도 종류가 다른 것이 읽힌다.
+
+같은 종류의 줄 사이에도 두지 않는다. 나눌 것이 없는데 선을 그으면 무리가 몇 개인지
+세게 만든다.`,
       },
     },
   },
@@ -83,7 +88,6 @@ export const 계정메뉴 = {
               <span className="text-label-1" style={{ flex: 1, color: 'var(--color-text-secondary)' }}>바다코끼리</span>
               <IconButton icon="Pencil" size="sm" aria-label="닉네임 바꾸기" onClick={close} />
             </div>
-            <Divider />
             <MenuItem label="로그아웃" onClick={close} />
           </div>
         )}
