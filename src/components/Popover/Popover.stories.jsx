@@ -80,3 +80,21 @@ export const 위로펴기 = {
     </div>
   ),
 };
+
+/* 화면 밖으로 나가는 자리를 일부러 만든다 — 트리거가 왼쪽 끝인데 align='end'면
+   패널이 왼쪽 밖으로 흘러 잘린다. 실제로 좁은 화면의 헤더에서 그렇게 잘렸다.
+   Popover가 열린 뒤 재서 밀어 넣는지 여기서 본다 */
+export const 화면밖보정 = {
+  name: '화면 밖으로 나갈 때 (자동 보정)',
+  parameters: { docs: { description: { story: 'align은 희망이지 확정이 아니다. 트리거가 화면 끝에 붙어 있으면 패널이 밖으로 나가는데, 연 뒤에 재서 8px 안쪽으로 밀어 넣는다. 세로로 넘칠 때는 밀지 않고 뒤집는다 — 밀면 트리거를 가려 무엇을 눌러 열었는지 잃는다.' } } },
+  render: () => (
+    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '40px 0' }}>
+      <Popover label="왼쪽 끝" align="end" trigger={<IconButton icon="User" size="sm" aria-label="왼쪽 끝" />}>
+        {(close) => <MenuItem label="왼쪽 끝인데 align=end" onClick={close} />}
+      </Popover>
+      <Popover label="오른쪽 끝" align="start" trigger={<IconButton icon="User" size="sm" aria-label="오른쪽 끝" />}>
+        {(close) => <MenuItem label="오른쪽 끝인데 align=start" onClick={close} />}
+      </Popover>
+    </div>
+  ),
+};

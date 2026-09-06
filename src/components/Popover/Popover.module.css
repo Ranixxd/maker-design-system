@@ -7,6 +7,9 @@
 .panel {
   position: absolute;
   min-width: 160px;
+  /* 좁은 화면에서 패널이 화면보다 넓어지지 않게. 밀어 넣는 보정(Popover.jsx)은
+     넘친 만큼 옮길 뿐이라, 애초에 화면보다 넓으면 반대쪽이 잘린다 */
+  max-width: calc(100vw - 16px);
   padding: var(--spacing-1);
   border-radius: var(--radius-md);
   background: var(--color-bg-default);
@@ -19,22 +22,18 @@
 .bottom { inset-block-start: calc(100% + var(--spacing-2)); }
 .top    { inset-block-end:   calc(100% + var(--spacing-2)); }
 
-/* 어느 변에 맞추나. 헤더 오른쪽 끝에 있는 트리거는 end로 세워야
-   패널이 화면 밖으로 나가지 않는다 */
+/* 어느 변에 맞추나. 화면 밖으로 나가면 Popover.jsx가 재서 밀어 넣는다 */
 .start { inset-inline-start: 0; }
 .end   { inset-inline-end: 0; }
 
+/* transform은 화면 안으로 밀어 넣는 보정이 쓰고 있다(Popover.jsx의 translateX).
+   등장 효과까지 transform으로 주면 둘이 덮어써 보정이 지워지므로 투명도만 쓴다 */
 @media (prefers-reduced-motion: no-preference) {
   .panel {
     animation: popover-in var(--motion-duration-short-2) var(--motion-easing-standard-decelerate);
   }
   @keyframes popover-in {
-    from { opacity: 0; transform: translateY(-2px); }
-    to   { opacity: 1; transform: none; }
-  }
-  .top { animation-name: popover-in-up; }
-  @keyframes popover-in-up {
-    from { opacity: 0; transform: translateY(2px); }
-    to   { opacity: 1; transform: none; }
+    from { opacity: 0; }
+    to   { opacity: 1; }
   }
 }
