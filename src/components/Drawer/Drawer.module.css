@@ -1,0 +1,71 @@
+/* 서랍 — 화면 가장자리에서 밀려나온다.
+
+   z 토큰이 이미 --z-drawer / --z-drawer-scrim으로 자리를 비워 두고 있었다
+   (shadow.css). 모달(--z-modal)보다 아래다 — 서랍 위에서 모달이 열리는 일은
+   있어도 그 반대는 없다. */
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-drawer-scrim);
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-bg-overlay);
+  animation: drawerFade var(--motion-duration-short-4) var(--motion-easing-standard-decelerate);
+}
+
+.panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: var(--z-drawer);
+  /* 좁은 화면에서는 화면을 다 덮지 않는다 — 뒤가 남아 있어야 "바깥을 누르면
+     닫힌다"가 눈에 보인다. 넓은 화면에서는 400px에서 멈춘다 */
+  width: 80%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-default);
+  box-shadow: var(--shadow-overlay);
+  /* 내용이 길면 서랍 안에서만 구른다 */
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.panel:focus { outline: none; }
+
+.root[data-side='left'] .panel {
+  left: 0;
+  animation: drawerInLeft var(--motion-duration-medium-2) var(--motion-easing-standard-decelerate);
+}
+.root[data-side='right'] .panel {
+  right: 0;
+  animation: drawerInRight var(--motion-duration-medium-2) var(--motion-easing-standard-decelerate);
+}
+
+.closeRow {
+  display: flex;
+  justify-content: flex-end;
+  padding: var(--spacing-2) var(--spacing-2) 0;
+}
+
+@keyframes drawerFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes drawerInLeft {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+@keyframes drawerInRight {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+/* 움직임을 줄여 달라고 한 사람에게는 밀려나오지 않고 그냥 나타난다 */
+@media (prefers-reduced-motion: reduce) {
+  .scrim,
+  .root[data-side='left'] .panel,
+  .root[data-side='right'] .panel { animation: none; }
+}

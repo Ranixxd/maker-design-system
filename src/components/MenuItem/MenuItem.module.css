@@ -68,3 +68,8 @@
    위험하다는 것은 글자색이 이미 말하고 있다 */
 .critical { color: var(--color-text-critical); }
 .critical .leading { color: var(--color-icon-critical); }
+
+/* 크기 — 글자는 JSX가 .text-* 로 정하고, 여기서는 그 크기에 맞는 여백만 준다.
+   lg는 화면을 덮는 서랍 안에 서므로 줄이 높고 손가락이 닿기 쉬워야 한다 */
+.md { padding: var(--spacing-2) var(--spacing-3); }
+.lg { padding: var(--spacing-3) var(--spacing-4); gap: var(--spacing-3); }

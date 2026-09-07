@@ -12,6 +12,7 @@ import './index.css';
 export { default as Badge } from './components/Badge/index.js';
 export { default as Button } from './components/Button/index.js';
 export { default as Divider } from './components/Divider/index.js';
+export { default as Drawer } from './components/Drawer/index.js';
 export { default as Icon } from './components/Icon/index.js';
 export { default as IconButton } from './components/IconButton/index.js';
 export { default as LayerPopup } from './components/LayerPopup/index.js';

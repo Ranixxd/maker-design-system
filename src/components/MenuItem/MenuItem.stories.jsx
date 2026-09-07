@@ -85,3 +85,23 @@ export const 셋이하 = {
     </>
   ),
 };
+
+export const Sizes = {
+  name: '크기',
+  render: () => (
+    <div style={{ display: 'grid', gap: 'var(--spacing-4)', width: 260 }}>
+      <div>
+        <p className="text-label-3" style={{ margin: '0 0 4px', color: 'var(--color-text-secondary)' }}>
+          md — 곁에 붙어 뜬 팝오버 안
+        </p>
+        <MenuItem label="배경화면 초기화" />
+      </div>
+      <div>
+        <p className="text-label-3" style={{ margin: '0 0 4px', color: 'var(--color-text-secondary)' }}>
+          lg — 화면을 덮는 서랍 안
+        </p>
+        <MenuItem label="카톡테마 만들기" size="lg" />
+      </div>
+    </div>
+  ),
+};
