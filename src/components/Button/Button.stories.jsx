@@ -38,7 +38,7 @@ export default {
     size: {
       control: 'radio',
       options: ['sm', 'md'],
-      description: '`sm` = height 36px / label-2 (13px·500) · `md` = height 48px / label-1 (15px·500)',
+      description: '`sm` = height 36px / label-sm (13px·500) · `md` = height 48px / label-md (15px·500)',
     },
     disabled: {
       control: 'boolean',

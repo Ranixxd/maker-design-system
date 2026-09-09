@@ -71,15 +71,15 @@ function InteractionDemo() {
       <div style={col}>
         <Thumbnail size="md" src={src} alt="테마 아이콘" onClick={() => setSrc(src ? null : SAMPLE)} />
         <div>
-          <div className="text-label-3">onClick 있음</div>
-          <div className="text-label-3" style={caption}>눌러보세요 · Tab 포커스 가능</div>
+          <div className="text-label-xs">onClick 있음</div>
+          <div className="text-label-xs" style={caption}>눌러보세요 · Tab 포커스 가능</div>
         </div>
       </div>
       <div style={col}>
         <Thumbnail size="md" src={SAMPLE} alt="적용된 배경" />
         <div>
-          <div className="text-label-3">onClick 없음</div>
-          <div className="text-label-3" style={caption}>읽기 전용 미리보기</div>
+          <div className="text-label-xs">onClick 없음</div>
+          <div className="text-label-xs" style={caption}>읽기 전용 미리보기</div>
         </div>
       </div>
     </div>
@@ -100,7 +100,7 @@ export const Sizes = {
       {['sm', 'md'].map((size) => (
         <div key={size} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--spacing-2)' }}>
           <Thumbnail size={size} src={SAMPLE} alt="샘플" />
-          <span className="text-label-3" style={{ color: 'var(--color-text-tertiary)' }}>
+          <span className="text-label-xs" style={{ color: 'var(--color-text-tertiary)' }}>
             {size} — {size === 'sm' ? '44px' : '60px'}
           </span>
         </div>
@@ -119,8 +119,8 @@ export const PairRow = {
         <Thumbnail size="sm" />
       </div>
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div className="text-label-2">친구탭 아이콘</div>
-        <div className="text-label-3" style={{ color: 'var(--color-text-tertiary)' }}>152 × 152 권장</div>
+        <div className="text-label-sm">친구탭 아이콘</div>
+        <div className="text-label-xs" style={{ color: 'var(--color-text-tertiary)' }}>152 × 152 권장</div>
       </div>
     </div>
   ),

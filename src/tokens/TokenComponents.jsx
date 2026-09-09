@@ -66,15 +66,16 @@ const td = { padding: '8px 0', fontSize: 12 };
 
 export function TypographyTable() {
   const rows = [
-    { token: '.text-heading-1', size: '28px', weight: '600', lh: '1' },
-    { token: '.text-heading-2', size: '24px', weight: '600', lh: '1' },
-    { token: '.text-heading-3', size: '20px', weight: '600', lh: '1' },
-    { token: '.text-body-1',    size: '17px', weight: '400', lh: '1.5' },
-    { token: '.text-body-2',    size: '15px', weight: '400', lh: '1.5' },
-    { token: '.text-body-3',    size: '13px', weight: '400', lh: '1.5' },
-    { token: '.text-label-1',   size: '15px', weight: '500', lh: '1' },
-    { token: '.text-label-2',   size: '13px', weight: '500', lh: '1' },
-    { token: '.text-label-3',   size: '11px', weight: '500', lh: '1' },
+    { token: '.text-heading-lg', size: '28px', weight: '600', lh: '1' },
+    { token: '.text-heading-md', size: '24px', weight: '600', lh: '1' },
+    { token: '.text-heading-sm', size: '20px', weight: '600', lh: '1' },
+    { token: '.text-body-lg',    size: '17px', weight: '400', lh: '1.5' },
+    { token: '.text-body-md',    size: '15px', weight: '400', lh: '1.5' },
+    { token: '.text-body-sm',    size: '13px', weight: '400', lh: '1.5' },
+    { token: '.text-label-lg',   size: '17px', weight: '500', lh: '1' },
+    { token: '.text-label-md',   size: '15px', weight: '500', lh: '1' },
+    { token: '.text-label-sm',   size: '13px', weight: '500', lh: '1' },
+    { token: '.text-label-xs',   size: '11px', weight: '500', lh: '1' },
   ];
   return (
     <table style={{ width: '100%', borderCollapse: 'collapse' }}>

@@ -12,13 +12,13 @@ import { TypographyTable } from './TokenComponents';
 
 ```jsx
 {/* ✅ JSX에서 글로벌 클래스로 */}
-<span className="text-label-2">라벨</span>
+<span className="text-label-sm">라벨</span>
 ```
 
 ```css
 /* ✅ CSS Module에서 composes로 */
 .title {
-  composes: text-heading-2 from global;
+  composes: text-heading-md from global;
 }
 
 /* ❌ 낱개 토큰 직접 참조 — 금지 */

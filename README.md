@@ -17,8 +17,8 @@
 `--color-gray-*` 같은 원시 값을 직접 부르지 않고 `--color-bg-*`, `--color-text-*`처럼
 역할로 부릅니다. 색을 바꿀 때 팔레트만 갈아끼우면 되기 때문입니다.
 
-타이포그래피도 같은 이유로 `--font-size-*`를 낱개로 쓰지 않고 `.text-heading-1`,
-`.text-body-2` 같은 프리셋 클래스로 묶어 두었습니다.
+타이포그래피도 같은 이유로 `--font-size-*`를 낱개로 쓰지 않고 `.text-heading-lg`,
+`.text-body-md` 같은 프리셋 클래스로 묶어 두었습니다.
 
 **부품** — Badge, Button, Divider, Icon, IconButton, LayerPopup, ListItem, Radio,
 TextField, Thumbnail, Toast.

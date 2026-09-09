@@ -13,7 +13,7 @@ export default function TextField({
   return (
     <div className={styles.field}>
       {label && (
-        <label htmlFor={id} className={`text-label-2 ${styles.label}`}>
+        <label htmlFor={id} className={`text-label-sm ${styles.label}`}>
           {label}
           {required && <span className={styles.req} aria-hidden="true"> *</span>}
         </label>
@@ -21,13 +21,13 @@ export default function TextField({
       <input
         id={id}
         type={type}
-        className={`text-body-2 ${styles.input}`}
+        className={`text-body-md ${styles.input}`}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
       />
       {hint && (
-        <span className={`text-label-3 ${styles.hint}`}>{hint}</span>
+        <span className={`text-label-xs ${styles.hint}`}>{hint}</span>
       )}
     </div>
   );

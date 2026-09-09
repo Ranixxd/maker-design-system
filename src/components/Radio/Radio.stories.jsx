@@ -56,7 +56,7 @@ function EchoDemo() {
         <Radio value="ios">아이폰 (.ktheme)</Radio>
         <Radio value="android">안드로이드 (.apk)</Radio>
       </RadioGroup>
-      <span className="text-label-3" style={{ color: 'var(--color-text-tertiary)' }}>
+      <span className="text-label-xs" style={{ color: 'var(--color-text-tertiary)' }}>
         선택됨: {value}
       </span>
     </div>

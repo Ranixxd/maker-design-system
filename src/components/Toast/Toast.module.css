@@ -14,7 +14,7 @@
 .toast {
   background: var(--color-bg-inverse);
   color: var(--color-text-oninverse);
-  font-size: var(--font-size-md);        /* 15px = label-1 */
+  font-size: var(--font-size-md);        /* 15px = label-md */
   font-weight: var(--font-weight-medium); /* 500 */
   padding: 10px 20px;
   border-radius: var(--radius-sm);

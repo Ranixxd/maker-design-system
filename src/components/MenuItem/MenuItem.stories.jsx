@@ -14,8 +14,9 @@ ListItem과 겹쳐 보이지만 자리가 다르다 — ListItem은 화면을 �
 부제를 달고 여백이 넉넉하고, MenuItem은 이미 열려 있는 작은 패널 안이라 낮고 좁다.
 목록용을 팝오버에 쓰면 팝오버가 의도보다 커진다.
 
-레이블은 \`text-label-1\`이다. 읽는 글이 아니라 누르는 것의 이름이고, 한 줄로
-끝나므로 행간도 single이 맞다.
+레이블은 label이다 — 읽는 글이 아니라 누르는 것의 이름이고, 한 줄로 끝나므로
+행간도 single이 맞다. \`md\`는 \`text-label-md\`(15px), 서랍용 \`lg\`는
+\`text-label-lg\`(17px)를 쓴다.
 
 ### 아이콘은 언제 다나
 
@@ -91,13 +92,13 @@ export const Sizes = {
   render: () => (
     <div style={{ display: 'grid', gap: 'var(--spacing-4)', width: 260 }}>
       <div>
-        <p className="text-label-3" style={{ margin: '0 0 4px', color: 'var(--color-text-secondary)' }}>
+        <p className="text-label-xs" style={{ margin: '0 0 4px', color: 'var(--color-text-secondary)' }}>
           md — 곁에 붙어 뜬 팝오버 안
         </p>
         <MenuItem label="배경화면 초기화" />
       </div>
       <div>
-        <p className="text-label-3" style={{ margin: '0 0 4px', color: 'var(--color-text-secondary)' }}>
+        <p className="text-label-xs" style={{ margin: '0 0 4px', color: 'var(--color-text-secondary)' }}>
           lg — 화면을 덮는 서랍 안
         </p>
         <MenuItem label="카톡테마 만들기" size="lg" />

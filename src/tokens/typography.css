@@ -22,51 +22,56 @@
 }
 
 /* ── Semantic: Heading — semibold / single-line ── */
-.text-heading-1 {
+.text-heading-lg {
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-single);
 }
-.text-heading-2 {
+.text-heading-md {
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-single);
 }
-.text-heading-3 {
+.text-heading-sm {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-single);
 }
 
 /* ── Semantic: Body — regular / multi-line ── */
-.text-body-1 {
+.text-body-lg {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-multi);
 }
-.text-body-2 {
+.text-body-md {
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-multi);
 }
-.text-body-3 {
+.text-body-sm {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-multi);
 }
 
 /* ── Semantic: Label — medium / single-line ── */
-.text-label-1 {
+.text-label-lg {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-single);
+}
+.text-label-md {
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-medium);
   line-height: var(--line-height-single);
 }
-.text-label-2 {
+.text-label-sm {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   line-height: var(--line-height-single);
 }
-.text-label-3 {
+.text-label-xs {
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
   line-height: var(--line-height-single);

@@ -12,9 +12,9 @@ export default {
 텍스트 입력 필드. 레이블 · 필수 표시 · 힌트를 한 세트로 묶는다.
 
 **구성 규칙**
-- \`label\` — \`text-label-2\`, secondary 톤. 생략 가능하지만 되도록 붙인다.
+- \`label\` — \`text-label-sm\`, secondary 톤. 생략 가능하지만 되도록 붙인다.
 - \`required\` — 레이블 옆 \`*\` 표시. 색상은 \`--color-text-critical\`.
-- \`hint\` — \`text-label-3\`, tertiary 톤. 보조 설명·제약 조건을 적는다. ReactNode를 받으므로 줄바꿈(\`<br />\`)도 가능하다.
+- \`hint\` — \`text-label-xs\`, tertiary 톤. 보조 설명·제약 조건을 적는다. ReactNode를 받으므로 줄바꿈(\`<br />\`)도 가능하다.
 
 **주의**
 - \`id\`를 반드시 넘긴다. label의 \`htmlFor\`와 연결되어 레이블 클릭 시 포커스가 이동한다.

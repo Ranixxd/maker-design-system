@@ -39,15 +39,15 @@ export const InForm = {
   render: () => (
     <div style={{ maxWidth: 320, display: 'flex', flexDirection: 'column', gap: 'var(--spacing-5)' }}>
       <div>
-        <div className="text-label-2" style={{ color: 'var(--color-text-secondary)' }}>테마 정보</div>
-        <p className="text-body-2" style={{ color: 'var(--color-text-tertiary)', marginTop: 'var(--spacing-1)' }}>
+        <div className="text-label-sm" style={{ color: 'var(--color-text-secondary)' }}>테마 정보</div>
+        <p className="text-body-md" style={{ color: 'var(--color-text-tertiary)', marginTop: 'var(--spacing-1)' }}>
           테마명 · 제작자 · 아이콘
         </p>
       </div>
       <Divider />
       <div>
-        <div className="text-label-2" style={{ color: 'var(--color-text-secondary)' }}>테마 고유 아이디</div>
-        <p className="text-body-2" style={{ color: 'var(--color-text-tertiary)', marginTop: 'var(--spacing-1)' }}>
+        <div className="text-label-sm" style={{ color: 'var(--color-text-secondary)' }}>테마 고유 아이디</div>
+        <p className="text-body-md" style={{ color: 'var(--color-text-tertiary)', marginTop: 'var(--spacing-1)' }}>
           자동 생성되며 변경할 수 있어요
         </p>
       </div>

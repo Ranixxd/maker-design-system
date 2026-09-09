@@ -74,7 +74,7 @@ export default {
 };
 
 const Content = () => (
-  <p className="text-body-2" style={{ color: 'var(--color-text-secondary)' }}>
+  <p className="text-body-md" style={{ color: 'var(--color-text-secondary)' }}>
     팝업 콘텐츠가 여기에 들어가요. PC에서는 모달, 모바일에서는 바텀 시트로 렌더됩니다.
   </p>
 );

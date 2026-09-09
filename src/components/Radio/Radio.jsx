@@ -16,7 +16,7 @@ export function RadioGroup({ name, value, onChange, children }) {
 export function Radio({ value, children }) {
   const { name, value: groupValue, onChange } = useContext(RadioCtx);
   return (
-    <label className={`text-body-2 ${styles.option}`}>
+    <label className={`text-body-md ${styles.option}`}>
       <input
         type="radio"
         name={name}

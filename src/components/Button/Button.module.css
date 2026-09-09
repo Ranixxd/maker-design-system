@@ -53,7 +53,7 @@
   height: 36px;
   padding: 0 var(--spacing-3);
   font-size: var(--font-size-sm);      /* 13px */
-  font-weight: var(--font-weight-medium); /* 500 = label-2 ✓ */
+  font-weight: var(--font-weight-medium); /* 500 = label-sm ✓ */
   border-radius: var(--radius-sm);
 }
 
@@ -61,7 +61,7 @@
   height: 48px;
   padding: 0 var(--spacing-5);
   font-size: var(--font-size-md);      /* 15px */
-  font-weight: var(--font-weight-medium); /* 500 = label-1 ✓ (기존 semibold 600은 오류) */
+  font-weight: var(--font-weight-medium); /* 500 = label-md ✓ (기존 semibold 600은 오류) */
 }
 
 /* ── Variant ── */
