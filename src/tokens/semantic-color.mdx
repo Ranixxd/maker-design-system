@@ -73,12 +73,35 @@ backdrop-filter: blur(var(--blur-overlay));
 
 <BorderColorTable />
 
-**회색 세 단계는 "얼마나 물러나느냐"로 고른다.** `subtle`은 여기서 나뉜다는 것만
-알리고 배경에 거의 묻힌다 — 설정 목록처럼 한 화면에 줄이 여럿일 때 쓴다.
-`default`가 기본이고, `strong`은 눌러야 보이는 경계에 쓴다.
+### 회색 세 단계를 고르는 법
 
-한 화면에 줄이 여럿인데 `default`를 쓰면 **선이 내용보다 먼저 눈에 들어온다.**
-반대로 줄이 하나뿐인데 `subtle`을 쓰면 나뉜 줄을 모른다.
+**먼저 묻는다 — 이 선이 감싸는 것을 누를 수 있나?**
+
+| | `border-subtle` | `border-default` |
+|---|---|---|
+| **나누는 선** | 같은 섹션 **안**의 미세한 구분 <br/>(리스트 아이템 사이, 카드 안의 줄) | 성격이 **다른** 섹션 사이 <br/>(필터와 리스트, 헤더와 본문) |
+| **감싸는 선** | 누를 수 **없는** 것의 윤곽 <br/>(썸네일과 배경, 캔버스와 배경) | 누를 수 **있는** 것의 테두리 <br/>(버튼, 탭, 입력칸, 박스) |
+
+`subtle`은 "여기서 나뉜다"만 알리고 배경에 거의 묻힌다. `default`는 "이건 하나의
+덩어리다"를 말한다. `strong`은 눌러야 보이는 경계에 쓴다.
+
+**왜 이렇게 가르나** — 선의 진하기는 **누를 수 있는지를 알려주는 신호**이기도 하다.
+썸네일 윤곽과 버튼 테두리가 같은 진하기면 사용자는 썸네일도 눌러보게 된다.
+반대로 리스트 아이템 사이마다 `default`를 쓰면 **선이 내용보다 먼저 눈에 들어온다.**
+
+```css
+/* ✅ 리스트 아이템 사이 — 같은 섹션 안 */
+.item + .item { border-top: 1px solid var(--color-border-subtle); }
+
+/* ✅ 썸네일 윤곽 — 누를 수 없다 */
+.thumb { border: 1px solid var(--color-border-subtle); }
+
+/* ✅ 버튼 — 누를 수 있다 */
+.btn { border: 1px solid var(--color-border-default); }
+
+/* ✅ 필터와 리스트 사이 — 성격이 다른 섹션 */
+.filter-bar { border-bottom: 1px solid var(--color-border-default); }
+```
 
 `border-strong`과 `border-accent`는 쓰는 자리가 다르다. **`strong`은 같은 회색
 계열에서 한 단계 진하게** 해서 구조를 가르는 선이고, **`accent`는 상태를 말하는
