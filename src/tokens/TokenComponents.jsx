@@ -202,7 +202,7 @@ export function BgColorTable() {
     { token: 'bg-overlay-blur',    palette: 'rgba(255,255,255,.88)', desc: '흰 블러 딤 (--blur-overlay와 함께)', border: true },
     { token: 'bg-inverse',         palette: 'gray-900',         desc: '인버스 배경 (프라이머리 버튼 등)' },
     { token: 'bg-critical',        palette: 'red-600',          desc: '크리티컬 배경' },
-    { token: 'bg-critical-subtle', palette: 'red-150',          desc: '크리티컬 보조 배경', border: true },
+    { token: 'bg-critical-subtle', palette: 'red-200',          desc: '크리티컬 보조 배경', border: true },
   ]} />;
 }
 

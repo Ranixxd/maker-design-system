@@ -57,18 +57,23 @@
   --color-sky-100: #f2f9ff;
   --color-sky-50:  #f8fcff;   /* 100보다 반 단계 밝게 이었다 */
 
-  /* ── Primitive: Red ── */
-  --color-red-900: #7f1d1d;
-  --color-red-800: #991b1b;
-  --color-red-700: #b91c1c;
-  --color-red-600: #dc2626;
-  --color-red-500: #ef4444;
-  --color-red-400: #f87171;
-  --color-red-300: #fca5a5;
-  --color-red-200: #fecaca;
-  --color-red-150: #fee2e2;
-  --color-red-100: #fff1f2;
-  --color-red-50:  #fff5f5;
+  /* ── Primitive: Red ──
+     2026-09-10에 통째로 갈았다. 파랑과 같은 방식으로 번호를 1:1로 맞췄다.
+     앞의 것보다 주황 쪽으로 기울어 있다 — 600이 #dc2626에서 #dc3412로 간다.
+
+     50과 150은 원본 스케일에 없어서 이었다. 가장 어두운 한 단계(#660e0b)는
+     받을 자리가 없어 버렸다 — 900까지만 쓰기 때문이다. */
+  --color-red-900: #771208;
+  --color-red-800: #9f1f18;
+  --color-red-700: #bd2915;
+  --color-red-600: #dc3412;
+  --color-red-500: #f24822;
+  --color-red-400: #ffafa3;
+  --color-red-300: #ffc7c2;
+  --color-red-200: #ffe2e0;
+  --color-red-150: #ffeceb;   /* 100과 200 사이를 이었다 */
+  --color-red-100: #fff5f5;
+  --color-red-50:  #fffafa;   /* 100보다 반 단계 밝게 이었다 */
 
   /* ── Semantic: Background ── */
   --color-bg-default:   var(--color-white);
@@ -85,7 +90,10 @@
   --color-bg-overlay-blur: rgba(255, 255, 255, 0.88);
   --color-bg-inverse:   var(--color-gray-900);
   --color-bg-critical:          var(--color-red-600);
-  --color-bg-critical-subtle:   var(--color-red-150);
+  /* 파랑에서 accent-subtle을 100→200으로 옮긴 것과 같은 이유다. 빨강도 밝은 쪽이
+     한 칸씩 더 밝아져 150이 거의 흰색(#ffeceb)이 됐다. 새 200(#ffe2e0)이 옛
+     150(#fee2e2)과 사실상 같아서, 오류 안내 상자는 지금 보이는 그대로다 (2026-09-10) */
+  --color-bg-critical-subtle:   var(--color-red-200);
 
   /* ── Semantic: Text ── */
   /* gray-900(#111)은 순검정에 가까워 긴 글에서 눈이 빨리 지친다.
