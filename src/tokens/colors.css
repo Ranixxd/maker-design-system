@@ -32,18 +32,23 @@
   --color-gray-100: #f0f0f0;
   --color-gray-50:  #f7f7f7;
 
-  /* ── Primitive: Sky ── */
-  --color-sky-900: #0c4a6e;
-  --color-sky-800: #075985;
-  --color-sky-700: #0369a1;
-  --color-sky-600: #0284c7;
-  --color-sky-500: #0ea5e9;
-  --color-sky-400: #38bdf8;
-  --color-sky-300: #7dd3fc;
-  --color-sky-200: #bae6fd;
-  --color-sky-150: #caedfb;
-  --color-sky-100: #e0f2fe;
-  --color-sky-50:  #f0f9ff;
+  /* ── Primitive: Sky ──
+     2026-09-10에 통째로 갈았다. 앞의 것은 빌려온 스케일이었고, 이것이 우리 파랑이다.
+
+     50과 150은 원본 스케일에 없어서 이었다. 원본의 가장 어두운 한 단계(#0d193f)는
+     받을 자리가 없어 버렸다 — 900까지만 쓰기 때문이다.
+     쓰이는 단계는 100·500·600·700 넷이고, 그 넷은 원본 값 그대로다. */
+  --color-sky-900: #093077;
+  --color-sky-800: #034ac1;
+  --color-sky-700: #0768cf;
+  --color-sky-600: #007be5;
+  --color-sky-500: #0d99ff;
+  --color-sky-400: #80caff;
+  --color-sky-300: #bde3ff;
+  --color-sky-200: #e5f4ff;
+  --color-sky-150: #ecf7ff;   /* 100과 200 사이를 이었다 */
+  --color-sky-100: #f2f9ff;
+  --color-sky-50:  #f8fcff;   /* 100보다 반 단계 밝게 이었다 */
 
   /* ── Primitive: Red ── */
   --color-red-900: #7f1d1d;
@@ -65,7 +70,10 @@
   --color-bg-hover:     var(--color-black-alpha-04);
   --color-bg-pressed:   var(--color-black-alpha-08);
   --color-bg-accent:        var(--color-sky-500);
-  --color-bg-accent-subtle: var(--color-sky-100);
+  /* 파랑 스케일을 갈면서 100이 거의 흰색이 됐다(#f2f9ff). 고른 것·활성인 것을
+     알리는 배경이라 안 보이면 뜻이 없어서 200으로 옮겼다. 새 200(#e5f4ff)이
+     옛 100(#e0f2fe)과 사실상 같아 보이는 것은 그대로다 (2026-09-10) */
+  --color-bg-accent-subtle: var(--color-sky-200);
   --color-bg-overlay:   var(--color-black-alpha-60);
   --color-bg-overlay-blur: rgba(255, 255, 255, 0.88);
   --color-bg-inverse:   var(--color-gray-900);

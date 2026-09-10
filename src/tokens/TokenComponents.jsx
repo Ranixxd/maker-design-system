@@ -197,7 +197,7 @@ export function BgColorTable() {
     { token: 'bg-hover',           palette: 'black-alpha-04',   desc: '호버 오버레이', border: true },
     { token: 'bg-pressed',         palette: 'black-alpha-08',   desc: '눌림 오버레이', border: true },
     { token: 'bg-accent',          palette: 'sky-500',          desc: '강조 배경' },
-    { token: 'bg-accent-subtle',   palette: 'sky-100',          desc: '강조 보조 배경', border: true },
+    { token: 'bg-accent-subtle',   palette: 'sky-200',          desc: '강조 보조 배경', border: true },
     { token: 'bg-overlay',         palette: 'black-alpha-60',   desc: '딤 레이어' },
     { token: 'bg-overlay-blur',    palette: 'rgba(255,255,255,.88)', desc: '흰 블러 딤 (--blur-overlay와 함께)', border: true },
     { token: 'bg-inverse',         palette: 'gray-900',         desc: '인버스 배경 (프라이머리 버튼 등)' },
