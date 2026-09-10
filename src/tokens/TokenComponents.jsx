@@ -222,6 +222,7 @@ export function TextColorTable() {
 
 export function BorderColorTable() {
   return <SemanticColorTable rows={[
+    { token: 'border-subtle',  palette: 'gray-100', desc: '물러나는 구분선 (줄이 여럿일 때)', border: true },
     { token: 'border-default', palette: 'gray-200', desc: '기본 구분선·테두리', border: true },
     { token: 'border-strong',  palette: 'gray-400', desc: '눈에 띄어야 하는 테두리 (같은 회색 계열)', border: true },
     { token: 'border-accent',  palette: 'sky-600',  desc: '선택·활성 상태의 테두리, 강조 안내선' },

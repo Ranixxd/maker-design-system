@@ -86,6 +86,10 @@
   --color-text-oncritical:   var(--color-white);
 
   /* ── Semantic: Border ── */
+  /* 구분선은 세 단계다. subtle은 "여기서 나뉜다"만 알리고 물러나는 선이라
+     배경과 거의 붙어 있다 — 한 화면에 줄이 여럿일 때 default를 쓰면
+     선이 내용보다 먼저 눈에 들어온다 (2026-09-10) */
+  --color-border-subtle:  var(--color-gray-100);
   --color-border-default: var(--color-gray-200);
   --color-border-strong:  var(--color-gray-400);
   /* 선은 글자보다 대비 기준이 낮지만(3:1), sky-500은 흰 배경에서 2.77이라
