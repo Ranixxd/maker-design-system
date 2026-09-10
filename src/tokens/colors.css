@@ -88,6 +88,9 @@
   /* ── Semantic: Border ── */
   --color-border-default: var(--color-gray-200);
   --color-border-strong:  var(--color-gray-400);
+  /* 선은 글자보다 대비 기준이 낮지만(3:1), sky-500은 흰 배경에서 2.77이라
+     그마저 못 넘는다. 한 단계 진한 sky-600(4.09)을 참조한다 (2026-09-10) */
+  --color-border-accent:  var(--color-sky-600);
 
   /* ── Semantic: Icon ── */
   --color-icon-default:   var(--color-gray-900);

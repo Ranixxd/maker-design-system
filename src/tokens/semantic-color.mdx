@@ -11,6 +11,30 @@ import { BgColorTable, TextColorTable, BorderColorTable, IconColorTable } from '
 직접 쓰지 말라는 규칙이 있어 평소에는 몰라도 되지만, 새 토큰을 정할 때 옆 토큰이
 어느 단계를 쓰는지 보면 고르기가 쉽다.
 
+## 필요한 토큰이 없으면 여기에 새로 정의한다
+
+**팔레트로 내려가지 않는다.** 쓰려는 역할에 맞는 토큰이 이 표에 없다는 것은
+디자인 시스템에 아직 그 자리가 없다는 뜻이지, 팔레트를 직접 써도 된다는 뜻이 아니다.
+
+```css
+/* ❌ 토큰이 없어서 팔레트에서 꺼내 씀 */
+border-color: var(--color-sky-600);
+
+/* ✅ colors.css에 역할을 만들고 그것을 씀 */
+--color-border-accent: var(--color-sky-600);   /* colors.css */
+border-color: var(--color-border-accent);      /* 쓰는 쪽 */
+```
+
+**대비가 모자란다는 것도 팔레트를 쓸 이유가 되지 않는다.** 옆 역할의 토큰을
+빌려오는 것도 마찬가지다 — `text-link`는 링크가 걸린 글자에만 쓴다.
+쓰려는 색이 기준에 못 미치면 그것은 **이 파일이 고쳐질 자리**다.
+
+새 토큰의 참조 단계는 옆 토큰을 보고 고른다. 쓰는 쪽 저장소가 아니라
+**여기서 정의해야** 두 메이커가 같은 값을 본다.
+
+2026-09-10에 `--color-border-accent`가 이 절차로 들어왔다. 선에 강조색이
+필요했는데 `border`에 `default`와 `strong`밖에 없었다.
+
 ---
 
 ## Background
@@ -48,6 +72,15 @@ backdrop-filter: blur(var(--blur-overlay));
 ## Border
 
 <BorderColorTable />
+
+`border-strong`과 `border-accent`는 쓰는 자리가 다르다. **`strong`은 같은 회색
+계열에서 한 단계 진하게** 해서 구조를 가르는 선이고, **`accent`는 상태를 말하는
+선**이다 — 고른 칩, 활성 탭, 편집기의 강조 안내선처럼 "지금 이것"을 가리킬 때 쓴다.
+
+`accent`만 `sky-500`이 아니라 **`sky-600`을 참조한다.** 선은 글자보다 대비 기준이
+낮지만(3:1), `sky-500`은 흰 배경에서 2.77이라 그마저 못 넘는다. `sky-600`은 4.09다.
+`bg-accent`(채움)와 나란히 놓으면 선이 반 단계 진하지만, 40px 상자에서는 같은
+하늘색으로 읽힌다.
 
 ## Icon
 
