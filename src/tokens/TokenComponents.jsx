@@ -226,6 +226,7 @@ export function BorderColorTable() {
     { token: 'border-default', palette: 'gray-200', desc: '기본 구분선·테두리', border: true },
     { token: 'border-strong',  palette: 'gray-400', desc: '눈에 띄어야 하는 테두리 (같은 회색 계열)', border: true },
     { token: 'border-accent',  palette: 'sky-600',  desc: '선택·활성 상태의 테두리, 강조 안내선' },
+    { token: 'border-critical', palette: 'red-600', desc: '오류가 난 칸의 테두리' },
   ]} />;
 }
 

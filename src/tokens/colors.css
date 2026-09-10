@@ -95,6 +95,9 @@
   /* 선은 글자보다 대비 기준이 낮지만(3:1), sky-500은 흰 배경에서 2.77이라
      그마저 못 넘는다. 한 단계 진한 sky-600(4.09)을 참조한다 (2026-09-10) */
   --color-border-accent:  var(--color-sky-600);
+  /* bg·text·icon에는 critical이 있는데 border만 비어 있었다.
+     어느 칸이 문제인지 테두리로 말해야 하는 자리가 있다 (2026-09-10) */
+  --color-border-critical: var(--color-red-600);
 
   /* ── Semantic: Icon ── */
   --color-icon-default:   var(--color-gray-900);
