@@ -250,6 +250,7 @@ export function RadiusTable() {
     { token: '--radius-md',   value: '12px',   use: '버튼, 카드, 팝오버' },
     { token: '--radius-lg',   value: '16px',   use: '큰 카드, 시트' },
     { token: '--radius-xl',   value: '20px',   use: '모달, 바텀시트' },
+    { token: '--radius-2xl',  value: '24px',   use: '큰 정사각 아이콘 (96px 이상)' },
     { token: '--radius-full', value: '9999px', use: '알약 버튼, 아바타, 토글' },
   ];
   return (

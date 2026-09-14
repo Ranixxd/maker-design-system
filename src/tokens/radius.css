@@ -4,5 +4,6 @@
   --radius-md:  12px;
   --radius-lg:  16px;
   --radius-xl:  20px;
+  --radius-2xl: 24px;   /* 96px 이상 큰 정사각 아이콘. 앱 아이콘처럼 보이는 자리 (2026-09-14) */
   --radius-full: 9999px;
 }
