@@ -3,6 +3,11 @@
   --shadow-md:      0 4px 12px var(--color-black-alpha-08);
   --shadow-lg:      0 8px 24px rgba(0, 0, 0, 0.12);
   --shadow-overlay: 0 16px 48px rgba(0, 0, 0, 0.16);
+
+  /* 아래에서 올라오는 판은 그림자가 위로 진다. overlay를 그대로 쓰면 그림자가 판 뒤로
+     숨어 없는 것과 같다. lg를 위아래로 뒤집은 값이라 세기는 lg와 같다.
+     카톡테마 메이커의 편집 패널·샘플 고르기·말풍선 팁 시트가 쓴다 (2026-09-14) */
+  --shadow-overlay-up: 0 -8px 24px rgba(0, 0, 0, 0.12);
 }
 
 :root {

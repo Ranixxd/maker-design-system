@@ -289,6 +289,7 @@ export function ShadowTable() {
     { token: '--shadow-md',      desc: '드롭다운, 툴팁' },
     { token: '--shadow-lg',      desc: '고정 헤더, 사이드바' },
     { token: '--shadow-overlay', desc: '모달, 바텀 시트' },
+    { token: '--shadow-overlay-up', desc: '아래에서 올라오는 시트 (그림자가 위로 진다)' },
   ]} />;
 }
 
