@@ -40,6 +40,12 @@
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-heading);
 }
+/* 작은 제목. label을 제목처럼 쓰면 굵기가 500으로 빠져 본문과 구분이 약해졌다 (2026-09-17) */
+.text-heading-xs {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-heading);
+}
 
 /* ── Semantic: Body — regular / multi-line ── */
 .text-body-lg {
