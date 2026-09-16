@@ -18,24 +18,27 @@
 
   /* ── Primitive: Line height ── */
   --line-height-single: 1;
+  /* heading 전용. 1이면 제목이 두 줄로 꺾일 때 줄이 붙는다. label은 한 줄에서 끝나니
+     single 그대로 두고 heading만 연다 (2026-09-17) */
+  --line-height-heading: 1.3;
   --line-height-multi:  1.5;
 }
 
-/* ── Semantic: Heading — semibold / single-line ── */
+/* ── Semantic: Heading — semibold / 두 줄로 꺾여도 읽히게 줄 간격 1.3 ── */
 .text-heading-lg {
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-semibold);
-  line-height: var(--line-height-single);
+  line-height: var(--line-height-heading);
 }
 .text-heading-md {
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-semibold);
-  line-height: var(--line-height-single);
+  line-height: var(--line-height-heading);
 }
 .text-heading-sm {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
-  line-height: var(--line-height-single);
+  line-height: var(--line-height-heading);
 }
 
 /* ── Semantic: Body — regular / multi-line ── */
