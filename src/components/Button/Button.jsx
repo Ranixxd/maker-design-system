@@ -4,7 +4,7 @@ import styles from './Button.module.css';
 /* forwardRef — 호출부가 자동 포커스 등으로 DOM 버튼에 ref를 붙일 수 있어야
    한다. 없으면 ref가 조용히 버려진다(에러 없이 그냥 안 붙음) */
 const Button = forwardRef(function Button({
-  variant = 'primary', // 'primary' | 'secondary' | 'neutral' | 'accent'
+  variant = 'primary', // 'primary' | 'secondary' | 'neutral' | 'accent' | 'quiet'
   size = 'md',
   children,
   className,

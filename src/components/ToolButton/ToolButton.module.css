@@ -1,0 +1,45 @@
+.btn {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2);
+  min-width: 60px;
+  padding: var(--spacing-2);
+  border: none;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-text-default);
+  font-family: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--motion-duration-short) var(--motion-easing-standard),
+              color var(--motion-duration-short) var(--motion-easing-standard);
+}
+
+@media (hover: hover) {
+  .btn:hover:not(.on) { background-color: var(--color-bg-hover); }
+}
+
+/* 이름이 길면 넓힌다. 줄을 접는 대신 폭을 준다 */
+.wide { min-width: 80px; padding-inline: var(--spacing-4); white-space: nowrap; }
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+  color: var(--color-icon-default);
+}
+
+.label { line-height: 1; color: var(--color-text-secondary); white-space: nowrap; }
+
+/* 켜진 도구는 자리를 더 차지하지 않고 스스로 말한다. 옅은 강조 바탕에 강조색 글자 */
+.on { background: var(--color-bg-accent-subtle); }
+.on .icon, .on .label { color: var(--color-text-accent); }
+@media (hover: hover) {
+  .on:hover { background: var(--color-bg-accent-subtle); }
+}
+
+.btn:disabled { opacity: 0.4; cursor: default; }

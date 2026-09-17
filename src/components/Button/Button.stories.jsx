@@ -16,6 +16,7 @@ export default {
 - \`secondary\` — 취소·보조 액션. primary와 나란히 배치할 때 사용한다.
 - \`neutral\` — 강조가 불필요한 액션 (예: "더보기", "건너뛰기").
 - \`accent\` — neutral과 함께 쓰이며 다음 프로세스 진행을 유도. accent 색상으로 시선을 끈다.
+- \`quiet\` — **흐름 밖의 부가 기능에만** (2026-09-18). 프롬프트 복사, 모르겠어요(안내 부르기)처럼 주된 일이 아닌 것. 흰 바탕에 얇은 테두리이고 sm보다 한 단 작아(26px) 글 줄에 섞여도 튀지 않는다. 주된 일을 이 모양으로 두면 정작 눌러야 하는 것이 눈에 안 들어온다.
 
 **너비 규칙**
 - \`auto\`(내용만큼) 또는 컨테이너를 꽉 채우는 값만 쓴다. 고정 px 값을 주면 화면·컨테이너마다 버튼 크기가 따로 놀아 전체 일관성을 지키기 힘들어진다.
@@ -49,7 +50,7 @@ export default {
   argTypes: {
     variant: {
       control: 'radio',
-      options: ['primary', 'secondary', 'neutral', 'accent'],
+      options: ['primary', 'secondary', 'neutral', 'accent', 'quiet'],
       description: '버튼 스타일 계층',
     },
     size: {
@@ -165,5 +166,16 @@ export const AllVariants = {
       <Button variant="primary" size="md" disabled>Disabled</Button>
       <Button variant="primary" size="md" loading>Loading</Button>
     </div>
+  ),
+};
+
+export const Quiet = {
+  name: '부가 기능 (quiet)',
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <p className="text-body-md" style={{ color: 'var(--color-text-secondary)', maxWidth: 380 }}>
+      인물 배경은 ChatGPT로 지울 수 있어요.{' '}
+      <Button variant="quiet">프롬프트 복사</Button>
+    </p>
   ),
 };

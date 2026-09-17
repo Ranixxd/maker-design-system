@@ -1,0 +1,36 @@
+/* 옅은 판. 칸들은 이 판을 나눠 갖는다 */
+.root {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-md);
+}
+
+.item {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-2);
+  font-family: inherit;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color var(--motion-duration-short) var(--motion-easing-standard),
+              color var(--motion-duration-short) var(--motion-easing-standard),
+              box-shadow var(--motion-duration-short) var(--motion-easing-standard);
+}
+
+@media (hover: hover) {
+  .item:not(.on):hover { color: var(--color-text-default); }
+}
+
+/* 고른 칸만 흰 알약으로 떠오른다. 그림자는 sm 한 단만 — 더 주면 판에서 뜯겨 보인다 */
+.on {
+  background: var(--color-bg-default);
+  color: var(--color-text-default);
+  box-shadow: var(--shadow-sm);
+}

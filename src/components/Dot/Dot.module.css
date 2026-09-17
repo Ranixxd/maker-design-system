@@ -1,0 +1,15 @@
+.dot {
+  display: inline-block;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-bg-critical);
+}
+
+.sm { width: 4px; height: 4px; }
+.md { width: 6px; height: 6px; }
+
+/* 그림·아이콘 위에 얹힐 때. 바탕색 테두리를 둘러 어느 그림 위에서도 점이 보인다 */
+.ring {
+  border: 1.5px solid var(--color-bg-default);
+  box-sizing: content-box;
+}

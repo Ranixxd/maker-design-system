@@ -16,6 +16,8 @@ import {
   Folder, FolderPlus, Astroid, RotateCcw,
   /* 제목 옆 도움말 (2026-09-17) */
   CircleHelp,
+  /* 찾기칸 (2026-09-18) */
+  Search,
 } from 'lucide-react';
 
 const ICONS = {
@@ -26,7 +28,7 @@ const ICONS = {
   Image, Layers, Menu, MoreHorizontal,
   User, LogOut,
   Folder, FolderPlus, Astroid, RotateCcw,
-  CircleHelp,
+  CircleHelp, Search,
 };
 
 /* sm 20 / md 24 (2026-09-18, 16 / 20에서 한 단계씩 키웠다). 폰에서 알아보기 작았다 */

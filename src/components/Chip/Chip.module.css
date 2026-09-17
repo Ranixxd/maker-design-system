@@ -1,0 +1,36 @@
+.chip {
+  flex: 0 0 auto;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  padding: 0 var(--spacing-3);
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-border-default);
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color var(--motion-duration-short) var(--motion-easing-standard),
+              color var(--motion-duration-short) var(--motion-easing-standard),
+              border-color var(--motion-duration-short) var(--motion-easing-standard);
+}
+
+/* 손가락에는 hover가 없다 */
+@media (hover: hover) {
+  .chip:hover:not(.on) { background-color: var(--color-bg-hover); color: var(--color-text-default); }
+}
+
+/* 고른 것은 검정으로 채운다. 테두리만 진하게 하면 옆 칩과 구분이 약했다 */
+.on {
+  background: var(--color-text-default);
+  border-color: var(--color-text-default);
+  color: var(--color-text-oninverse);
+}
+
+.leading { display: inline-flex; align-items: center; line-height: 1; }
+.label { line-height: 1; }
+
+.chip:disabled { opacity: 0.4; cursor: default; }

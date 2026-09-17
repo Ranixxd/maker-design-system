@@ -99,6 +99,23 @@
   color: var(--color-text-accent);
 }
 
+/* 흐름 밖의 부가 기능에만 쓴다(프롬프트 복사, 모르겠어요처럼 안내를 부르는 것). 2026-09-18 사용자.
+   흰 바탕에 얇은 테두리라 글 줄 안에 섞여도 튀지 않고, 크기는 sm보다 한 단 더 작다.
+   주된 일을 이 모양으로 두면 정작 눌러야 하는 것이 눈에 안 들어온다 */
+.quiet {
+  background-color: var(--color-bg-default);
+  border: 1px solid var(--color-border-default);
+  color: var(--color-text-default);
+}
+/* 크기를 함께 주더라도 quiet의 키가 이긴다 */
+.quiet.sm, .quiet.md {
+  height: 26px;
+  padding: 0 var(--spacing-2);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--radius-sm);
+}
+
 /* ── Loading ── */
 .label {
   display: contents;
