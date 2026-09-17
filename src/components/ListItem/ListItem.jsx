@@ -8,6 +8,7 @@ export default function ListItem({
   label,
   sub,
   trailing,
+  media,                // 줄 오른쪽에 서는 그림(옵션 카드의 움직이는 그림). 크기는 넘기는 쪽이 정한다
   onClick,
   className,
   ...props
@@ -25,6 +26,7 @@ export default function ListItem({
         <span className={styles.label}>{label}</span>
         {sub && <span className={styles.sub}>{sub}</span>}
       </span>
+      {media && <span className={styles.media}>{media}</span>}
       {trailing !== undefined && (
         <span className={styles.trailing}>
           {trailing === 'chevron' ? <Icon name="ChevronRight" size="sm" /> : trailing}
