@@ -34,8 +34,11 @@
   background-color: var(--color-bg-pressed);
 }
 
+/* 누르는 동안 97%로 줄인다. 90%였는데 한 줄을 다 차지하는 넓은 단추(800px)는 양옆이 80px나 줄어
+   짧게 눌러도 크게 움츠러들어 보였다(2026-09-17 사용자). 줄어드는 폭이 단추 폭에 비례해서,
+   작은 단추에 맞춘 값이 넓은 단추에서 과해진다. IconButton(36px)은 90%로 둔다 — 4px뿐이다 */
 .btn:active:not(:disabled):not([data-loading]) {
-  transform: scale(0.9);
+  transform: scale(0.97);
 }
 
 .btn:disabled {
