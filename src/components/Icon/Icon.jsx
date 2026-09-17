@@ -14,6 +14,8 @@ import {
   User, LogOut,
   /* 카톡테마 메이커 더보기 메뉴 (2026-09-17) */
   Folder, FolderPlus, Astroid, RotateCcw,
+  /* 제목 옆 도움말 (2026-09-17) */
+  CircleHelp,
 } from 'lucide-react';
 
 const ICONS = {
@@ -24,6 +26,7 @@ const ICONS = {
   Image, Layers, Menu, MoreHorizontal,
   User, LogOut,
   Folder, FolderPlus, Astroid, RotateCcw,
+  CircleHelp,
 };
 
 const SIZES = { sm: 16, md: 20 };

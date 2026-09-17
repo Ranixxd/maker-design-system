@@ -1,0 +1,60 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  min-width: 0;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+/* 제목 글자와 거기 딸린 아이콘·단추가 한 묶음이다 */
+.heading {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  min-width: 0;
+}
+
+.text {
+  margin: 0;
+  color: var(--color-text-default);
+  min-width: 0;
+}
+
+.aside {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  flex-shrink: 0;
+}
+
+/* 아이콘 단추가 제목 줄 높이를 키우지 않게 위아래로 당긴다.
+   lg·md 제목은 48px 단추(아이콘 20px), sm 제목은 36px 단추(아이콘 16px)다(2026-09-17).
+   단추 안쪽 여백만큼 그림이 글자에서 멀어지므로 왼쪽으로 당겨 그림과 글자 사이를 10px로 맞춘다 */
+.iconMd { margin-block: calc(-1 * var(--spacing-3)); margin-inline-start: calc(-1 * var(--spacing-3)); }
+.iconSm { margin-block: calc(-1 * var(--spacing-2)); margin-inline-start: calc(-1 * var(--spacing-2)); }
+
+.action {
+  flex-shrink: 0;
+}
+
+.description {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+/* ── 가운데 정렬 ──
+   제목 글자만 정중앙에 선다. 아이콘·단추 묶음은 글자 오른쪽에 절대 위치로 매달려 제목을 밀지 않는다 */
+.center { width: 100%; text-align: center; }
+.center .row { justify-content: center; }
+.center .aside {
+  position: absolute;
+  left: calc(100% + var(--spacing-2));
+  top: 50%;
+  transform: translateY(-50%);
+}

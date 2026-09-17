@@ -1,7 +1,7 @@
 import Icon from './Icon';
 
 export default {
-  title: 'UI/Icon',
+  title: 'Components/Icon',
   component: Icon,
   tags: ['autodocs'],
   parameters: {
@@ -62,6 +62,7 @@ export const CommonIcons = {
       'Upload', 'Download', 'Pencil', 'Trash2', 'Image', 'Layers',
       'Menu', 'MoreHorizontal', 'User', 'LogOut',
       'Folder', 'FolderPlus', 'Astroid', 'RotateCcw',
+      'CircleHelp',
     ];
     return (
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24 }}>

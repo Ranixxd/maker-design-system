@@ -21,6 +21,7 @@ export { default as ListItem } from './components/ListItem/index.js';
 export { default as MenuItem } from './components/MenuItem/index.js';
 export { default as Popover } from './components/Popover/index.js';
 export { default as TextField } from './components/TextField/index.js';
+export { default as Title } from './components/Title/index.js';
 export { default as Thumbnail } from './components/Thumbnail/index.js';
 
 /* 이름으로 내보내는 것들 — 짝이 있어야 뜻이 사는 부품이다.
