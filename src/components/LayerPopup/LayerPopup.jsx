@@ -26,6 +26,10 @@ function snapNearest(value, points) {
    가장 가까운 스냅으로만 붙이면 반 넘게 끌어야 바뀌어 둔했다 */
 const SNAP_SWIPE_PX = 24;
 
+/* 열려 있는 창을 연 순서대로 쌓아 둔다. Esc는 맨 위 창 하나만 받는다(2026-09-18).
+   창 위에 시트가 뜨는 자리(말풍선 만들기 위 QnA)에서 Esc 한 번에 둘 다 닫히지 않게 한다 */
+const openStack = [];
+
 function rubberBand(value, min, max) {
   if (value > max) return max + (value - max) * 0.12;
   if (value < min) return min + (value - min) * 0.12;
@@ -37,6 +41,7 @@ export default function LayerPopup({
   onClose,
   title,
   titleIcon,              // 제목 글자 옆 아이콘 단추 { icon, 'aria-label', onClick } (Title의 icon)
+  titleAction,            // 제목 글자 옆 글자 단추 { label, onClick } (Title의 action)
   children,
   toolbar,                // 머리 아래 늘 보이는 자리(찾기칸·분류 탭). 스크롤되지 않고 본문만 스크롤된다
   footer,                 // 본문 아래에 늘 보이는 자리(주요 단추). 본문만 스크롤된다
@@ -74,10 +79,26 @@ export default function LayerPopup({
     }
   }, [isOpen, initialSnap]);
 
+  /* 열린 차례를 쌓는다. 맨 위(마지막) 창만 Esc를 받는다 */
+  const selfRef = useRef({});
+  useEffect(() => {
+    if (!isOpen) return undefined;
+    const me = selfRef.current;
+    openStack.push(me);
+    return () => {
+      const i = openStack.indexOf(me);
+      if (i >= 0) openStack.splice(i, 1);
+    };
+  }, [isOpen]);
+
   // ESC to close (only when closeable)
   useEffect(() => {
-    if (!isOpen) return;
-    const handler = (e) => { if (e.key === 'Escape' && closeable) onClose(); };
+    if (!isOpen) return undefined;
+    const handler = (e) => {
+      if (e.key !== 'Escape' || !closeable) return;
+      if (openStack[openStack.length - 1] !== selfRef.current) return;
+      onClose();
+    };
     document.addEventListener('keydown', handler);
     return () => document.removeEventListener('keydown', handler);
   }, [isOpen, onClose, closeable]);
@@ -202,7 +223,7 @@ export default function LayerPopup({
             <div className={styles.handleBar} />
             {(title || closeable) && (
               <div className={styles.header}>
-                {title && <Title size="md" align="center" icon={titleIcon} className={styles.title}>{title}</Title>}
+                {title && <Title size="md" align="center" icon={titleIcon} action={titleAction} className={styles.title}>{title}</Title>}
                 {closeable && (
                   <IconButton icon="X" size="md" className={styles.closeBtn} onClick={onClose} aria-label="닫기" />
                 )}
@@ -211,7 +232,7 @@ export default function LayerPopup({
           </div>
         ) : (
           <div className={styles.header}>
-            {title && <Title size="md" align="center" icon={titleIcon} className={styles.title}>{title}</Title>}
+            {title && <Title size="md" align="center" icon={titleIcon} action={titleAction} className={styles.title}>{title}</Title>}
             {closeable && (
               <IconButton icon="X" size="md" className={styles.closeBtn} onClick={onClose} aria-label="닫기" />
             )}

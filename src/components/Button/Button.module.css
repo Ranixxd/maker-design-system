@@ -83,9 +83,9 @@
   color: var(--color-text-oninverse);
 }
 
-/* fill 스타일 — outline(border) 아님 */
+/* fill 스타일(outline 아님). 배경은 bg-tertiary다. bg-secondary는 흰 바탕에서 단추로 안 읽혔다(2026-09-18 사용자) */
 .secondary {
-  background-color: var(--color-bg-secondary);
+  background-color: var(--color-bg-tertiary);
   color: var(--color-text-default);
 }
 
