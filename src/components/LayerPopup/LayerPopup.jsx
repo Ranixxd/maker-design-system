@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
-import Icon from '../Icon/Icon';
+import IconButton from '../IconButton/IconButton';
+import Title from '../Title/Title';
 import styles from './LayerPopup.module.css';
 
 function useIsMobile() {
@@ -31,7 +32,9 @@ export default function LayerPopup({
   isOpen,
   onClose,
   title,
+  titleIcon,              // 제목 글자 옆 아이콘 단추 { icon, 'aria-label', onClick } (Title의 icon)
   children,
+  footer,                 // 본문 아래에 늘 보이는 자리(주요 단추). 본문만 스크롤된다
   mobileType = 'sheet',   // 'sheet' | 'page'
 
   // Sheet-only props
@@ -40,6 +43,7 @@ export default function LayerPopup({
   closeable = true,        // false = 드래그로 닫히지 않음, 최소 10%
 
   className,
+  ...props               // id·aria-* 등은 패널(dialog)에 그대로 붙는다
 }) {
   const isMobile = useIsMobile();
   const panelRef = useRef(null);
@@ -154,6 +158,10 @@ export default function LayerPopup({
         ref={panelRef}
         className={[styles.panel, panelClass, className].filter(Boolean).join(' ')}
         style={sheetStyle}
+        role="dialog"
+        aria-modal="true"
+        aria-label={typeof title === 'string' ? title : undefined}
+        {...props}
         onClick={(e) => e.stopPropagation()}
       >
         {isSheet ? (
@@ -167,37 +175,24 @@ export default function LayerPopup({
             <div className={styles.handleBar} />
             {(title || closeable) && (
               <div className={styles.header}>
-                {title && <span className={styles.title}>{title}</span>}
+                {title && <Title size="md" align="center" icon={titleIcon} className={styles.title}>{title}</Title>}
                 {closeable && (
-                  <button
-                    type="button"
-                    className={styles.closeBtn}
-                    onClick={onClose}
-                    aria-label="닫기"
-                  >
-                    <Icon name="X" size="md" />
-                  </button>
+                  <IconButton icon="X" size="md" className={styles.closeBtn} onClick={onClose} aria-label="닫기" />
                 )}
               </div>
             )}
           </div>
         ) : (
           <div className={styles.header}>
-            {title && <span className={styles.title}>{title}</span>}
+            {title && <Title size="md" align="center" icon={titleIcon} className={styles.title}>{title}</Title>}
             {closeable && (
-              <button
-                type="button"
-                className={styles.closeBtn}
-                onClick={onClose}
-                aria-label="닫기"
-              >
-                <Icon name="X" size="md" />
-              </button>
+              <IconButton icon="X" size="md" className={styles.closeBtn} onClick={onClose} aria-label="닫기" />
             )}
           </div>
         )}
 
         <div className={styles.body}>{children}</div>
+        {footer && <div className={styles.footer}>{footer}</div>}
       </div>
     </div>
   );

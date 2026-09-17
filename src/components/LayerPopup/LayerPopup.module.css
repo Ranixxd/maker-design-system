@@ -43,7 +43,9 @@
   position: fixed;
   inset: 0;
   border-radius: 0;
-  animation: slideUp var(--motion-duration-long-2) var(--motion-easing-standard-decelerate);
+  /* 등장은 PC 모달과 같은 scaleIn이다(2026-09-17). 화면 전체가 아래에서 밀려 올라오면
+     시트처럼 끌어내려 닫을 수 있을 것 같은데 그렇지 않아 어색했다 */
+  animation: scaleIn var(--motion-duration-medium-2) var(--motion-easing-standard-decelerate);
 }
 
 /* ── Sheet: draggable header area ── */
@@ -66,47 +68,49 @@
   width: 36px;
   height: 4px;
   border-radius: var(--radius-full);
-  background-color: var(--color-gray-200);
+  /* 시멘틱 토큰으로(2026-09-17). 누르는 단추가 아니라 끌어 올리는 자리 표시라 구분선과 같은 무게다 */
+  background-color: var(--color-border-default);
   margin: var(--spacing-3) auto var(--spacing-2);
   flex-shrink: 0;
   pointer-events: none;
 }
 
 /* ── Header (shared between modal/page and sheet inner row) ── */
+/* 제목은 PC·폰 모두 가운데(2026-09-17). 나중에 왼쪽(뒤로 등)·오른쪽에 아이콘이 들어와도
+   제목이 밀리지 않게 세 칸으로 나눈다. 양옆 칸은 같은 너비라 한쪽만 차 있어도 제목은 창 한가운데다 */
 .header {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(48px, 1fr) minmax(0, auto) minmax(48px, 1fr);
   align-items: center;
-  padding: var(--spacing-1) var(--spacing-4) var(--spacing-3);
+  column-gap: var(--spacing-2);
+  /* 아래만 24px로 넉넉히. 본문과 확실히 떨어져 보이게 한다(2026-09-17) */
+  padding: var(--spacing-1) var(--spacing-4) var(--spacing-6);
   flex-shrink: 0;
   min-height: 44px;
 }
 
+/* 가운데 모달과 풀 페이지는 위에 손잡이가 없어 헤더가 창 윗변에 바로 붙는다.
+   시트 기준 윗여백(4px)이면 제목이 윗변에 닿아 보여, 좌우와 같은 16px을 준다(2026-09-17) */
+.modal .header,
+.page .header {
+  padding-top: var(--spacing-4);
+}
+
+/* 제목은 MDS Title(size md 20px, 가운데)이다(2026-09-17). 여기서는 가운데 칸에 세우기만 한다 */
 .title {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
+  grid-column: 2;
   color: var(--color-text-default);
-  flex: 1;
+  text-align: center;
+  min-width: 0;
 }
 
+/* 닫기는 MDS IconButton(neutral, md 48px)이다(2026-09-17, 36px에서 한 단계 키움). 오른쪽 칸 끝에 붙이고,
+   아이콘이 헤더 여백 선에 가깝게 오도록 버튼 안쪽 여백만큼 밖으로 뺀다.
+   버튼 키만큼 헤더가 커지지 않게 위아래도 같은 만큼 당긴다 */
 .closeBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--color-icon-secondary);
-  padding: var(--spacing-1);
-  border-radius: var(--radius-sm);
-  margin-left: auto;
-  flex-shrink: 0;
-  transition: background-color var(--motion-duration-short-3) var(--motion-easing-standard),
-              color            var(--motion-duration-short-3) var(--motion-easing-standard);
-}
-
-.closeBtn:hover {
-  background-color: var(--color-bg-hover);
-  color: var(--color-icon-default);
+  grid-column: 3;
+  justify-self: end;
+  margin: calc(-1 * var(--spacing-3)) calc(-1 * var(--spacing-3)) calc(-1 * var(--spacing-3)) 0;
 }
 
 /* ── Body ── */
@@ -114,6 +118,18 @@
   overflow-y: auto;
   padding: 0 var(--spacing-4) var(--spacing-6);
   flex: 1;
+}
+
+/* ── Footer ── */
+/* 본문이 길어도 늘 보이는 단추 자리(내보내기 확인처럼). 본문 아래 여백은 발판이 대신 갖는다 */
+.footer {
+  flex-shrink: 0;
+  display: flex;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) var(--spacing-4) calc(var(--spacing-4) + env(safe-area-inset-bottom));
+}
+.body:has(+ .footer) {
+  padding-bottom: 0;
 }
 
 /* ── Animations ── */
