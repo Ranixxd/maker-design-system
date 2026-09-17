@@ -2,7 +2,7 @@ import ListItem from './ListItem';
 import Icon from '../Icon/Icon';
 
 export default {
-  title: 'UI/ListItem',
+  title: 'Components/ListItem',
   component: ListItem,
   tags: ['autodocs'],
   parameters: {

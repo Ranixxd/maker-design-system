@@ -2,7 +2,7 @@ import { ToastProvider, useToast } from './Toast';
 import Button from '../Button/Button';
 
 export default {
-  title: 'UI/Toast',
+  title: 'Components/Toast',
   tags: ['autodocs'],
   decorators: [
     (Story) => (

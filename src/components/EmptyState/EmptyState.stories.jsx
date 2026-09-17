@@ -1,7 +1,7 @@
 import EmptyState from './EmptyState';
 
 export default {
-  title: 'UI/EmptyState',
+  title: 'Components/EmptyState',
   component: EmptyState,
   tags: ['autodocs'],
   parameters: {

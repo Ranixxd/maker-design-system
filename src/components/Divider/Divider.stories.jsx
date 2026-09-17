@@ -1,7 +1,7 @@
 import Divider from './Divider';
 
 export default {
-  title: 'UI/Divider',
+  title: 'Components/Divider',
   component: Divider,
   tags: ['autodocs'],
   parameters: {

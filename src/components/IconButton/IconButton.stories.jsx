@@ -2,7 +2,7 @@ import IconButton from './IconButton';
 import Button from '../Button/Button';
 
 export default {
-  title: 'UI/IconButton',
+  title: 'Components/IconButton',
   component: IconButton,
   tags: ['autodocs'],
   parameters: {

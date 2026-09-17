@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { RadioGroup, Radio } from './Radio';
 
 export default {
-  title: 'UI/Radio',
+  title: 'Components/Radio',
   component: RadioGroup,
   subcomponents: { Radio },
   tags: ['autodocs'],

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import TextField from './TextField';
 
 export default {
-  title: 'UI/TextField',
+  title: 'Components/TextField',
   component: TextField,
   tags: ['autodocs'],
   parameters: {

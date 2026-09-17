@@ -10,7 +10,7 @@ const SAMPLE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
 );
 
 export default {
-  title: 'UI/Thumbnail',
+  title: 'Components/Thumbnail',
   component: Thumbnail,
   tags: ['autodocs'],
   parameters: {
