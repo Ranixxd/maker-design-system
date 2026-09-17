@@ -1,4 +1,5 @@
 import Button from './Button';
+import giftPng from './story-gift.png';
 
 export default {
   title: 'Components/Button',
@@ -8,7 +9,7 @@ export default {
     docs: {
       description: {
         component: `
-버튼은 주요 액션을 트리거하는 인터랙티브 요소입니다. 텍스트 레이블만 사용하며 아이콘 포함 케이스는 없다.
+버튼은 주요 액션을 트리거하는 인터랙티브 요소입니다. 텍스트 레이블을 쓰며 아이콘 포함 케이스는 없다. 대신 이미지는 넣을 수 있다(아래 "이미지").
 
 **사용 규칙**
 - \`primary\` — **페이지당 하나만**. 가장 중요한 CTA에만 사용한다.
@@ -24,6 +25,20 @@ export default {
 - \`loading\` — 버튼을 눌러 부른 기능이 바로 끝나지 않으면, 누른 그 버튼이 로딩 상태가 된다 (예: 삭제 버튼 클릭 → 삭제 호출이 지연됨 → 삭제 버튼이 로딩). submit에만 쓰는 것이 아니다 (2026-09-11에 넓혔다).
   - 로딩 중에는 레이블이 사라지고 스피너만 돈다. 로딩 상태에 집중하게 하려는 것이다. 레이블은 투명하게 자리만 남아서 버튼 너비는 그대로다.
   - 다중 클릭을 막는다.
+
+**이미지 (2026-09-18)**
+
+이모지만으로 표현할 수 없는 특수한 경험을 표현하기 위해 이미지를 활용할 수 있다.
+예를 들어 공유하기는 선물 이미지와 함께 배치해, 공유를 선물처럼 기쁘게 하자는 의미를 만들 수 있다.
+아무 버튼에나 붙이는 꾸밈이 아니다. 그 버튼만의 경험이 있을 때만 쓴다.
+
+스펙
+- \`image\`에 그림 주소를 준다. 기본은 글자 뒤(\`imagePosition="end"\`), 앞에 두려면 \`"start"\`.
+- **높이는 크기마다 고정**이다: \`sm\` 20px, \`md\` 24px. **너비는 높이에 맞춰 그림 비율대로** 자동으로 정해진다.
+- **PNG를 권장한다.** 배경이 투명해야 버튼 색 위에 자연스럽게 얹힌다. JPG는 배경이 네모로 남는다.
+- 선명하게 보이도록 **표시 높이의 3배 이상**으로 만든다(md면 72px 이상). 너무 큰 원본은 버튼마다 받게 되므로 그보다 훨씬 크게 두지 않는다.
+- 그림에 뜻을 담지 않는다. 뜻은 글자가 전하고, 그림은 낭독기에서 빠진다(\`alt=""\`).
+- 로딩 중에는 글자와 함께 그림도 사라지고 스피너만 돈다.
 
 **모바일 hover 처리**
 \`@media (hover: none)\` 환경(터치 디바이스)에서는 hover 오버레이가 표시되지 않는다.
@@ -101,6 +116,18 @@ export const Small = {
       description: { story: '공간이 제한된 인라인 영역에 사용한다.' },
     },
   },
+};
+
+export const WithImage = {
+  name: '이미지',
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div style={{ display: 'flex', gap: 'var(--spacing-2)', alignItems: 'center', flexWrap: 'wrap' }}>
+      <Button variant="secondary" size="md" image={giftPng}>친구에게 테마 공유하기</Button>
+      <Button variant="secondary" size="sm" image={giftPng}>공유하기</Button>
+      <Button variant="secondary" size="md" image={giftPng} loading>친구에게 테마 공유하기</Button>
+    </div>
+  ),
 };
 
 export const Disabled = {

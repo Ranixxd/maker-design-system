@@ -67,6 +67,16 @@
   font-weight: var(--font-weight-medium); /* 500 = label-md ✓ (기존 semibold 600은 오류) */
 }
 
+/* ── Image ── 높이는 크기마다 고정, 너비는 그림 비율대로 따라온다(2026-09-18) */
+.image {
+  display: block;
+  width: auto;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+.sm .image { height: 20px; }
+.md .image { height: 24px; }
+
 /* ── Variant ── */
 .primary {
   background-color: var(--color-bg-inverse);
@@ -95,6 +105,9 @@
 }
 
 .labelHidden {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
   opacity: 0;
 }
 

@@ -9,6 +9,8 @@ const Button = forwardRef(function Button({
   children,
   className,
   loading = false,
+  image,                // 이미지 주소. 글자 옆에 선다(공유하기 + 선물 그림). 높이는 크기마다 고정, 너비는 비율대로
+  imagePosition = 'end', // 'start' | 'end'
   onClick,
   ...props
 }, ref) {
@@ -23,7 +25,12 @@ const Button = forwardRef(function Button({
       {...props}
     >
       {loading && <span className={styles.spinner} aria-hidden="true" />}
-      <span className={loading ? styles.labelHidden : styles.label}>{children}</span>
+      <span className={loading ? styles.labelHidden : styles.label}>
+        {/* 뜻은 글자가 전한다. 그림은 꾸밈이라 낭독기에서 뺀다 */}
+        {image && imagePosition === 'start' && <img className={styles.image} src={image} alt="" aria-hidden="true" />}
+        {children}
+        {image && imagePosition !== 'start' && <img className={styles.image} src={image} alt="" aria-hidden="true" />}
+      </span>
     </button>
   );
 });
