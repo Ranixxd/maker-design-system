@@ -19,7 +19,7 @@ export default {
 | \`sm\` | text-heading-xs 15px | 본문 안 작은 제목 (말풍선 만들기 1단계 등) |
 
 **조합**
-- \`icon\`: 제목 글자 바로 옆 아이콘 단추(neutral-weak). 도움말(?)처럼 제목에 딸린 것. lg·md 제목은 48px(아이콘 20px), sm 제목은 36px(아이콘 16px)
+- \`icon\`: 제목 글자 바로 옆 아이콘 단추(neutral-weak). 도움말(?)처럼 제목에 딸린 것. lg·md 제목은 48px(아이콘 24px), sm 제목은 36px(아이콘 20px)
 - \`action\`: 제목 바로 옆 글자 단추(secondary sm). 제목과 한 묶음인 동작(말풍선 복붙)
 - \`description\`: 제목 아래 설명 한 줄(text-body-sm, text-secondary)
 

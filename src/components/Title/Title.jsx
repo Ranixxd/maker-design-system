@@ -7,7 +7,7 @@ import styles from './Title.module.css';
 
    - size: lg 24px(페이지 머리) / md 20px(창 머리) / sm 15px(본문 안 작은 제목)
    - icon: 제목 글자 바로 옆에 붙는 아이콘 단추. 도움말(?)처럼 제목에 딸린 것.
-           크기는 제목을 따른다: lg·md는 48px(아이콘 20px), sm은 36px(아이콘 16px)
+           크기는 제목을 따른다: lg·md는 48px(아이콘 24px), sm은 36px(아이콘 20px)
            톤은 neutral-weak로 낮춘다. 제목보다 먼저 보이면 안 된다
    - action: 제목 바로 옆 글자 단추(secondary sm). 제목과 한 묶음인 동작이다(말풍선 복붙).
            icon과 모양부터 달라 위계가 갈린다.

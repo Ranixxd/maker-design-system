@@ -7,7 +7,7 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: `Lucide React 기반 아이콘 래퍼. 사이즈 규칙(sm=16 / md=20)과 strokeWidth=1.5를 강제하여 앱 전체의 아이콘 일관성을 유지한다.
+        component: `Lucide React 기반 아이콘 래퍼. 사이즈 규칙(sm=20 / md=24)과 strokeWidth=1.5를 강제하여 앱 전체의 아이콘 일관성을 유지한다.
 
 **등록된 이름만 된다.** Lucide 전체(\`import *\`)를 끌어오면 어떤 이름이 실제 쓰이는지
 빌드 타임에 알 수 없어 tree-shaking이 안 되고, IconButton 하나만 써도 번들이
@@ -26,7 +26,7 @@ import해 등록해뒀다 — 목록에 없는 이름을 넘기면 조용히 아
     size: {
       control: 'radio',
       options: ['sm', 'md'],
-      description: '`sm` = 16px / `md` = 20px',
+      description: '`sm` = 20px / `md` = 24px',
     },
     color: {
       control: 'color',
@@ -36,12 +36,12 @@ import해 등록해뒀다 — 목록에 없는 이름을 넘기면 조용히 아
 };
 
 export const Small = {
-  name: 'sm (16px)',
+  name: 'sm (20px)',
   args: { name: 'Home', size: 'sm' },
 };
 
 export const Medium = {
-  name: 'md (20px)',
+  name: 'md (24px)',
   args: { name: 'Home', size: 'md' },
 };
 

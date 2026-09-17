@@ -47,17 +47,17 @@
 
 .iconHidden { opacity: 0; }
 
-/* Button 스피너와 같은 모양. 아이콘 크기(sm 16 / md 20)보다 조금 작게 */
+/* Button 스피너와 같은 모양. 아이콘 크기(sm 20 / md 24)보다 조금 작게 */
 .spinner {
   position: absolute;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border: 2px solid currentColor;
   border-top-color: transparent;
   border-radius: 50%;
   animation: spin 0.6s linear infinite;
 }
-.sm .spinner { width: 13px; height: 13px; }
+.sm .spinner { width: 15px; height: 15px; }
 
 @keyframes spin {
   to { transform: rotate(360deg); }

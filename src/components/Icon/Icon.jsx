@@ -29,7 +29,8 @@ const ICONS = {
   CircleHelp,
 };
 
-const SIZES = { sm: 16, md: 20 };
+/* sm 20 / md 24 (2026-09-18, 16 / 20에서 한 단계씩 키웠다). 폰에서 알아보기 작았다 */
+const SIZES = { sm: 20, md: 24 };
 
 export default function Icon({ name, size = 'md', className, style, color, ...props }) {
   const LucideIcon = ICONS[name];

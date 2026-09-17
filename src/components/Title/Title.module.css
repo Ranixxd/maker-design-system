@@ -34,8 +34,8 @@
 }
 
 /* 아이콘 단추가 제목 줄 높이를 키우지 않게 위아래로 당긴다.
-   lg·md 제목은 48px 단추(아이콘 20px), sm 제목은 36px 단추(아이콘 16px)다(2026-09-17).
-   단추 안쪽 여백만큼 그림이 글자에서 멀어지므로 왼쪽으로 당겨 그림과 글자 사이를 10px로 맞춘다 */
+   lg·md 제목은 48px 단추(아이콘 24px), sm 제목은 36px 단추(아이콘 20px)다(2026-09-18).
+   단추 안쪽 여백(md 12px, sm 8px)만큼 그림이 글자에서 멀어지므로 왼쪽으로 당겨 그림과 글자 사이를 8px로 맞춘다 */
 .iconMd { margin-block: calc(-1 * var(--spacing-3)); margin-inline-start: calc(-1 * var(--spacing-3)); }
 .iconSm { margin-block: calc(-1 * var(--spacing-2)); margin-inline-start: calc(-1 * var(--spacing-2)); }
 
