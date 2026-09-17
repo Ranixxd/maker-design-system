@@ -15,6 +15,10 @@ export default {
 - \`normal\` — 사이드바 메뉴, 설정 항목처럼 **세로로 나열되는 목록**에 사용
 - \`box\` — 이미지 불러오기 / 직접 만들기처럼 **사용자가 선택해야 하는 옵션 카드**에 사용
 
+**size (normal에서만)**
+- \`md\` 52px: 서랍·설정처럼 몇 줄 안 되는 목록
+- \`sm\` 44px, 좌우 여백 12px: 창 안에서 한 줄짜리 항목이 여럿 쌓이는 목록(내 테마 목록). 부제(sub)는 넣지 않는다
+
 **trailing 규칙**
 - \`"chevron"\` — 다음 화면으로 이동 시
 - ReactNode — 뱃지, 스위치 등 커스텀 요소
@@ -28,6 +32,7 @@ export default {
       control: 'radio',
       options: ['normal', 'box'],
     },
+    size: { control: 'radio', options: ['md', 'sm'], description: 'normal에서만. sm=44px' },
     label: { control: 'text' },
     sub: { control: 'text', description: 'box variant에서 주로 사용하는 부가 설명' },
     trailing: { control: 'text', description: '"chevron" 또는 ReactNode' },

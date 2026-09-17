@@ -12,6 +12,8 @@ import {
   Upload, Download, Pencil, Trash2,
   Image, Layers, Menu, MoreHorizontal,
   User, LogOut,
+  /* 카톡테마 메이커 더보기 메뉴 (2026-09-17) */
+  Folder, FolderPlus, Astroid, RotateCcw,
 } from 'lucide-react';
 
 const ICONS = {
@@ -21,6 +23,7 @@ const ICONS = {
   Upload, Download, Pencil, Trash2,
   Image, Layers, Menu, MoreHorizontal,
   User, LogOut,
+  Folder, FolderPlus, Astroid, RotateCcw,
 };
 
 const SIZES = { sm: 16, md: 20 };

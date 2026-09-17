@@ -61,6 +61,7 @@ export const CommonIcons = {
       'ChevronDown', 'X', 'Plus', 'Minus', 'Check', 'Info',
       'Upload', 'Download', 'Pencil', 'Trash2', 'Image', 'Layers',
       'Menu', 'MoreHorizontal', 'User', 'LogOut',
+      'Folder', 'FolderPlus', 'Astroid', 'RotateCcw',
     ];
     return (
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24 }}>

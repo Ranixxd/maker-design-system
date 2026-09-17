@@ -19,8 +19,12 @@ export default {
 | variant | 설명 |
 |---|---|
 | \`neutral\` | 배경 없음. Topbar·닫기 버튼 등 기본형 |
+| \`neutral-weak\` | 배경 없음, 아이콘이 한 톤 옅다(icon-secondary). 목록 줄의 지우기처럼 내용 곁의 보조 동작 |
 | \`secondary\` | bg-secondary 배경. 중간 강조 |
 | \`primary\` | bg-inverse 배경. 가장 강한 강조 |
+
+**로딩**
+\`loading\`을 주면 아이콘 자리에 스피너가 돌고 누를 수 없다. 흐려지지 않는다. 못 쓰는 버튼(disabled)이 아니라 일이 도는 중이다.
 
 **모바일 hover 처리**
 \`@media (hover: none)\` 환경(터치 디바이스)에서는 hover 오버레이가 표시되지 않는다.
@@ -37,8 +41,9 @@ export default {
     },
     variant: {
       control: 'radio',
-      options: ['neutral', 'secondary', 'primary'],
+      options: ['neutral', 'neutral-weak', 'secondary', 'primary'],
     },
+    loading: { control: 'boolean', description: '스피너를 돌리고 누르지 못하게 한다' },
   },
 };
 
@@ -52,6 +57,7 @@ export const AllVariants = {
   render: () => (
     <div style={{ display: 'flex', gap: 'var(--spacing-2)', alignItems: 'center' }}>
       <IconButton icon="Palette" size="md" variant="neutral"   aria-label="neutral" />
+      <IconButton icon="Palette" size="md" variant="neutral-weak" aria-label="neutral-weak" />
       <IconButton icon="Palette" size="md" variant="secondary" aria-label="secondary" />
       <IconButton icon="Palette" size="md" variant="primary"   aria-label="primary" />
     </div>
@@ -93,6 +99,19 @@ export const CommonUsages = {
       <IconButton icon="ChevronLeft"     size="md" aria-label="뒤로" />
       <IconButton icon="ChevronRight"    size="md" aria-label="앞으로" />
       <IconButton icon="MoreHorizontal"  size="md" aria-label="더보기" />
+    </div>
+  ),
+};
+
+export const Loading = {
+  name: '로딩',
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div style={{ display: 'flex', gap: 'var(--spacing-2)', alignItems: 'center' }}>
+      <IconButton icon="Trash2" size="sm" variant="neutral-weak" aria-label="삭제" />
+      <IconButton icon="Trash2" size="sm" variant="neutral-weak" aria-label="삭제 중" loading />
+      <IconButton icon="Trash2" size="md" variant="neutral" aria-label="삭제 중" loading />
+      <IconButton icon="Trash2" size="md" variant="primary" aria-label="삭제 중" loading />
     </div>
   ),
 };

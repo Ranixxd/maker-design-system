@@ -3,6 +3,7 @@ import styles from './ListItem.module.css';
 
 export default function ListItem({
   variant = 'normal',
+  size = 'md',          // 'md' | 'sm' — sm은 normal에서만 (44px)
   icon,
   label,
   sub,
@@ -15,7 +16,7 @@ export default function ListItem({
   return (
     <Tag
       type={onClick ? 'button' : undefined}
-      className={[styles.item, styles[variant], className].filter(Boolean).join(' ')}
+      className={[styles.item, styles[variant], size === 'sm' && styles.sm, className].filter(Boolean).join(' ')}
       onClick={onClick}
       {...props}
     >

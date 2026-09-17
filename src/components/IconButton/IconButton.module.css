@@ -24,9 +24,9 @@
   transition: background-color var(--motion-duration-short) var(--motion-easing-standard);
 }
 
-.btn:hover:not(:disabled)::after  { background-color: var(--color-bg-hover); }
-.btn:active:not(:disabled)::after { background-color: var(--color-bg-pressed); }
-.btn:active:not(:disabled)        { transform: scale(0.9); }
+.btn:hover:not(:disabled):not([data-loading])::after  { background-color: var(--color-bg-hover); }
+.btn:active:not(:disabled):not([data-loading])::after { background-color: var(--color-bg-pressed); }
+.btn:active:not(:disabled):not([data-loading])        { transform: scale(0.9); }
 
 .btn:focus-visible {
   outline: 2px solid var(--color-bg-accent);
@@ -36,6 +36,31 @@
 .btn:disabled {
   cursor: not-allowed;
   opacity: 0.5;
+}
+
+/* 로딩 — 눌러 둔 일이 끝날 때까지 다시 못 누른다. 흐리게 하지 않는다(disabled와 다르다).
+   일이 도는 중이지 못 쓰는 버튼이 아니다 */
+.btn[data-loading] {
+  pointer-events: none;
+  cursor: default;
+}
+
+.iconHidden { opacity: 0; }
+
+/* Button 스피너와 같은 모양. 아이콘 크기(sm 16 / md 20)보다 조금 작게 */
+.spinner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+.sm .spinner { width: 13px; height: 13px; }
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 /* ── Size — Button 높이와 동일 ── */
@@ -56,6 +81,14 @@
 .neutral {
   background-color: transparent;
   color: var(--color-icon-default);
+}
+
+/* 톤을 낮춘 neutral. 화면의 주인공이 아니라 내용 곁에 붙는 보조 동작에 쓴다
+   (목록 줄의 지우기, 안내 말풍선 닫기, 입력 칸 비우기). neutral을 그대로 두면
+   줄마다 진한 아이콘이 서서 내용보다 먼저 눈에 들어온다 */
+.neutral-weak {
+  background-color: transparent;
+  color: var(--color-icon-secondary);
 }
 
 /* 터치 디바이스에서 hover 오버레이 무시 */
