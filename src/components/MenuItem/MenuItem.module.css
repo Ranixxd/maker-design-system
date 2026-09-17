@@ -45,7 +45,7 @@
 }
 .item:active:not(:disabled)::after { background-color: var(--color-bg-pressed); }
 
-/* 눌리면 살짝 줄어든다. IconButton은 0.9, Button은 0.97인데 여기는 0.98이다 —
+/* 눌리면 살짝 줄어든다. IconButton은 0.9, Button은 0.97인데 여기는 0.98이다.
    IconButton은 작고 네모나서 0.9가 "눌렸다"로 읽히지만, 이 줄은 패널 폭을 다 쓰므로
    같은 값이면 17px이 움직여 튀어 보인다. 넓은 것은 덜 줄어야 같은 세기로 느껴진다 */
 .item:active:not(:disabled) { transform: scale(0.98); }

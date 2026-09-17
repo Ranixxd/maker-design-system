@@ -3,7 +3,7 @@ import styles from './ListItem.module.css';
 
 export default function ListItem({
   variant = 'normal',
-  size = 'md',          // 'md' | 'sm' — sm은 normal에서만 (44px)
+  size = 'md',          // 'md' | 'sm'. sm은 normal에서만 (44px)
   icon,
   label,
   sub,

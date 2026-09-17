@@ -38,7 +38,7 @@
   opacity: 0.5;
 }
 
-/* 로딩 — 눌러 둔 일이 끝날 때까지 다시 못 누른다. 흐리게 하지 않는다(disabled와 다르다).
+/* 로딩. 눌러 둔 일이 끝날 때까지 다시 못 누른다. 흐리게 하지 않는다(disabled와 다르다).
    일이 도는 중이지 못 쓰는 버튼이 아니다 */
 .btn[data-loading] {
   pointer-events: none;
