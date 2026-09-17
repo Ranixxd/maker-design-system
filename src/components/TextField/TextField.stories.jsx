@@ -13,12 +13,18 @@ export default {
 
 **구성 규칙**
 - \`label\` — \`text-label-sm\`, secondary 톤. 생략 가능하지만 되도록 붙인다.
-- \`required\` — 레이블 옆 \`*\` 표시. 색상은 \`--color-text-critical\`.
-- \`hint\` — \`text-label-xs\`, tertiary 톤. 보조 설명·제약 조건을 적는다. ReactNode를 받으므로 줄바꿈(\`<br />\`)도 가능하다.
+- \`required\` — 레이블 옆 빨간 점(4px, \`--color-bg-critical\`). 점은 눈으로만 보이고 낭독기에는 input의 \`aria-required\`로 알린다. "*"였는데 이름표 글자와 섞여 읽혀 점으로 바꿨다 (2026-09-17).
+- 커서가 있는 칸은 강조색 테두리(\`--color-border-accent\`)다. 회색은 입력 중인 칸이 덜 드러났다 (2026-09-17).
+- \`hint\` — \`text-body-sm\`, tertiary 톤. 설명글이라 body다(\`text-label-xs\`였다가 2026-09-17에 한 단계 키웠다). 보조 설명·제약 조건을 적는다. ReactNode를 받으므로 줄바꿈(\`<br />\`)도 가능하다.
 
 **주의**
 - \`id\`를 반드시 넘긴다. label의 \`htmlFor\`와 연결되어 레이블 클릭 시 포커스가 이동한다.
 - 값 검증(필수값 미입력 등)은 필드 하단이 아니라 Toast로 안내하는 것이 현재 패턴이다.
+- \`invalid\` — 어느 칸이 문제인지 칸 자체에 표시한다. 빨간 테두리(\`--color-border-critical\`) + 옅은 빨간 바탕(\`--color-bg-critical-subtle\`). 안내 문구는 여전히 Toast나 창 위 안내로 한다. 카톡테마 메이커 내보내기 창이 필수칸을 비웠을 때 쓴다 (2026-09-17 더함).
+
+**그 밖의 속성** (2026-09-17 더함)
+- \`ref\`는 input에 붙는다(창을 열자마자 포커스).
+- 위에 없는 속성(\`maxLength\`, \`disabled\`, \`onKeyDown\`, \`onCompositionStart\`·\`onCompositionEnd\`, \`autoComplete\` 등)은 input에 그대로 넘어간다. 한글 조합이 끝날 때까지 값을 올리지 않는 일은 **쓰는 쪽이** 이 신호로 한다. 부품이 하면 쓰는 모든 곳의 입력 동작이 같이 바뀐다.
 
 **입력 글자 크기와 아이폰 자동 확대** (2026-09-17)
 - 입력 글자는 \`text-body-md\`(15px)다. **아이폰 확대를 피하려고 16px로 올리지 않는다.** 16px은 타이포 눈금에 없다.
@@ -44,6 +50,8 @@ export default {
     placeholder: { control: 'text' },
     hint: { control: 'text' },
     required: { control: 'boolean' },
+    invalid: { control: 'boolean' },
+    disabled: { control: 'boolean' },
     type: { control: 'radio', options: ['text', 'password', 'email', 'number'] },
   },
   decorators: [
@@ -102,4 +110,16 @@ export const FormExample = {
   name: '폼 조합 예시 — 테마 내보내기',
   parameters: { controls: { disable: true } },
   render: () => <FormDemo />,
+};
+
+export const Invalid = {
+  name: '잘못 입력',
+  render: Controlled,
+  args: { id: 'sb-invalid', label: '테마명', required: true, invalid: true, placeholder: '테마 이름을 입력해요' },
+};
+
+export const Disabled = {
+  name: '잠김',
+  render: Controlled,
+  args: { id: 'sb-disabled', label: '보관할 테마 이름', value: '저장하는 중', disabled: true },
 };
