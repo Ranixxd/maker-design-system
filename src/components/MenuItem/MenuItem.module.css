@@ -10,7 +10,11 @@
   width: calc(100% - var(--spacing-1) * 2);
   margin-inline: var(--spacing-1);
   padding: var(--spacing-3);
+  box-sizing: border-box;
   border: none;
+  /* a로 그릴 때(href)도 단추와 같아 보이게 */
+  font-family: inherit;
+  text-decoration: none;
   /* 패널 안에서 한 덩이의 상자로 보여야 한다 — 눌리는 자리가 어디까지인지
      테두리 없이도 읽힌다. 패널이 좌우로 조금 띄워 주므로(Popover) 그 안에서
      모서리를 둥글린다 */
@@ -67,6 +71,10 @@
    손이 지나가다 얹히는 것만으로 경고가 켜지면, 정작 누를 때의 무게가 닳는다.
    위험하다는 것은 글자색이 이미 말하고 있다 */
 .critical { color: var(--color-text-critical); }
+
+/* 한 단 낮춘 줄. 이용약관·개인정보처리방침·로그아웃처럼 자주 찾지 않는 것이 한 무리를 이룬다(2026-09-17).
+   글자만 옅다. 무게는 크기가 아니라 색으로 낮춘다 */
+.subtle { color: var(--color-text-secondary); }
 .critical .leading { color: var(--color-icon-critical); }
 
 /* 크기 — 글자는 JSX가 .text-* 로 정하고, 여기서는 그 크기에 맞는 여백만 준다.

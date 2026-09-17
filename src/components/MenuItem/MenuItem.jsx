@@ -9,15 +9,18 @@ import styles from './MenuItem.module.css';
 export default function MenuItem({
   label,
   icon,
-  variant = 'normal',   // 'normal' | 'critical'
+  variant = 'normal',   // 'normal' | 'subtle' | 'critical'
   size = 'md',          // 'md' | 'lg'
   trailing,
+  href,                 // 주면 링크(a)로 그린다. 다른 페이지로 가는 줄(서랍 메뉴). 새 탭 열기·주소 복사가 된다
   className,
   ...props
 }) {
+  const Tag = href ? 'a' : 'button';
   return (
-    <button
-      type="button"
+    <Tag
+      type={href ? undefined : 'button'}
+      href={href}
       className={[styles.item, styles[variant], styles[size], className].filter(Boolean).join(' ')}
       {...props}
     >
@@ -31,6 +34,6 @@ export default function MenuItem({
           제자리로 돌아왔다 */}
       <span className={`text-label-${size === 'lg' ? 'lg' : 'md'} ${styles.label}`}>{label}</span>
       {trailing !== undefined && <span className={styles.trailing}>{trailing}</span>}
-    </button>
+    </Tag>
   );
 }
