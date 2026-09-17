@@ -22,6 +22,10 @@ function snapNearest(value, points) {
   );
 }
 
+/* 이만큼(px)만 끌어도 끈 방향의 다음 스냅으로 넘어간다(2026-09-18).
+   가장 가까운 스냅으로만 붙이면 반 넘게 끌어야 바뀌어 둔했다 */
+const SNAP_SWIPE_PX = 24;
+
 function rubberBand(value, min, max) {
   if (value > max) return max + (value - max) * 0.12;
   if (value < min) return min + (value - min) * 0.12;
@@ -34,6 +38,7 @@ export default function LayerPopup({
   title,
   titleIcon,              // 제목 글자 옆 아이콘 단추 { icon, 'aria-label', onClick } (Title의 icon)
   children,
+  toolbar,                // 머리 아래 늘 보이는 자리(찾기칸·분류 탭). 스크롤되지 않고 본문만 스크롤된다
   footer,                 // 본문 아래에 늘 보이는 자리(주요 단추). 본문만 스크롤된다
   mobileType = 'sheet',   // 'sheet' | 'page'
 
@@ -91,13 +96,14 @@ export default function LayerPopup({
 
   const onTouchStart = useCallback((e) => {
     const h = measureH();
-    drag.current = { active: true, startY: e.touches[0].clientY, startH: h };
+    drag.current = { active: true, startY: e.touches[0].clientY, startH: h, lastY: undefined };
     setSnapping(false);
     setHeightPct(h); // auto → fixed so dragging has a baseline
   }, []);
 
   const onTouchMove = useCallback((e) => {
     if (!drag.current.active) return;
+    drag.current.lastY = e.touches[0].clientY;
     const deltaPct = ((drag.current.startY - e.touches[0].clientY) / window.innerHeight) * 100;
     const raw = drag.current.startH + deltaPct;
     setHeightPct(rubberBand(raw, minH, 90));
@@ -109,6 +115,27 @@ export default function LayerPopup({
     setSnapping(true);
 
     const h = heightPctRef.current ?? measureH();
+
+    /* 스냅이 있으면 끈 방향으로 판단한다(2026-09-18). 톡 치기로는 높이가 바뀌지 않는다.
+       - SNAP_SWIPE_PX보다 덜 움직였으면 원래 스냅으로 돌아간다
+       - 위로 끌었으면 시작 스냅보다 높은 스냅 중 손을 뗀 높이에 가장 가까운 것
+       - 아래로 끌었으면 시작 스냅보다 낮은 스냅 중 가장 가까운 것. 더 낮은 스냅이 없으면 닫는다 */
+    if (snapPoints && snapPoints.length > 0) {
+      const sorted = [...snapPoints].filter((v) => v >= minH).sort((a, b) => a - b);
+      const startSnap = snapNearest(drag.current.startH, sorted);
+      const upPx = drag.current.lastY === undefined ? 0 : drag.current.startY - drag.current.lastY;
+      if (Math.abs(upPx) < SNAP_SWIPE_PX) { setHeightPct(startSnap); return; }
+      if (upPx > 0) {
+        const higher = sorted.filter((v) => v > startSnap);
+        setHeightPct(higher.length ? snapNearest(h, higher) : startSnap);
+        return;
+      }
+      const lower = sorted.filter((v) => v < startSnap);
+      if (lower.length) { setHeightPct(snapNearest(h, lower)); return; }
+      if (closeable) { onClose(); return; }
+      setHeightPct(startSnap);
+      return;
+    }
 
     // Close gesture — dragged below threshold
     const lowestSnap = snapPoints?.length ? Math.min(...snapPoints) : 10;
@@ -191,6 +218,7 @@ export default function LayerPopup({
           </div>
         )}
 
+        {toolbar && <div className={styles.toolbar}>{toolbar}</div>}
         <div className={styles.body}>{children}</div>
         {footer && <div className={styles.footer}>{footer}</div>}
       </div>
