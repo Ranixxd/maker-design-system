@@ -55,6 +55,9 @@ export default function LayerPopup({
   closeable = true,        // false = 드래그로 닫히지 않음, 최소 10%
 
   className,
+  headerClassName,        // 머리·본문·발판의 여백을 창마다 달리 줘야 할 때(이미지 만들기처럼 판이 창을 꽉 채우는 창)
+  bodyClassName,
+  footerClassName,
   ...props               // id·aria-* 등은 패널(dialog)에 그대로 붙는다
 }) {
   const isMobile = useIsMobile();
@@ -224,7 +227,7 @@ export default function LayerPopup({
           >
             <div className={styles.handleBar} />
             {(title || closeable || headerStart || headerEnd) && (
-              <div className={styles.header}>
+              <div className={[styles.header, headerClassName].filter(Boolean).join(' ')}>
                 {headerStart && <div className={styles.headerStart}>{headerStart}</div>}
                 {title && <Title size="md" align="center" icon={titleIcon} action={titleAction} className={styles.title}>{title}</Title>}
                 {headerEnd
@@ -234,7 +237,7 @@ export default function LayerPopup({
             )}
           </div>
         ) : (
-          <div className={styles.header}>
+          <div className={[styles.header, headerClassName].filter(Boolean).join(' ')}>
             {headerStart && <div className={styles.headerStart}>{headerStart}</div>}
             {title && <Title size="md" align="center" icon={titleIcon} action={titleAction} className={styles.title}>{title}</Title>}
             {headerEnd
@@ -244,8 +247,8 @@ export default function LayerPopup({
         )}
 
         {toolbar && <div className={styles.toolbar}>{toolbar}</div>}
-        <div className={styles.body}>{children}</div>
-        {footer && <div className={styles.footer}>{footer}</div>}
+        <div className={[styles.body, bodyClassName].filter(Boolean).join(' ')}>{children}</div>
+        {footer && <div className={[styles.footer, footerClassName].filter(Boolean).join(' ')}>{footer}</div>}
       </div>
     </div>
   );
