@@ -18,3 +18,16 @@ import { SpacingTable, SemanticSpacingTable } from './TokenComponents';
 레이아웃 고정값. 페이지·섹션·컴포넌트 단위의 여백에 사용한다.
 
 <SemanticSpacingTable />
+
+### 전역 좌우 여백 (--global-padding-l / -r, 20px)
+
+**화면·창·서랍의 안쪽 좌우 여백은 이 토큰을 쓴다**(2026-09-18). 같은 앱 안에서 내용이 늘 같은 선에서 시작하게 하려는 것이다.
+`--spacing-4`·`--spacing-6` 같은 낱개 값을 자리마다 골라 쓰면 창은 16px, 서랍은 24px처럼 선이 어긋난다.
+
+| 자리 | 쓰는 법 |
+|---|---|
+| LayerPopup 머리·본문·footer | 좌우 padding이 이 토큰이다 |
+| 서랍(Drawer) 안 머리글·구분선 | 쓰는 쪽이 이 토큰으로 준다. Drawer 껍데기는 여백을 갖지 않는다 |
+| 서랍 메뉴 줄(MenuItem lg) | 줄 자신의 4px 물러남 + 16px 안쪽 여백이 합쳐 20px로 같은 선에 온다 |
+
+부품 안쪽의 작은 간격(단추 안, 줄 사이)은 이 토큰이 아니라 `--spacing-*`다.
