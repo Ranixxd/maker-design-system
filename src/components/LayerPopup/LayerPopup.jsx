@@ -42,6 +42,8 @@ export default function LayerPopup({
   title,
   titleIcon,              // 제목 글자 옆 아이콘 단추 { icon, 'aria-label', onClick } (Title의 icon)
   titleAction,            // 제목 글자 옆 글자 단추 { label, onClick } (Title의 action)
+  headerStart,            // 머리 왼쪽 칸(뒤로 가기·취소처럼 이 창에서 나가는 것)
+  headerEnd,              // 머리 오른쪽 칸. 주면 닫기 단추 자리를 이것이 대신한다(이미지 만들기의 [편집 완료])
   children,
   toolbar,                // 머리 아래 늘 보이는 자리(찾기칸·분류 탭). 스크롤되지 않고 본문만 스크롤된다
   footer,                 // 본문 아래에 늘 보이는 자리(주요 단추). 본문만 스크롤된다
@@ -221,21 +223,23 @@ export default function LayerPopup({
             onTouchEnd={onTouchEnd}
           >
             <div className={styles.handleBar} />
-            {(title || closeable) && (
+            {(title || closeable || headerStart || headerEnd) && (
               <div className={styles.header}>
+                {headerStart && <div className={styles.headerStart}>{headerStart}</div>}
                 {title && <Title size="md" align="center" icon={titleIcon} action={titleAction} className={styles.title}>{title}</Title>}
-                {closeable && (
-                  <IconButton icon="X" size="md" className={styles.closeBtn} onClick={onClose} aria-label="닫기" />
-                )}
+                {headerEnd
+                  ? <div className={styles.headerEnd}>{headerEnd}</div>
+                  : closeable && <IconButton icon="X" size="md" className={styles.closeBtn} onClick={onClose} aria-label="닫기" />}
               </div>
             )}
           </div>
         ) : (
           <div className={styles.header}>
+            {headerStart && <div className={styles.headerStart}>{headerStart}</div>}
             {title && <Title size="md" align="center" icon={titleIcon} action={titleAction} className={styles.title}>{title}</Title>}
-            {closeable && (
-              <IconButton icon="X" size="md" className={styles.closeBtn} onClick={onClose} aria-label="닫기" />
-            )}
+            {headerEnd
+              ? <div className={styles.headerEnd}>{headerEnd}</div>
+              : closeable && <IconButton icon="X" size="md" className={styles.closeBtn} onClick={onClose} aria-label="닫기" />}
           </div>
         )}
 
