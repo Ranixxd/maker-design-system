@@ -10,28 +10,37 @@
   --motion-easing-standard-accelerate: cubic-bezier(0.3, 0, 1, 1);
 
   /* ── Duration (M3 full set) ─────────────────────────────────────────────────
-     요소가 차지하는 화면 영역에 비례해 선택한다.
-     이탈 전환은 진입보다 한 단계 짧은 그룹을 사용한다. */
+     무엇이 움직이나로 고른다. 단계는 넷이다(2026-09-19 다시 정리).
 
-  /* Short — 버튼·아이콘·칩 등 아주 작은 요소 / 이탈 */
+       Short       요소 하나의 상태: hover·pressed·토글, 덮개 페이드, 팝오버
+       Medium      페이지 위에 뜨는 판: 모달·바텀시트·서랍 (진입 medium-2)
+       Long        페이지 단위: 페이지가 통째로 바뀌는 전환 (지금 쓰는 곳 없음)
+       Extra long  연출: 온보딩·첫 진입
+
+     판은 크더라도 Medium이다. 페이지 위에 잠깐 떠서 할 일을 받는 것이지 페이지가
+     바뀌는 것이 아니다. 바텀시트를 Long(0.5초)으로 두었더니 다 올라온 뒤에도 끝이
+     길게 끌려 느리게 읽혔다(2026-09-19).
+     이탈은 진입보다 한 단계 짧게 둔다. */
+
+  /* Short: 요소 하나의 상태 변화, 덮개 페이드, 팝오버, 이탈 */
   --motion-duration-short-1: 50ms;
   --motion-duration-short-2: 100ms;
   --motion-duration-short-3: 150ms;
   --motion-duration-short-4: 200ms;
 
-  /* Medium — 드롭다운·메뉴·스낵바 등 중간 크기 요소 */
+  /* Medium: 페이지 위에 뜨는 판. 모달·바텀시트·서랍 진입은 medium-2 */
   --motion-duration-medium-1: 250ms;
   --motion-duration-medium-2: 300ms;
   --motion-duration-medium-3: 350ms;
   --motion-duration-medium-4: 400ms;
 
-  /* Long — 바텀시트·모달 등 큰 요소 / 진입 */
+  /* Long: 페이지 단위 전환 */
   --motion-duration-long-1: 450ms;
   --motion-duration-long-2: 500ms;
   --motion-duration-long-3: 550ms;
   --motion-duration-long-4: 600ms;
 
-  /* Extra long — 화면 전체를 덮는 전환 / 온보딩 등 */
+  /* Extra long: 연출. 온보딩·첫 진입 */
   --motion-duration-extra-long-1: 700ms;
   --motion-duration-extra-long-2: 800ms;
   --motion-duration-extra-long-3: 900ms;

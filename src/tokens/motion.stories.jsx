@@ -161,7 +161,7 @@ export const Easing = {
 const DURATION_GROUPS = [
   {
     group: 'Short',
-    desc: '버튼·칩·아이콘 등 아주 작은 요소. 이탈 전환.',
+    desc: '요소 하나의 상태(hover·pressed·토글), 덮개 페이드, 팝오버. 이탈 전환.',
     items: [
       { token: '--motion-duration-short-1', value: '50ms',  w: 16, h: 16 },
       { token: '--motion-duration-short-2', value: '100ms', w: 20, h: 20 },
@@ -171,7 +171,7 @@ const DURATION_GROUPS = [
   },
   {
     group: 'Medium',
-    desc: '드롭다운·메뉴·스낵바·소형 카드 등.',
+    desc: '페이지 위에 뜨는 판. 모달·바텀시트·서랍 진입은 medium-2. 판이 커도 여기다.',
     items: [
       { token: '--motion-duration-medium-1', value: '250ms', w: 48, h: 40 },
       { token: '--motion-duration-medium-2', value: '300ms', w: 60, h: 44 },
@@ -181,7 +181,7 @@ const DURATION_GROUPS = [
   },
   {
     group: 'Long',
-    desc: '바텀시트·모달 등 큰 요소. 진입 전환.',
+    desc: '페이지 단위. 페이지가 통째로 바뀌는 전환(지금 쓰는 곳 없음).',
     items: [
       { token: '--motion-duration-long-1', value: '450ms', w: 90,  h: 56 },
       { token: '--motion-duration-long-2', value: '500ms', w: 100, h: 60, alias: '(alias: --motion-duration-long)' },
@@ -191,7 +191,7 @@ const DURATION_GROUPS = [
   },
   {
     group: 'Extra long',
-    desc: '화면 전체를 덮는 전환. 온보딩·첫 진입 등.',
+    desc: '연출. 온보딩·첫 진입.',
     items: [
       { token: '--motion-duration-extra-long-1', value: '700ms',  w: 130, h: 72 },
       { token: '--motion-duration-extra-long-2', value: '800ms',  w: 140, h: 76 },

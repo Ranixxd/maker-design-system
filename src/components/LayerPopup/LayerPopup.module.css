@@ -38,7 +38,9 @@
   max-height: 90dvh;
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
   box-shadow: var(--shadow-overlay);
-  animation: slideUp var(--motion-duration-long-2) var(--motion-easing-standard-decelerate);
+  /* 0.5초(long-2)였는데 느리다고 해서 모달 등장과 같은 medium-2로 줄였다(2026-09-19).
+     곡선은 그대로 decelerate다. 화면 밖에서 들어오는 판이라 motion.css 규칙대로다 */
+  animation: slideUp var(--motion-duration-medium-2) var(--motion-easing-standard-decelerate);
 }
 
 /* ── Mobile full page ── */
