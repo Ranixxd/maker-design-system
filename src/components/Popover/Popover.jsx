@@ -1,6 +1,7 @@
 import {
   cloneElement, useCallback, useEffect, useId, useLayoutEffect, useRef, useState,
 } from 'react';
+import { createPortal } from 'react-dom';
 import styles from './Popover.module.css';
 
 /* 화면 가장자리에 남기는 여백은 CSS(--popover-edge)가 갖는다. 여기서 숫자로
@@ -35,6 +36,10 @@ export default function Popover({
   className,
   panelClassName,
   onOpenChange,
+  /* 패널을 body로 옮겨 화면 기준(fixed)으로 띄운다(2026-09-18).
+     스크롤되는 목록 안의 단추에서 열면 패널이 목록 틀에 잘리거나 옆 줄 아래로 깔린다(색 선택기).
+     켜면 자리를 트리거에서 재서 잡는다. side·align·화면 밖 보정은 같다 */
+  portal = false,
 }) {
   const [open, setOpen] = useState(false);
   const [보정, set보정] = useState({ shiftX: 0, flipped: false });
@@ -56,7 +61,10 @@ export default function Popover({
     if (!open) return;
     /* pointerdown으로 듣는다 — click은 눌렀다 뗀 뒤에 오므로, 누르는 순간
        사라지길 기대하는 손끝의 느낌과 어긋난다 */
-    const onDown = (e) => { if (!rootRef.current?.contains(e.target)) close(false); };
+    const onDown = (e) => {
+      if (rootRef.current?.contains(e.target) || panelRef.current?.contains(e.target)) return;
+      close(false);
+    };
     const onKey = (e) => { if (e.key === 'Escape') { e.stopPropagation(); close(); } };
     document.addEventListener('pointerdown', onDown);
     document.addEventListener('keydown', onKey);
@@ -78,6 +86,26 @@ export default function Popover({
       const el = panelRef.current;
       const trigger = triggerRef.current;
       if (!el) return;
+
+      /* 화면 기준으로 띄울 때는 트리거 자리에서 바로 잡는다. 넘치면 밀고, 반대쪽이 넓으면 뒤집는다 */
+      if (portal) {
+        if (!trigger) return;
+        const EDGE = 가장자리여백(el);
+        const GAP = parseFloat(getComputedStyle(el).getPropertyValue('--popover-gap')) || 8;
+        const t = trigger.getBoundingClientRect();
+        const w = el.offsetWidth, h = el.offsetHeight;
+        const 폭 = window.innerWidth, 높이 = window.innerHeight;
+        let left = align === 'end' ? t.right - w : t.left;
+        left = Math.min(Math.max(EDGE, left), 폭 - EDGE - w);
+        const 아래 = t.bottom + GAP, 위 = t.top - GAP - h;
+        let top = side === 'bottom' ? 아래 : 위;
+        if (side === 'bottom' && 아래 + h > 높이 - EDGE && t.top > 높이 - t.bottom) top = 위;
+        if (side === 'top' && 위 < EDGE && 높이 - t.bottom > t.top) top = 아래;
+        top = Math.min(Math.max(EDGE, top), Math.max(EDGE, 높이 - EDGE - h));
+        el.style.left = left + 'px';
+        el.style.top = top + 'px';
+        return;
+      }
 
       el.style.transform = '';
       const EDGE = 가장자리여백(el);
@@ -110,7 +138,7 @@ export default function Popover({
       window.removeEventListener('resize', 재고고치기);
       window.removeEventListener('scroll', 재고고치기, true);
     };
-  }, [open, side, align]);
+  }, [open, side, align, portal]);
 
   /* 트리거는 쓰는 쪽이 준 것을 그대로 쓰고 필요한 것만 얹는다.
      이미 ref가 달려 있어도 잃지 않도록 둘 다 채운다 */
@@ -132,21 +160,23 @@ export default function Popover({
 
   const 실제side = 보정.flipped ? (side === 'bottom' ? 'top' : 'bottom') : side;
 
+  const 패널 = open && (
+    <div
+      ref={panelRef}
+      id={panelId}
+      role="group"
+      aria-label={label}
+      className={[styles.panel, portal ? styles.portal : [styles[실제side], styles[align]].join(' '), panelClassName].filter(Boolean).join(' ')}
+      style={!portal && 보정.shiftX ? { transform: `translateX(${보정.shiftX}px)` } : undefined}
+    >
+      {typeof children === 'function' ? children(close) : children}
+    </div>
+  );
+
   return (
     <div className={[styles.root, className].filter(Boolean).join(' ')} ref={rootRef}>
       {트리거}
-      {open && (
-        <div
-          ref={panelRef}
-          id={panelId}
-          role="group"
-          aria-label={label}
-          className={[styles.panel, styles[실제side], styles[align], panelClassName].filter(Boolean).join(' ')}
-          style={보정.shiftX ? { transform: `translateX(${보정.shiftX}px)` } : undefined}
-        >
-          {typeof children === 'function' ? children(close) : children}
-        </div>
-      )}
+      {portal ? (패널 && createPortal(패널, document.body)) : 패널}
     </div>
   );
 }

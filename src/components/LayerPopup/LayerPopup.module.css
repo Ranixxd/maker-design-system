@@ -9,6 +9,9 @@
   animation: fadeIn var(--motion-duration-short-4) var(--motion-easing-standard-decelerate);
 }
 
+/* 뒤를 어둡게 하지 않는 창(dim={false}). 누르면 닫히는 자리는 그대로다 */
+.overlay.clear { background-color: transparent; }
+
 .panel {
   background-color: var(--color-bg-default);
   display: flex;

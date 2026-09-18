@@ -54,6 +54,10 @@ export default function LayerPopup({
   snapPoints = null,       // null = 스냅없이 자유드래그 | Array<10|50|90>
   closeable = true,        // false = 드래그로 닫히지 않음, 최소 10%
 
+  /* 뒤를 어둡게 덮을지. false면 덮개가 투명해 뒤가 그대로 보인다(바깥을 누르면 닫히는 것은 같다).
+     고르는 동안 뒤 화면이 바뀌는 것을 봐야 하는 창에 쓴다(색 선택기, 2026-09-18) */
+  dim = true,
+
   className,
   headerClassName,        // 머리·본문·발판의 여백을 창마다 달리 줘야 할 때(이미지 만들기처럼 판이 창을 꽉 채우는 창)
   bodyClassName,
@@ -204,7 +208,7 @@ export default function LayerPopup({
 
   return (
     <div
-      className={styles.overlay}
+      className={[styles.overlay, dim ? null : styles.clear].filter(Boolean).join(' ')}
       onClick={closeable ? onClose : undefined}
     >
       <div

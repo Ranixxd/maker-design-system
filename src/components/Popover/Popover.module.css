@@ -33,6 +33,15 @@
   z-index: var(--z-anchored);
 }
 
+/* body로 옮겨 띄울 때(portal). 자리는 Popover.jsx가 재서 top·left로 넣는다.
+   트리거와의 간격은 아래 --popover-gap을 읽는다 */
+.portal {
+  --popover-gap: var(--spacing-2);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
 /* 어느 쪽에 펴나 — 트리거와 spacing-2만큼 띄운다 */
 .bottom { inset-block-start: calc(100% + var(--spacing-2)); }
 .top    { inset-block-end:   calc(100% + var(--spacing-2)); }
