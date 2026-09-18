@@ -235,7 +235,7 @@ export function BorderColorTable() {
 
 export function IconColorTable() {
   return <SemanticColorTable rows={[
-    { token: 'icon-default',   palette: 'gray-900', desc: '기본 아이콘' },
+    { token: 'icon-default',   palette: 'gray-700', desc: '기본 아이콘. 글자 기본색보다 한 톤 옅다' },
     { token: 'icon-secondary', palette: 'gray-500', desc: '보조 아이콘' },
     { token: 'icon-accent',    palette: 'sky-500',  desc: '강조 아이콘' },
     { token: 'icon-onaccent',  palette: 'white',    desc: 'bg-accent 위 아이콘', border: true },
