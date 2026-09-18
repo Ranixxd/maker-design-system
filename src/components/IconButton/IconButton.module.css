@@ -9,8 +9,7 @@
   font-family: inherit;
   border-radius: var(--radius-md);
   flex-shrink: 0;
-  transition: opacity var(--motion-duration-short) var(--motion-easing-standard),
-              transform var(--motion-duration-short) var(--motion-easing-standard);
+  transition: opacity var(--motion-duration-short) var(--motion-easing-standard);
 }
 
 /* hover/pressed 오버레이 — Button과 동일한 패턴 */
@@ -26,7 +25,8 @@
 
 .btn:hover:not(:disabled):not([data-loading])::after  { background-color: var(--color-bg-hover); }
 .btn:active:not(:disabled):not([data-loading])::after { background-color: var(--color-bg-pressed); }
-.btn:active:not(:disabled):not([data-loading])        { transform: scale(0.9); }
+/* 눌렀을 때 줄어들지 않는다(2026-09-19). 아이콘 단추는 닫기·더보기 같은 기능 단추라
+   CTA처럼 크게 반응할 까닭이 없다. 눌림은 위 배경 한 겹으로만 알린다 */
 
 .btn:focus-visible {
   outline: 2px solid var(--color-bg-accent);
