@@ -233,7 +233,7 @@ export default function LayerPopup({
             {(title || closeable || headerStart || headerEnd) && (
               <div className={[styles.header, headerClassName].filter(Boolean).join(' ')}>
                 {headerStart && <div className={styles.headerStart}>{headerStart}</div>}
-                {title && <Title size="md" align="center" icon={titleIcon} action={titleAction} className={styles.title}>{title}</Title>}
+                {title && <Title size="sm" align="center" icon={titleIcon} action={titleAction} className={styles.title}>{title}</Title>}
                 {headerEnd
                   ? <div className={styles.headerEnd}>{headerEnd}</div>
                   : closeable && <IconButton icon="X" size="md" className={styles.closeBtn} onClick={onClose} aria-label="닫기" />}
@@ -243,7 +243,7 @@ export default function LayerPopup({
         ) : (
           <div className={[styles.header, headerClassName].filter(Boolean).join(' ')}>
             {headerStart && <div className={styles.headerStart}>{headerStart}</div>}
-            {title && <Title size="md" align="center" icon={titleIcon} action={titleAction} className={styles.title}>{title}</Title>}
+            {title && <Title size="sm" align="center" icon={titleIcon} action={titleAction} className={styles.title}>{title}</Title>}
             {headerEnd
               ? <div className={styles.headerEnd}>{headerEnd}</div>
               : closeable && <IconButton icon="X" size="md" className={styles.closeBtn} onClick={onClose} aria-label="닫기" />}

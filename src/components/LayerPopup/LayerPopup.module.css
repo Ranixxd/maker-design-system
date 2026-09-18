@@ -86,9 +86,9 @@
   grid-template-columns: minmax(48px, 1fr) minmax(0, auto) minmax(48px, 1fr);
   align-items: center;
   column-gap: var(--spacing-2);
-  /* 위아래·좌우 모두 24px(2026-09-18 사용자). 제목이 창 가장자리와 본문 양쪽에서 넉넉히 떨어진다.
+  /* 위아래·좌우 모두 20px(2026-09-18 사용자, 24px에서 한 단계 줄임. 머리가 창을 너무 많이 차지했다).
      시트만 위에 손잡이가 있어 윗여백을 손잡이 몫으로 줄인다(아래 .sheet .header) */
-  padding: var(--spacing-6);
+  padding: var(--spacing-5);
   flex-shrink: 0;
   min-height: 44px;
 }
@@ -98,7 +98,8 @@
   padding-top: var(--spacing-2);
 }
 
-/* 제목은 MDS Title(size md 20px, 가운데)이다(2026-09-17). 여기서는 가운데 칸에 세우기만 한다 */
+/* 제목은 MDS Title(size sm, 가운데)이다. 2026-09-18 md(20px)에서 한 단계 내렸다(머리가 창을 너무 많이 차지했다).
+   여기서는 가운데 칸에 세우기만 한다 */
 .title {
   grid-column: 2;
   color: var(--color-text-default);

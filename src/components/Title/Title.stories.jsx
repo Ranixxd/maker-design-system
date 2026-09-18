@@ -15,8 +15,8 @@ export default {
 | 값 | 글자 | 쓰는 곳 |
 |---|---|---|
 | \`lg\` | text-heading-md 24px | 페이지 머리 (템플릿 페이지 등) |
-| \`md\` | text-heading-sm 20px | 창 머리 (LayerPopup) |
-| \`sm\` | text-heading-xs 15px | 본문 안 작은 제목 (말풍선 만들기 1단계 등) |
+| \`md\` | text-heading-sm 20px | 본문 큰 제목 |
+| \`sm\` | text-heading-xs 15px | 창 머리(LayerPopup, 2026-09-18 md에서 내림), 본문 안 작은 제목 (말풍선 만들기 1단계 등) |
 
 **조합**
 - \`icon\`: 제목 글자 바로 옆 아이콘 단추(neutral-weak). 도움말(?)처럼 제목에 딸린 것. lg·md 제목은 48px(아이콘 24px), sm 제목은 36px(아이콘 20px)
