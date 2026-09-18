@@ -42,9 +42,18 @@
   border: none;
   border-radius: var(--radius-full);
   background: transparent;
-  color: var(--color-icon-secondary);
   cursor: pointer;
 }
-@media (hover: hover) {
-  .clear:hover { background: var(--color-bg-hover); color: var(--color-icon-default); }
+/* 작은 연회색 동그라미 + 회색 X. 칸 안에서 튀지 않게 작고 연하게 둔다(2026-09-18 사용자, iOS 찾기칸).
+   바탕은 검정 8%라 칸 바탕이 무엇이든 한 톤 어둡게 얹힌다 */
+.clearDot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-full);
+  background: var(--color-bg-pressed);
+  color: var(--color-icon-secondary);
 }
+.clearX { width: 12px; height: 12px; }

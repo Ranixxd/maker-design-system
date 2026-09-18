@@ -34,7 +34,8 @@ const SearchField = forwardRef(function SearchField({
       {/* 값이 있을 때만 선다. 비제어(값을 안 넘김)면 쓰는 쪽이 보일지 정한다 */}
       {onClear && has !== false && (
         <button type="button" className={styles.clear} aria-label="지우기" onClick={onClear}>
-          <Icon name="X" size="sm" />
+          {/* 회색 동그라미 안 흰 X (iOS 찾기칸과 같은 모양, 2026-09-18 사용자). 누르는 자리는 24px 그대로 */}
+          <span className={styles.clearDot} aria-hidden="true"><Icon name="X" size="sm" strokeWidth={3} className={styles.clearX} /></span>
         </button>
       )}
     </div>
