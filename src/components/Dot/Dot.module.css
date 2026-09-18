@@ -6,7 +6,9 @@
 }
 
 .sm { width: 4px; height: 4px; }
-.md { width: 6px; height: 6px; }
+/* md는 6px이었다. 서랍 단추 위 빨간 점이 도드라져 2026-09-19에 두 단 줄였다(6 → 5 → 4).
+   sm과 같은 크기가 됐다 */
+.md { width: 4px; height: 4px; }
 
 /* 그림·아이콘 위에 얹힐 때. 바탕색 테두리를 둘러 어느 그림 위에서도 점이 보인다 */
 .ring {
