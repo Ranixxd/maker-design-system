@@ -26,6 +26,14 @@ function snapNearest(value, points) {
    가장 가까운 스냅으로만 붙이면 반 넘게 끌어야 바뀌어 둔했다 */
 const SNAP_SWIPE_PX = 24;
 
+/* 스냅 없는 시트(내용 높이)를 닫는 끌기 거리. 제 키의 25%(120px 넘지 않게)만 내려도 닫힌다(2026-09-18).
+   전에는 화면 높이 4.5% 아래까지 끌어야 닫혀서 "잘 안 내려간다"는 말을 들었다 */
+const CLOSE_RATIO = 0.25;
+const CLOSE_MAX_PX = 120;
+/* 스냅 있는 시트에서 손을 뗀 높이가 가장 낮은 스냅의 이 비율보다 낮으면 한 번에 닫는다.
+   90%로 열린 시트를 끝까지 끌어내렸는데 50%에서 멈추면 두 번 끌어야 했다(2026-09-18) */
+const SNAP_CLOSE_RATIO = 0.6;
+
 /* 열려 있는 창을 연 순서대로 쌓아 둔다. Esc는 맨 위 창 하나만 받는다(2026-09-18).
    창 위에 시트가 뜨는 자리(말풍선 만들기 위 QnA)에서 Esc 한 번에 둘 다 닫히지 않게 한다 */
 const openStack = [];
@@ -126,7 +134,7 @@ export default function LayerPopup({
 
   const onTouchStart = useCallback((e) => {
     const h = measureH();
-    drag.current = { active: true, startY: e.touches[0].clientY, startH: h, lastY: undefined };
+    drag.current = { active: true, startY: e.touches[0].clientY, startH: h, startPx: panelRef.current ? panelRef.current.getBoundingClientRect().height : 0, lastY: undefined };
     setSnapping(false);
     setHeightPct(h); // auto → fixed so dragging has a baseline
   }, []);
@@ -136,8 +144,10 @@ export default function LayerPopup({
     drag.current.lastY = e.touches[0].clientY;
     const deltaPct = ((drag.current.startY - e.touches[0].clientY) / window.innerHeight) * 100;
     const raw = drag.current.startH + deltaPct;
-    setHeightPct(rubberBand(raw, minH, 90));
-  }, [minH]);
+    /* 스냅 없는 시트는 내용 높이 위로 늘리지 않는다. 위로 끌면 버티기만 한다 */
+    const free = !snapPoints || snapPoints.length === 0;
+    setHeightPct(rubberBand(raw, minH, free ? drag.current.startH : 90));
+  }, [minH, snapPoints]);
 
   const onTouchEnd = useCallback(() => {
     if (!drag.current.active) return;
@@ -161,36 +171,28 @@ export default function LayerPopup({
         return;
       }
       const lower = sorted.filter((v) => v < startSnap);
+      if (closeable && h < sorted[0] * SNAP_CLOSE_RATIO) { onClose(); return; }
       if (lower.length) { setHeightPct(snapNearest(h, lower)); return; }
       if (closeable) { onClose(); return; }
       setHeightPct(startSnap);
       return;
     }
 
-    // Close gesture — dragged below threshold
-    const lowestSnap = snapPoints?.length ? Math.min(...snapPoints) : 10;
-    const closeThreshold = closeable ? lowestSnap * 0.45 : -Infinity;
-
-    if (closeable && h < closeThreshold) {
+    /* 스냅 없는 시트(내용 높이). 제 키의 25%(최대 120px)만 내려도 닫고, 아니면 원래 높이로 돌아간다.
+       돌아간 뒤에는 다시 내용 높이(auto)로 둔다. 내용이 바뀌면 따라 커지고 작아져야 한다 */
+    const downPx = drag.current.lastY === undefined ? 0 : drag.current.lastY - drag.current.startY;
+    if (closeable && downPx > Math.min(CLOSE_MAX_PX, drag.current.startPx * CLOSE_RATIO)) {
       onClose();
       return;
     }
-
-    // Persistent floor
     if (!closeable && h < 10) {
       setHeightPct(10);
       return;
     }
-
-    if (snapPoints && snapPoints.length > 0) {
-      // Snap to nearest valid snap point
-      const valid = snapPoints.filter((s) => s >= minH);
-      setHeightPct(snapNearest(Math.max(h, minH), valid));
-    } else {
-      // No snap (null or []) — clamp and stay
-      setHeightPct(Math.min(90, Math.max(minH, h)));
-    }
-  }, [snapPoints, closeable, minH, onClose]);
+    setHeightPct(drag.current.startH);
+    const back = initialSnap === 'auto' ? null : initialSnap;
+    setTimeout(() => { if (!drag.current.active) { setSnapping(false); setHeightPct(back); } }, 320);
+  }, [snapPoints, closeable, minH, onClose, initialSnap]);
 
   if (!isOpen) return null;
 
