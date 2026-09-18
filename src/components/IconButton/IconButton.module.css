@@ -91,6 +91,17 @@
   color: var(--color-icon-secondary);
 }
 
+/* 흰 바탕에 얇은 테두리(2026-09-19).
+   버튼은 되도록 primary·secondary·neutral 안에서 고른다. outline은 대체제다.
+   neutral로는 버튼이라는 것이 안 읽히고, secondary를 쓰기에는 기본 기능일 때 쓴다
+   (편집기 항목 줄의 사진 올리기·색 고르기·편집). 테두리가 칸 안에 들어가게 border-box로 잰다 */
+.outline {
+  box-sizing: border-box;
+  background-color: var(--color-bg-default);
+  border: 1px solid var(--color-border-default);
+  color: var(--color-icon-default);
+}
+
 /* 터치 디바이스에서 hover 오버레이 무시 */
 @media (hover: none) {
   .btn:hover::after { background-color: transparent; }

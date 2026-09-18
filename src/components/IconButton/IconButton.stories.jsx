@@ -22,6 +22,11 @@ export default {
 | \`neutral-weak\` | 배경 없음, 아이콘이 한 톤 옅다(icon-secondary). 목록 줄의 지우기처럼 내용 곁의 보조 동작 |
 | \`secondary\` | bg-secondary 배경. 중간 강조 |
 | \`primary\` | bg-inverse 배경. 가장 강한 강조 |
+| \`outline\` | 흰 바탕에 얇은 테두리(border-default). **대체제다** |
+
+**variant 고르기**
+되도록 \`primary\`·\`secondary\`·\`neutral\` 안에서 고른다. \`outline\`은 neutral로는 버튼이라는 것이
+안 읽히고, secondary를 쓰기에는 기본 기능일 때만 쓴다(편집기 항목 줄의 사진 올리기·색 고르기·편집).
 
 **로딩**
 \`loading\`을 주면 아이콘 자리에 스피너가 돌고 누를 수 없다. 흐려지지 않는다. 못 쓰는 버튼(disabled)이 아니라 일이 도는 중이다.
@@ -41,7 +46,7 @@ export default {
     },
     variant: {
       control: 'radio',
-      options: ['neutral', 'neutral-weak', 'secondary', 'primary'],
+      options: ['neutral', 'neutral-weak', 'secondary', 'primary', 'outline'],
     },
     loading: { control: 'boolean', description: '스피너를 돌리고 누르지 못하게 한다' },
   },
@@ -60,6 +65,7 @@ export const AllVariants = {
       <IconButton icon="Palette" size="md" variant="neutral-weak" aria-label="neutral-weak" />
       <IconButton icon="Palette" size="md" variant="secondary" aria-label="secondary" />
       <IconButton icon="Palette" size="md" variant="primary"   aria-label="primary" />
+      <IconButton icon="Palette" size="md" variant="outline"   aria-label="outline" />
     </div>
   ),
 };
