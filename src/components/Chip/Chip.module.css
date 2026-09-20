@@ -23,11 +23,12 @@
   .chip:hover:not(.on) { background-color: var(--color-bg-hover); color: var(--color-text-default); }
 }
 
-/* 고른 것은 검정으로 채운다. 테두리만 진하게 하면 옆 칩과 구분이 약했다 */
+/* 고른 것은 검정으로 채운다. 테두리만 진하게 하면 옆 칩과 구분이 약했다.
+   고른 상태는 primary 자리다. 배경으로 글자색 토큰(text-default)을 쓰던 것을 고쳤다(2026-09-20) */
 .on {
-  background: var(--color-text-default);
-  border-color: var(--color-text-default);
-  color: var(--color-text-oninverse);
+  background: var(--color-bg-primary);
+  border-color: var(--color-bg-primary);
+  color: var(--color-text-onprimary);
 }
 
 .leading { display: inline-flex; align-items: center; line-height: 1; }

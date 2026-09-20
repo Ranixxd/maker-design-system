@@ -88,6 +88,12 @@
   --color-bg-accent-subtle: var(--color-sky-200);
   --color-bg-overlay:   var(--color-black-alpha-60);
   --color-bg-overlay-blur: rgba(255, 255, 255, 0.88);
+  /* primary와 inverse는 지금 같은 값이지만 역할이 다르다(2026-09-20 사용자).
+     primary는 "이 화면에서 가장 강한 동작"이고(확인 단추, 고른 칩, 체크된 라디오),
+     inverse는 "바탕을 뒤집은 면"이다(토스트, 사진 위에 얹는 배지).
+     다크모드를 넣을 때 inverse는 밝은 면으로 뒤집히고 primary는 그대로 강조로 남는다.
+     같은 토큰으로 두면 그때 한쪽을 고치는 순간 다른 쪽이 함께 망가진다 */
+  --color-bg-primary:   var(--color-gray-900);
   --color-bg-inverse:   var(--color-gray-900);
   --color-bg-critical:          var(--color-red-600);
   /* 파랑에서 accent-subtle을 100→200으로 옮긴 것과 같은 이유다. 빨강도 밝은 쪽이
@@ -103,6 +109,7 @@
   --color-text-tertiary:  var(--color-gray-300);
   --color-text-accent:    var(--color-sky-600);
   --color-text-onaccent:  var(--color-white);
+  --color-text-onprimary: var(--color-white);
   --color-text-oninverse: var(--color-white);
   --color-text-link:      var(--color-sky-700);
   --color-text-critical:     var(--color-red-600);
@@ -129,6 +136,7 @@
   --color-icon-secondary: var(--color-gray-500);
   --color-icon-accent:    var(--color-sky-500);
   --color-icon-onaccent:  var(--color-white);
+  --color-icon-onprimary: var(--color-white);
   --color-icon-oninverse: var(--color-white);
   --color-icon-critical:  var(--color-red-600);
 

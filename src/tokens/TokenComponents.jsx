@@ -203,7 +203,8 @@ export function BgColorTable() {
     { token: 'bg-accent-subtle',   palette: 'sky-200',          desc: '강조 보조 배경', border: true },
     { token: 'bg-overlay',         palette: 'black-alpha-60',   desc: '딤 레이어' },
     { token: 'bg-overlay-blur',    palette: 'rgba(255,255,255,.88)', desc: '흰 블러 딤 (--blur-overlay와 함께)', border: true },
-    { token: 'bg-inverse',         palette: 'gray-900',         desc: '인버스 배경 (프라이머리 버튼 등)' },
+    { token: 'bg-primary',         palette: 'gray-900',         desc: '가장 강한 동작 (확인 단추, 고른 칩, 체크된 라디오)' },
+    { token: 'bg-inverse',         palette: 'gray-900',         desc: '바탕을 뒤집은 면 (토스트, 사진 위 배지). 다크모드에서 primary와 반대로 움직인다' },
     { token: 'bg-critical',        palette: 'red-600',          desc: '크리티컬 배경' },
     { token: 'bg-critical-subtle', palette: 'red-200',          desc: '크리티컬 보조 배경', border: true },
   ]} />;
@@ -216,6 +217,7 @@ export function TextColorTable() {
     { token: 'text-tertiary',   palette: 'gray-300', desc: '비활성·플레이스홀더' },
     { token: 'text-accent',     palette: 'sky-600',  desc: '강조 텍스트' },
     { token: 'text-onaccent',   palette: 'white',    desc: 'bg-accent 위 텍스트', border: true },
+    { token: 'text-onprimary',  palette: 'white',    desc: 'bg-primary 위 텍스트', border: true },
     { token: 'text-oninverse',  palette: 'white',    desc: 'bg-inverse 위 텍스트', border: true },
     { token: 'text-link',       palette: 'sky-700',  desc: '하이퍼링크' },
     { token: 'text-critical',   palette: 'red-600',  desc: '크리티컬 텍스트' },
@@ -239,6 +241,7 @@ export function IconColorTable() {
     { token: 'icon-secondary', palette: 'gray-500', desc: '보조 아이콘' },
     { token: 'icon-accent',    palette: 'sky-500',  desc: '강조 아이콘' },
     { token: 'icon-onaccent',  palette: 'white',    desc: 'bg-accent 위 아이콘', border: true },
+    { token: 'icon-onprimary', palette: 'white',    desc: 'bg-primary 위 아이콘', border: true },
     { token: 'icon-oninverse', palette: 'white',    desc: 'bg-inverse 위 아이콘', border: true },
     { token: 'icon-critical',  palette: 'red-600',  desc: '크리티컬 아이콘' },
   ]} />;

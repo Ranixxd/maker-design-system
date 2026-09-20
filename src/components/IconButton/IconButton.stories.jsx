@@ -21,7 +21,7 @@ export default {
 | \`neutral\` | 배경 없음. Topbar·닫기 버튼 등 기본형 |
 | \`neutral-weak\` | 배경 없음, 아이콘이 한 톤 옅다(icon-secondary). 목록 줄의 지우기처럼 내용 곁의 보조 동작 |
 | \`secondary\` | bg-secondary 배경. 중간 강조 |
-| \`primary\` | bg-inverse 배경. 가장 강한 강조 |
+| \`primary\` | bg-primary 배경. 가장 강한 강조 |
 | \`outline\` | 흰 바탕에 얇은 테두리(border-default). **대체제다** |
 
 **variant 고르기**

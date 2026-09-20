@@ -69,8 +69,8 @@
 
 /* ── Variant ── */
 .primary {
-  background-color: var(--color-bg-inverse);
-  color: var(--color-text-oninverse);
+  background-color: var(--color-bg-primary);
+  color: var(--color-icon-onprimary);
 }
 
 .secondary {

@@ -79,8 +79,8 @@
 
 /* ── Variant ── */
 .primary {
-  background-color: var(--color-bg-inverse);
-  color: var(--color-text-oninverse);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-onprimary);
 }
 
 /* fill 스타일(outline 아님). 배경은 bg-tertiary다. bg-secondary는 흰 바탕에서 단추로 안 읽혔다(2026-09-18 사용자) */
