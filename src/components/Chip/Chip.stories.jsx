@@ -18,8 +18,9 @@ export default {
 
 **쓰지 않는 곳**: 눌러서 이동만 하는 것. 그건 링크나 Button이다. Chip은 고른 상태가 남는다.
 
-**여러 개를 늘어놓을 때**는 부모가 \`display:flex; gap: var(--spacing-2)\`로 줄을 만들고,
+**여러 개를 늘어놓을 때**는 부모가 \`display:flex; gap: var(--spacing-1)\`로 줄을 만들고,
 넘치면 \`overflow-x:auto\`로 굴린다. Chip 자신은 줄바꿈하지 않는다.
+2026-09-21에 8px에서 4px로 줄였다. 칩은 테두리가 있어 8px면 한 줄이 아니라 낱개로 흩어져 보인다.
         `,
       },
     },
@@ -37,7 +38,7 @@ export const Row = {
     const [cur, setCur] = useState('all');
     const items = [['all', '전체'], ['white', '하양'], ['black', '검정'], ['pink', '분홍'], ['blue', '파랑']];
     return (
-      <div style={{ display: 'flex', gap: 'var(--spacing-2)', overflowX: 'auto' }}>
+      <div style={{ display: 'flex', gap: 'var(--spacing-1)', overflowX: 'auto' }}>
         {items.map(([id, label]) => (
           <Chip key={id} selected={cur === id} onClick={() => setCur(id)}>{label}</Chip>
         ))}
@@ -50,7 +51,7 @@ export const WithLeading = {
   name: '앞에 그림',
   parameters: { controls: { disable: true } },
   render: () => (
-    <div style={{ display: 'flex', gap: 'var(--spacing-2)' }}>
+    <div style={{ display: 'flex', gap: 'var(--spacing-1)' }}>
       <Chip leading="🩷" selected>분홍</Chip>
       <Chip leading="💛">노랑</Chip>
     </div>
