@@ -54,6 +54,7 @@ export default function LayerPopup({
   title,
   titleIcon,              // 제목 글자 옆 아이콘 단추 { icon, 'aria-label', onClick } (Title의 icon)
   titleAction,            // 제목 글자 옆 글자 단추 { label, onClick } (Title의 action)
+  description,            // 제목 아래 설명 한 줄 (Title의 description). 머리 안에 들어가 본문과 함께 구르지 않는다
   headerStart,            // 머리 왼쪽 칸(뒤로 가기·취소처럼 이 창에서 나가는 것)
   headerEnd,              // 머리 오른쪽 칸. 주면 닫기 단추 자리를 이것이 대신한다(이미지 만들기의 [편집 완료])
   children,
@@ -239,7 +240,7 @@ export default function LayerPopup({
             {(title || closeable || headerStart || headerEnd) && (
               <div className={[styles.header, headerClassName].filter(Boolean).join(' ')}>
                 {headerStart && <div className={styles.headerStart}>{headerStart}</div>}
-                {title && <Title size="sm" align="center" icon={titleIcon} action={titleAction} className={styles.title}>{title}</Title>}
+                {title && <Title size="sm" align="center" icon={titleIcon} action={titleAction} description={description} className={styles.title}>{title}</Title>}
                 {headerEnd
                   ? <div className={styles.headerEnd}>{headerEnd}</div>
                   : closeable && <IconButton icon="X" size="md" className={styles.closeBtn} onClick={onClose} aria-label="닫기" />}
@@ -249,7 +250,7 @@ export default function LayerPopup({
         ) : (
           <div className={[styles.header, headerClassName].filter(Boolean).join(' ')}>
             {headerStart && <div className={styles.headerStart}>{headerStart}</div>}
-            {title && <Title size="sm" align="center" icon={titleIcon} action={titleAction} className={styles.title}>{title}</Title>}
+            {title && <Title size="sm" align="center" icon={titleIcon} action={titleAction} description={description} className={styles.title}>{title}</Title>}
             {headerEnd
               ? <div className={styles.headerEnd}>{headerEnd}</div>
               : closeable && <IconButton icon="X" size="md" className={styles.closeBtn} onClick={onClose} aria-label="닫기" />}
