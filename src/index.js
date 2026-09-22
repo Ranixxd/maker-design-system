@@ -9,6 +9,7 @@
    index.js가 그 차이를 이미 흡수하고 있다. */
 import './index.css';
 
+export { default as Accordion } from './components/Accordion/index.js';
 export { default as Badge } from './components/Badge/index.js';
 export { default as Button } from './components/Button/index.js';
 export { default as Chip } from './components/Chip/index.js';
