@@ -5,7 +5,7 @@
   gap: 2px;
   padding: 3px;
   background: var(--color-bg-tertiary);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-full);
 }
 
 .item {
@@ -13,7 +13,7 @@
   min-width: 0;
   border: none;
   background: transparent;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-full);
   padding: var(--spacing-2);
   font-family: inherit;
   color: var(--color-text-secondary);
@@ -38,15 +38,13 @@
 /* ── 작은 크기(sm) ──
    작은 제목 바로 옆에 붙는 전환. 글자를 label-xs로 내리고 안쪽 여백을 2px로 줄여,
    작은 제목 한 줄(label-sm)과 키가 거의 같다.
-   판과 칸의 모서리를 한 단씩 내려, 작아져도 md와 같은 비율로 둥글다 */
+   모서리는 md와 같은 알약이다 */
 .sm {
   gap: 0;
   padding: 2px;
-  border-radius: var(--radius-sm);
 }
 .sm .item {
   padding: 2px var(--spacing-2);
-  border-radius: var(--radius-xs);
 }
 
 /* ── 글자만큼(width="auto") ──
