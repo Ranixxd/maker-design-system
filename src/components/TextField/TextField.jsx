@@ -57,7 +57,8 @@ const TextField = forwardRef(function TextField({
       />
       )}
       {hint && (
-        <span className={`text-body-sm ${styles.hint}`}>{hint}</span>
+        /* 여러 줄과 목록을 받는다. span이면 안에 ul을 둘 수 없다 */
+        <div className={`text-body-sm ${styles.hint}`}>{hint}</div>
       )}
     </div>
   );
