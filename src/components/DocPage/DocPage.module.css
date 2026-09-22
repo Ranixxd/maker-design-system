@@ -12,6 +12,10 @@
   margin-top: var(--spacing-12);
 }
 
+.bodyTight {
+  margin-top: var(--spacing-5);
+}
+
 .section + .section {
   margin-top: var(--spacing-12);
 }
