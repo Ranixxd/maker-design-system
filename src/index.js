@@ -34,5 +34,6 @@ export { default as Thumbnail } from './components/Thumbnail/index.js';
 
 /* 이름으로 내보내는 것들 — 짝이 있어야 뜻이 사는 부품이다.
    Radio는 RadioGroup 안에서 쓰이고, Toast는 Provider가 위에 있어야 useToast가 산다 */
+export { default as DocPage, DocSection } from './components/DocPage/index.js';
 export { RadioGroup, Radio } from './components/Radio/index.js';
 export { ToastProvider, useToast } from './components/Toast/index.js';

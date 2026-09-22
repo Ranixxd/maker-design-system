@@ -45,6 +45,16 @@
   background: var(--color-bg-critical-subtle);
 }
 
+/* 여러 줄 칸(multiline). 한 줄 칸과 테두리·초점 색을 같이 쓰고 높이만 늘어난다.
+   줄 수는 rows가 정하고, 사람이 잡아 늘릴 수 있게 세로만 연다 */
+.area {
+  height: auto;
+  min-height: 120px;
+  padding: var(--spacing-3) var(--spacing-4);
+  line-height: 1.5;
+  resize: vertical;
+}
+
 .hint {
   color: var(--color-text-tertiary);
 }

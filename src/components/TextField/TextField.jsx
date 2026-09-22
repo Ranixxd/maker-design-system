@@ -14,6 +14,8 @@ const TextField = forwardRef(function TextField({
   hint,
   type = 'text',
   invalid = false,
+  multiline = false,
+  rows = 6,
   ...inputProps
 }, ref) {
   return (
@@ -25,6 +27,21 @@ const TextField = forwardRef(function TextField({
           {required && <span className={styles.req} aria-hidden="true" />}
         </label>
       )}
+      {multiline ? (
+      <textarea
+        ref={ref}
+        id={id}
+        rows={rows}
+        className={`text-body-md ${styles.input} ${styles.area}`}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        aria-required={required || undefined}
+        data-invalid={invalid || undefined}
+        aria-invalid={invalid || undefined}
+        {...inputProps}
+      />
+      ) : (
       <input
         ref={ref}
         id={id}
@@ -38,6 +55,7 @@ const TextField = forwardRef(function TextField({
         aria-invalid={invalid || undefined}
         {...inputProps}
       />
+      )}
       {hint && (
         <span className={`text-body-sm ${styles.hint}`}>{hint}</span>
       )}

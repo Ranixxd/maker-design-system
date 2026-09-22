@@ -26,6 +26,11 @@ export default {
 - \`ref\`는 input에 붙는다(창을 열자마자 포커스).
 - 위에 없는 속성(\`maxLength\`, \`disabled\`, \`onKeyDown\`, \`onCompositionStart\`·\`onCompositionEnd\`, \`autoComplete\` 등)은 input에 그대로 넘어간다. 한글 조합이 끝날 때까지 값을 올리지 않는 일은 **쓰는 쪽이** 이 신호로 한다. 부품이 하면 쓰는 모든 곳의 입력 동작이 같이 바뀐다.
 
+**여러 줄** (2026-09-22 더함)
+- `multiline`을 주면 `textarea`가 된다. `rows`로 줄 수를 정한다(기본 6).
+  테두리·초점 색·잘못 입력 표시는 한 줄 칸과 같고 높이만 늘어난다. 사람이 세로로 잡아 늘릴 수 있다.
+- 글자 수 세기는 쓰는 쪽이 `hint`에 적는다. 부품이 세면 세는 방식을 쓰는 곳마다 바꿀 수 없다.
+
 **입력 글자 크기와 아이폰 자동 확대** (2026-09-17)
 - 입력 글자는 \`text-body-md\`(15px)다. **아이폰 확대를 피하려고 16px로 올리지 않는다.** 16px은 타이포 눈금에 없다.
 - 아이폰 사파리는 입력 글자가 16px보다 작으면 **포커스하는 순간 화면을 확대한다.** 이것은 부품이 아니라 **쓰는 쪽 페이지**가 막는다. viewport 메타에 \`maximum-scale=1\`을 넣는다.
@@ -122,4 +127,10 @@ export const Disabled = {
   name: '잠김',
   render: Controlled,
   args: { id: 'sb-disabled', label: '보관할 테마 이름', value: '저장하는 중', disabled: true },
+};
+
+export const Multiline = {
+  name: '여러 줄',
+  args: { id: 'tf-multi', label: '의견 작성', required: true, multiline: true, rows: 8,
+    placeholder: '의견을 자유롭게 작성해주세요', hint: '0 / 1000' },
 };
