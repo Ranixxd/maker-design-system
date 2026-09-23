@@ -229,7 +229,7 @@ export function BorderColorTable() {
   return <SemanticColorTable rows={[
     { token: 'border-subtle',  palette: 'gray-100', desc: '같은 섹션 안의 미세한 구분 (리스트 아이템 사이). 누를 수 없는 것의 윤곽 (썸네일과 배경 사이)', border: true },
     { token: 'border-default', palette: 'gray-200', desc: '성격이 다른 섹션 사이의 구분 (필터와 리스트). 누를 수 있는 것의 테두리 (버튼·탭·박스)', border: true },
-    { token: 'border-overlay',      palette: 'black-alpha-08',   desc: '그림·색면 위에 얹는 선. 밑색을 남긴다' },
+    { token: 'border-overlay',      palette: 'black-alpha-02',   desc: '그림·색면 위에 얹는 선. 밑색을 남기고 subtle보다 옅다' },
     { token: 'border-strong',  palette: 'gray-400', desc: '눈에 띄어야 하는 테두리 (같은 회색 계열)', border: true },
     { token: 'border-accent',  palette: 'sky-600',  desc: '선택·활성 상태의 테두리, 강조 안내선' },
     { token: 'border-critical', palette: 'red-600', desc: '오류가 난 칸의 테두리' },

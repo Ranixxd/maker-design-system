@@ -8,6 +8,9 @@
   --color-black-alpha-12:   rgba(0, 0, 0, 0.12);
   --color-black-alpha-08:   rgba(0, 0, 0, 0.08);
   --color-black-alpha-04:   rgba(0, 0, 0, 0.04);
+  /* border-overlay를 위해 더했다(2026-09-23). 04는 흰 바탕에서 border-subtle(gray-100)과 같은 값이라
+     "더 옅은 선"이 되지 못한다 */
+  --color-black-alpha-02:   rgba(0, 0, 0, 0.02);
 
   /* ── Primitive: White & alpha ── */
   --color-white:            #ffffff;
@@ -131,8 +134,8 @@
 
   /* 그림·색면 위에 얹는 선(2026-09-23 사용자). 검정에 불투명도를 줘서 **밑에 깔린 색을 남긴다** —
      회색 실선은 사진 위에서 제 색을 주장한다. 가장자리를 잡아 줄 만큼만 진하다.
-     흰 바탕에서는 gray-150쯤으로 보인다 */
-  --color-border-overlay: var(--color-black-alpha-08);
+     흰 바탕에서 border-subtle(gray-100 = 검정 4%)보다 옅어야 한다(2026-09-23 사용자). 그래서 2%다 */
+  --color-border-overlay: var(--color-black-alpha-02);
 
   /* ── Semantic: Icon ── */
   /* 기본 아이콘은 글자 기본색(gray-800)보다 한 톤 옅다(2026-09-19, gray-900에서 내렸다).
