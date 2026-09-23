@@ -1,0 +1,67 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  padding: 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  color: var(--color-text-default);
+  text-decoration: none;
+  min-width: 0;
+}
+
+/* 그림이 카드의 본체다. 테두리도 그림자도 없다 — 배경에서 붕 뜨지 않아야 한다.
+   모서리만 둥글린다(2026-09-23 사용자, 배경화면 목록의 값으로 통일) */
+.figure {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--color-bg-tertiary);
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* 그림 위에 얹는 표(오늘 올라왔어요 점 등). 자리만 준다 */
+.badge {
+  position: absolute;
+  inset-block-start: var(--spacing-2);
+  inset-inline-start: var(--spacing-2);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  min-width: 0;
+}
+
+/* 한 줄짜리는 말줄임, 여러 줄은 그 줄 수에서 자른다 */
+.title {
+  color: var(--color-text-default);
+  min-width: 0;
+  overflow: hidden;
+}
+.oneLine {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--media-card-lines, 2);
+}
+
+.meta {
+  min-width: 0;
+  color: var(--color-text-secondary);
+}
