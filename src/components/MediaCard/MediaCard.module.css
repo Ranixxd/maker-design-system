@@ -12,13 +12,18 @@
   min-width: 0;
 }
 
-/* 그림이 카드의 본체다. 테두리도 그림자도 없다 — 배경에서 붕 뜨지 않아야 한다.
-   모서리만 둥글린다(2026-09-23 사용자, 배경화면 목록의 값으로 통일) */
+/* 그림이 카드의 본체다. 그림자는 없다 — 배경에서 붕 뜨지 않아야 한다.
+   모서리는 radius-xl로 둥글린다(2026-09-23 사용자, 배경화면 목록의 값으로 통일).
+   가장자리에는 border-overlay 한 줄만 둔다. 회색 실선은 사진 위에서 제 색을 주장하는데,
+   검정 불투명도는 밑에 깔린 색을 남기면서 경계만 잡아 준다(2026-09-23 사용자) */
 .figure {
   position: relative;
   margin: 0;
   width: 100%;
+  box-sizing: border-box;
   border-radius: var(--radius-xl);
+  /* 그림 가장자리만 잡아 주는 선. 검정 불투명도라 밑에 깔린 색을 남긴다 */
+  border: 1px solid var(--color-border-overlay);
   overflow: hidden;
   background: var(--color-bg-tertiary);
 }
