@@ -37,4 +37,5 @@ export { default as Thumbnail } from './components/Thumbnail/index.js';
    Radio는 RadioGroup 안에서 쓰이고, Toast는 Provider가 위에 있어야 useToast가 산다 */
 export { default as DocPage, DocSection } from './components/DocPage/index.js';
 export { RadioGroup, Radio } from './components/Radio/index.js';
+export { Checkbox } from './components/Checkbox/index.js';
 export { ToastProvider, useToast } from './components/Toast/index.js';

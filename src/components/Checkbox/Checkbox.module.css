@@ -1,0 +1,27 @@
+/* 네모 칸과 라벨은 한 줄에서 가운데로 맞춘다(Radio와 같다).
+   라벨이 감기는 창에서는 쓰는 쪽이 align="start"로 첫 줄에 맞춘다 */
+.option {
+  display: flex;
+  gap: var(--spacing-2);
+  cursor: pointer;
+  color: var(--color-text-default);
+}
+.center { align-items: center; }
+.start { align-items: flex-start; }
+
+.input {
+  accent-color: var(--color-bg-primary);
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+/* start일 때 첫 줄 글자 가운데에 오게 한다(글자 높이 1.5 기준) */
+.start .input { margin-top: 2px; }
+
+/* 못 누르는 상태는 Button과 같은 방식이다(투명도로 낮춘다) */
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.disabled .input { cursor: not-allowed; }
