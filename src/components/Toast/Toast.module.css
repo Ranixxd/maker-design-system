@@ -1,12 +1,14 @@
+/* 화면 전체를 덮고 가운데로 모은다. left:50%로 잡으면 상자가 오른쪽으로 50vw까지만
+   자라서, 넘칠 까닭이 없는 글도 접혔다. 덮개지만 눌리지는 않는다(pointer-events) */
 .container {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: var(--spacing-2);
+  padding: var(--spacing-5);
   z-index: var(--z-toast);
   pointer-events: none;
 }
@@ -14,16 +16,50 @@
 .toast {
   background: var(--color-bg-inverse);
   color: var(--color-text-oninverse);
-  font-size: var(--font-size-md);        /* 15px = label-md */
-  font-weight: var(--font-weight-medium); /* 500 */
-  padding: 10px 20px;
+  padding: var(--spacing-3) var(--spacing-5);
   border-radius: var(--radius-sm);
-  white-space: nowrap;
   box-shadow: var(--shadow-md);
+  /* 한 줄로 묶지 않는다. 한국어 안내는 한 문장이 길어지는 일이 잦아,
+     nowrap이면 좁은 화면에서 양옆으로 삐져나간다 */
+  max-width: 340px;   /* 좁은 화면의 양옆 여백은 container의 padding이 맡는다 */
+  white-space: pre-line;
+  text-align: center;
+  /* 한국어는 음절 사이 아무 데서나 끊긴다. 띄어쓰기에서 끊어야 읽힌다 */
+  word-break: keep-all;
+  /* 라벨 클래스는 한 줄 기준(line-height 1)이라 두 줄이 되면 붙어 보인다 */
+  line-height: var(--line-height-multi);
+  /* 화살표가 글 아래 붙는다 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2);
   animation: toast-in var(--motion-duration-short) var(--motion-easing-standard-decelerate) both;
+}
+
+/* 다음에 할 일이 화면 아래쪽에 있을 때만 붙인다. 테두리로 그린 갈매기 표시가
+   오른쪽 아래로 흘러간다. 경계선이 아니라 글자와 같은 색을 따라간다 */
+.arrow {
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  /* 눈에 거슬리지 않게 느린 쪽 끝을 쓴다. 눈금에 없는 값(1.4초)으로 두지 않는다 */
+  animation: toast-arrow-flow var(--motion-duration-extra-long-4) var(--motion-easing-standard) infinite;
 }
 
 @keyframes toast-in {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes toast-arrow-flow {
+  0%   { transform: rotate(45deg) translate(-3px, -3px); opacity: 0; }
+  35%  { opacity: 1; }
+  100% { transform: rotate(45deg) translate(3px, 3px); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast { animation: none; }
+  .arrow { animation: none; opacity: 1; }
 }
