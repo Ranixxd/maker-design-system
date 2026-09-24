@@ -20,8 +20,9 @@ export default {
 
 **조합**
 - \`icon\`: 제목 글자 바로 옆 아이콘 단추(neutral-weak). 도움말(?)처럼 제목에 딸린 것. lg·md 제목은 48px(아이콘 24px), sm 제목은 36px(아이콘 20px)
+  도움말 내용은 누르면 LayerPopup으로 연다. icon은 단추 속성만 받아 Popover를 달 수 없다. 옆에 단추를 따로 세우면 제목 줄 높이가 48px로 커져 같은 머리끼리 자리가 어긋난다(2026-09-24, 카톡테마 메이커 템플릿·냉장고 페이지 머리)
 - \`action\`: 제목 바로 옆 글자 단추(secondary sm). 제목과 한 묶음인 동작(말풍선 복붙)
-- \`description\`: 제목 아래 설명 한 줄(text-body-sm, text-secondary)
+- \`description\`: 제목 아래 설명 한 줄(text-body-sm, text-secondary). 페이지 머리의 설명도 이것을 쓴다. 따로 15px로 그리지 않는다(2026-09-24)
 
 icon과 action은 모양부터 달라 위계가 갈린다. 더 중요한 기능을 action에 둔다.
 
