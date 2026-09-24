@@ -18,6 +18,8 @@ export { default as ColorPicker } from './components/ColorPicker/index.js';
 export { default as Divider } from './components/Divider/index.js';
 export { default as Dot } from './components/Dot/index.js';
 export { default as Drawer } from './components/Drawer/index.js';
+export { default as EditFab } from './components/EditFab/index.js';
+export { default as EditFrame } from './components/EditFrame/index.js';
 export { default as EmptyState } from './components/EmptyState/index.js';
 export { default as SearchField } from './components/SearchField/index.js';
 export { default as SegmentedControl } from './components/SegmentedControl/index.js';

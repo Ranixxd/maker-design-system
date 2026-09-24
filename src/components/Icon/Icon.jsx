@@ -20,6 +20,8 @@ import {
   Search,
   /* 편집기 항목 줄의 사진 올리기 (2026-09-19) */
   ImagePlus,
+  /* 편집 판 위 단추(EditFab)의 배경 지우기 (2026-09-25) */
+  Eraser,
 } from 'lucide-react';
 
 const ICONS = {
@@ -30,7 +32,7 @@ const ICONS = {
   Image, Layers, Menu, MoreHorizontal,
   User, LogOut,
   Folder, FolderPlus, Astroid, RotateCcw,
-  CircleHelp, Search, ImagePlus,
+  CircleHelp, Search, ImagePlus, Eraser,
 };
 
 /* sm 20 / md 24 (2026-09-18, 16 / 20에서 한 단계씩 키웠다). 폰에서 알아보기 작았다 */

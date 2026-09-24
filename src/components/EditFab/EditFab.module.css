@@ -1,0 +1,50 @@
+/* 36px 동그라미, 흰 바탕에 얇은 테두리와 옅은 그림자. 판 위에 떠 있다는 것만 알리고 판보다 먼저 눈에 들지 않게 한다 */
+.fab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-default);
+  color: var(--color-icon-secondary);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+  transition: color var(--motion-duration-short) var(--motion-easing-standard);
+}
+
+/* 아이콘은 sm(20)보다 한 단계 작게 둔다. 단추 속이 꽉 차 보이면 판 위에서 눈에 먼저 든다 */
+.icon { width: 18px; height: 18px; }
+.fab > svg { width: 18px; height: 18px; display: block; }
+
+/* hover·눌림은 바탕 위에 한 겹 얹는다. 바탕을 반투명 토큰으로 바꾸면 밑의 그림이 단추 속으로 비친다 */
+.fab::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: transparent;
+  pointer-events: none;
+  transition: background-color var(--motion-duration-short) var(--motion-easing-standard);
+}
+@media (hover: hover) {
+  .fab:hover:not(:disabled) { color: var(--color-icon-default); }
+  .fab:hover:not(:disabled)::after { background-color: var(--color-bg-hover); }
+}
+.fab:active:not(:disabled)::after { background-color: var(--color-bg-pressed); }
+
+.fab:focus-visible {
+  outline: 2px solid var(--color-bg-accent);
+  outline-offset: 2px;
+}
+
+.fab:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
