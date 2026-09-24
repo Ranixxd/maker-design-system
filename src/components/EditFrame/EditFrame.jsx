@@ -17,7 +17,9 @@ export default function EditFrame({
   hint,                 // 판 위 안내 한 줄
   fabStart,             // 판 아래 왼쪽 둥근 단추(EditFab)
   fabEnd,               // 판 아래 오른쪽 둥근 단추(EditFab)
+  fabOffset = 0,        // 판 위 단추를 이만큼(px) 올린다. 아래 자리에서 띠가 판 위로 떠올라 단추를 덮을 때
   footer,               // 아래 고정 자리. 메인 기능(도구 줄·탭·입력 칸)
+  stageRef,             // 판을 세우는 바탕. 판 밖을 눌러도 끌기·고르기를 받아야 하는 편집(짤 만들기)이 쓴다
   children,             // 판
   className,
   ...props              // id·aria-label 등은 창(dialog)에 붙는다
@@ -36,7 +38,7 @@ export default function EditFrame({
       footer={footer ? <div className={styles.footInner}>{footer}</div> : undefined}
       {...props}
     >
-      <div className={styles.stage}>
+      <div className={styles.stage} ref={stageRef} style={fabOffset ? { '--edit-fab-offset': fabOffset + 'px' } : undefined}>
         {hint && <p className={`text-body-sm ${styles.hint}`}>{hint}</p>}
         <div className={styles.board}>{children}</div>
         {fabStart && <div className={`${styles.fabSlot} ${styles.fabStart}`}>{fabStart}</div>}

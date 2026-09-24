@@ -37,6 +37,8 @@
   justify-items: center;
   padding: 0 var(--spacing-5);
   background-color: var(--color-bg-secondary);
+  /* 판이 바탕 크기를 보고 제 크기를 정할 수 있게 한다(cqw·cqh). 폰 가로·PC 창에서 판이 넘치지 않는다 */
+  container-type: size;
 }
 
 .hint {
@@ -62,10 +64,12 @@
 /* 판 위 둥근 단추 자리. 판 아래 양 끝에 하나씩 선다 */
 .fabSlot {
   position: absolute;
-  bottom: var(--spacing-3);
+  bottom: calc(var(--spacing-3) + var(--edit-fab-offset, 0px));
   z-index: 5;
   display: flex;
+  transition: bottom var(--motion-duration-medium-2) var(--motion-easing-standard);
 }
+@media (prefers-reduced-motion: reduce) { .fabSlot { transition: none; } }
 .fabStart { left: var(--spacing-4); }
 .fabEnd { right: var(--spacing-4); }
 
