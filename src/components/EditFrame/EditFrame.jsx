@@ -14,6 +14,8 @@ export default function EditFrame({
   cancelLabel = '편집 취소',
   doneLabel = '편집 완료',
   doneDisabled = false,
+  cancelProps,          // 머리 단추에 더 붙일 속성(id 등). 옮겨 온 코드·점검이 단추를 이름으로 찾는 곳에서 쓴다
+  doneProps,
   hint,                 // 판 위 안내 한 줄
   fabStart,             // 판 아래 왼쪽 둥근 단추(EditFab)
   fabEnd,               // 판 아래 오른쪽 둥근 단추(EditFab)
@@ -33,8 +35,8 @@ export default function EditFrame({
       headerClassName={styles.head}
       bodyClassName={styles.body}
       footerClassName={styles.foot}
-      headerStart={<Button variant="neutral" onClick={onCancel}>{cancelLabel}</Button>}
-      headerEnd={<Button variant="accent" onClick={onDone} disabled={doneDisabled}>{doneLabel}</Button>}
+      headerStart={<Button variant="neutral" {...cancelProps} onClick={onCancel}>{cancelLabel}</Button>}
+      headerEnd={<Button variant="accent" {...doneProps} onClick={onDone} disabled={doneDisabled}>{doneLabel}</Button>}
       footer={footer ? <div className={styles.footInner}>{footer}</div> : undefined}
       {...props}
     >
