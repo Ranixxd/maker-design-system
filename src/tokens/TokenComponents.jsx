@@ -240,6 +240,7 @@ export function IconColorTable() {
   return <SemanticColorTable rows={[
     { token: 'icon-default',   palette: 'gray-700', desc: '기본 아이콘. 글자 기본색보다 한 톤 옅다' },
     { token: 'icon-secondary', palette: 'gray-500', desc: '보조 아이콘' },
+    { token: 'icon-tertiary',  palette: 'gray-300', desc: '한 단 더 물러나는 아이콘. 배경 없는 아이콘 단추(neutral-weak)' },
     { token: 'icon-accent',    palette: 'sky-500',  desc: '강조 아이콘' },
     { token: 'icon-onaccent',  palette: 'white',    desc: 'bg-accent 위 아이콘', border: true },
     { token: 'icon-onprimary', palette: 'white',    desc: 'bg-primary 위 아이콘', border: true },

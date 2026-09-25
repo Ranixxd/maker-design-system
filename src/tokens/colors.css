@@ -142,6 +142,8 @@
      글자보다 진하면 아이콘이 내용보다 먼저 눈에 들어와 자아가 강해 보였다 */
   --color-icon-default:   var(--color-gray-700);
   --color-icon-secondary: var(--color-gray-500);
+  /* 한 단 더 물러나는 아이콘. 배경 없는 아이콘 단추(neutral-weak)가 쓴다. 글자 tertiary와 같은 칸이다(2026-09-25 사용자) */
+  --color-icon-tertiary:  var(--color-gray-300);
   --color-icon-accent:    var(--color-sky-500);
   --color-icon-onaccent:  var(--color-white);
   --color-icon-onprimary: var(--color-white);
