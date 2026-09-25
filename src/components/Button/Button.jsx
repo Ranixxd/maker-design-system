@@ -11,13 +11,16 @@ const Button = forwardRef(function Button({
   loading = false,
   image,                // 이미지 주소. 글자 옆에 선다(공유하기 + 선물 그림). 높이는 크기마다 고정, 너비는 비율대로
   imagePosition = 'end', // 'start' | 'end'
+  href,                 // 주면 링크(a)로 그린다(2026-09-25). 다른 페이지로 가는 단추. 크롤러가 따라가고 새 탭 열기·주소 복사가 된다. MenuItem의 href와 같다
   onClick,
   ...props
 }, ref) {
+  const Tag = href ? 'a' : 'button';
   return (
-    <button
+    <Tag
       ref={ref}
-      type="button"
+      type={href ? undefined : 'button'}
+      href={href}
       className={[styles.btn, styles[variant], styles[size], className].filter(Boolean).join(' ')}
       data-loading={loading || undefined}
       aria-busy={loading || undefined}
@@ -31,7 +34,7 @@ const Button = forwardRef(function Button({
         {children}
         {image && imagePosition !== 'start' && <img className={styles.image} src={image} alt="" aria-hidden="true" />}
       </span>
-    </button>
+    </Tag>
   );
 });
 

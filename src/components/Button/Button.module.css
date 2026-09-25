@@ -12,6 +12,8 @@
               transform var(--motion-duration-short) var(--motion-easing-standard);
   white-space: nowrap;
   user-select: none;
+  /* href를 주면 a로 그린다. 링크 밑줄을 지운다 */
+  text-decoration: none;
 }
 
 /* hover/pressed 오버레이 — 버튼 자체 배경색은 절대 변경하지 않는다.

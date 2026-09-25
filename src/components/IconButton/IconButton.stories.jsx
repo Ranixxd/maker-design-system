@@ -14,7 +14,9 @@ export default {
 **사용 규칙**
 - 반드시 \`aria-label\`을 지정한다 (스크린리더가 동작을 읽을 수 있도록).
 - Button과 나란히 배치될 수 있어 높이를 동일하게 맞춘다 (sm=36px, md=48px).
+- **나란히(또는 한 묶음으로 쌓여) 놓인 버튼은 따로 정한 것이 없으면 늘 같은 크기다** (2026-09-25). 자세한 규칙은 Button 문서 "나란히 놓인 버튼".
 - 항상 정사각형(aspect-ratio:1)을 유지한다.
+- **그림자를 넣지 않는다** (2026-09-25). 떠 있는 단추여도 쓰는 쪽이 \`box-shadow\`를 얹지 않는다. 배경에 묻히면 \`outline\`을 쓴다(면이 채워져 있다).
 
 | variant | 설명 |
 |---|---|
@@ -27,6 +29,11 @@ export default {
 **variant 고르기**
 되도록 \`primary\`·\`secondary\`·\`neutral\` 안에서 고른다. \`outline\`은 neutral로는 버튼이라는 것이
 안 읽히고, secondary를 쓰기에는 기본 기능일 때만 쓴다(편집기 항목 줄의 사진 올리기·색 고르기·편집).
+
+**뒤로 가기 (2026-09-25)**
+- 아이콘은 \`ArrowLeft\`다. \`ChevronLeft\`·\`ChevronRight\`는 더보기·펼치기로 읽혀서 뒤로 가기에 쓰지 않는다
+- \`neutral\`이다. 제목 줄 안이든, 뒤로 가기 혼자 위 한 줄을 차지하든(상세·완료 화면) 줄이 따로 있어 배경에 묻히지 않는다
+- 그림 위에 띄우지 않는다. 띄워 봤다가 첫 그림을 가려 줄로 되돌렸다
 
 **로딩**
 \`loading\`을 주면 아이콘 자리에 스피너가 돌고 누를 수 없다. 흐려지지 않는다. 못 쓰는 버튼(disabled)이 아니라 일이 도는 중이다.
@@ -102,7 +109,7 @@ export const CommonUsages = {
       <IconButton icon="X"               size="md" aria-label="닫기" />
       <IconButton icon="Menu"            size="md" aria-label="메뉴" />
       <IconButton icon="Plus"            size="md" aria-label="추가" />
-      <IconButton icon="ChevronLeft"     size="md" aria-label="뒤로" />
+      <IconButton icon="ArrowLeft"       size="md" aria-label="뒤로" />
       <IconButton icon="ChevronRight"    size="md" aria-label="앞으로" />
       <IconButton icon="MoreHorizontal"  size="md" aria-label="더보기" />
     </div>

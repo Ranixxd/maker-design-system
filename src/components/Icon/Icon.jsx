@@ -22,6 +22,10 @@ import {
   ImagePlus,
   /* 편집 판 위 단추(EditFab)의 배경 지우기 (2026-09-25) */
   Eraser,
+  /* 뒤로 가기 (2026-09-25). 쉐브론은 더보기·펼치기로 읽혀서 뒤로 가기는 화살표로 가른다 */
+  ArrowLeft,
+  /* 맨 위로 (2026-09-25) */
+  ArrowUp,
 } from 'lucide-react';
 
 const ICONS = {
@@ -33,6 +37,7 @@ const ICONS = {
   User, LogOut,
   Folder, FolderPlus, Astroid, RotateCcw,
   CircleHelp, Search, ImagePlus, Eraser,
+  ArrowLeft, ArrowUp,
 };
 
 /* sm 20 / md 24 (2026-09-18, 16 / 20에서 한 단계씩 키웠다). 폰에서 알아보기 작았다 */
