@@ -10,6 +10,7 @@
 |---|---|
 | 배경화면 메이커 (`wallpaper-maker`) | npm — `github:Ranixxd/maker-design-system` |
 | 카톡테마 메이커 (`phase4`) | 토큰 CSS 사본 — 빌드 단계가 없는 정적 사이트다 |
+| 덕꾸 앱 (`dukku`, 2026-09-26) | npm의 `maker-design-system/native`: 토큰만 받는다. 부품은 앱이 따로 만든다(아래 "앱은 토큰과 이름만") |
 
 **그런데 push만으로는 어느 쪽에도 안 간다.**
 
@@ -76,6 +77,8 @@
 | `tokens/radius.css` | `RadiusTable` (값과 "어디에 쓰나"), `radius.mdx` |
 | `tokens/shadow.css` | `ShadowTable`, `shadow.mdx` |
 
+**CSS 토큰을 고치면 `node scripts/native-tokens.js`로 앱용 사본(`src/tokens/native.js`·`native.d.ts`)을 다시 만들어 함께 커밋한다.** `build`와 `prepare`도 부르지만, 커밋된 파일이 CSS와 다르면 앱이 옛 값을 본다. 손으로 고치지 않는다.
+
 **쓰는 쪽 저장소도 본다.** 토큰을 지우거나 이름을 바꾸면 두 메이커가 조용히 깨진다.
 카톡테마 메이커에는 `.claude/check-tokens.js`가 있어 없는 토큰을 잡아 주지만,
 그것도 사본이 갱신된 뒤에나 안다.
@@ -106,6 +109,16 @@
   `index.js`를 통한다 — 기본 내보내기가 없는 것(Radio, Toast)에서 어긋난다
 - 짝이 있어야 뜻이 사는 부품은 이름으로 내보낸다(`RadioGroup`/`Radio`,
   `ToastProvider`/`useToast`)
+
+### 앱은 토큰과 이름만 같이 쓴다 (2026-09-26)
+
+덕꾸 앱(React Native)은 여기 부품을 못 쓴다. 웹 부품은 HTML·CSS, 앱은 `View`·`Pressable`이라 코드를 합칠 수 없고,
+누르는 방식도 다르다(앱에는 hover가 없고, 누르는 영역을 따로 넓히고, 이동은 `href`가 아니라 라우터다).
+
+- **토큰은 여기가 원본이다.** 앱은 `maker-design-system/native`로 시멘틱 색·간격·반경·타이포 역할을 받는다. 팔레트와 `bg-hover`는 담지 않는다.
+- **앱 부품도 웹과 같은 이름을 쓴다.** `variant`·`size`·상태 이름을 맞춘다. 웹에서 `variant="primary" size="lg"`이면 앱에서도 그 이름이다.
+  앱에만 있는 것(`hitSlop`, 진동)은 앱 부품에만 둔다.
+- **앱 부품은 지금 `dukku` 레포에 있다.** 쓰는 앱이 하나뿐이라서다. 앱이 하나 더 생기면 여기로 옮길지 사람에게 묻는다.
 
 ### React를 두 벌 만들지 않는다
 

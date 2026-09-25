@@ -11,6 +11,10 @@
   "main": "./dist/mds.js",
   "exports": {
     ".": "./dist/mds.js",
+    "./native": {
+      "types": "./src/tokens/native.d.ts",
+      "default": "./src/tokens/native.js"
+    },
     "./styles": "./dist/mds.css",
     "./package.json": "./package.json"
   },
@@ -19,9 +23,9 @@
   ],
   "scripts": {
     "dev": "storybook dev -p 6007",
-    "build": "vite build",
+    "build": "node scripts/native-tokens.js && vite build",
     "build-storybook": "storybook build",
-    "prepare": "vite build"
+    "prepare": "node scripts/native-tokens.js && vite build"
   },
   "peerDependencies": {
     "react": ">=18",
