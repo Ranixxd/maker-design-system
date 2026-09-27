@@ -12,6 +12,7 @@ export declare const color: {
   readonly "bgInverse": "#111111";
   readonly "bgCritical": "#dc3412";
   readonly "bgCriticalSubtle": "#ffe2e0";
+  readonly "bgBrandSubtle": "#f0e2ff";
   readonly "textDefault": "#1e1e1e";
   readonly "textSecondary": "#757575";
   readonly "textTertiary": "#b3b3b3";
@@ -22,6 +23,7 @@ export declare const color: {
   readonly "textLink": "#0768cf";
   readonly "textCritical": "#dc3412";
   readonly "textOncritical": "#ffffff";
+  readonly "textBrand": "#c18bff";
   readonly "borderSubtle": "#f5f5f5";
   readonly "borderDefault": "#d9d9d9";
   readonly "borderStrong": "#999999";

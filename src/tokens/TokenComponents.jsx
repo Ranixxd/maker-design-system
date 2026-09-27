@@ -207,6 +207,7 @@ export function BgColorTable() {
     { token: 'bg-inverse',         palette: 'gray-900',         desc: '바탕을 뒤집은 면 (토스트, 사진 위 배지). 다크모드에서 primary와 반대로 움직인다' },
     { token: 'bg-critical',        palette: 'red-600',          desc: '크리티컬 배경' },
     { token: 'bg-critical-subtle', palette: 'red-200',          desc: '크리티컬 보조 배경', border: true },
+    { token: 'bg-brand-subtle',    palette: 'violet-100',       desc: '브랜드 배경(스플래시·로그인 그라데이션 끝)', border: true },
   ]} />;
 }
 
@@ -222,6 +223,7 @@ export function TextColorTable() {
     { token: 'text-link',       palette: 'sky-700',  desc: '하이퍼링크' },
     { token: 'text-critical',   palette: 'red-600',  desc: '크리티컬 텍스트' },
     { token: 'text-oncritical', palette: 'white',    desc: 'bg-critical 위 텍스트', border: true },
+    { token: 'text-brand',      palette: 'violet-400', desc: '로고 글자 같은 브랜드 큰 글자' },
   ]} />;
 }
 

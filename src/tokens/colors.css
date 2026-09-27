@@ -78,6 +78,12 @@
   --color-red-100: #fff5f5;
   --color-red-50:  #fffafa;   /* 100보다 반 단계 밝게 이었다 */
 
+  /* ── Primitive: Violet ──
+     덕꾸 브랜드 색(2026-09-28 사용자). 스플래시·로그인의 그라데이션 끝 색과 로고 글자 색 두 단계만 받았다.
+     스케일을 다 채우지 않았다. 쓰는 단계가 늘면 그때 잇는다 */
+  --color-violet-400: #c18bff;
+  --color-violet-100: #f0e2ff;
+
   /* ── Semantic: Background ── */
   --color-bg-default:   var(--color-white);
   --color-bg-secondary: var(--color-gray-50);
@@ -103,6 +109,8 @@
      한 칸씩 더 밝아져 150이 거의 흰색(#ffeceb)이 됐다. 새 200(#ffe2e0)이 옛
      150(#fee2e2)과 사실상 같아서, 오류 안내 상자는 지금 보이는 그대로다 (2026-09-10) */
   --color-bg-critical-subtle:   var(--color-red-200);
+  /* 브랜드 배경. 스플래시·로그인에서 흰색에서 이 색으로 내려가는 그라데이션의 끝이다 (2026-09-28) */
+  --color-bg-brand-subtle:      var(--color-violet-100);
 
   /* ── Semantic: Text ── */
   /* gray-900(#111)은 순검정에 가까워 긴 글에서 눈이 빨리 지친다.
@@ -117,6 +125,8 @@
   --color-text-link:      var(--color-sky-700);
   --color-text-critical:     var(--color-red-600);
   --color-text-oncritical:   var(--color-white);
+  /* 브랜드 글자. 로고 글자처럼 브랜드를 드러내는 큰 글자에만 쓴다. 흰 바탕 대비가 2.5라 본문에 쓰지 않는다 (2026-09-28) */
+  --color-text-brand:        var(--color-violet-400);
 
   /* ── Semantic: Border ── */
   /* 구분선은 세 단계다. subtle은 "여기서 나뉜다"만 알리고 물러나는 선이라
