@@ -91,11 +91,6 @@ export const typography = {
     "fontWeight": "600",
     "lineHeight": 26
   },
-  "headingBar": {
-    "fontSize": 17,
-    "fontWeight": "600",
-    "lineHeight": 22
-  },
   "headingXs": {
     "fontSize": 15,
     "fontWeight": "600",

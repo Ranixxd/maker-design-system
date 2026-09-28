@@ -40,13 +40,6 @@
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-heading);
 }
-/* 막대 제목. 앱바처럼 높이 44 막대에 서는 제목(2026-09-29 사용자, 덕꾸 앱).
-   sm(20)은 막대에 크고 xs(15)는 바로 아래 탭 글자(label-lg 17)보다 작아서, 탭 글자와 같은 17에 제목 굵기를 준다 */
-.text-heading-bar {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
-  line-height: var(--line-height-heading);
-}
 /* 작은 제목. label을 제목처럼 쓰면 굵기가 500으로 빠져 본문과 구분이 약해졌다 (2026-09-17) */
 .text-heading-xs {
   font-size: var(--font-size-md);

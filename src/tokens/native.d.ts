@@ -77,7 +77,6 @@ export declare const typography: {
   readonly "headingLg": { readonly fontSize: 28; readonly fontWeight: "600"; readonly lineHeight: 36 };
   readonly "headingMd": { readonly fontSize: 24; readonly fontWeight: "600"; readonly lineHeight: 31 };
   readonly "headingSm": { readonly fontSize: 20; readonly fontWeight: "600"; readonly lineHeight: 26 };
-  readonly "headingBar": { readonly fontSize: 17; readonly fontWeight: "600"; readonly lineHeight: 22 };
   readonly "headingXs": { readonly fontSize: 15; readonly fontWeight: "600"; readonly lineHeight: 20 };
   readonly "bodyLg": { readonly fontSize: 17; readonly fontWeight: "400"; readonly lineHeight: 26 };
   readonly "bodyMd": { readonly fontSize: 15; readonly fontWeight: "400"; readonly lineHeight: 23 };
