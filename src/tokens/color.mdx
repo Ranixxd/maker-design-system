@@ -11,7 +11,7 @@ import { ColorSwatch } from './TokenComponents';
 ```css
 /* ❌ 컴포넌트에서 직접 참조 — 금지 */
 color: var(--color-gray-500);
-background: var(--color-sky-100);
+background: var(--color-violet-100);
 
 /* ✅ 시멘틱 토큰을 통해 참조 */
 color: var(--color-text-secondary);
@@ -86,7 +86,17 @@ background: var(--color-bg-accent-subtle);
 
 ## Violet
 
-덕꾸 브랜드 색. 쓰는 두 단계만 받았다(2026-09-28).
+accent와 덕꾸 브랜드 색. 2026-09-28에 두 단계(400·200)를 받았고, 2026-09-29에 accent를 보라로 옮기며 스케일을 채웠다.
+받은 두 값은 그대로 두고 같은 색상각에서 밝기만 이었다.
 
+<ColorSwatch token="--color-violet-900" label="900" />
+<ColorSwatch token="--color-violet-800" label="800" />
+<ColorSwatch token="--color-violet-700" label="700" />
+<ColorSwatch token="--color-violet-600" label="600" />
+<ColorSwatch token="--color-violet-500" label="500" />
 <ColorSwatch token="--color-violet-400" label="400" />
+<ColorSwatch token="--color-violet-300" label="300" />
+<ColorSwatch token="--color-violet-200" label="200" />
+<ColorSwatch token="--color-violet-150" label="150" border />
 <ColorSwatch token="--color-violet-100" label="100" border />
+<ColorSwatch token="--color-violet-50"  label="50"  border />

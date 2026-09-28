@@ -199,15 +199,15 @@ export function BgColorTable() {
     { token: 'bg-tertiary',        palette: 'gray-100',         desc: '입력칸·구분 영역 배경', border: true },
     { token: 'bg-hover',           palette: 'black-alpha-04',   desc: '호버 오버레이', border: true },
     { token: 'bg-pressed',         palette: 'black-alpha-08',   desc: '눌림 오버레이', border: true },
-    { token: 'bg-accent',          palette: 'sky-500',          desc: '강조 배경' },
-    { token: 'bg-accent-subtle',   palette: 'sky-200',          desc: '강조 보조 배경', border: true },
+    { token: 'bg-accent',          palette: 'violet-500',          desc: '강조 배경' },
+    { token: 'bg-accent-subtle',   palette: 'violet-200',          desc: '강조 보조 배경', border: true },
     { token: 'bg-overlay',         palette: 'black-alpha-60',   desc: '딤 레이어' },
     { token: 'bg-overlay-blur',    palette: 'rgba(255,255,255,.88)', desc: '흰 블러 딤 (--blur-overlay와 함께)', border: true },
     { token: 'bg-primary',         palette: 'gray-900',         desc: '가장 강한 동작 (확인 단추, 고른 칩, 체크된 라디오)' },
     { token: 'bg-inverse',         palette: 'gray-900',         desc: '바탕을 뒤집은 면 (토스트, 사진 위 배지). 다크모드에서 primary와 반대로 움직인다' },
     { token: 'bg-critical',        palette: 'red-600',          desc: '크리티컬 배경' },
     { token: 'bg-critical-subtle', palette: 'red-200',          desc: '크리티컬 보조 배경', border: true },
-    { token: 'bg-brand-subtle',    palette: 'violet-100',       desc: '브랜드 배경(스플래시·로그인 그라데이션 끝)', border: true },
+    { token: 'bg-brand-subtle',    palette: 'violet-200',       desc: '브랜드 배경(스플래시·로그인 그라데이션 끝)', border: true },
   ]} />;
 }
 
@@ -216,7 +216,7 @@ export function TextColorTable() {
     { token: 'text-default',    palette: 'gray-800', desc: '기본 본문' },
     { token: 'text-secondary',  palette: 'gray-500', desc: '보조 텍스트' },
     { token: 'text-tertiary',   palette: 'gray-300', desc: '비활성·플레이스홀더' },
-    { token: 'text-accent',     palette: 'sky-600',  desc: '강조 텍스트' },
+    { token: 'text-accent',     palette: 'violet-600',  desc: '강조 텍스트' },
     { token: 'text-onaccent',   palette: 'white',    desc: 'bg-accent 위 텍스트', border: true },
     { token: 'text-onprimary',  palette: 'white',    desc: 'bg-primary 위 텍스트', border: true },
     { token: 'text-oninverse',  palette: 'white',    desc: 'bg-inverse 위 텍스트', border: true },
@@ -233,7 +233,7 @@ export function BorderColorTable() {
     { token: 'border-default', palette: 'gray-200', desc: '성격이 다른 섹션 사이의 구분 (필터와 리스트). 누를 수 있는 것의 테두리 (버튼·탭·박스)', border: true },
     { token: 'border-overlay',      palette: 'black-alpha-02',   desc: '그림·색면 위에 얹는 선. 밑색을 남기고 subtle보다 옅다' },
     { token: 'border-strong',  palette: 'gray-400', desc: '눈에 띄어야 하는 테두리 (같은 회색 계열)', border: true },
-    { token: 'border-accent',  palette: 'sky-600',  desc: '선택·활성 상태의 테두리, 강조 안내선' },
+    { token: 'border-accent',  palette: 'violet-600',  desc: '선택·활성 상태의 테두리, 강조 안내선' },
     { token: 'border-critical', palette: 'red-600', desc: '오류가 난 칸의 테두리' },
   ]} />;
 }
@@ -243,7 +243,7 @@ export function IconColorTable() {
     { token: 'icon-default',   palette: 'gray-700', desc: '기본 아이콘. 글자 기본색보다 한 톤 옅다' },
     { token: 'icon-secondary', palette: 'gray-500', desc: '보조 아이콘' },
     { token: 'icon-tertiary',  palette: 'gray-300', desc: '한 단 더 물러나는 아이콘. 배경 없는 아이콘 단추(neutral-weak)' },
-    { token: 'icon-accent',    palette: 'sky-500',  desc: '강조 아이콘' },
+    { token: 'icon-accent',    palette: 'violet-500',  desc: '강조 아이콘' },
     { token: 'icon-onaccent',  palette: 'white',    desc: 'bg-accent 위 아이콘', border: true },
     { token: 'icon-onprimary', palette: 'white',    desc: 'bg-primary 위 아이콘', border: true },
     { token: 'icon-oninverse', palette: 'white',    desc: 'bg-inverse 위 아이콘', border: true },

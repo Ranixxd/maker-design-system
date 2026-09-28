@@ -4,8 +4,8 @@ export declare const color: {
   readonly "bgSecondary": "#fafafa";
   readonly "bgTertiary": "#f5f5f5";
   readonly "bgPressed": "rgba(0, 0, 0, 0.08)";
-  readonly "bgAccent": "#0d99ff";
-  readonly "bgAccentSubtle": "#e5f4ff";
+  readonly "bgAccent": "#a966ee";
+  readonly "bgAccentSubtle": "#f0e2ff";
   readonly "bgOverlay": "rgba(0, 0, 0, 0.60)";
   readonly "bgOverlayBlur": "rgba(255, 255, 255, 0.88)";
   readonly "bgPrimary": "#111111";
@@ -16,7 +16,7 @@ export declare const color: {
   readonly "textDefault": "#1e1e1e";
   readonly "textSecondary": "#757575";
   readonly "textTertiary": "#b3b3b3";
-  readonly "textAccent": "#007be5";
+  readonly "textAccent": "#9642e2";
   readonly "textOnaccent": "#ffffff";
   readonly "textOnprimary": "#ffffff";
   readonly "textOninverse": "#ffffff";
@@ -27,13 +27,13 @@ export declare const color: {
   readonly "borderSubtle": "#f5f5f5";
   readonly "borderDefault": "#d9d9d9";
   readonly "borderStrong": "#999999";
-  readonly "borderAccent": "#007be5";
+  readonly "borderAccent": "#9642e2";
   readonly "borderCritical": "#dc3412";
   readonly "borderOverlay": "rgba(0, 0, 0, 0.02)";
   readonly "iconDefault": "#383838";
   readonly "iconSecondary": "#757575";
   readonly "iconTertiary": "#b3b3b3";
-  readonly "iconAccent": "#0d99ff";
+  readonly "iconAccent": "#a966ee";
   readonly "iconOnaccent": "#ffffff";
   readonly "iconOnprimary": "#ffffff";
   readonly "iconOninverse": "#ffffff";

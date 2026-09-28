@@ -115,7 +115,7 @@ export const Accent = {
   parameters: {
     docs: {
       description: {
-        story: 'neutral과 함께 쓰이며 다음 프로세스 진행을 유도하는 버튼. accent 색상(sky-600)으로 시선을 끈다.',
+        story: 'neutral과 함께 쓰이며 다음 프로세스 진행을 유도하는 버튼. accent 색상으로 시선을 끈다.',
       },
     },
   },

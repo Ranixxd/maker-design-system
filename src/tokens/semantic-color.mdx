@@ -18,10 +18,10 @@ import { BgColorTable, TextColorTable, BorderColorTable, IconColorTable } from '
 
 ```css
 /* ❌ 토큰이 없어서 팔레트에서 꺼내 씀 */
-border-color: var(--color-sky-600);
+border-color: var(--color-violet-600);
 
 /* ✅ colors.css에 역할을 만들고 그것을 씀 */
---color-border-accent: var(--color-sky-600);   /* colors.css */
+--color-border-accent: var(--color-violet-600);   /* colors.css */
 border-color: var(--color-border-accent);      /* 쓰는 쪽 */
 ```
 
@@ -107,10 +107,12 @@ backdrop-filter: blur(var(--blur-overlay));
 계열에서 한 단계 진하게** 해서 구조를 가르는 선이고, **`accent`는 상태를 말하는
 선**이다 — 고른 칩, 활성 탭, 편집기의 강조 안내선처럼 "지금 이것"을 가리킬 때 쓴다.
 
-`accent`만 `sky-500`이 아니라 **`sky-600`을 참조한다.** 선은 글자보다 대비 기준이
-낮지만(3:1), `sky-500`은 흰 배경에서 2.77이라 그마저 못 넘는다. `sky-600`은 4.09다.
-`bg-accent`(채움)와 나란히 놓으면 선이 반 단계 진하지만, 40px 상자에서는 같은
-하늘색으로 읽힌다.
+`border-accent`는 `bg-accent`(500)보다 한 단계 진한 **600을 참조한다.** 선은 글자보다 대비 기준이
+낮은데(3:1), 하늘색 때는 500이 흰 배경에서 2.77이라 그마저 못 넘어 600으로 두었다(2026-09-10).
+2026-09-29에 accent를 보라로 옮기면서 500도 3.61로 넘게 됐지만 `text-accent`와 같은 단계로 600(5.03)을 그대로 쓴다.
+`bg-accent`(채움)와 나란히 놓으면 선이 반 단계 진하지만, 40px 상자에서는 같은 보라로 읽힌다.
+
+`text-link`는 accent를 따라가지 않고 하늘색(`sky-700`)으로 남는다. 링크는 파랑이 관례다(2026-09-29).
 
 ## Icon
 

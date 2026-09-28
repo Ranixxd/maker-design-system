@@ -79,10 +79,20 @@
   --color-red-50:  #fffafa;   /* 100보다 반 단계 밝게 이었다 */
 
   /* ── Primitive: Violet ──
-     덕꾸 브랜드 색(2026-09-28 사용자). 스플래시·로그인의 그라데이션 끝 색과 로고 글자 색 두 단계만 받았다.
-     스케일을 다 채우지 않았다. 쓰는 단계가 늘면 그때 잇는다 */
+     덕꾸 브랜드 색으로 두 단계를 먼저 받았고(2026-09-28), accent를 보라로 옮기며 스케일을 다 채웠다(2026-09-29 사용자).
+     받은 두 값을 그대로 두고 같은 색상각에서 밝기만 sky 스케일 간격을 따라 이었다.
+     #f0e2ff는 처음 100에 두었는데 밝기가 sky 200~300 사이라 200으로 옮겼다. 100에 두면 150·200이 100보다 밝아진다 */
+  --color-violet-900: #4f1d7b;
+  --color-violet-800: #6c20a9;
+  --color-violet-700: #852bcd;
+  --color-violet-600: #9642e2;
+  --color-violet-500: #a966ee;
   --color-violet-400: #c18bff;
-  --color-violet-100: #f0e2ff;
+  --color-violet-300: #ddc4ff;
+  --color-violet-200: #f0e2ff;
+  --color-violet-150: #f5efff;
+  --color-violet-100: #f9f4ff;
+  --color-violet-50:  #fcfaff;
 
   /* ── Semantic: Background ── */
   --color-bg-default:   var(--color-white);
@@ -90,11 +100,11 @@
   --color-bg-tertiary:  var(--color-gray-100);
   --color-bg-hover:     var(--color-black-alpha-04);
   --color-bg-pressed:   var(--color-black-alpha-08);
-  --color-bg-accent:        var(--color-sky-500);
-  /* 파랑 스케일을 갈면서 100이 거의 흰색이 됐다(#f2f9ff). 고른 것·활성인 것을
-     알리는 배경이라 안 보이면 뜻이 없어서 200으로 옮겼다. 새 200(#e5f4ff)이
-     옛 100(#e0f2fe)과 사실상 같아 보이는 것은 그대로다 (2026-09-10) */
-  --color-bg-accent-subtle: var(--color-sky-200);
+  /* accent는 2026-09-29에 하늘색에서 보라로 옮겼다(사용자). 단계 번호는 하늘색 때와 같다.
+     흰 글자를 얹는 500의 대비가 2.99에서 3.61로 오른다 */
+  --color-bg-accent:        var(--color-violet-500);
+  /* 100은 거의 흰색이라 고른 것·활성인 것을 알리지 못한다. 그래서 200이다 (2026-09-10, 보라로 옮기며 그대로 둠) */
+  --color-bg-accent-subtle: var(--color-violet-200);
   --color-bg-overlay:   var(--color-black-alpha-60);
   --color-bg-overlay-blur: rgba(255, 255, 255, 0.88);
   /* primary와 inverse는 지금 같은 값이지만 역할이 다르다(2026-09-20 사용자).
@@ -110,7 +120,7 @@
      150(#fee2e2)과 사실상 같아서, 오류 안내 상자는 지금 보이는 그대로다 (2026-09-10) */
   --color-bg-critical-subtle:   var(--color-red-200);
   /* 브랜드 배경. 스플래시·로그인에서 흰색에서 이 색으로 내려가는 그라데이션의 끝이다 (2026-09-28) */
-  --color-bg-brand-subtle:      var(--color-violet-100);
+  --color-bg-brand-subtle:      var(--color-violet-200);
 
   /* ── Semantic: Text ── */
   /* gray-900(#111)은 순검정에 가까워 긴 글에서 눈이 빨리 지친다.
@@ -118,10 +128,11 @@
   --color-text-default:   var(--color-gray-800);
   --color-text-secondary: var(--color-gray-500);
   --color-text-tertiary:  var(--color-gray-300);
-  --color-text-accent:    var(--color-sky-600);
+  --color-text-accent:    var(--color-violet-600);
   --color-text-onaccent:  var(--color-white);
   --color-text-onprimary: var(--color-white);
   --color-text-oninverse: var(--color-white);
+  /* 링크는 accent를 보라로 옮길 때 파랑으로 남겼다. 링크는 파랑이 관례다 (2026-09-29 사용자) */
   --color-text-link:      var(--color-sky-700);
   --color-text-critical:     var(--color-red-600);
   --color-text-oncritical:   var(--color-white);
@@ -135,9 +146,9 @@
   --color-border-subtle:  var(--color-gray-100);
   --color-border-default: var(--color-gray-200);
   --color-border-strong:  var(--color-gray-400);
-  /* 선은 글자보다 대비 기준이 낮지만(3:1), sky-500은 흰 배경에서 2.77이라
-     그마저 못 넘는다. 한 단계 진한 sky-600(4.09)을 참조한다 (2026-09-10) */
-  --color-border-accent:  var(--color-sky-600);
+  /* 선은 글자보다 대비 기준이 낮다(3:1). 하늘색 때는 500이 그마저 못 넘어 600을 참조했다 (2026-09-10).
+     보라 500은 3.61로 넘지만 text-accent와 같은 단계로 두려고 600(5.03)을 그대로 쓴다 (2026-09-29) */
+  --color-border-accent:  var(--color-violet-600);
   /* bg·text·icon에는 critical이 있는데 border만 비어 있었다.
      어느 칸이 문제인지 테두리로 말해야 하는 자리가 있다 (2026-09-10) */
   --color-border-critical: var(--color-red-600);
@@ -154,7 +165,7 @@
   --color-icon-secondary: var(--color-gray-500);
   /* 한 단 더 물러나는 아이콘. 배경 없는 아이콘 단추(neutral-weak)가 쓴다. 글자 tertiary와 같은 칸이다(2026-09-25 사용자) */
   --color-icon-tertiary:  var(--color-gray-300);
-  --color-icon-accent:    var(--color-sky-500);
+  --color-icon-accent:    var(--color-violet-500);
   --color-icon-onaccent:  var(--color-white);
   --color-icon-onprimary: var(--color-white);
   --color-icon-oninverse: var(--color-white);
