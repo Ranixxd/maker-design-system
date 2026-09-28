@@ -77,6 +77,7 @@ export declare const typography: {
   readonly "headingLg": { readonly fontSize: 28; readonly fontWeight: "600"; readonly lineHeight: 36 };
   readonly "headingMd": { readonly fontSize: 24; readonly fontWeight: "600"; readonly lineHeight: 31 };
   readonly "headingSm": { readonly fontSize: 20; readonly fontWeight: "600"; readonly lineHeight: 26 };
+  readonly "headingBar": { readonly fontSize: 17; readonly fontWeight: "600"; readonly lineHeight: 22 };
   readonly "headingXs": { readonly fontSize: 15; readonly fontWeight: "600"; readonly lineHeight: 20 };
   readonly "bodyLg": { readonly fontSize: 17; readonly fontWeight: "400"; readonly lineHeight: 26 };
   readonly "bodyMd": { readonly fontSize: 15; readonly fontWeight: "400"; readonly lineHeight: 23 };
@@ -90,4 +91,12 @@ export declare const typography: {
 export declare const motion: {
   readonly duration: { readonly short1: number; readonly short2: number; readonly short3: number; readonly short4: number; readonly medium1: number; readonly medium2: number; readonly medium3: number; readonly medium4: number; readonly long1: number; readonly long2: number; readonly long3: number; readonly long4: number; readonly extraLong1: number; readonly extraLong2: number; readonly extraLong3: number; readonly extraLong4: number };
   readonly easing: { readonly standard: readonly [number, number, number, number]; readonly standardDecelerate: readonly [number, number, number, number]; readonly standardAccelerate: readonly [number, number, number, number] };
+};
+
+export declare const shadow: {
+  readonly "sm": "0 1px  3px rgba(0, 0, 0, 0.08)";
+  readonly "md": "0 4px 12px rgba(0, 0, 0, 0.08)";
+  readonly "lg": "0 8px 24px rgba(0, 0, 0, 0.12)";
+  readonly "overlay": "0 16px 48px rgba(0, 0, 0, 0.16)";
+  readonly "overlayUp": "0 -8px 24px rgba(0, 0, 0, 0.12)";
 };

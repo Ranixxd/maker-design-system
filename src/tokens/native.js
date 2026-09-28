@@ -91,6 +91,11 @@ export const typography = {
     "fontWeight": "600",
     "lineHeight": 26
   },
+  "headingBar": {
+    "fontSize": 17,
+    "fontWeight": "600",
+    "lineHeight": 22
+  },
   "headingXs": {
     "fontSize": 15,
     "fontWeight": "600",
@@ -168,4 +173,12 @@ export const motion = {
       1
     ]
   }
+};
+
+export const shadow = {
+  "sm": "0 1px  3px rgba(0, 0, 0, 0.08)",
+  "md": "0 4px 12px rgba(0, 0, 0, 0.08)",
+  "lg": "0 8px 24px rgba(0, 0, 0, 0.12)",
+  "overlay": "0 16px 48px rgba(0, 0, 0, 0.16)",
+  "overlayUp": "0 -8px 24px rgba(0, 0, 0, 0.12)"
 };
