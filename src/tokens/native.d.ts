@@ -86,3 +86,8 @@ export declare const typography: {
   readonly "labelSm": { readonly fontSize: 13; readonly fontWeight: "500" };
   readonly "labelXs": { readonly fontSize: 11; readonly fontWeight: "500" };
 };
+
+export declare const motion: {
+  readonly duration: { readonly short1: number; readonly short2: number; readonly short3: number; readonly short4: number; readonly medium1: number; readonly medium2: number; readonly medium3: number; readonly medium4: number; readonly long1: number; readonly long2: number; readonly long3: number; readonly long4: number; readonly extraLong1: number; readonly extraLong2: number; readonly extraLong3: number; readonly extraLong4: number };
+  readonly easing: { readonly standard: readonly [number, number, number, number]; readonly standardDecelerate: readonly [number, number, number, number]; readonly standardAccelerate: readonly [number, number, number, number] };
+};

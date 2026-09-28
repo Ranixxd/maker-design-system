@@ -1,7 +1,7 @@
 // src/tokens/*.css에서 앱(React Native)이 쓸 토큰을 뽑아 src/tokens/native.js로 쓴다.
 // 앱은 CSS 변수를 못 읽어서 값을 풀어 담는다. 원본은 늘 CSS다. native.js를 손으로 고치지 않는다.
 //
-// 담는 것: 시멘틱 색(bg·text·border·icon), 간격, 반경, 타이포 역할 열한 개.
+// 담는 것: 시멘틱 색(bg·text·border·icon), 간격, 반경, 타이포 역할 열한 개, 움직임(시간·곡선).
 // 팔레트(--color-gray-* 등)는 담지 않는다. 쓰는 쪽에서 팔레트를 못 부르게 하려는 것이다.
 // bg-hover도 뺀다. 앱에는 hover가 없다(눌림은 bg-pressed).
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -13,7 +13,7 @@ const tokensDir = join(root, 'src', 'tokens');
 const read = (f) => readFileSync(join(tokensDir, f), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
 
 const vars = {};
-for (const f of ['colors.css', 'spacing.css', 'radius.css', 'typography.css']) {
+for (const f of ['colors.css', 'spacing.css', 'radius.css', 'typography.css', 'motion.css']) {
   for (const m of read(f).matchAll(/(--[\w-]+)\s*:\s*([^;]+);/g)) vars[m[1]] = m[2].trim();
 }
 
@@ -75,6 +75,26 @@ for (const m of typoCss.matchAll(/\.text-([\w-]+)\s*\{([^}]*)\}/g)) {
   typography[camel(m[1])] = style;
 }
 
+// 움직임. 시간은 ms 숫자, 곡선은 cubic-bezier의 네 수([x1, y1, x2, y2])다.
+// 앱은 Easing.bezier(...motion.easing.standard)로 쓴다. 옛 별칭(--motion-duration-short 등)은 담지 않는다
+const motion = { duration: {}, easing: {} };
+for (const name of Object.keys(vars)) {
+  let m = name.match(/^--motion-duration-([a-z-]+-\d)$/);
+  if (m) {
+    const v = resolve(name);
+    const n = parseFloat(v);
+    if (!/ms$/.test(v) || Number.isNaN(n)) throw new Error('ms가 아니다: ' + v);
+    motion.duration[camel(m[1])] = n;
+    continue;
+  }
+  m = name.match(/^--motion-easing-([\w-]+)$/);
+  if (m) {
+    const b = resolve(name).match(/^cubic-bezier\(([^)]+)\)$/);
+    if (!b) throw new Error('cubic-bezier가 아니다: ' + name);
+    motion.easing[camel(m[1])] = b[1].split(',').map((x) => parseFloat(x));
+  }
+}
+
 const body = [
   '// 이 파일은 scripts/native-tokens.js가 src/tokens/*.css에서 만든다. 손으로 고치지 않는다.',
   '// 앱(React Native)용이다. 웹은 CSS 변수와 .text-* 클래스를 쓴다.',
@@ -88,6 +108,8 @@ const body = [
   `export const radius = ${JSON.stringify(radius, null, 2)};`,
   '',
   `export const typography = ${JSON.stringify(typography, null, 2)};`,
+  '',
+  `export const motion = ${JSON.stringify(motion, null, 2)};`,
   '',
 ].join('\n');
 
@@ -107,5 +129,12 @@ writeFileSync(join(tokensDir, 'native.d.ts'), [
   '// scripts/native-tokens.js가 만든다. 손으로 고치지 않는다.',
   decl('color', color), decl('spacing', spacing), decl('layout', layout),
   decl('radius', radius), decl('typography', typography),
+  [
+    'export declare const motion: {',
+    '  readonly duration: { ' + Object.keys(motion.duration).map((k) => `readonly ${k}: number`).join('; ') + ' };',
+    '  readonly easing: { ' + Object.keys(motion.easing).map((k) => `readonly ${k}: readonly [number, number, number, number]`).join('; ') + ' };',
+    '};',
+    '',
+  ].join('\n'),
 ].join('\n'));
-console.log(`native.js: 색 ${Object.keys(color).length}, 간격 ${Object.keys(spacing).length}, 반경 ${Object.keys(radius).length}, 타이포 ${Object.keys(typography).length}`);
+console.log(`native.js: 색 ${Object.keys(color).length}, 간격 ${Object.keys(spacing).length}, 반경 ${Object.keys(radius).length}, 타이포 ${Object.keys(typography).length}, 움직임 ${Object.keys(motion.duration).length + Object.keys(motion.easing).length}`);
