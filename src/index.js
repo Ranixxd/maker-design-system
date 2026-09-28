@@ -23,6 +23,7 @@ export { default as EditFrame } from './components/EditFrame/index.js';
 export { default as EmptyState } from './components/EmptyState/index.js';
 export { default as SearchField } from './components/SearchField/index.js';
 export { default as SegmentedControl } from './components/SegmentedControl/index.js';
+export { default as Slider } from './components/Slider/index.js';
 export { default as ToolButton } from './components/ToolButton/index.js';
 export { default as Icon } from './components/Icon/index.js';
 export { default as IconButton } from './components/IconButton/index.js';
