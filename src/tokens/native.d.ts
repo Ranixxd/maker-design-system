@@ -29,7 +29,7 @@ export declare const color: {
   readonly "borderStrong": "#999999";
   readonly "borderAccent": "#9642e2";
   readonly "borderCritical": "#dc3412";
-  readonly "borderOverlay": "rgba(0, 0, 0, 0.02)";
+  readonly "borderOverlay": "rgba(0, 0, 0, 0.04)";
   readonly "iconDefault": "#383838";
   readonly "iconSecondary": "#757575";
   readonly "iconTertiary": "#b3b3b3";

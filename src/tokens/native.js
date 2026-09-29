@@ -31,7 +31,7 @@ export const color = {
   "borderStrong": "#999999",
   "borderAccent": "#9642e2",
   "borderCritical": "#dc3412",
-  "borderOverlay": "rgba(0, 0, 0, 0.02)",
+  "borderOverlay": "rgba(0, 0, 0, 0.04)",
   "iconDefault": "#383838",
   "iconSecondary": "#757575",
   "iconTertiary": "#b3b3b3",
