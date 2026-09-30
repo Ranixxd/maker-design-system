@@ -29,6 +29,7 @@ export const color = {
   "borderSubtle": "#f5f5f5",
   "borderDefault": "#d9d9d9",
   "borderStrong": "#999999",
+  "borderPrimary": "#111111",
   "borderAccent": "#9642e2",
   "borderCritical": "#dc3412",
   "borderOverlay": "rgba(0, 0, 0, 0.04)",

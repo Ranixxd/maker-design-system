@@ -27,6 +27,7 @@ export declare const color: {
   readonly "borderSubtle": "#f5f5f5";
   readonly "borderDefault": "#d9d9d9";
   readonly "borderStrong": "#999999";
+  readonly "borderPrimary": "#111111";
   readonly "borderAccent": "#9642e2";
   readonly "borderCritical": "#dc3412";
   readonly "borderOverlay": "rgba(0, 0, 0, 0.04)";
