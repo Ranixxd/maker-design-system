@@ -59,7 +59,7 @@
   cursor: text;
   transition: border-color var(--motion-duration-short-3) var(--motion-easing-standard);
 }
-.hex:focus-within { border-color: var(--color-border-accent); }
+.hex:focus-within { border-color: var(--color-border-primary); }
 .hash { color: var(--color-text-tertiary); }
 .hexInput {
   flex: 1;

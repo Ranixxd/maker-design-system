@@ -13,7 +13,7 @@
 }
 
 /* 칸 안 어디를 눌러도 글자 칸이 잡히므로, 테두리는 안의 input을 따라 반응한다 */
-.root:focus-within { border-color: var(--color-border-accent); }
+.root:focus-within { border-color: var(--color-border-primary); }
 
 .icon { color: var(--color-icon-secondary); flex: 0 0 auto; }
 

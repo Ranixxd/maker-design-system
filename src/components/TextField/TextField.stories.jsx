@@ -14,7 +14,7 @@ export default {
 **구성 규칙**
 - \`label\` — \`text-label-sm\`, secondary 톤. 생략 가능하지만 되도록 붙인다.
 - \`required\` — 레이블 옆 빨간 점(4px, \`--color-bg-critical\`). 점은 눈으로만 보이고 낭독기에는 input의 \`aria-required\`로 알린다. "*"였는데 이름표 글자와 섞여 읽혀 점으로 바꿨다 (2026-09-17).
-- 커서가 있는 칸은 강조색 테두리(\`--color-border-accent\`)다. 회색은 입력 중인 칸이 덜 드러났다 (2026-09-17).
+- 커서가 있는 칸은 primary 테두리(\`--color-border-primary\`)다. 회색은 입력 중인 칸이 덜 드러났다 (2026-09-17). 강조색(accent)이었는데 이 자리에는 과한 강조라 2026-10-01에 바꿨다. SearchField와 ColorPicker의 hex 칸도 같다.
 - \`hint\` — \`text-body-sm\`, secondary 톤(2026-09-23에 tertiary에서 한 단계 진하게 했다. 흐려서 안 읽혔다). 설명글이라 body다(\`text-label-xs\`였다가 2026-09-17에 한 단계 키웠다). 보조 설명·제약 조건을 적는다. ReactNode를 받으므로 줄바꿈(\`<br />\`)도 가능하다.
 
 **hint는 여러 줄도 받는다** (2026-09-23). 한 문장으로 끝나지 않는 칸이 있다. 규칙이 여럿이면
