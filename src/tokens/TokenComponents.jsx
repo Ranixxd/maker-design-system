@@ -233,7 +233,8 @@ export function BorderColorTable() {
     { token: 'border-default', palette: 'gray-200', desc: '성격이 다른 섹션 사이의 구분 (필터와 리스트). 누를 수 있는 것의 테두리 (버튼·탭·박스)', border: true },
     { token: 'border-overlay',      palette: 'black-alpha-04',   desc: '그림·색면 위에 얹는 선. 밑색을 남긴다' },
     { token: 'border-strong',  palette: 'gray-400', desc: '눈에 띄어야 하는 테두리 (같은 회색 계열)', border: true },
-    { token: 'border-primary', palette: 'gray-900', desc: '커서가 있는 입력칸의 테두리', border: true },
+    { token: 'border-primary', palette: 'gray-900', desc: '고른 항목의 테두리 (미리보기 칸, 견본, 칩)', border: true },
+    { token: 'border-focus',   palette: 'gray-900', desc: '커서가 있는 입력칸의 테두리, 키보드 포커스 링', border: true },
     { token: 'border-accent',  palette: 'violet-600',  desc: '선택·활성 상태의 테두리, 강조 안내선' },
     { token: 'border-critical', palette: 'red-600', desc: '오류가 난 칸의 테두리' },
   ]} />;

@@ -146,9 +146,13 @@
   --color-border-subtle:  var(--color-gray-100);
   --color-border-default: var(--color-gray-200);
   --color-border-strong:  var(--color-gray-400);
-  /* 커서가 있는 입력칸의 테두리. bg-primary와 같은 단계다. accent는 뉴트럴과 구분되는 강조가
-     필요할 때 쓰는 색이라, 입력칸 초점에는 과하다 (2026-10-01 사용자) */
+  /* 고른 항목의 테두리(미리보기 칸, 견본, 칩). bg-primary와 같은 단계다. accent는 뉴트럴과 구분되는
+     강조가 필요할 때 쓰는 색이라, 고른 표시에는 과하다 (2026-10-01 사용자) */
   --color-border-primary: var(--color-gray-900);
+  /* 지금 입력·조작 중인 곳. 커서가 있는 입력칸 테두리와 키보드 포커스 링(src/focus.css)이 쓴다.
+     지금은 border-primary와 같은 값이지만 역할이 다르다(2026-10-01 사용자). 링만 더 드러나게 하거나
+     다크모드를 넣을 때 고른 표시가 함께 끌려가지 않게 갈라 둔다(bg-primary와 bg-inverse를 가른 것과 같다) */
+  --color-border-focus:   var(--color-gray-900);
   /* 선은 글자보다 대비 기준이 낮다(3:1). 하늘색 때는 500이 그마저 못 넘어 600을 참조했다 (2026-09-10).
      보라 500은 3.61로 넘지만 text-accent와 같은 단계로 두려고 600(5.03)을 그대로 쓴다 (2026-09-29) */
   --color-border-accent:  var(--color-violet-600);

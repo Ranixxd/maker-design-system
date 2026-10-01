@@ -35,11 +35,13 @@
 
 .label { line-height: 1; color: var(--color-text-secondary); white-space: nowrap; }
 
-/* 켜진 도구는 자리를 더 차지하지 않고 스스로 말한다. 옅은 강조 바탕에 강조색 글자 */
-.on { background: var(--color-bg-accent-subtle); }
-.on .icon, .on .label { color: var(--color-text-accent); }
+/* 켜진 도구는 자리를 더 차지하지 않고 스스로 말한다. Chip을 고른 때와 같이 옅은 회색 바탕에 기본 글자다.
+   옅은 보라 바탕에 보라 글자였는데, accent는 뉴트럴과 구분되는 강조가 필요할 때 쓰는 색이라 켜짐 표시에는 과했다(2026-10-01 사용자) */
+.on { background: var(--color-bg-tertiary); }
+.on .icon { color: var(--color-icon-default); }
+.on .label { color: var(--color-text-default); }
 @media (hover: hover) {
-  .on:hover { background: var(--color-bg-accent-subtle); }
+  .on:hover { background: var(--color-bg-tertiary); }
 }
 
 .btn:disabled { opacity: 0.4; cursor: default; }

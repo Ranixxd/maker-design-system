@@ -57,11 +57,11 @@
 
 .slider:focus { outline: none; }
 .slider:focus-visible::-webkit-slider-thumb {
-  outline: 2px solid var(--color-bg-accent);
+  outline: 2px solid var(--color-border-focus);
   outline-offset: 2px;
 }
 .slider:focus-visible::-moz-range-thumb {
-  outline: 2px solid var(--color-bg-accent);
+  outline: 2px solid var(--color-border-focus);
   outline-offset: 2px;
 }
 

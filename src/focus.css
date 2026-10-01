@@ -1,0 +1,11 @@
+/* 키보드 포커스 링. 쓰는 쪽에서 따로 정하지 않은 모든 요소가 같은 링을 두른다(2026-10-01 사용자).
+   정하지 않으면 브라우저 기본 링(크롬은 파랑·검정 겹선)이 떠서 부품마다 링 색이 달랐다.
+   accent는 뉴트럴과 구분되는 강조가 필요할 때 쓰는 색이라 링은 primary다.
+
+   index.css는 토큰만 싣는 자리인데 이것만 예외다. 링은 바깥선(outline)이라 자리를 차지하지 않아
+   쓰는 쪽 배치를 밀지 않는다. :where()로 감싸 우선순위를 0으로 둔다. 부품이나 앱이 outline을
+   한 줄이라도 적으면 그쪽이 이긴다(입력칸의 outline: none 등). */
+:where(:focus-visible) {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}

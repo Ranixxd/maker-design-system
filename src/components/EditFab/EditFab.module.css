@@ -39,10 +39,6 @@
 }
 .fab:active:not(:disabled)::after { background-color: var(--color-bg-pressed); }
 
-.fab:focus-visible {
-  outline: 2px solid var(--color-bg-accent);
-  outline-offset: 2px;
-}
 
 .fab:disabled {
   cursor: default;
