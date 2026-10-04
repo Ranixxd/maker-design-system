@@ -1,3 +1,4 @@
+import { Sun, Zap } from 'lucide-react';
 import EditFab from './EditFab';
 
 export default {
@@ -17,6 +18,7 @@ export default {
 **모양**
 - 36px 동그라미, 흰 바탕, 얇은 테두리, 옅은 그림자, 흐린 아이콘. **강조색을 쓰지 않는다.** 판보다 먼저 눈에 들면 안 된다
 - 글자 없이 아이콘만 선다. \`label\`은 꼭 준다. 낭독기 이름과 PC에서 마우스를 올렸을 때 뜨는 말이 된다
+- **\`showLabel\`이면 아이콘 오른쪽에 \`label\`을 글자로 세운다**(11px \`text-label-xs\`, 알약, 높이 36px 그대로). 아이콘 아래에 두면 단추가 커져 미리보기를 더 가려서 가로로 둔다. 미리보기 위에 늘 떠 있어 아이콘만으로 무슨 일인지 알기 어려운 단추에 쓴다(2026-10-04 사용자). 판 위 부가 기능(초기화, 배경 지우기)에는 쓰지 않는다. 글자는 짧게(두세 낱말)
 
 **규칙**
 - **켜고 끄는 단추가 아니다.** 누르면 한 번 일어나고 끝난다. 켜짐 상태가 필요하면(크기 가이드처럼) 아래 도구 줄의 \`ToolButton\` \`active\`로 간다
@@ -32,6 +34,7 @@ export default {
   },
   argTypes: {
     label: { control: 'text' },
+    showLabel: { control: 'boolean' },
     disabled: { control: 'boolean' },
   },
   decorators: [(Story) => (
@@ -52,6 +55,17 @@ export const Uses = {
       <EditFab icon="Eraser" label="배경 지우기" />
       <EditFab icon="Download" label="기기에 저장" />
     </>
+  ),
+};
+
+export const Labeled = {
+  name: '글자를 세울 때 (showLabel)',
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 'var(--spacing-2)' }}>
+      <EditFab iconNode={<Zap aria-hidden="true" />} label="쉽게시작" showLabel />
+      <EditFab iconNode={<Sun aria-hidden="true" />} label="테마모드" showLabel />
+    </div>
   ),
 };
 

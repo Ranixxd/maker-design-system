@@ -23,6 +23,22 @@
 .icon { width: 18px; height: 18px; }
 .fab > svg { width: 18px; height: 18px; display: block; }
 
+/* 글자를 세운 알약. 높이는 그대로 36px이고, 아이콘 쪽 여백을 조금 좁혀 아이콘과 글자가 한 덩어리로 보이게 한다.
+   아이콘 아래에 글자를 두는 세로 모양도 해 봤는데 단추가 커져 미리보기를 더 가려 접었다(2026-10-04 사용자) */
+.labeled {
+  width: auto;
+  gap: var(--spacing-1);
+  padding: 0 var(--spacing-3) 0 10px;
+}
+.text {
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  transition: color var(--motion-duration-short) var(--motion-easing-standard);
+}
+@media (hover: hover) {
+  .fab:hover:not(:disabled) .text { color: var(--color-text-default); }
+}
+
 /* hover·눌림은 바탕 위에 한 겹 얹는다. 바탕을 반투명 토큰으로 바꾸면 밑의 그림이 단추 속으로 비친다 */
 .fab::after {
   content: '';
