@@ -10,10 +10,10 @@
   }
 }
 
-/* 머리는 판이 창을 꽉 채우는 작업 화면이라 다른 창의 20px 여백보다 좁다 */
+/* 머리는 판이 창을 꽉 채우는 작업 화면이라 다른 창의 20px 여백보다 좁다.
+   머리·본문·아래 자리 사이에 선을 긋지 않는다. 본문 바탕(면)으로 갈린다(2026-10-10 사용자) */
 .frame .head {
   padding: var(--spacing-3) var(--spacing-3) var(--spacing-3) var(--spacing-4);
-  border-bottom: 1px solid var(--color-border-default);
 }
 
 .frame .body {
@@ -23,10 +23,14 @@
   overflow: hidden;
 }
 
-/* 판을 세우는 회색 바탕. 판 자체가 위아래 한가운데에 선다.
-   안내까지 한 덩어리로 가운데 두면 안내 높이만큼 판이 아래로 쏠려 보였다(2026-09-25 사용자).
-   세 줄(1fr · 판 · 1fr)로 나눠 위아래 빈칸을 같게 두고, 안내는 윗칸 바닥에 판에 붙여 매단다.
-   자리가 모자라면 윗칸이 안내 높이 밑으로는 줄지 않는다 */
+/* 판을 세우는 회색 바탕(bg-tertiary, 2026-10-10 사용자: 한 단계 어둡게). 판 자체가 위아래 한가운데에 선다.
+   세 줄(1fr · 판 · 1fr)로 나눠 위아래 빈칸을 같게 둔다. 안내와 둥근 단추는 띄워 두어(absolute)
+   있든 없든 판이 움직이지 않는다(2026-10-10 사용자).
+
+   판의 최대 크기는 --edit-canvas-max-w·--edit-canvas-max-h다(EditCanvas가 쓴다).
+   폭은 340과 본문 폭(좌우 여백 20씩 뺀 것) 중 작은 쪽, 높이는 본문 높이에서 112를 뺀 것.
+   112는 위 안내 자리와 아래 둥근 단추(아래에서 12 + 36 + 틈 8 = 56) 자리를 위아래 똑같이 비우는 값이다.
+   cq 단위는 쓰는 자리(판)에서 풀려 이 바탕의 크기를 본다 */
 .stage {
   position: relative;
   flex: 1 1 auto;
@@ -36,14 +40,18 @@
   grid-template-columns: minmax(0, 1fr);
   justify-items: center;
   padding: 0 var(--spacing-5);
-  background-color: var(--color-bg-secondary);
+  background-color: var(--color-bg-tertiary);
+  --edit-canvas-max-w: min(340px, 100cqw);
+  --edit-canvas-max-h: calc(100cqh - 112px);
   /* 판이 바탕 크기를 보고 제 크기를 정할 수 있게 한다(cqw·cqh). 폰 가로·PC 창에서 판이 넘치지 않는다 */
   container-type: size;
 }
 
 .hint {
-  grid-row: 1;
-  align-self: end;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
   margin: 0 0 var(--spacing-2);
   text-align: center;
   color: var(--color-text-secondary);
@@ -51,8 +59,9 @@
   -webkit-user-select: none;
 }
 
-/* 판을 담는 줄. 판의 폭은 쓰는 쪽이 정하므로 여기서는 줄 폭만 내준다 */
+/* 판을 담는 줄. 판의 폭은 쓰는 쪽이 정하므로 여기서는 줄 폭만 내준다. 안내는 이 줄 위에 띄운다 */
 .board {
+  position: relative;
   grid-row: 2;
   width: 100%;
   display: flex;
@@ -73,12 +82,11 @@
 .fabStart { left: var(--spacing-4); }
 .fabEnd { right: var(--spacing-4); }
 
-/* 아래 고정 자리. 위에 선 하나를 긋고 안은 쓰는 쪽이 채운다.
-   position: relative라 판 위로 떠오르는 띠(색 고르기 등)를 bottom: 100%로 붙일 수 있다 */
+/* 아래 고정 자리. 선 없이 자리만 내주고 안은 쓰는 쪽이 채운다.
+   position: relative라 판 위로 떠오르는 띠(색 고르기 등)를 bottom: 100%로 붙일 수 있다. 띠도 윗선 없이 면으로 갈린다 */
 .frame .foot {
   display: block;
   position: relative;
   padding: var(--spacing-3) var(--spacing-5) calc(var(--spacing-5) + env(safe-area-inset-bottom));
-  border-top: 1px solid var(--color-border-default);
 }
 .footInner { display: flex; flex-direction: column; gap: var(--spacing-2); }

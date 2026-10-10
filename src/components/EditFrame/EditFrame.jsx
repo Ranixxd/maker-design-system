@@ -41,8 +41,10 @@ export default function EditFrame({
       {...props}
     >
       <div className={styles.stage} ref={stageRef} style={fabOffset ? { '--edit-fab-offset': fabOffset + 'px' } : undefined}>
-        {hint && <p className={`text-body-sm ${styles.hint}`}>{hint}</p>}
-        <div className={styles.board}>{children}</div>
+        <div className={styles.board}>
+          {hint && <p className={`text-body-sm ${styles.hint}`}>{hint}</p>}
+          {children}
+        </div>
         {fabStart && <div className={`${styles.fabSlot} ${styles.fabStart}`}>{fabStart}</div>}
         {fabEnd && <div className={`${styles.fabSlot} ${styles.fabEnd}`}>{fabEnd}</div>}
       </div>
