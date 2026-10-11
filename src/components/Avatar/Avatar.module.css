@@ -1,0 +1,14 @@
+.avatar {
+  display: block;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border-overlay);
+  background: var(--color-bg-tertiary);
+  object-fit: cover;
+  box-sizing: border-box;
+}
+
+/* 사이즈 */
+.sm { width: 24px; height: 24px; }
+.md { width: 40px; height: 40px; }
+.lg { width: 64px; height: 64px; }

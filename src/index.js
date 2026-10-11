@@ -10,6 +10,7 @@
 import './index.css';
 
 export { default as Accordion } from './components/Accordion/index.js';
+export { default as Avatar } from './components/Avatar/index.js';
 export { default as Badge } from './components/Badge/index.js';
 export { default as Button } from './components/Button/index.js';
 export { default as Chip } from './components/Chip/index.js';
