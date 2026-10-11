@@ -10,7 +10,7 @@
 |---|---|
 | 배경화면 메이커 (`wallpaper-maker`) | npm — `github:Ranixxd/maker-design-system` |
 | 카톡테마 메이커 (`phase4`) | 토큰 CSS 사본 — 빌드 단계가 없는 정적 사이트다 |
-| 덕꾸 앱 (`dukku`, 2026-09-26) | npm의 `maker-design-system/native`: 토큰만 받는다. 부품은 앱이 따로 만든다(아래 "앱은 토큰과 이름만") |
+| 덕꾸 앱 (`dukku`, 2026-09-26) | npm의 `maker-design-system/native`: 토큰만 받는다. 부품과 규칙은 앱 스토리북에 따로 있다(아래 "앱과 같이 쓰는 것은 토큰뿐이다") |
 
 **그런데 push만으로는 어느 쪽에도 안 간다.**
 
@@ -112,34 +112,20 @@
 - **부품을 언제 쓰나(쓰임 규칙)는 이 파일이 아니라 그 부품의 `X.stories.jsx` 설명에 적는다**(2026-10-12 사용자).
   이 파일에는 일하는 법(언제 MDS를 보나, 무엇을 함께 고치나)만 둔다
 
-### 앱은 토큰과 이름만 같이 쓴다 (2026-09-26)
+### 앱과 같이 쓰는 것은 토큰뿐이다 (2026-10-12 사용자)
 
-덕꾸 앱(React Native)은 여기 부품을 못 쓴다. 웹 부품은 HTML·CSS, 앱은 `View`·`Pressable`이라 코드를 합칠 수 없고,
-누르는 방식도 다르다(앱에는 hover가 없고, 누르는 영역을 따로 넓히고, 이동은 `href`가 아니라 라우터다).
+덕꾸 앱(React Native)은 여기 부품을 못 쓴다. 웹 부품은 HTML·CSS, 앱은 `View`·`Pressable`이라 코드를 합칠 수 없다.
+그리고 **경험이 달라 규칙도 달라진다**(운영체제 약속, 누르는 방식, 뒤로 가기, 시트). 그래서 나눈다.
 
-- **토큰은 여기가 원본이다.** 앱은 `maker-design-system/native`로 시멘틱 색·간격·반경·타이포 역할·움직임(시간 ms, 곡선 네 수)·그림자(box-shadow 글)를 받는다. 팔레트와 `bg-hover`는 담지 않는다.
-- **앱 부품도 웹과 같은 이름을 쓴다.** `variant`·`size`·상태 이름을 맞춘다. 웹에서 `variant="primary" size="lg"`이면 앱에서도 그 이름이다.
-  앱에만 있는 것(`hitSlop`, 진동)은 앱 부품에만 둔다.
-- **앱 부품은 지금 `dukku` 레포에 있다.** 쓰는 앱이 하나뿐이라서다. 앱이 하나 더 생기면 여기로 옮길지 사람에게 묻는다.
-
-### 앱 화면 기준은 stories에 있다 (색인)
-
-앱(덕꾸) 화면 규칙의 본문은 **각 부품의 stories 설명(또는 토큰 MDX)에만** 적는다(2026-10-12 사용자). 여기와 dukku CLAUDE.md에는 어디를 보는지만 둔다.
-같은 규칙을 여러 곳에 쓰면 한쪽만 고쳐져 어긋난다. 규칙이 생기거나 바뀌면 아래 자리의 설명을 고친다.
-
-| 무엇 | 본문이 있는 곳 |
+| 무엇 | 어디 |
 |---|---|
-| 앱 머리(앱바) 두 모양, 뒤로 밀기 | `Title.stories.jsx` "앱(덕꾸) 머리" |
-| 바텀시트(값, 닫기 단추 없음, 제목 필수, 고르기 시트) | `LayerPopup.stories.jsx` "앱(덕꾸) 바텀시트" |
-| 고르기 줄(앞 아이콘, 묶음 사이 Divider) | `MenuItem.stories.jsx` |
-| 판 위에 늘 떠 있는 단추 | `EditFab.stories.jsx` |
-| 누르기(hover 없음, pressed, hitSlop 안 넓힘, 손가락 우선), 단추 그림자 없음, 나란히 같은 크기 | `Button.stories.jsx` |
-| 편집 화면(영역 셋, 판, 고른 상자, 손잡이 자리·붙들기, 가운데 붙기, 떠오르는 띠) | `EditFrame.stories.jsx` |
-| 테두리 대신 바탕과 그림자 | `tokens/shadow.mdx` |
-| 앱 글자 크기(폰 설정 1~1.3배), 앱 머리 글자 | `tokens/typography.mdx` |
-| 카테고리는 Chip, 탭 전환은 SegmentedControl | 각 `Chip`·`SegmentedControl` stories |
+| 토큰(색, 간격, 반경, 타이포 역할, 움직임, 그림자) | **여기가 원본, 웹·앱 공통.** 앱은 `maker-design-system/native`로 받는다(팔레트와 `bg-hover`는 담지 않는다) |
+| 서비스 철학·가치 | 웹·앱 공통 |
+| 웹 부품과 그 규칙·위계 | 여기 stories |
+| 앱 부품과 그 규칙·위계(운영체제 약속 포함) | **dukku 레포 앱 스토리북**(`npm run storybook`, `components/**/*.stories.tsx`·`components/docs/*.mdx`). 여기에 적지 않는다 |
 
-까닭과 경과는 dukku 레포 `docs/design/`(2026-09-28 테꾸 다듬기부터)에 날짜별로 있다.
+- 이 레포 stories에 "앱(덕꾸)에서는…" 단락을 쓰지 않는다. 앱 규칙은 앱 스토리북에 쓴다(2026-10-12에 모두 옮겼다)
+- 이름(variant·size)은 맞으면 좋지만 따라야 하는 규칙은 아니다. 경험이 다르면 앱이 다른 이름을 써도 된다
 
 ### React를 두 벌 만들지 않는다
 
