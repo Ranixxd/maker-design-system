@@ -37,9 +37,13 @@ export { default as TextField } from './components/TextField/index.js';
 export { default as UploadField } from './components/UploadField/index.js';
 export { default as Title } from './components/Title/index.js';
 export { default as Thumbnail } from './components/Thumbnail/index.js';
+export { default as SelectRow } from './components/SelectRow/index.js';
+export { default as ColorPalette } from './components/ColorPalette/index.js';
 
 /* 이름으로 내보내는 것들 — 짝이 있어야 뜻이 사는 부품이다.
    Radio는 RadioGroup 안에서 쓰이고, Toast는 Provider가 위에 있어야 useToast가 산다 */
 export { RadioGroup, Radio } from './components/Radio/index.js';
 export { Checkbox } from './components/Checkbox/index.js';
+/* 타일과 그 안에 담는 견본. 견본은 타일 안에서만 뜻이 있다 */
+export { default as SelectTile, ColorDot, RainbowDot, tileFillClass } from './components/SelectTile/index.js';
 export { ToastProvider, useToast } from './components/Toast/index.js';

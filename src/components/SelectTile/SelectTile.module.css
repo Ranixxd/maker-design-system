@@ -1,0 +1,87 @@
+.tile {
+  flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  line-height: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.tile:active { opacity: .7; }
+.labeled {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-1);
+  line-height: normal;
+}
+
+/* 칸. 고른 칸은 primary 테두리 2(2026-10-10 편집 화면 기준, MDS EditFrame "판 위로 떠오르는 띠").
+   테두리를 1에서 2로 바꾸면 안쪽이 밀리므로 1px은 안쪽 그림자로 더한다 */
+.box {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  overflow: hidden;
+  border: 1px solid var(--color-border-default);
+  background: var(--color-bg-default);
+  transition: border-color var(--motion-duration-short) var(--motion-easing-standard);
+}
+.md { width: 40px; height: 40px; border-radius: var(--radius-md); }
+.sm { width: 32px; height: 32px; border-radius: var(--radius-sm); }
+@media (hover: hover) {
+  .tile:hover .box:not(.on) { border-color: var(--color-border-strong); }
+}
+.on {
+  border-color: var(--color-border-primary);
+  box-shadow: inset 0 0 0 1px var(--color-border-primary);
+}
+
+.label { color: var(--color-text-secondary); white-space: nowrap; }
+.tile[aria-pressed="true"] .label { color: var(--color-text-default); }
+
+.fill {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* 견본. 둘레 선은 그림 위에 얹는다(EditCanvas와 같은 방식) */
+.dot {
+  position: relative;
+  display: block;
+  flex: 0 0 auto;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+.dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid var(--color-border-overlay);
+}
+.dot-md { width: 30px; height: 30px; }
+.dot-sm { width: 24px; height: 24px; }
+
+/* 무지개: 오른쪽 주황에서 시계 방향으로 노랑, 초록, 하늘, 파랑, 보라, 빨강. 앱 그림(rainbow-chip.mjs)과 같은 마디다.
+   흐림이 가장자리에서 비지 않게 견본보다 세 배 크게 칠하고 흐린다. 흐림은 견본 지름의 14%.
+   색은 토큰이 아니다. 고를 수 있는 색 전부를 뜻하는 그림이라 특정 역할 색을 쓸 수 없다 */
+.rainbow::before {
+  content: "";
+  position: absolute;
+  inset: -100%;
+  background: conic-gradient(from 90deg,
+    #ff8a1f 0%, #ffe41f 13%, #35e052 36%, #1fdde6 50%,
+    #2f45ff 63%, #b51fe8 76%, #ff1f45 88%, #ff8a1f 100%);
+  filter: blur(4.2px);
+}
+.dot-sm.rainbow::before { filter: blur(3.4px); }
