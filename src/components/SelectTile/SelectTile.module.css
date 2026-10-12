@@ -40,6 +40,10 @@
   box-shadow: inset 0 0 0 1px var(--color-border-primary);
 }
 
+/* fill: 칸 자체가 색 견본이다. 칸 둘레 선 안에 동그란 견본을 또 두면 상자가 겹쳐 보였다(2026-10-13 사용자).
+   안쪽 여백을 없애고, 고른 칸은 같은 primary 2다 */
+.filled { padding: 0; }
+
 .label { color: var(--color-text-secondary); white-space: nowrap; }
 .tile[aria-pressed="true"] .label { color: var(--color-text-default); }
 

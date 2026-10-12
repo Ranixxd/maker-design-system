@@ -29,6 +29,8 @@ export default {
 - \`ColorDot\`: 동그란 색 견본. 둘레 선은 그림 위에 얹는 \`border-overlay\`라 하양 견본도 바탕과 갈린다
 - \`RainbowDot\`: 색 직접 고르기. 색상환을 크게 흐린 동그라미. **직접 고른 색이 있으면 무지개 대신 그 색의 \`ColorDot\`을 보인다**
 - 그림 미리보기: \`<img className={tileFillClass}>\`. 칸 안에 다 보이게 담는다(contain)
+- \`fill\`(색): 칸 자체를 그 색으로 칠한다. **사용자가 정하는 색 목록**(배경 만들기의 배경색·패턴색처럼 더하고 빼는 색)에 쓴다.
+  칸 둘레 선 안에 동그란 견본을 또 두면 상자가 겹겹이 보였다(2026-10-13 사용자). 정해 둔 색 중 고르는 팔레트(\`ColorPalette\`)는 \`ColorDot\` 그대로다
         `,
       },
     },
@@ -81,4 +83,18 @@ export const Labeled = {
       <SelectTile label="검정" showLabel><ColorDot value="#1f1f1f" /></SelectTile>
     </div>
   ),
+};
+
+export const Filled = {
+  name: '칸을 색으로 채우기',
+  render: () => {
+    const [on, setOn] = useState(0);
+    return (
+      <div style={{ display: 'flex', gap: 'var(--spacing-2)' }}>
+        {['#8cd0e6', '#ffffff', '#ebe3ff'].map((c, i) => (
+          <SelectTile key={c} size="sm" label={'패턴색 ' + (i + 1)} fill={c} selected={on === i} onClick={() => setOn(i)} />
+        ))}
+      </div>
+    );
+  },
 };
