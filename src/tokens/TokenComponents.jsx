@@ -223,6 +223,7 @@ export function TextColorTable() {
     { token: 'text-link',       palette: 'sky-700',  desc: '하이퍼링크' },
     { token: 'text-critical',   palette: 'red-600',  desc: '크리티컬 텍스트' },
     { token: 'text-oncritical', palette: 'white',    desc: 'bg-critical 위 텍스트', border: true },
+    { token: 'text-success',    palette: 'sky-500',  desc: '맞았다·잘됐다 (올바른 예시 제목). text-critical과 짝' },
     { token: 'text-brand',      palette: 'violet-400', desc: '로고 글자 같은 브랜드 큰 글자' },
   ]} />;
 }

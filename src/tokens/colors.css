@@ -136,6 +136,8 @@
   --color-text-link:      var(--color-sky-700);
   --color-text-critical:     var(--color-red-600);
   --color-text-oncritical:   var(--color-white);
+  /* 맞았다·잘됐다를 알리는 글자. 자주 묻는 질문의 [올바른 예시] 제목처럼 text-critical과 짝으로 쓴다 (2026-10-12 사용자) */
+  --color-text-success:      var(--color-sky-500);
   /* 브랜드 글자. 로고 글자처럼 브랜드를 드러내는 큰 글자에만 쓴다. 흰 바탕 대비가 2.5라 본문에 쓰지 않는다 (2026-09-28) */
   --color-text-brand:        var(--color-violet-400);
 

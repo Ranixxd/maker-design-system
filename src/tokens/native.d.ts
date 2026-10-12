@@ -23,6 +23,7 @@ export declare const color: {
   readonly "textLink": "#0768cf";
   readonly "textCritical": "#dc3412";
   readonly "textOncritical": "#ffffff";
+  readonly "textSuccess": "#0d99ff";
   readonly "textBrand": "#c18bff";
   readonly "borderSubtle": "#f5f5f5";
   readonly "borderDefault": "#d9d9d9";

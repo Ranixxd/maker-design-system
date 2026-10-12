@@ -25,6 +25,7 @@ export const color = {
   "textLink": "#0768cf",
   "textCritical": "#dc3412",
   "textOncritical": "#ffffff",
+  "textSuccess": "#0d99ff",
   "textBrand": "#c18bff",
   "borderSubtle": "#f5f5f5",
   "borderDefault": "#d9d9d9",
