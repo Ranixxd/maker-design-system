@@ -20,6 +20,10 @@ export default {
 
 **쓰지 않는 곳**: 눌러서 이동만 하는 것. 그건 링크나 Button이다. Chip은 고른 상태가 남는다.
 
+**지우기 붙은 칩**(\`onRemove\`, 2026-10-13): \`[레이어 2 ×]\`처럼 칩 안 오른쪽에 ×가 선다. 더하고 빼는 칩 줄(배경 만들기 레이어)에 쓴다.
+×는 칩 글자색을 따르고(고른 칩이면 흰색) 누름 영역은 24다. \`removeLabel\`에 무엇을 지우는지 적는다.
+칩 모서리에 ×를 걸치면(CornerButton) 옆 칩과 붙어 잘못 누르기 쉬웠다(사용자). 칩에는 CornerButton을 쓰지 않는다
+
 **여러 개를 늘어놓을 때**는 부모가 \`display:flex; gap: var(--spacing-1)\`로 줄을 만들고,
 넘치면 \`overflow-x:auto\`로 굴린다. Chip 자신은 줄바꿈하지 않는다.
 2026-09-21에 8px에서 4px로 줄였다. 칩은 테두리가 있어 8px면 한 줄이 아니라 낱개로 흩어져 보인다.
@@ -61,4 +65,22 @@ export const WithLeading = {
       <Chip leading="💛">노랑</Chip>
     </div>
   ),
+};
+
+export const Removable = {
+  name: '지우기 붙은 칩',
+  parameters: { controls: { disable: true } },
+  render: () => {
+    const [n, setN] = useState(3);
+    const [cur, setCur] = useState(1);
+    return (
+      <div style={{ display: 'flex', gap: 'var(--spacing-1)' }}>
+        {Array.from({ length: n }, (_, i) => (
+          <Chip key={i} selected={cur === i} onClick={() => setCur(i)}
+            onRemove={i > 0 && cur === i ? () => { setN(n - 1); setCur(i - 1); } : undefined}
+            removeLabel={'레이어 ' + (i + 1) + ' 지우기'}>{'레이어 ' + (i + 1)}</Chip>
+        ))}
+      </div>
+    );
+  },
 };

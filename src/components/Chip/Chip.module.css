@@ -39,3 +39,32 @@
 .label { line-height: 1; }
 
 .chip:disabled { opacity: 0.4; cursor: default; }
+
+/* 지우기 붙은 칩(onRemove, 2026-10-13). [레이어 2 ×]. 칩 모서리에 ×를 걸치면 옆 칩(+)과 붙어 잘못 누르기 쉬웠다(사용자).
+   × 자리만큼 칩 오른쪽을 넓히고 그 자리에 24 누름 영역을 둔다. ×는 칩 글자색을 따른다(고른 칩이면 흰색) */
+.removable {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+.withRemove { padding-right: calc(var(--spacing-2) + 24px); }
+.remove {
+  position: absolute;
+  top: 50%;
+  right: var(--spacing-1);
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: none;
+  color: var(--color-icon-secondary);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.removableOn .remove { color: var(--color-icon-onprimary); }
+.removeIcon { width: 14px; height: 14px; flex: none; }
