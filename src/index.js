@@ -39,6 +39,7 @@ export { default as Title } from './components/Title/index.js';
 export { default as Thumbnail } from './components/Thumbnail/index.js';
 export { default as SelectRow } from './components/SelectRow/index.js';
 export { default as ColorPalette } from './components/ColorPalette/index.js';
+export { default as CornerButton } from './components/CornerButton/index.js';
 
 /* 이름으로 내보내는 것들 — 짝이 있어야 뜻이 사는 부품이다.
    Radio는 RadioGroup 안에서 쓰이고, Toast는 Provider가 위에 있어야 useToast가 산다 */
