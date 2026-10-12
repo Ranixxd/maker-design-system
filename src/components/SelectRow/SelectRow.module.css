@@ -15,7 +15,6 @@
   padding-right: var(--spacing-4);
   overflow-x: auto;
   overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
 .scroll::-webkit-scrollbar { display: none; }
