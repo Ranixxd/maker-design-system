@@ -1,0 +1,21 @@
+/* 칩 사이 4(Chip 규칙). 넘치면 가로로 넘기고 줄을 바꾸지 않는다 */
+.line {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  padding-left: var(--chip-group-inset);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+.line::-webkit-scrollbar { display: none; }
+.line > * { flex-shrink: 0; }
+/* 끝 여백은 padding이 아니라 빈 칸으로 둔다. 아이폰(WebKit)은 넘기는 칸의 padding-right를 스크롤 거리에
+   넣지 않아 마지막 칸이 잘린 채 멈춘다(SelectRow와 같은 까닭). 빈 칸 앞에도 칸 사이 4가 붙으므로
+   그만큼 왼쪽으로 당긴다. 그래야 inset이 0일 때 끝 여백도 0이다 */
+.line::after {
+  content: "";
+  flex: 0 0 var(--chip-group-inset);
+  margin-left: calc(var(--spacing-1) * -1);
+  align-self: stretch;
+}
