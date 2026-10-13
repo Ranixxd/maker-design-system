@@ -12,12 +12,13 @@ const SelectTile = forwardRef(function SelectTile({
   size = 'md',          // 'md'(칸 40) | 'sm'(칸 32)
   label,                // 낭독기 이름. showLabel이면 칸 아래 글자로도 선다
   showLabel = false,
-  fill,                 // 색(#hex) 또는 'rainbow'. 주면 칸 자체를 그 색으로 칠한다. 칸 안에 견본을 따로 두지 않는다(2026-10-13)
+  fill,                 // 색(#hex), 'rainbow'(직접 고르기), 'transparent'(체크무늬, 투명). 주면 칸 자체를 칠한다. 칸 안에 견본을 따로 두지 않는다(2026-10-13)
   className,
   children,
   ...props              // onClick 등은 단추에 붙는다
 }, ref) {
   const rainbow = fill === 'rainbow';
+  const clear = fill === 'transparent';
   return (
     <button
       ref={ref}
@@ -27,8 +28,8 @@ const SelectTile = forwardRef(function SelectTile({
       aria-label={showLabel ? undefined : label}
       {...props}
     >
-      <span className={[styles.box, styles[size], fill && styles.filled, rainbow && styles.fillRainbow, selected && styles.on].filter(Boolean).join(' ')}
-        style={fill && !rainbow ? { background: fill } : undefined}>{children}</span>
+      <span className={[styles.box, styles[size], fill && styles.filled, rainbow && styles.fillRainbow, clear && styles.fillClear, selected && styles.on].filter(Boolean).join(' ')}
+        style={fill && !rainbow && !clear ? { background: fill } : undefined}>{children}</span>
       {showLabel && <span className={`text-label-xs ${styles.label}`}>{label}</span>}
     </button>
   );

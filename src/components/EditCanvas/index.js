@@ -1,1 +1,1 @@
-export { default } from './EditCanvas';
+export { default, checkerClass } from './EditCanvas';

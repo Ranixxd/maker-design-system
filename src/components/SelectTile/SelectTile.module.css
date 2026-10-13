@@ -73,6 +73,12 @@
 }
 .sm.fillRainbow.on::after { border-radius: calc(var(--radius-sm) - 1px); }
 
+/* fill="transparent": 투명(바탕 없음)을 고르는 칸. 체크무늬로 칠한다(2026-10-13 냉장고 저장 창 바탕).
+   무늬는 EditCanvas transparent(판의 투명 바탕)와 같은 두 색이고, 칸이 작아 한 칸을 10px로 줄인다 */
+.fillClear {
+  background: repeating-conic-gradient(var(--color-bg-tertiary) 0% 25%, var(--color-bg-default) 0% 50%) 0 0 / 10px 10px;
+}
+
 .label { color: var(--color-text-secondary); white-space: nowrap; }
 .tile[aria-pressed="true"] .label { color: var(--color-text-default); }
 

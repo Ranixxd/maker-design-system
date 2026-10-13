@@ -39,6 +39,30 @@
 .input::placeholder { color: var(--color-text-tertiary); }
 .input:disabled { opacity: 0.5; cursor: not-allowed; }
 
+/* 칸 안 단추(action). 칸 오른쪽 끝에서 8 안쪽, 세로 가운데에 32 원으로 선다. 칸의 주된 동작(넣기·보내기)이라 primary다.
+   글자가 단추 밑으로 들어가지 않게 칸 오른쪽 여백을 단추 자리만큼 늘린다 */
+.inputWrap { position: relative; display: flex; flex-direction: column; }
+.withAction { padding-right: calc(var(--spacing-2) + 32px + var(--spacing-2)); }
+.action {
+  position: absolute;
+  right: var(--spacing-2);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-primary);
+  color: var(--color-icon-onprimary);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.action:active { opacity: .7; }
+
 /* 잘못 입력(필수칸이 비었을 때 등). 포커스해도 빨간 테두리를 둔다 — 고칠 때까지 어디가 문제인지 보여야 한다 */
 .input[data-invalid],
 .input[data-invalid]:focus {

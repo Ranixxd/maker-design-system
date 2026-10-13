@@ -65,12 +65,15 @@ export default function Popover({
       if (rootRef.current?.contains(e.target) || panelRef.current?.contains(e.target)) return;
       close(false);
     };
+    /* Esc는 잡는 단계(capture)에서 받아 여기서 끝낸다. 아래 깔린 창(LayerPopup·EditFrame)도 document에서 Esc를 듣는데,
+       먼저 열린 그 창의 듣개가 먼저 불려 stopPropagation으로는 못 막았다. 편집 화면 위 색 고르기에서 Esc 한 번에
+       팝오버와 편집 화면이 함께 닫혔다(2026-10-13 냉장고 표정 색, 말풍선 색 직접 고르기도 같았다) */
     const onKey = (e) => { if (e.key === 'Escape') { e.stopPropagation(); close(); } };
     document.addEventListener('pointerdown', onDown);
-    document.addEventListener('keydown', onKey);
+    document.addEventListener('keydown', onKey, true);
     return () => {
       document.removeEventListener('pointerdown', onDown);
-      document.removeEventListener('keydown', onKey);
+      document.removeEventListener('keydown', onKey, true);
     };
   }, [open, close]);
 

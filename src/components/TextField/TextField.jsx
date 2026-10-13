@@ -1,4 +1,5 @@
 import { forwardRef } from 'react';
+import Icon from '../Icon/index.js';
 import styles from './TextField.module.css';
 
 /* forwardRef — 창을 열자마자 입력칸에 포커스를 줄 수 있어야 한다(카톡테마 메이커 테마 보관).
@@ -16,6 +17,7 @@ const TextField = forwardRef(function TextField({
   invalid = false,
   multiline = false,
   rows = 6,
+  action,               // 칸 안 오른쪽 끝 둥근 단추 { icon, 'aria-label', onClick }. 한 줄 칸에서만 선다(2026-10-13)
   ...inputProps
 }, ref) {
   return (
@@ -42,11 +44,12 @@ const TextField = forwardRef(function TextField({
         {...inputProps}
       />
       ) : (
+      <div className={styles.inputWrap}>
       <input
         ref={ref}
         id={id}
         type={type}
-        className={`text-body-md ${styles.input}`}
+        className={`text-body-md ${styles.input} ${action ? styles.withAction : ''}`}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
@@ -55,6 +58,14 @@ const TextField = forwardRef(function TextField({
         aria-invalid={invalid || undefined}
         {...inputProps}
       />
+      {action && (
+        /* 누르는 동안 칸의 초점을 뺏지 않는다. 뺏으면 폰 자판이 내려갔다 다시 올라온다 */
+        <button type="button" className={styles.action} aria-label={action['aria-label']}
+          onPointerDown={(e) => e.preventDefault()} onClick={action.onClick} tabIndex={inputProps.tabIndex}>
+          <Icon name={action.icon} size="sm" />
+        </button>
+      )}
+      </div>
       )}
       {hint && (
         /* 여러 줄과 목록을 받는다. span이면 안에 ul을 둘 수 없다 */

@@ -22,3 +22,9 @@
   border-radius: inherit;
   pointer-events: none;
 }
+
+/* 투명 바탕 체크무늬(2026-10-13, 냉장고 생명력 불어넣기에서 옮겼다). 한 칸 8px, 16px마다 되풀이한다.
+   색은 bg-tertiary와 bg-default. 선택 타일의 투명 칸(SelectTile fill="transparent")도 같은 두 색이다 */
+.checker {
+  background: repeating-conic-gradient(var(--color-bg-tertiary) 0% 25%, var(--color-bg-default) 0% 50%) 0 0 / 16px 16px;
+}

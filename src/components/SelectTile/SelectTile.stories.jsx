@@ -29,6 +29,7 @@ export default {
 - \`fill\`(색): 칸 자체를 그 색으로 칠한다. **칸 안에 동그란 색 견본을 두지 않는다**(2026-10-13 사용자).
   칸 둘레 선 안에 견본을 또 두면 상자가 겹겹이 보였고, 그림이 꽉 찬 옆 칸 사이에서 작은 동그라미만 다른 종류로 보였다. 10-12~10-13에는 \`ColorDot\`·\`RainbowDot\`이 있었다
 - 색 직접 고르기: \`fill="rainbow"\`로 칸을 무지개로 채운다. **직접 고른 색이 있으면 \`fill={그 색}\`으로 바꾼다**
+- 투명: \`fill="transparent"\`로 칸을 체크무늬로 채운다(2026-10-13). 바탕 고르기처럼 "아무 색도 안 깐다"를 고를 때. 색 줄(ColorPalette)에서는 \`leading\` 칸으로 맨 앞에 세운다
 - 그림 미리보기: \`<img className={tileFillClass}>\`. 칸 안에 다 보이게 담는다(contain)
         `,
       },
@@ -97,4 +98,15 @@ export const Filled = {
       </div>
     );
   },
+};
+
+export const Transparent = {
+  name: '투명',
+  render: () => (
+    <div style={{ display: 'flex', gap: 'var(--spacing-2)' }}>
+      <SelectTile label="바탕 투명" fill="transparent" />
+      <SelectTile label="바탕 투명" fill="transparent" selected />
+      <SelectTile label="바탕 투명" size="sm" fill="transparent" />
+    </div>
+  ),
 };

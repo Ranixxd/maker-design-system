@@ -1,0 +1,8 @@
+/* 직접 고르기 선택기가 펴지는 팝오버(데스크톱). 폭은 선택기 판에 맞추고 안쪽 여백 16을 준다.
+   팔레트는 대개 편집 화면(EditFrame)이나 저장 창 같은 창 안에 서 있다. 팝오버는 body로 나가므로
+   기본 겹(--z-anchored)이면 그 창 뒤에 깔린다. 창과 같은 겹을 쓰고 DOM에서 뒤(body 끝)라 위에 뜬다 */
+.pop {
+  width: 296px;
+  padding: var(--spacing-4);
+  z-index: var(--z-modal);
+}

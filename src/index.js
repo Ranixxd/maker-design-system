@@ -19,7 +19,7 @@ export { default as ColorPicker } from './components/ColorPicker/index.js';
 export { default as Divider } from './components/Divider/index.js';
 export { default as Dot } from './components/Dot/index.js';
 export { default as Drawer } from './components/Drawer/index.js';
-export { default as EditCanvas } from './components/EditCanvas/index.js';
+export { default as EditCanvas, checkerClass } from './components/EditCanvas/index.js';
 export { default as EditFab } from './components/EditFab/index.js';
 export { default as EditFrame } from './components/EditFrame/index.js';
 export { default as EmptyState } from './components/EmptyState/index.js';
@@ -47,4 +47,6 @@ export { RadioGroup, Radio } from './components/Radio/index.js';
 export { Checkbox } from './components/Checkbox/index.js';
 /* 타일과 그 안에 담는 견본. 견본은 타일 안에서만 뜻이 있다 */
 export { default as SelectTile, tileFillClass } from './components/SelectTile/index.js';
+/* 격자와 그 칸. 칸은 격자 안에서만 뜻이 있다 */
+export { SelectGrid, SelectGridItem } from './components/SelectGrid/index.js';
 export { ToastProvider, useToast } from './components/Toast/index.js';

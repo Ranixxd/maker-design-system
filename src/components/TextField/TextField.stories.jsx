@@ -34,6 +34,12 @@ export default {
 아이콘처럼 직접 만든 칸)에만 따로 세우고, 그때도 생김새는 hint와 같게 맞춘다
 (\`text-body-sm\`, secondary, 칸에서 8px).
 
+**칸 안 단추(\`action\`)** (2026-10-13)
+- 한 줄 칸 오른쪽 끝에 둥근 primary 단추 하나를 세운다. \`{ icon, 'aria-label', onClick }\`. 칸에 쓴 것을 바로 넣거나 보내는 자리다(냉장고 표정 직접 쓰기)
+- 단추는 하나뿐이다. 지우기(×)는 SearchField가 한다
+- 단추를 눌러도 칸의 초점은 그대로다. 폰 자판이 내려갔다 올라오지 않는다
+- Enter로도 같은 일을 하게 쓰는 쪽이 \`onKeyDown\`을 단다. 한글 조합 중(\`isComposing\`)인 Enter는 거른다
+
 **주의**
 - \`id\`를 반드시 넘긴다. label의 \`htmlFor\`와 연결되어 레이블 클릭 시 포커스가 이동한다.
 - 값 검증(필수값 미입력 등)은 필드 하단이 아니라 Toast로 안내하는 것이 현재 패턴이다.
@@ -150,4 +156,14 @@ export const Multiline = {
   name: '여러 줄',
   args: { id: 'tf-multi', label: '의견 작성', required: true, multiline: true, rows: 8,
     placeholder: '의견을 자유롭게 작성해주세요', hint: '0 / 1000' },
+};
+
+export const WithAction = {
+  name: '칸 안 단추',
+  render: () => (
+    <div style={{ width: 343 }}>
+      <TextField id="tf_action" placeholder="표정을 직접 써요" aria-label="표정 직접 쓰기"
+        action={{ icon: 'ArrowUp', 'aria-label': '넣기', onClick: () => {} }} />
+    </div>
+  ),
 };
