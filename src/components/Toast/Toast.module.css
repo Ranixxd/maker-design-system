@@ -1,40 +1,89 @@
-/* 화면 전체를 덮고 가운데로 모은다. left:50%로 잡으면 상자가 오른쪽으로 50vw까지만
-   자라서, 넘칠 까닭이 없는 글도 접혔다. 덮개지만 눌리지는 않는다(pointer-events) */
+/* 화면 전체를 덮고 위쪽 가운데에 띄운다. 가운데는 편집하는 그림을 가리고, 아래는
+   주요 단추가 모여 있어 둘 다 비켜 섰다(2026-10-13).
+   left:50%로 잡으면 상자가 오른쪽으로 50vw까지만 자라서, 넘칠 까닭이 없는 글도 접혔다.
+   덮개지만 눌리지는 않는다(pointer-events) */
 .container {
   position: fixed;
   inset: 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  gap: var(--spacing-2);
   padding: var(--spacing-5);
+  /* 노치·상태 표시줄 아래로 내린다 */
+  padding-top: calc(var(--spacing-5) + env(safe-area-inset-top, 0px));
   z-index: var(--z-toast);
   pointer-events: none;
 }
 
+/* 모든 토스트가 한 칸에 겹친다. 맨 앞(새 것)이 아래 기준선에 서고,
+   먼저 뜬 것은 그 뒤에서 위로 조금씩 비어져 나온다.
+   비어져 나올 두 칸(12px씩)을 위에 비워 둬야 화면 밖으로 안 잘린다 */
+.stack {
+  display: grid;
+  max-width: 100%;
+  padding-top: calc(var(--spacing-3) * 2);
+}
+
 .toast {
+  grid-area: 1 / 1;
+  align-self: end;
+  justify-self: center;
+  box-sizing: border-box;
   background: var(--color-bg-inverse);
   color: var(--color-text-oninverse);
   padding: var(--spacing-3) var(--spacing-5);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
   /* 한 줄로 묶지 않는다. 한국어 안내는 한 문장이 길어지는 일이 잦아,
      nowrap이면 좁은 화면에서 양옆으로 삐져나간다 */
   max-width: 340px;   /* 좁은 화면의 양옆 여백은 container의 padding이 맡는다 */
+  overflow: hidden;
+
+  /* --i는 맨 앞에서 몇 번째인지(0이 맨 앞). 뒤로 갈수록 위로 12px씩 올라가고 5%씩 작아진다.
+     위 모서리를 기준으로 줄여야 비어져 나온 폭이 12px 그대로 보인다 */
+  --dy: 0px;
+  --s: 1;
+  transform-origin: top center;
+  transform:
+    translateY(calc(var(--i) * var(--spacing-3) * -1 + var(--dy)))
+    scale(calc((1 - var(--i) * 0.05) * var(--s)));
+  z-index: calc(10 - var(--i));
+  opacity: 1;
+  transition:
+    transform var(--motion-duration-medium-1) var(--motion-easing-standard),
+    opacity var(--motion-duration-short) var(--motion-easing-standard);
+}
+
+/* 들어올 때는 아래에서 살짝 올라와 먼저 뜬 것을 위로 밀고,
+   나갈 때는 화면 끝 쪽(위)으로 빠지며 흐려진다 */
+.toast[data-state='enter'] {
+  --dy: var(--spacing-4);
+  --s: 0.96;
+  opacity: 0;
+}
+.toast[data-state='leave'] {
+  --dy: calc(var(--spacing-2) * -1);
+  --s: 0.96;
+  opacity: 0;
+  transition-timing-function: var(--motion-easing-standard-accelerate);
+}
+/* 넷째부터는 맨 뒤에 숨어 자리를 기다린다 */
+.toast[data-hidden] { opacity: 0; }
+
+.content {
   white-space: pre-line;
   text-align: center;
   /* 한국어는 음절 사이 아무 데서나 끊긴다. 띄어쓰기에서 끊어야 읽힌다 */
   word-break: keep-all;
-  /* 라벨 클래스는 한 줄 기준(line-height 1)이라 두 줄이 되면 붙어 보인다 */
-  line-height: var(--line-height-multi);
   /* 화살표가 글 아래 붙는다 */
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--spacing-2);
-  animation: toast-in var(--motion-duration-short) var(--motion-easing-standard-decelerate) both;
+  transition: opacity var(--motion-duration-short) var(--motion-easing-standard);
 }
+/* 뒤에 깔린 것은 상자만 보인다. 글이 비치면 겹친 모서리가 지저분하다 */
+.toast[data-behind] .content { opacity: 0; }
 
 /* 다음에 할 일이 화면 아래쪽에 있을 때만 붙인다. 테두리로 그린 갈매기 표시가
    오른쪽 아래로 흘러간다. 경계선이 아니라 글자와 같은 색을 따라간다 */
@@ -48,18 +97,16 @@
   animation: toast-arrow-flow var(--motion-duration-extra-long-4) var(--motion-easing-standard) infinite;
 }
 
-@keyframes toast-in {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
 @keyframes toast-arrow-flow {
   0%   { transform: rotate(45deg) translate(-3px, -3px); opacity: 0; }
   35%  { opacity: 1; }
   100% { transform: rotate(45deg) translate(3px, 3px); opacity: 0; }
 }
 
+/* 움직임을 줄인 사람에게는 쌓인 모양만 두고 오가는 움직임은 흐려지기로만 한다 */
 @media (prefers-reduced-motion: reduce) {
-  .toast { animation: none; }
+  .toast { transition: opacity var(--motion-duration-short) linear; }
+  .toast[data-state='enter'],
+  .toast[data-state='leave'] { --dy: 0px; --s: 1; }
   .arrow { animation: none; opacity: 1; }
 }
