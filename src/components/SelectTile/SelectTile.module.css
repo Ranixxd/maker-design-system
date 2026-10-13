@@ -50,6 +50,10 @@
    색은 토큰이 아니다. 고를 수 있는 색 전부를 뜻하는 그림이라 특정 역할 색을 쓸 수 없다.
    무지개는 칸 안 그림이라 안쪽 그림자(고른 칸의 두 번째 1px)를 덮으므로
    고른 칸은 그 1px을 ::after로 무지개 위에 다시 긋는다 */
+/* 사파리는 흐림(filter)을 건 자식을 따로 그려서, 부모의 overflow:hidden + border-radius 둥근 모서리로 잘리지 않는다.
+   칸이 둥글어도 무지개는 네모로 삐져나왔다(2026-10-13 사용자, 아이폰). clip-path는 따로 그린 자식까지 칸 모양으로 자른다 */
+.fillRainbow { clip-path: inset(0 round var(--radius-md)); }
+.sm.fillRainbow { clip-path: inset(0 round var(--radius-sm)); }
 .fillRainbow::before {
   content: "";
   position: absolute;
