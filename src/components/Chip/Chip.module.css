@@ -6,8 +6,8 @@
   gap: var(--spacing-1);
   padding: 0 var(--spacing-3);
   border-radius: var(--radius-full);
-  /* 안 고른 칩은 border-default 테두리를 두른다(2026-10-06 사용자. 같은 날 subtle로 넣었다가 티가 안 나 한 단계 올렸다.
-     09-29부터는 글자만 있었다). 고른 칩은 bg-primary로 채운다(.on, 사용자). 폭은 1px 그대로라 고를 때 밀리지 않는다.
+  /* 안 고른 칩은 border-default 테두리에 text-secondary다(2026-10-06 사용자. 같은 날 subtle로 넣었다가 티가 안 나 한 단계 올렸다.
+     2026-10-13에 subtle로 한 번 더 재 보고 default로 두었다). 고른 칩은 border-primary 테두리에 bg-tertiary로 채운다(.on). 폭은 1px 그대로라 고를 때 밀리지 않는다.
      선이 진하면 여럿이 한 줄에 서서 선이 글자보다 먼저 읽힌다(2026-09-23 1.5px → 1px) */
   border: 1px solid var(--color-border-default);
   background: transparent;
@@ -26,13 +26,13 @@
   .chip:hover:not(.on) { background-color: var(--color-bg-hover); color: var(--color-text-default); }
 }
 
-/* 고른 것은 bg-primary로 채우고 글자를 text-onprimary로 한다(2026-10-06 사용자).
-   09-29~10-06에는 옅은 회색(bg-tertiary)이었는데 고른 것이 티가 안 났다. 그 전(09-20) 검정으로 채우던 때는
-   주요 단추와 위계가 부딪힌다고 회색으로 바꿨었다. 글자 굵기는 그대로 둔다. 고를 때마다 폭이 달라지면 옆 칩이 밀린다 */
+/* 고른 것은 border-primary 테두리에 bg-tertiary로 채우고 글자를 text-default로 한다(2026-10-13 사용자, 위계 조절).
+   10-06~10-13에는 bg-primary(검정)로 채웠다. 09-29~10-06에도 bg-tertiary였지만
+   그때는 안 고른 칩에 테두리가 없어 고른 것이 티가 안 났다. 이제 진한 테두리로 고른 것을 가른다. 글자 굵기는 그대로 둔다. 고를 때마다 폭이 달라지면 옆 칩이 밀린다 */
 .on {
   border-color: var(--color-border-primary);
-  background: var(--color-bg-primary);
-  color: var(--color-text-onprimary);
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-default);
 }
 
 .leading { display: inline-flex; align-items: center; line-height: 1; }
@@ -41,7 +41,7 @@
 .chip:disabled { opacity: 0.4; cursor: default; }
 
 /* 지우기 붙은 칩(onRemove, 2026-10-13). [레이어 2 ×]. 칩 모서리에 ×를 걸치면 옆 칩(+)과 붙어 잘못 누르기 쉬웠다(사용자).
-   × 자리만큼 칩 오른쪽을 넓히고 그 자리에 24 누름 영역을 둔다. ×는 칩 글자색을 따른다(고른 칩이면 흰색) */
+   × 자리만큼 칩 오른쪽을 넓히고 그 자리에 24 누름 영역을 둔다. ×는 고른 칩이든 아니든 icon-secondary다 */
 .removable {
   position: relative;
   display: inline-flex;
@@ -66,5 +66,4 @@
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
-.removableOn .remove { color: var(--color-icon-onprimary); }
 .removeIcon { width: 14px; height: 14px; flex: none; }

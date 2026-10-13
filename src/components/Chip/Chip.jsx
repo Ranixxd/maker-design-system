@@ -30,7 +30,7 @@ export default function Chip({
   if (!onRemove) return chip;
   /* 단추 안에 단추를 둘 수 없어 칩과 ×를 한 상자에 나란히 담고 ×를 칩 안쪽 오른쪽에 얹는다 */
   return (
-    <span className={[styles.removable, selected && styles.removableOn, className].filter(Boolean).join(' ')}>
+    <span className={[styles.removable, className].filter(Boolean).join(' ')}>
       {chip}
       <button type="button" className={styles.remove} aria-label={removeLabel} onClick={onRemove}>
         <Icon name="X" size="sm" className={styles.removeIcon} />
