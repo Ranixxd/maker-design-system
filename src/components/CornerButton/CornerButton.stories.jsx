@@ -1,5 +1,5 @@
 import CornerButton from './CornerButton';
-import SelectTile, { ColorDot } from '../SelectTile/SelectTile';
+import SelectTile from '../SelectTile/SelectTile';
 
 export default {
   title: 'Components/CornerButton',
@@ -35,11 +35,11 @@ export const OnTile = {
   render: () => (
     <div style={{ display: 'flex', gap: 'var(--spacing-4)', padding: 'var(--spacing-3)' }}>
       <span style={wrap}>
-        <SelectTile label="하늘" selected><ColorDot value="#dcefff" /></SelectTile>
+        <SelectTile label="하늘" selected fill="#dcefff" />
         <CornerButton label="하늘 빼기" />
       </span>
       <span style={wrap}>
-        <SelectTile label="다양한 크기" selected><ColorDot value="#ebe3ff" /></SelectTile>
+        <SelectTile label="다양한 크기" selected fill="#ebe3ff" />
         <CornerButton icon="Pencil" label="다양한 크기 편집" />
       </span>
     </div>

@@ -46,5 +46,5 @@ export { default as CornerButton } from './components/CornerButton/index.js';
 export { RadioGroup, Radio } from './components/Radio/index.js';
 export { Checkbox } from './components/Checkbox/index.js';
 /* 타일과 그 안에 담는 견본. 견본은 타일 안에서만 뜻이 있다 */
-export { default as SelectTile, ColorDot, RainbowDot, tileFillClass } from './components/SelectTile/index.js';
+export { default as SelectTile, tileFillClass } from './components/SelectTile/index.js';
 export { ToastProvider, useToast } from './components/Toast/index.js';

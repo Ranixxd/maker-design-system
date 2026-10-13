@@ -1,7 +1,7 @@
-import SelectTile, { ColorDot, RainbowDot } from '../SelectTile/index.js';
+import SelectTile from '../SelectTile/index.js';
 import SelectRow from '../SelectRow/index.js';
 
-/* 컬러 팔레트(2026-10-12, 덕꾸 앱의 ColorPalette를 웹으로 옮겼다). 선택 줄(SelectRow)에 색 타일(SelectTile + ColorDot)을 채운 것이다.
+/* 컬러 팔레트(2026-10-12, 덕꾸 앱의 ColorPalette를 웹으로 옮겼다). 선택 줄(SelectRow)에 색 타일(SelectTile fill)을 채운 것이다.
    색을 고르는 줄은 이것을 쓴다.
 
    - colors: 샘플 색 [{ value, label }]. value가 그중 하나면 그 타일이 고른 상태가 된다. null이면 아무것도 안 고른 상태
@@ -20,16 +20,12 @@ export default function ColorPalette({
 }) {
   const custom = value != null && !colors.some((c) => c.value === value);
   const tile = customTile && (
-    <SelectTile size={size} label={label + ' 색 직접 고르기'} selected={custom}>
-      {custom ? <ColorDot value={value} size={size} /> : <RainbowDot size={size} />}
-    </SelectTile>
+    <SelectTile size={size} label={label + ' 색 직접 고르기'} selected={custom} fill={custom ? value : 'rainbow'} />
   );
   return (
     <SelectRow leading={leading} label={label + ' 색'} className={className}>
       {colors.map((c) => (
-        <SelectTile key={c.value} size={size} label={label + ' ' + c.label} selected={value === c.value} onClick={() => onChange?.(c.value)}>
-          <ColorDot value={c.value} size={size} />
-        </SelectTile>
+        <SelectTile key={c.value} size={size} label={label + ' ' + c.label} selected={value === c.value} fill={c.value} onClick={() => onChange?.(c.value)} />
       ))}
       {tile && customTile(tile)}
     </SelectRow>

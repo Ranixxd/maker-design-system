@@ -22,7 +22,7 @@ export default {
     docs: {
       description: {
         component: `
-컬러 팔레트. 선택 줄(\`SelectRow\`)에 색 타일(\`SelectTile\` + \`ColorDot\`)을 채운 것이다. **색을 고르는 줄은 이것을 쓴다.**
+컬러 팔레트. 선택 줄(\`SelectRow\`)에 색 타일(\`SelectTile\` \`fill\`)을 채운 것이다. **색을 고르는 줄은 이것을 쓴다.**
 
 **규칙**
 - \`colors\`는 샘플 색 \`[{ value, label }]\`. \`value\`가 그중 하나면 그 타일이 고른 상태다. \`null\`이면 아무것도 안 고른 상태(색 대신 사진을 쓸 때)
@@ -32,7 +32,7 @@ export default {
 - \`label\`은 낭독기가 읽는 이름 앞말이다. "배경"이면 "배경 분홍", "배경 색 직접 고르기"
 
 **타일에 그림이 드는 줄**(말풍선 샘플의 색 갈아끼우기처럼 색 대신 그림 미리보기를 고르는 줄)은 이 팔레트가 아니라 \`SelectRow\` + \`SelectTile\`로 짓고,
-끝에 같은 모양의 직접 고르기 타일(\`RainbowDot\`, 고른 색이 있으면 \`ColorDot\`)을 둔다.
+끝에 같은 직접 고르기 타일(\`fill="rainbow"\`, 고른 색이 있으면 \`fill={그 색}\`)을 둔다.
         `,
       },
     },

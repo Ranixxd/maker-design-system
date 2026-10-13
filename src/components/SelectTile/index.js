@@ -1,1 +1,1 @@
-export { default, ColorDot, RainbowDot, tileFillClass } from './SelectTile';
+export { default, tileFillClass } from './SelectTile';

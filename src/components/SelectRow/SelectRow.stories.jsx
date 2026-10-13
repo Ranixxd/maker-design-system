@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import SelectRow from './SelectRow';
-import SelectTile, { ColorDot } from '../SelectTile/SelectTile';
+import SelectTile from '../SelectTile/SelectTile';
 import Icon from '../Icon/Icon';
 
 const COLORS = ['#ffffff', '#1f1f1f', '#fde2ea', '#ffe8d4', '#fff3c4', '#e2f5dc', '#dcefff', '#ebe3ff', '#ffd6d6', '#d6fff4', '#f3d6ff', '#fff'];
@@ -40,7 +40,7 @@ export const Default = {
       <div style={{ width: 320, border: '1px dashed var(--color-border-default)', padding: 'var(--spacing-2) 0' }}>
         <SelectRow label="색">
           {COLORS.map((c, i) => (
-            <SelectTile key={i} label={'색 ' + (i + 1)} selected={on === i} onClick={() => setOn(i)}><ColorDot value={c} /></SelectTile>
+            <SelectTile key={i} label={'색 ' + (i + 1)} selected={on === i} fill={c} onClick={() => setOn(i)} />
           ))}
         </SelectRow>
       </div>
@@ -53,7 +53,7 @@ export const Leading = {
   render: () => (
     <div style={{ width: 320, border: '1px dashed var(--color-border-default)', padding: 'var(--spacing-2) 0' }}>
       <SelectRow label="사진" leading={<SelectTile label="사진 올리기"><Icon name="ImagePlus" size={20} /></SelectTile>}>
-        {COLORS.map((c, i) => <SelectTile key={i} label={'색 ' + (i + 1)}><ColorDot value={c} /></SelectTile>)}
+        {COLORS.map((c, i) => <SelectTile key={i} label={'색 ' + (i + 1)} fill={c} />)}
       </SelectRow>
     </div>
   ),
@@ -66,7 +66,7 @@ export const Center = {
       {[480, 320].map((w) => (
         <div key={w} style={{ width: w, border: '1px dashed var(--color-border-default)', padding: 'var(--spacing-2) 0' }}>
           <SelectRow label="색" align="center">
-            {COLORS.slice(0, 9).map((c, i) => <SelectTile key={i} label={'색 ' + (i + 1)} selected={i === 0}><ColorDot value={c} /></SelectTile>)}
+            {COLORS.slice(0, 9).map((c, i) => <SelectTile key={i} label={'색 ' + (i + 1)} selected={i === 0} fill={c} />)}
           </SelectRow>
         </div>
       ))}
