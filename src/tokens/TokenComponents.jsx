@@ -238,6 +238,7 @@ export function BorderColorTable() {
     { token: 'border-focus',   palette: 'gray-900', desc: '커서가 있는 입력칸의 테두리, 키보드 포커스 링', border: true },
     { token: 'border-accent',  palette: 'violet-600',  desc: '선택·활성 상태의 테두리, 강조 안내선' },
     { token: 'border-critical', palette: 'red-600', desc: '오류가 난 칸의 테두리' },
+    { token: 'border-oninverse', palette: 'white', desc: '어두운 면·그림 위 진한 그늘 위의 선. text-oninverse와 짝' },
   ]} />;
 }
 

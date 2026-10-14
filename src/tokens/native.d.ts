@@ -33,6 +33,7 @@ export declare const color: {
   readonly "borderAccent": "#9642e2";
   readonly "borderCritical": "#dc3412";
   readonly "borderOverlay": "rgba(0, 0, 0, 0.04)";
+  readonly "borderOninverse": "#ffffff";
   readonly "iconDefault": "#383838";
   readonly "iconSecondary": "#757575";
   readonly "iconTertiary": "#b3b3b3";
