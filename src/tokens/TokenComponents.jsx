@@ -230,10 +230,9 @@ export function TextColorTable() {
 
 export function BorderColorTable() {
   return <SemanticColorTable rows={[
-    { token: 'border-subtle',  palette: 'gray-100', desc: '같은 섹션 안의 미세한 구분 (리스트 아이템 사이). 누를 수 없는 것의 윤곽 (썸네일과 배경 사이)', border: true },
-    { token: 'border-default', palette: 'gray-200', desc: '성격이 다른 섹션 사이의 구분 (필터와 리스트). 누를 수 있는 것의 테두리 (버튼·탭·박스)', border: true },
-    { token: 'border-overlay',      palette: 'black-alpha-04',   desc: '그림·색면 위에 얹는 선. 밑색을 남긴다' },
-    { token: 'border-strong',  palette: 'gray-400', desc: '눈에 띄어야 하는 테두리 (같은 회색 계열)', border: true },
+    { token: 'border-subtle',  palette: 'black-alpha-08', desc: '같은 컨테이너 안의 미세한 구분 (상자 안 콘텐츠끼리). 아바타·썸네일처럼 그림이 들어가는 곳의 가장자리', border: true },
+    { token: 'border-default', palette: 'black-alpha-12', desc: '기본 구분. 요소의 테두리, 섹션끼리의 구분', border: true },
+    { token: 'border-strong',  palette: 'black-alpha-40', desc: '기본 구분선 사이의 강한 구분. 가이드 그림 테두리처럼 선이 디자인으로 보일 때', border: true },
     { token: 'border-primary', palette: 'gray-900', desc: '고른 항목의 테두리 (미리보기 칸, 견본, 칩)', border: true },
     { token: 'border-focus',   palette: 'gray-900', desc: '커서가 있는 입력칸의 테두리, 키보드 포커스 링', border: true },
     { token: 'border-accent',  palette: 'violet-600',  desc: '선택·활성 상태의 테두리, 강조 안내선' },

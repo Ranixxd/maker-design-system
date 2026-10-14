@@ -1,4 +1,4 @@
-/* 편집 판. 모서리 radius-sm(md에서 고쳤다), 그림 위에 얹는 border-overlay 테두리(2026-10-10 사용자).
+/* 편집 판. 모서리 radius-sm(md에서 고쳤다), 그림 위에 얹는 border-subtle 테두리(2026-10-10 사용자, 2026-10-14 border-overlay를 걷고 바꿨다).
    테두리는 그림 위(::after)에 그린다. 판 둘레에 그리면 그림과 바탕 사이에 선이 따로 보이고,
    위에 얹어야 그림 색과 섞여 자연스럽다 */
 .canvas {
@@ -18,7 +18,7 @@
   position: absolute;
   inset: 0;
   z-index: 20;
-  border: 1px solid var(--color-border-overlay);
+  border: 1px solid var(--color-border-subtle);
   border-radius: inherit;
   pointer-events: none;
 }

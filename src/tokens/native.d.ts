@@ -25,14 +25,13 @@ export declare const color: {
   readonly "textOncritical": "#ffffff";
   readonly "textSuccess": "#0d99ff";
   readonly "textBrand": "#c18bff";
-  readonly "borderSubtle": "#f5f5f5";
-  readonly "borderDefault": "#d9d9d9";
-  readonly "borderStrong": "#999999";
+  readonly "borderSubtle": "rgba(0, 0, 0, 0.08)";
+  readonly "borderDefault": "rgba(0, 0, 0, 0.12)";
+  readonly "borderStrong": "rgba(0, 0, 0, 0.40)";
   readonly "borderPrimary": "#111111";
   readonly "borderFocus": "#111111";
   readonly "borderAccent": "#9642e2";
   readonly "borderCritical": "#dc3412";
-  readonly "borderOverlay": "rgba(0, 0, 0, 0.04)";
   readonly "borderOninverse": "#ffffff";
   readonly "iconDefault": "#383838";
   readonly "iconSecondary": "#757575";
