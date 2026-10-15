@@ -9,14 +9,14 @@ export default {
     docs: {
       description: {
         component: `
-모서리 단추. 칸·칩의 **오른쪽 위에 걸쳐 앉는 작은 원 단추**다. 그 칸을 지우거나(×) 고치는(연필) 일만 한다.
+모서리 단추. 칸·칩의 **오른쪽 위에 걸쳐 앉는 작은 원 단추**다. 그 칸을 지우거나(×) 고치거나(연필) 뒤집는(⇅) 일만 한다.
 
 **규칙**
 - 크기 20, 칸 모서리에서 위·오른쪽으로 8씩 나간다. 흰 바탕(\`bg-default\`), 옅은 테두리(\`border-default\`), 진한 표시(\`icon-default\`)
   - 2026-10-13 전에는 웹 배경 만들기에서 검정 바탕에 흰 표시였고 크기도 16·18로 섞여 있었다. 덕꾸 앱 모양으로 맞추고 한 벌로 묶었다
-- 아이콘은 둘. 지우기 \`X\`, 편집 \`Pencil\`
+- 아이콘은 셋. 지우기 \`X\`, 편집 \`Pencil\`, 뒤집기 \`ArrowUpDown\`(2026-10-15, 배경 만들기의 그라디언트 반전)
 - **올리거나 눌러도 모양이 바뀌지 않는다**(2026-10-13 사용자). 작은 원이라 바탕이 바뀌면 날아가 보였다
-- **고른 칸에만 세운다**(다양한 크기 칸). 늘 서 있는 지우기(올린 이미지·색 칩)는 예외로 늘 세운다
+- **고른 칸에만 세운다**(다양한 크기 칸, 그라디언트 칸). 늘 서 있는 지우기(올린 이미지·색 칩)는 예외로 늘 세운다
 - **칩(Chip)에는 쓰지 않는다.** 칩은 \`Chip\` \`onRemove\`로 칩 안에 ×를 둔다. 모서리에 걸치면 옆 칩과 붙어 잘못 누르기 쉬웠다(2026-10-13 사용자)
 - 감싸는 칸은 \`position: relative\`. 가로로 넘기는 줄 안이면 줄이 위아래로 8을 비워 단추가 잘리지 않게 한다
 - \`label\`(낭독기 이름)은 무엇을 하는지까지 적는다. "지우기"가 아니라 "레이어 2 지우기"
@@ -25,7 +25,7 @@ export default {
       },
     },
   },
-  argTypes: { icon: { control: 'radio', options: ['X', 'Pencil'] } },
+  argTypes: { icon: { control: 'radio', options: ['X', 'Pencil', 'ArrowUpDown'] } },
 };
 
 const wrap = { position: 'relative', display: 'inline-flex' };
@@ -41,6 +41,10 @@ export const OnTile = {
       <span style={wrap}>
         <SelectTile label="다양한 크기" selected fill="#ebe3ff" />
         <CornerButton icon="Pencil" label="다양한 크기 편집" />
+      </span>
+      <span style={wrap}>
+        <SelectTile label="그라디언트 원형" selected fill="#ffe3ef" />
+        <CornerButton icon="ArrowUpDown" label="배경 반전" />
       </span>
     </div>
   ),

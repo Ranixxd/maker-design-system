@@ -26,6 +26,8 @@ import {
   ArrowLeft,
   /* 맨 위로 (2026-09-25) */
   ArrowUp,
+  /* 뒤집기 (2026-10-15). 배경 만들기의 그라디언트 반전 모서리 단추 */
+  ArrowUpDown,
 } from 'lucide-react';
 
 const ICONS = {
@@ -37,7 +39,7 @@ const ICONS = {
   User, LogOut,
   Folder, FolderPlus, Astroid, RotateCcw,
   CircleHelp, Search, ImagePlus, Eraser,
-  ArrowLeft, ArrowUp,
+  ArrowLeft, ArrowUp, ArrowUpDown,
 };
 
 /* sm 20 / md 24 (2026-09-18, 16 / 20에서 한 단계씩 키웠다). 폰에서 알아보기 작았다 */

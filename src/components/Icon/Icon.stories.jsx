@@ -63,7 +63,7 @@ export const CommonIcons = {
       'Menu', 'MoreHorizontal', 'User', 'LogOut',
       'Folder', 'FolderPlus', 'Astroid', 'RotateCcw',
       'CircleHelp', 'Search', 'ImagePlus', 'Eraser',
-      'ArrowLeft', 'ArrowUp',
+      'ArrowLeft', 'ArrowUp', 'ArrowUpDown',
     ];
     return (
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24 }}>
