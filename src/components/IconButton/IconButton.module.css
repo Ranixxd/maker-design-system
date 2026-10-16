@@ -7,7 +7,8 @@
   border: none;
   cursor: pointer;
   font-family: inherit;
-  border-radius: var(--radius-md);
+  /* 2026-10-17 Button과 함께 한 단계씩 둥글게 했다. sm 8→12, md 12→16 */
+  border-radius: var(--radius-lg);
   flex-shrink: 0;
   transition: opacity var(--motion-duration-short) var(--motion-easing-standard);
 }
@@ -60,7 +61,7 @@
 }
 
 /* ── Size — Button 높이와 동일 ── */
-.sm { width: 36px; height: 36px; border-radius: var(--radius-sm); }
+.sm { width: 36px; height: 36px; border-radius: var(--radius-md); }
 .md { width: 48px; height: 48px; }
 
 /* ── Variant ── */

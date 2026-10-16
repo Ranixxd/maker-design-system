@@ -7,7 +7,8 @@
   border: none;
   cursor: pointer;
   font-family: inherit;
-  border-radius: var(--radius-md);
+  /* 2026-10-17 한 단계씩 둥글게 했다. sm 8→12, md 12→16. quiet은 8 그대로 */
+  border-radius: var(--radius-lg);
   transition: opacity var(--motion-duration-short) var(--motion-easing-standard),
               transform var(--motion-duration-short) var(--motion-easing-standard);
   white-space: nowrap;
@@ -59,7 +60,7 @@
   padding: 0 var(--spacing-3);
   font-size: var(--font-size-sm);      /* 13px */
   font-weight: var(--font-weight-medium); /* 500 = label-sm ✓ */
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
 }
 
 .md {
