@@ -89,6 +89,7 @@ export default function LayerPopup({
   useEffect(() => { heightPctRef.current = heightPct; }, [heightPct]);
 
   const drag = useRef({ active: false, startY: 0, startH: 0 });
+  const bodyRef = useRef(null);
 
   const isSheet = isMobile && mobileType === 'sheet';
   const minH = closeable ? 0 : 10;
@@ -199,6 +200,52 @@ export default function LayerPopup({
     setTimeout(() => { if (!drag.current.active) { setSnapping(false); setHeightPct(back); } }, 320);
   }, [snapPoints, closeable, minH, onClose, initialSnap]);
 
+  /* 본문이 맨 위일 때 아래로 끌면 머리를 끈 것과 같이 시트가 내려간다(2026-10-17).
+     첫 움직임에서 정한다. 맨 위에서 아래로 가면 우리가 갖고, 위나 옆으로 가면 본문이 구른다.
+     브라우저가 한번 굴리기 시작하면 그 뒤 touchmove는 막을 수 없어서다. 막으려면 passive가 아니어야 해
+     리액트 onTouchMove가 아니라 직접 붙인다. 끄는 함수는 렌더마다 새로 생기니 ref로 최신 것을 부른다 */
+  const dragFns = useRef(null);
+  dragFns.current = { onTouchStart, onTouchMove, onTouchEnd };
+  useEffect(() => {
+    const body = bodyRef.current;
+    if (!isOpen || !isSheet || !body) return undefined;
+    let y0 = null, x0 = 0, on = false;
+    const ts = (e) => {
+      on = false;
+      y0 = null;
+      if (e.touches.length !== 1 || body.scrollTop > 0) return;
+      if (e.target.closest && e.target.closest('input, textarea, select, [contenteditable="true"]')) return;
+      y0 = e.touches[0].clientY;
+      x0 = e.touches[0].clientX;
+    };
+    const tm = (e) => {
+      if (y0 === null) return;
+      if (!on) {
+        const dy = e.touches[0].clientY - y0, dx = Math.abs(e.touches[0].clientX - x0);
+        if (dy <= 0 || dx > dy || body.scrollTop > 0) { y0 = null; return; }
+        on = true;
+        dragFns.current.onTouchStart({ touches: [{ clientY: y0 }] });
+      }
+      if (e.cancelable) e.preventDefault();
+      dragFns.current.onTouchMove(e);
+    };
+    const te = () => {
+      if (on) dragFns.current.onTouchEnd();
+      y0 = null;
+      on = false;
+    };
+    body.addEventListener('touchstart', ts, { passive: true });
+    body.addEventListener('touchmove', tm, { passive: false });
+    body.addEventListener('touchend', te);
+    body.addEventListener('touchcancel', te);
+    return () => {
+      body.removeEventListener('touchstart', ts);
+      body.removeEventListener('touchmove', tm);
+      body.removeEventListener('touchend', te);
+      body.removeEventListener('touchcancel', te);
+    };
+  }, [isOpen, isSheet]);
+
   if (!isOpen) return null;
 
   const panelClass = isSheet
@@ -258,7 +305,7 @@ export default function LayerPopup({
         )}
 
         {toolbar && <div className={styles.toolbar}>{toolbar}</div>}
-        <div className={[styles.body, bodyClassName].filter(Boolean).join(' ')}>{children}</div>
+        <div ref={bodyRef} className={[styles.body, bodyClassName].filter(Boolean).join(' ')}>{children}</div>
         {footer && <div className={[styles.footer, footerClassName].filter(Boolean).join(' ')}>{footer}</div>}
       </div>
     </div>

@@ -71,11 +71,13 @@
 /* ── Grip bar (visual only) ── */
 .handleBar {
   width: 36px;
-  height: 4px;
+  height: 3px;
   border-radius: var(--radius-full);
-  /* 시멘틱 토큰으로(2026-09-17). 누르는 단추가 아니라 끌어 올리는 자리 표시라 구분선과 같은 무게다 */
+  /* 시멘틱 토큰으로(2026-09-17). 누르는 단추가 아니라 끌어 올리는 자리 표시라 구분선과 같은 무게다.
+     2026-10-17 36×4에서 36×3으로 얇게 했다(덕꾸 앱과 같은 값). 색은 border-default 그대로다 */
   background-color: var(--color-border-default);
-  margin: var(--spacing-3) auto var(--spacing-2);
+  /* 위 8 · 아래 4(2026-10-17, 덕꾸 앱 바텀시트와 같은 값). 끌기는 머리 전체에서 받아 손잡이 자리가 넓을 까닭이 없다 */
+  margin: var(--spacing-2) auto var(--spacing-1);
   flex-shrink: 0;
   pointer-events: none;
 }
