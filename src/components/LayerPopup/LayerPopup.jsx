@@ -214,7 +214,7 @@ export default function LayerPopup({
       on = false;
       y0 = null;
       if (e.touches.length !== 1 || body.scrollTop > 0) return;
-      if (e.target.closest && e.target.closest('input, textarea, select, [contenteditable="true"]')) return;
+      if (e.target.closest && e.target.closest('input, textarea, select, [contenteditable="true"], [role="slider"]')) return;
       y0 = e.touches[0].clientY;
       x0 = e.touches[0].clientX;
     };
