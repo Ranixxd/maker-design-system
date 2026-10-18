@@ -121,13 +121,19 @@ export default function Popover({
       else if (r.right > 폭 - EDGE) shiftX = (폭 - EDGE) - r.right;  // 오른쪽으로 넘쳤다
 
       /* 세로는 밀지 않고 뒤집는다 — 트리거를 가리면 무엇을 눌러서 열었는지 잃는다.
-         반대쪽에 자리가 더 있을 때만 뒤집는다. 양쪽 다 좁으면 그대로 둔다 */
+         반대쪽에 자리가 더 있을 때만 뒤집는다. 양쪽 다 좁으면 그대로 둔다.
+
+         패널의 지금 자리(r)로 재지 않고 트리거 자리와 패널 높이로 잰다. 뒤집힌 채로 재면
+         "안 넘치네"가 되어 풀리고, 다음 스크롤에 다시 뒤집혀 위아래로 깜빡였다
+         (2026-10-18 편집기 더보기, 패널을 휙 밀어 스크롤이 이어지는 동안 열었을 때) */
       let flipped = false;
       if (trigger) {
+        const GAP = parseFloat(getComputedStyle(el).getPropertyValue('--popover-gap')) || 8;
         const t = trigger.getBoundingClientRect();
+        const 필요 = el.offsetHeight + GAP;
         const 위칸 = t.top, 아래칸 = 높이 - t.bottom;
-        if (side === 'bottom' && r.bottom > 높이 - EDGE && 위칸 > 아래칸) flipped = true;
-        if (side === 'top' && r.top < EDGE && 아래칸 > 위칸) flipped = true;
+        if (side === 'bottom' && t.bottom + 필요 > 높이 - EDGE && 위칸 > 아래칸) flipped = true;
+        if (side === 'top' && t.top - 필요 < EDGE && 아래칸 > 위칸) flipped = true;
       }
 
       set보정({ shiftX, flipped });
