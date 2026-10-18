@@ -84,6 +84,7 @@ export declare const typography: {
   readonly "bodyLg": { readonly fontSize: 17; readonly fontWeight: "400"; readonly lineHeight: 26 };
   readonly "bodyMd": { readonly fontSize: 15; readonly fontWeight: "400"; readonly lineHeight: 23 };
   readonly "bodySm": { readonly fontSize: 13; readonly fontWeight: "400"; readonly lineHeight: 20 };
+  readonly "bodyXs": { readonly fontSize: 11; readonly fontWeight: "400"; readonly lineHeight: 17 };
   readonly "labelLg": { readonly fontSize: 17; readonly fontWeight: "500" };
   readonly "labelMd": { readonly fontSize: 15; readonly fontWeight: "500" };
   readonly "labelSm": { readonly fontSize: 13; readonly fontWeight: "500" };

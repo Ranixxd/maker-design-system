@@ -114,6 +114,11 @@ export const typography = {
     "fontWeight": "400",
     "lineHeight": 20
   },
+  "bodyXs": {
+    "fontSize": 11,
+    "fontWeight": "400",
+    "lineHeight": 17
+  },
   "labelLg": {
     "fontSize": 17,
     "fontWeight": "500"

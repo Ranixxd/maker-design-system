@@ -74,6 +74,7 @@ export function TypographyTable() {
     { token: '.text-body-lg',    size: '17px', weight: '400', lh: '1.5', use: '제목 바로 아래 한두 문장 요약 (예: 완주 화면 부제, 문서 첫 요약). 긴 본문에는 쓰지 않는다' },
     { token: '.text-body-md',    size: '15px', weight: '400', lh: '1.5', use: '기본 본문, 입력칸 안 글자, 선택지 문장 (예: 자주 묻는 질문 답, TextField, Radio)' },
     { token: '.text-body-sm',    size: '13px', weight: '400', lh: '1.5', use: '보조 설명. 본문 옆·아래에서 한 단 물러난 글 (예: 단계 설명, 카드 설명). 입력칸 아래 한 줄 힌트는 label-xs' },
+    { token: '.text-body-xs',    size: '11px', weight: '400', lh: '1.5', use: '가장 작은 읽는 글. 이름 아래 붙는 짧은 설명 (예: 편집기 색 항목 설명). 이름표·배지처럼 가리키는 글은 label-xs' },
     { token: '.text-label-lg',   size: '17px', weight: '500', lh: '1',   use: '크게 누르는 한 줄 (예: 사이드 메뉴 항목, 큰 목록 항목). 버튼에는 쓰지 않는다' },
     { token: '.text-label-md',   size: '15px', weight: '500', lh: '1',   use: '기본 버튼·탭·목록 줄 글자, 토스트. 제목에는 쓰지 않는다(heading-xs)' },
     { token: '.text-label-sm',   size: '13px', weight: '500', lh: '1',   use: '작은 버튼·칩·입력칸 이름 (예: 정렬 칩, TextField 레이블, 헤더 버튼). 문장에는 쓰지 않는다' },

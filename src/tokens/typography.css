@@ -63,6 +63,12 @@
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-multi);
 }
+/* 가장 작은 읽는 글. 11px은 label-xs뿐이라 작은 설명이 500으로 굵어졌다 (2026-10-18) */
+.text-body-xs {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-multi);
+}
 
 /* ── Semantic: Label — medium / single-line ── */
 .text-label-lg {
