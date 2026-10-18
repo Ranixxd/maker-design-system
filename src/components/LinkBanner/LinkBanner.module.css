@@ -1,0 +1,47 @@
+.banner {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  width: 100%;
+  margin: 0;
+  padding: var(--spacing-2) var(--spacing-3);
+  border: 0;
+  border-radius: var(--radius-md);
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-default);
+  font-family: inherit;
+  text-align: left;
+  text-decoration: none;
+}
+
+a.banner,
+button.banner {
+  cursor: pointer;
+}
+
+.banner:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/* 글을 한 줄로 늘어놓는다. 감싸지 않은 글은 제 너비를 지키고(white-space: pre라 줄지 않는다),
+   .clip으로 감싼 조각만 남는 자리만큼 줄어 말줄임된다 */
+.text {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  white-space: pre;
+}
+
+.clip {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.banner svg {
+  flex: none;
+  color: var(--color-icon-default);
+}
