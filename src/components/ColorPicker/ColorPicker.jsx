@@ -10,7 +10,11 @@ function toHex6(v) {
   return null;
 }
 
-/* 색 하나를 고르는 판. 진하기·밝기 네모와 색상 막대, hex 칸.
+/* 색 하나를 고르는 판. 위에서부터 hex 칸, 진하기·밝기 네모와 색상 막대.
+
+   ── hex 칸이 맨 위다(2026-10-18 사용자) ──
+   바텀시트에 띄우면 시트를 끌어내리려고 짚은 손가락이 바로 아래 네모에 닿아 색이 바뀌었다.
+   손으로 끌지 않는 hex 칸을 시트 머리와 네모 사이에 두면 그 사이를 막아 준다. 전에는 맨 아래였다.
 
    ── 불투명도가 없다 ──
    카톡테마 메이커의 테마 색은 불투명이다. 막대가 있으면 투명하게 골랐는데
@@ -49,7 +53,6 @@ export default function ColorPicker({
 
   return (
     <div className={[styles.root, className].filter(Boolean).join(' ')}>
-      <HexColorPicker className={styles.picker} color={hex} onChange={(c) => onChange?.(c.toLowerCase())} aria-label={label} />
       <div className={styles.row}>
         <label className={styles.hex}>
           <span className={`text-body-md ${styles.hash}`} aria-hidden="true">#</span>
@@ -69,6 +72,7 @@ export default function ColorPicker({
           />
         </label>
       </div>
+      <HexColorPicker className={styles.picker} color={hex} onChange={(c) => onChange?.(c.toLowerCase())} aria-label={label} />
     </div>
   );
 }
