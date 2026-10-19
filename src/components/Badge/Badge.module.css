@@ -1,3 +1,10 @@
+/* 줄 높이는 글꼴 기본(normal)이다(2026-10-19). 덕꾸 앱 Badge가 줄 높이를 따로 주지 않아 글꼴 기본으로 그리고,
+   웹을 그 높이에 맞췄다(주인장). label-xs의 줄 높이(1)를 덮어야 해서 span.badge로 한 단 세게 적는다.
+   Pretendard에서 글자만이면 17px, 이모지가 들면 19px이다 */
+span.badge {
+  line-height: normal;
+}
+
 .badge {
   display: inline-flex;
   align-items: center;
