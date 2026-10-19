@@ -29,8 +29,8 @@ export default {
 넘치면 \`overflow-x:auto\`로 굴린다. Chip 자신은 줄바꿈하지 않는다.
 2026-09-21에 8px에서 4px로 줄였다. 칩은 테두리가 있어 8px면 한 줄이 아니라 낱개로 흩어져 보인다.
 
-**모양**: 평소에는 \`border-default\` 테두리에 \`text-secondary\` 글자, 고르면 테두리가 \`border-primary\`, 바탕이 \`bg-tertiary\`, 글자가 \`text-default\`가 된다(2026-10-13 사용자, 위계 조절).
-10-06~10-13에는 고르면 \`bg-primary\`(검정)로 채웠다. 09-29~10-06에도 \`bg-tertiary\`였지만 안 고른 칩에 테두리가 없어 고른 것이 티가 안 났다.
+**모양**: 평소에는 테두리 없이 \`bg-tertiary\` 바탕에 \`text-secondary\` 글자, 고르면 같은 바탕에 \`border-primary\` 테두리가 서고 글자가 \`text-default\`가 된다(2026-10-20 사용자).
+10-13~10-20에는 안 고른 칩이 \`border-default\` 테두리에 빈 바탕이었다. 10-06~10-13에는 고르면 \`bg-primary\`(검정)로 채웠다. 09-29~10-06에는 고른 칩에도 테두리가 없어 고른 것이 티가 안 났다.
         `,
       },
     },
