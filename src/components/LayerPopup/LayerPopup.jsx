@@ -91,6 +91,10 @@ export default function LayerPopup({
   const drag = useRef({ active: false, startY: 0, startH: 0 });
   const bodyRef = useRef(null);
 
+  /* 바깥을 눌러 닫기는 누른 곳과 뗀 곳이 둘 다 덮개일 때만이다(2026-10-19).
+     입력칸 글자를 끌어 고르다 창 밖에서 떼면 click이 둘의 공통 조상인 덮개에 떨어져 창이 닫혔다 */
+  const downOnOverlay = useRef(false);
+
   const isSheet = isMobile && mobileType === 'sheet';
   const minH = closeable ? 0 : 10;
 
@@ -263,7 +267,12 @@ export default function LayerPopup({
   return (
     <div
       className={[styles.overlay, dim ? null : styles.clear].filter(Boolean).join(' ')}
-      onClick={closeable ? onClose : undefined}
+      onPointerDown={(e) => { downOnOverlay.current = e.target === e.currentTarget; }}
+      onClick={(e) => {
+        const fromOverlay = downOnOverlay.current && e.target === e.currentTarget;
+        downOnOverlay.current = false;
+        if (closeable && fromOverlay) onClose();
+      }}
     >
       <div
         ref={panelRef}
