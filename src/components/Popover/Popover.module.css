@@ -25,7 +25,12 @@
      모서리에 붙지 않게 하는, 패널 자신의 몫이다 */
   padding-block: var(--spacing-1);
   padding-inline: 0;
-  overflow: hidden;
+  /* 높이는 화면의 90%와, 펼친 쪽에 남은 자리(--popover-room, Popover.jsx가 잰다) 중 작은 것까지.
+     넘치면 패널 안에서 스크롤한다. 스크롤이 끝까지 가도 뒤의 화면이 따라 움직이지 않게 막는다 */
+  max-height: min(90dvh, var(--popover-room, 90dvh));
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   border-radius: var(--radius-md);
   background: var(--color-bg-default);
   /* 테두리를 두지 않는다 — 떠 있는 것은 그림자가 이미 말하고 있다.

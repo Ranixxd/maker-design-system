@@ -90,20 +90,41 @@ export default function Popover({
       const trigger = triggerRef.current;
       if (!el) return;
 
-      /* 화면 기준으로 띄울 때는 트리거 자리에서 바로 잡는다. 넘치면 밀고, 반대쪽이 넓으면 뒤집는다 */
-      if (portal) {
-        if (!trigger) return;
+      /* 위아래 어느 쪽에 펼지와 그쪽에 남은 높이.
+
+         세로는 밀지 않고 뒤집는다 — 트리거를 가리면 무엇을 눌러서 열었는지 잃는다.
+         반대쪽에 자리가 더 있을 때만 뒤집는다.
+
+         패널의 지금 자리로 재지 않고 트리거 자리와 패널이 담은 높이(scrollHeight)로 잰다. 뒤집힌 채로 재면
+         "안 넘치네"가 되어 풀리고, 다음 스크롤에 다시 뒤집혀 위아래로 깜빡였다
+         (2026-10-18 편집기 더보기, 패널을 휙 밀어 스크롤이 이어지는 동안 열었을 때).
+
+         고른 쪽에 남은 높이는 --popover-room으로 넘긴다. CSS가 그 값과 화면 90% 중 작은 것으로 높이를 막고
+         넘치는 만큼 패널 안에서 스크롤한다. 양쪽 다 좁아도 화면 밖으로 나가지 않는다
+         (2026-10-19 편집기 더보기, 시트가 중간쯤일 때 위로 뒤집혀 헤더 아래로 깔렸다) */
+      const 세로 = () => {
         const EDGE = 가장자리여백(el);
         const GAP = parseFloat(getComputedStyle(el).getPropertyValue('--popover-gap')) || 8;
         const t = trigger.getBoundingClientRect();
-        const w = el.offsetWidth, h = el.offsetHeight;
-        const 폭 = window.innerWidth, 높이 = window.innerHeight;
+        const 높이 = window.innerHeight;
+        const 필요 = el.scrollHeight;
+        const 위칸 = t.top - GAP - EDGE, 아래칸 = 높이 - EDGE - t.bottom - GAP;
+        let 아래로 = side === 'bottom';
+        if (side === 'bottom' && 필요 > 아래칸 && 위칸 > 아래칸) 아래로 = false;
+        if (side === 'top' && 필요 > 위칸 && 아래칸 > 위칸) 아래로 = true;
+        el.style.setProperty('--popover-room', Math.max(0, 아래로 ? 아래칸 : 위칸) + 'px');
+        return { 아래로, t, GAP, EDGE, 높이 };
+      };
+
+      /* 화면 기준으로 띄울 때는 트리거 자리에서 바로 잡는다. 넘치면 밀고, 반대쪽이 넓으면 뒤집는다 */
+      if (portal) {
+        if (!trigger) return;
+        const { 아래로, t, GAP, EDGE, 높이 } = 세로();
+        const w = el.offsetWidth, h = el.offsetHeight;   // 높이를 막은 뒤에 잰다
+        const 폭 = window.innerWidth;
         let left = align === 'end' ? t.right - w : t.left;
         left = Math.min(Math.max(EDGE, left), 폭 - EDGE - w);
-        const 아래 = t.bottom + GAP, 위 = t.top - GAP - h;
-        let top = side === 'bottom' ? 아래 : 위;
-        if (side === 'bottom' && 아래 + h > 높이 - EDGE && t.top > 높이 - t.bottom) top = 위;
-        if (side === 'top' && 위 < EDGE && 높이 - t.bottom > t.top) top = 아래;
+        let top = 아래로 ? t.bottom + GAP : t.top - GAP - h;
         top = Math.min(Math.max(EDGE, top), Math.max(EDGE, 높이 - EDGE - h));
         el.style.left = left + 'px';
         el.style.top = top + 'px';
@@ -114,38 +135,25 @@ export default function Popover({
       const EDGE = 가장자리여백(el);
       const r = el.getBoundingClientRect();
       const 폭 = window.innerWidth;
-      const 높이 = window.innerHeight;
 
       let shiftX = 0;
       if (r.left < EDGE) shiftX = EDGE - r.left;               // 왼쪽으로 넘쳤다
       else if (r.right > 폭 - EDGE) shiftX = (폭 - EDGE) - r.right;  // 오른쪽으로 넘쳤다
 
-      /* 세로는 밀지 않고 뒤집는다 — 트리거를 가리면 무엇을 눌러서 열었는지 잃는다.
-         반대쪽에 자리가 더 있을 때만 뒤집는다. 양쪽 다 좁으면 그대로 둔다.
-
-         패널의 지금 자리(r)로 재지 않고 트리거 자리와 패널 높이로 잰다. 뒤집힌 채로 재면
-         "안 넘치네"가 되어 풀리고, 다음 스크롤에 다시 뒤집혀 위아래로 깜빡였다
-         (2026-10-18 편집기 더보기, 패널을 휙 밀어 스크롤이 이어지는 동안 열었을 때) */
       let flipped = false;
-      if (trigger) {
-        const GAP = parseFloat(getComputedStyle(el).getPropertyValue('--popover-gap')) || 8;
-        const t = trigger.getBoundingClientRect();
-        const 필요 = el.offsetHeight + GAP;
-        const 위칸 = t.top, 아래칸 = 높이 - t.bottom;
-        if (side === 'bottom' && t.bottom + 필요 > 높이 - EDGE && 위칸 > 아래칸) flipped = true;
-        if (side === 'top' && t.top - 필요 < EDGE && 아래칸 > 위칸) flipped = true;
-      }
+      if (trigger) flipped = 세로().아래로 !== (side === 'bottom');
 
       set보정({ shiftX, flipped });
     };
 
     재고고치기();
-    /* 화면이 돌아가거나(모바일) 스크롤되면 자리가 달라진다 */
+    /* 화면이 돌아가거나(모바일) 스크롤되면 자리가 달라진다. 패널 안을 스크롤하는 것은 자리와 상관없다 */
+    const 스크롤 = (e) => { if (!panelRef.current?.contains(e.target)) 재고고치기(); };
     window.addEventListener('resize', 재고고치기);
-    window.addEventListener('scroll', 재고고치기, true);
+    window.addEventListener('scroll', 스크롤, true);
     return () => {
       window.removeEventListener('resize', 재고고치기);
-      window.removeEventListener('scroll', 재고고치기, true);
+      window.removeEventListener('scroll', 스크롤, true);
     };
   }, [open, side, align, portal]);
 
