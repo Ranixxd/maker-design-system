@@ -53,3 +53,5 @@ export { default as SelectTile, tileFillClass } from './components/SelectTile/in
 /* 격자와 그 칸. 칸은 격자 안에서만 뜻이 있다 */
 export { SelectGrid, SelectGridItem } from './components/SelectGrid/index.js';
 export { ToastProvider, useToast } from './components/Toast/index.js';
+/* 판 위 개체 상자와 그 끌기. 상자는 끌기가 돌려준 값을 받아야 뜻이 산다 */
+export { default as ObjectBox, useObjectDrag, createObjectDrag, boxHit, boxToWorld, snapAngle } from './components/ObjectBox/index.js';

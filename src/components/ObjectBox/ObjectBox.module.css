@@ -1,0 +1,61 @@
+/* 판 위 개체의 선택 상자와 도구 줄.
+   판과 같은 자리에 겹치되 넘친 것을 자르지 않는다. 잘라 내는 것은 편집 바탕(EditFrame body)이다.
+   겹침 6은 판 위 둥근 단추(EditFrame fabSlot, 5)보다 위다. 부품 안 숫자다 */
+.box {
+  position: absolute;
+  z-index: 6;
+  pointer-events: none;
+}
+.box[hidden] { display: none; }
+
+.svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* 상자 선·회전 대·점 테두리는 1.5, 점 지름 12(objectGeometry DOT_R·LINE) */
+.line,
+.dot {
+  fill: none;
+  stroke: var(--color-border-accent);
+  stroke-width: 1.5;
+}
+.dot { fill: var(--color-bg-default); }
+
+/* 가운데 붙기 점선. 모든 판이 이 하나로 긋는다. 1px, 4px 간격 */
+.guide {
+  stroke: var(--color-border-accent);
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+
+/* 도구 줄. 상자가 돌아도 반듯하다. 그림 위에 떠도 읽히게 어두운 면이다. 그림자는 없다 */
+.bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  gap: var(--spacing-1);
+  padding: var(--spacing-1);
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-inverse);
+  pointer-events: auto;
+  white-space: nowrap;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-icon-oninverse);
+  cursor: pointer;
+}
+.btn:disabled { opacity: 0.5; cursor: default; }
