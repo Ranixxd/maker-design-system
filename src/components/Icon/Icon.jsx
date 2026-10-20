@@ -34,6 +34,8 @@ import {
   Wallpaper, Brush,
   /* 판 위 개체 도구 줄(ObjectBox)의 맨 앞으로·맨 뒤로 (2026-10-20) */
   LayersArrowUp, LayersArrowDown,
+  /* 사진 고르기 메뉴의 이모지 (2026-10-20). 카톡테마 메이커 쉽게 시작하기의 [내 사진]/[이모지] */
+  Smile,
 } from 'lucide-react';
 
 const ICONS = {
@@ -46,7 +48,7 @@ const ICONS = {
   Folder, FolderPlus, Astroid, RotateCcw,
   CircleHelp, Search, ImagePlus, Eraser,
   ArrowLeft, ArrowUp, ArrowUpDown, Siren,
-  Wallpaper, Brush,
+  Wallpaper, Brush, Smile,
   LayersArrowUp, LayersArrowDown,
 };
 

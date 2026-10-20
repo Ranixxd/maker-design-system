@@ -64,7 +64,7 @@ export const CommonIcons = {
       'Folder', 'FolderPlus', 'Astroid', 'RotateCcw',
       'CircleHelp', 'Search', 'ImagePlus', 'Eraser',
       'ArrowLeft', 'ArrowUp', 'ArrowUpDown', 'Siren',
-      'Wallpaper', 'Brush', 'LayersArrowUp', 'LayersArrowDown',
+      'Wallpaper', 'Brush', 'Smile', 'LayersArrowUp', 'LayersArrowDown',
     ];
     return (
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24 }}>
