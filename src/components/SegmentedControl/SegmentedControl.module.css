@@ -37,14 +37,17 @@
 
 /* ── 작은 크기(sm) ──
    작은 제목 바로 옆에 붙는 전환. 글자는 label-sm(웹 헤더 메뉴 탭과 같은 글자, 2026-10-19 전에는 label-xs),
-   칸 안쪽 여백은 위아래 4px·좌우 12px이다(2026-10-19 카톡테마 메이커 주인장, 전에는 2px·8px로 너무 작았다).
+   글자는 작아도 탭이 눈에 띄게(2026-10-20 카톡테마 메이커 주인장) 판 안쪽 4px, 칸 안쪽 위아래 8px·좌우 12px로 키를 키우고,
+   안 고른 칸 글자도 진하게(text-default) 둔다. 색(회색 판·흰 알약)은 md와 같다.
+   전에는 판 2px·칸 2px·8px(10-19 오전), 판 2px·칸 4px·12px(10-19 오후)였다.
    모서리는 md와 같은 알약이다 */
 .sm {
   gap: 0;
-  padding: 2px;
+  padding: var(--spacing-1);
 }
 .sm .item {
-  padding: var(--spacing-1) var(--spacing-3);
+  padding: var(--spacing-2) var(--spacing-3);
+  color: var(--color-text-default);
 }
 
 /* ── 글자만큼(width="auto") ──
