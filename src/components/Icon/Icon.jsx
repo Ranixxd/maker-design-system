@@ -30,6 +30,8 @@ import {
   ArrowUpDown,
   /* 신고하기 (2026-10-15). 카톡테마 메이커 블로그 댓글 [⋯] 메뉴 */
   Siren,
+  /* 사진 고르기 메뉴의 만들던 배경화면·배경 만들기에서 만들기 (2026-10-20). 카톡테마 메이커 프로필 사진, 덕꾸 앱과 같은 아이콘 */
+  Wallpaper, Brush,
 } from 'lucide-react';
 
 const ICONS = {
@@ -42,6 +44,7 @@ const ICONS = {
   Folder, FolderPlus, Astroid, RotateCcw,
   CircleHelp, Search, ImagePlus, Eraser,
   ArrowLeft, ArrowUp, ArrowUpDown, Siren,
+  Wallpaper, Brush,
 };
 
 /* sm 20 / md 24 (2026-09-18, 16 / 20에서 한 단계씩 키웠다). 폰에서 알아보기 작았다 */
