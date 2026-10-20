@@ -47,6 +47,7 @@ export { default as CornerButton } from './components/CornerButton/index.js';
    Radio는 RadioGroup 안에서 쓰이고, Toast는 Provider가 위에 있어야 useToast가 산다 */
 export { RadioGroup, Radio } from './components/Radio/index.js';
 export { Checkbox } from './components/Checkbox/index.js';
+export { Switch } from './components/Switch/index.js';
 /* 타일과 그 안에 담는 견본. 견본은 타일 안에서만 뜻이 있다 */
 export { default as SelectTile, tileFillClass } from './components/SelectTile/index.js';
 /* 격자와 그 칸. 칸은 격자 안에서만 뜻이 있다 */

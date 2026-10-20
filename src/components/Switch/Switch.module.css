@@ -1,0 +1,48 @@
+.option {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  cursor: pointer;
+  color: var(--color-text-default);
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* 진짜 입력은 보이지 않게 두고 키보드·읽어 주기만 맡긴다 */
+.input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+/* 크기는 40×24. 칩(sm) 줄 높이 안에 들어오고 손가락 끝으로 누를 만하다 */
+.track {
+  position: relative;
+  width: 40px;
+  height: 24px;
+  border-radius: var(--radius-full);
+  background: var(--color-border-default);
+  transition: background var(--motion-duration-short-4) var(--motion-easing-standard);
+  flex-shrink: 0;
+}
+.thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  background: var(--color-bg-default);
+  transition: transform var(--motion-duration-short-4) var(--motion-easing-standard);
+}
+.input:checked + .track { background: var(--color-bg-primary); }
+.input:checked + .track .thumb { transform: translateX(16px); }
+.input:focus-visible + .track { outline: 2px solid var(--color-bg-primary); outline-offset: 2px; }
+
+/* 못 누르는 상태는 Button·Checkbox와 같다(투명도로 낮춘다) */
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
