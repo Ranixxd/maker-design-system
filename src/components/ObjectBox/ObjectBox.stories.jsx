@@ -31,7 +31,7 @@ EditFrame 안 EditCanvas 위에 얹는다. 아래 예시는 모두 눌러 볼 �
 
 **도구 줄: 돌면 헷갈리는 일은 상자에서 떼어 반듯한 줄로 둔다**
 - 알약, 바탕 \`bg-inverse\`, 안쪽 여백·사이 \`spacing-1\`, 단추 36 동그라미, 아이콘 20 \`icon-oninverse\`, 그림자 없음. 못 쓰는 단추는 흐리게(0.5)
-- 순서는 **지우개 · 순서 · 좌우 반전 · 삭제**, 구분선 없음. 판마다 넣을 것만 넣고, 넣을 것이 없으면 띄우지 않는다
+- 순서는 **지우개 · 복사 · 순서 · 좌우 반전 · 삭제**, 구분선 없음. 판마다 넣을 것만 넣고, 넣을 것이 없으면 띄우지 않는다
 - 순서 단추 하나가 두 일을 한다: 맨 앞이 아니면 [맨 앞으로](\`layerUp\`), 맨 앞이면 [맨 뒤로](\`layerDown\`)
 - 자리: 돌아간 상자(회전 점까지)를 감싸는 네모 **아래** 12. 바탕 아래 끝 8 안에 안 들어가면 **위**, 위에도 안 들어가면 **바탕 맨 위**. 가로는 상자 가운데, 바탕 양끝 8 안에서 멈춘다
 - 끄는 동안(옮기기·크기·회전·두 손가락) 숨고, 손을 떼면 다시 앉는다
@@ -42,6 +42,7 @@ EditFrame 안 EditCanvas 위에 얹는다. 아래 예시는 모두 눌러 볼 �
 |---|---|---|
 | 지우개 | 개체(덩어리) 단위로 다루는 그림 | 배경류. 이미 누끼가 따진 그림(말풍선 샘플, 프사 파츠 같은 제공 그림), 이미 배경을 지운 개체 |
 | 순서 | 개체를 둘 이상 불러올 수 있는 판 | 하나만 다루는 판 |
+| 복사 | 같은 개체를 여럿 두는 판(프사 파츠). 크기·기울기·반전은 그대로, 자리는 오른쪽 아래로 비키고(판이 정한다) 원본 바로 위 한 겹에 놓고 복사본을 고른다 | 개체가 하나뿐인 판 |
 | 좌우 반전 | 개체를 다루는 판 | 배경류. 뒤집을 까닭이 없는 판 |
 | 삭제 | 거의 모든 판 | 그 개체가 곧 판의 목적이라 지우면 할 일이 없어지는 판(칸 그림 첨부, 무늬 그림, 사진 맞추기) |
 
@@ -107,6 +108,10 @@ function Demo({ initial, can, actions: actionsOf, anyMove = false, ratio = 1 }) 
   const onAction = (id) => {
     const i = sel;
     if (id === 'flip') upd(i, (o) => ({ flip: !o.flip }));
+    if (id === 'copy') {
+      setItems((l) => { const o = l[i]; return [...l.slice(0, i + 1), { ...o, id: o.id + '+', x: o.x + 16, y: o.y + 16 }, ...l.slice(i + 1)]; });
+      setSel(i + 1);
+    }
     if (id === 'trash') { setItems((l) => l.filter((_, j) => j !== i)); setSel(null); }
     if (id === 'layerUp' || id === 'layerDown') {
       setItems((l) => { const o = l[i], rest = l.filter((_, j) => j !== i); return id === 'layerUp' ? [...rest, o] : [o, ...rest]; });
@@ -146,6 +151,7 @@ export const Composer = {
       initial={two}
       actions={(top, n) => [
         { id: 'eraser', icon: 'eraser', label: '배경 지우기' },
+        { id: 'copy', icon: 'copy', label: '복사' },
         ...(n > 1 ? [top ? { id: 'layerDown', icon: 'layerDown', label: '맨 뒤로' } : { id: 'layerUp', icon: 'layerUp', label: '맨 앞으로' }] : []),
         { id: 'flip', icon: 'flip', label: '좌우 반전' },
         { id: 'trash', icon: 'trash', label: '삭제' },

@@ -36,6 +36,8 @@ import {
   LayersArrowUp, LayersArrowDown,
   /* 사진 고르기 메뉴의 이모지 (2026-10-20). 카톡테마 메이커 쉽게 시작하기의 [내 사진]/[이모지] */
   Smile,
+  /* 판 위 개체 도구 줄(ObjectBox)의 복사 (2026-10-21). 카톡테마 메이커 프로필 사진 파츠 */
+  Copy,
 } from 'lucide-react';
 
 const ICONS = {
@@ -49,7 +51,7 @@ const ICONS = {
   CircleHelp, Search, ImagePlus, Eraser,
   ArrowLeft, ArrowUp, ArrowUpDown, Siren,
   Wallpaper, Brush, Smile,
-  LayersArrowUp, LayersArrowDown,
+  LayersArrowUp, LayersArrowDown, Copy,
 };
 
 /* sm 20 / md 24 (2026-09-18, 16 / 20에서 한 단계씩 키웠다). 폰에서 알아보기 작았다 */

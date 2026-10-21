@@ -6,7 +6,7 @@ import styles from './ObjectBox.module.css';
 /* 판 위 개체의 선택 상자와 도구 줄. 끄는 셈은 useObjectDrag(React 판)나 createObjectDrag(캔버스 판)가 한다.
 
    상자는 돌고 뒤집혀도 되는 일만 한다: 네 모서리 점 크기, 위쪽 대 끝 점 회전. 점은 그림일 뿐 손가락은 끌기 쪽이 받는다.
-   돌면 헷갈리는 일(지우개·순서·반전·삭제)은 반듯한 도구 줄로 뗐다. 어느 단추를 넣을지는 쓰는 판이 정해 넘긴다.
+   돌면 헷갈리는 일(지우개·복사·순서·반전·삭제)은 반듯한 도구 줄로 뗐다. 어느 단추를 넣을지는 쓰는 판이 정해 넘긴다.
 
    판(EditCanvas)과 같은 자리에 겹쳐 그린다. 판의 형제로 두면 판보다 큰 개체의 상자와 점이 판 밖으로 그대로 나온다.
    상자 선·점·대·가운데 점선은 한 장의 SVG에 그린다. 점을 CSS 테두리로 그리면 기기 픽셀에 맞춰 반올림돼 상자 선과 굵기가 달라 보인다 */
@@ -24,7 +24,7 @@ function FlipH() {
     </svg>
   );
 }
-const ICON_NAMES = { eraser: 'Eraser', layerUp: 'LayersArrowUp', layerDown: 'LayersArrowDown', trash: 'Trash2' };
+const ICON_NAMES = { eraser: 'Eraser', layerUp: 'LayersArrowUp', layerDown: 'LayersArrowDown', copy: 'Copy', trash: 'Trash2' };
 
 const el = (x) => (x && 'current' in x ? x.current : x);
 const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
@@ -36,7 +36,7 @@ export default function ObjectBox({
   frame,            // 판 너비가 판 단위로 얼마인가. 없으면 화면 px
   obj,              // { x, y, w, h, rot } 판 단위, x·y가 가운데. 없으면 아무것도 안 그린다(점선만)
   can,              // { resize, rotate, handles } 끌기와 같은 것을 넘긴다
-  actions = [],     // 도구 줄 단추 [{ id, icon: 'eraser'|'layerUp'|'layerDown'|'flip'|'trash', label, disabled }]
+  actions = [],     // 도구 줄 단추 [{ id, icon: 'eraser'|'copy'|'layerUp'|'layerDown'|'flip'|'trash', label, disabled }]
   onAction,
   dragging = false, // 끄는 동안 도구 줄을 숨긴다
   guide = null,     // { x, y } 붙은 축에 판 가운데 점선
