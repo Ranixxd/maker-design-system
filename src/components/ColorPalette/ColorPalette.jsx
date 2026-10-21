@@ -23,7 +23,7 @@ function useIsMobile() {
   return m;
 }
 
-/* 직접 고르기 칸에 선택기를 붙인다. 데스크톱은 칸 위로 펴는 Popover, 폰은 뒤를 어둡게 하지 않는 시트다.
+/* 직접 고르기 칸에 선택기를 붙인다. 데스크톱은 칸 위로 펴는 Popover, 폰은 시트다.
    둘 다 body로 나가 편집 화면 같은 창 위에 뜬다 */
 function PickerTile({ tile, value, start, onChange, title }) {
   const mobile = useIsMobile();
@@ -36,7 +36,7 @@ function PickerTile({ tile, value, start, onChange, title }) {
     <>
       {cloneElement(tile, { 'aria-haspopup': 'dialog', onClick: () => setOpen(true) })}
       {typeof document !== 'undefined' && createPortal(
-        <LayerPopup isOpen={open} onClose={() => setOpen(false)} title={title} mobileType="sheet" dim={false}>{picker}</LayerPopup>,
+        <LayerPopup isOpen={open} onClose={() => setOpen(false)} title={title} mobileType="sheet">{picker}</LayerPopup>,
         document.body,
       )}
     </>

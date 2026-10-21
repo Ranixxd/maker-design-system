@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
 import Button from '../Button/index.js';
+import { useOverlayClose } from '../overlayClose.js';
 import styles from './ColorPicker.module.css';
 
 /* 여섯 자리 hex만 받는다. 세 자리(#abc)는 늘려서 받는다. 불투명도(여덟 자리)는 받지 않는다 */
@@ -27,7 +28,9 @@ function toHex6(v) {
 
    ── [적용]을 누를 때만 onChange(2026-10-21 사용자) ──
    네모·막대·hex 칸은 판 안의 색(pick)만 바꾼다. 끄는 대로 뒤 화면을 다시 그리면 폰에서 버벅였다.
-   전에는 끄는 대로 onChange였다 */
+   전에는 끄는 대로 onChange였다.
+   적용하면 감싼 창(LayerPopup 시트·Popover)을 닫는다(2026-10-21 주인장). 창 밖에 두면 닫을 것이 없다.
+   [적용]은 끄지 않는다. 색이 그대로면 onChange 없이 창만 닫는다(2026-10-21 주인장) */
 export default function ColorPicker({
   value,
   onChange,
@@ -56,7 +59,11 @@ export default function ColorPicker({
     setDraft(v.slice(1).toUpperCase());
     return v;
   };
-  const apply = (v) => { if (v !== hex) onChange?.(v); };
+  const closeOverlay = useOverlayClose();
+  const apply = (v) => {
+    if (v !== hex) onChange?.(v);
+    closeOverlay?.();
+  };
 
   return (
     <div className={[styles.root, className].filter(Boolean).join(' ')}>
@@ -78,7 +85,7 @@ export default function ColorPicker({
             maxLength={6}
           />
         </label>
-        <Button variant="secondary" size="md" disabled={pick === hex} onClick={() => apply(pick)}>적용</Button>
+        <Button variant="secondary" size="md" onClick={() => apply(pick)}>적용</Button>
       </div>
       <HexColorPicker className={styles.picker} color={pick} onChange={(c) => setPick(c.toLowerCase())} aria-label={label} />
     </div>

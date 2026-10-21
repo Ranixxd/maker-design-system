@@ -2,6 +2,7 @@ import {
   cloneElement, useCallback, useEffect, useId, useLayoutEffect, useRef, useState,
 } from 'react';
 import { createPortal } from 'react-dom';
+import { OverlayCloseContext } from '../overlayClose.js';
 import styles from './Popover.module.css';
 
 /* 화면 가장자리에 남기는 여백은 CSS(--popover-edge)가 갖는다. 여기서 숫자로
@@ -186,7 +187,9 @@ export default function Popover({
       className={[styles.panel, portal ? styles.portal : [styles[실제side], styles[align]].join(' '), panelClassName].filter(Boolean).join(' ')}
       style={!portal && 보정.shiftX ? { transform: `translateX(${보정.shiftX}px)` } : undefined}
     >
-      {typeof children === 'function' ? children(close) : children}
+      <OverlayCloseContext.Provider value={close}>
+        {typeof children === 'function' ? children(close) : children}
+      </OverlayCloseContext.Provider>
     </div>
   );
 

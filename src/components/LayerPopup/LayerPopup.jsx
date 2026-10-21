@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 import IconButton from '../IconButton/IconButton';
 import Title from '../Title/Title';
+import { OverlayCloseContext } from '../overlayClose.js';
 import styles from './LayerPopup.module.css';
 
 function useIsMobile() {
@@ -314,7 +315,9 @@ export default function LayerPopup({
         )}
 
         {toolbar && <div className={styles.toolbar}>{toolbar}</div>}
-        <div ref={bodyRef} className={[styles.body, bodyClassName].filter(Boolean).join(' ')}>{children}</div>
+        <div ref={bodyRef} className={[styles.body, bodyClassName].filter(Boolean).join(' ')}>
+          <OverlayCloseContext.Provider value={onClose}>{children}</OverlayCloseContext.Provider>
+        </div>
         {footer && <div className={[styles.footer, footerClassName].filter(Boolean).join(' ')}>{footer}</div>}
       </div>
     </div>
