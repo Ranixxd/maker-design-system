@@ -1,0 +1,64 @@
+/* 묶음 사이는 20px, 묶음 안은 줄마다 8px로 같다(2026-10-22). 선은 긋지 않는다. 여백만으로 가른다 */
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5);
+  min-inline-size: 0;
+}
+
+.head,
+.author {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.title {
+  margin: 0;
+  color: var(--color-text-default);
+  overflow-wrap: anywhere;
+}
+/* 내용과 게시 시간은 같은 글자(text-body-md secondary)다 */
+.body,
+.time {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: var(--color-text-secondary);
+}
+
+.by {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-1);
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+.avatar {
+  margin-inline-end: var(--spacing-1);
+}
+.name {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+  color: var(--color-text-default);
+}
+.sns {
+  color: var(--color-text-default);
+}
+
+/* 지표는 작성자 줄과 같은 크기(text-body-sm)·같은 옅은 색이고 굵게 쓰지 않는다 */
+.stats {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+  color: var(--color-text-secondary);
+}
+
+/* [⋯]는 맨 아래 혼자 한 줄, 오른쪽 끝이다. 단추의 바깥 여백만큼 위 묶음에 붙인다 */
+.more {
+  display: flex;
+  justify-content: flex-end;
+  margin-block-start: calc(var(--spacing-3) * -1);
+}
