@@ -11,7 +11,7 @@ import styles from './Slider.module.css';
    떠 있는 단추에도 그림자를 안 쓴다(사용자). 흰 원에 primary 테두리로 막대와 가른다.
 
    ── 끄는 대로 onChange ──
-   손을 뗄 때가 아니라 끄는 동안 계속 부른다. 뒤 화면이 따라 바뀌는 것을 보며 맞춘다(ColorPicker와 같다).
+   손을 뗄 때가 아니라 끄는 동안 계속 부른다. 뒤 화면이 따라 바뀌는 것을 보며 맞춘다.
    값은 숫자로 넘긴다 */
 export default function Slider({
   value,
