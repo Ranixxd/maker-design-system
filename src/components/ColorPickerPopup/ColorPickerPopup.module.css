@@ -1,0 +1,6 @@
+/* 팝오버 폭과 안쪽 여백. 편집 화면 같은 창 위에서도 열리므로 겹은 창과 같은 단이다 */
+.pop {
+  width: 296px;
+  padding: var(--spacing-4);
+  z-index: var(--z-modal);
+}

@@ -1,47 +1,11 @@
-import { cloneElement, useEffect, useState } from 'react';
-import { createPortal } from 'react-dom';
 import SelectTile from '../SelectTile/index.js';
 import SelectRow from '../SelectRow/index.js';
 import Popover from '../Popover/index.js';
-import LayerPopup from '../LayerPopup/index.js';
-import ColorPicker from '../ColorPicker/index.js';
+import ColorPickerPopup from '../ColorPickerPopup/index.js';
 import MenuItem from '../MenuItem/index.js';
 import Icon from '../Icon/index.js';
 import { tileFillClass } from '../SelectTile/index.js';
 import styles from './ColorPalette.module.css';
-
-/* LayerPopup과 같은 기준(768px)으로 팝오버와 시트를 가른다 */
-const MOBILE_Q = '(max-width: 767px)';
-function useIsMobile() {
-  const [m, setM] = useState(() => typeof window !== 'undefined' && window.matchMedia(MOBILE_Q).matches);
-  useEffect(() => {
-    const mq = window.matchMedia(MOBILE_Q);
-    const on = (e) => setM(e.matches);
-    mq.addEventListener('change', on);
-    return () => mq.removeEventListener('change', on);
-  }, []);
-  return m;
-}
-
-/* 직접 고르기 칸에 선택기를 붙인다. 데스크톱은 칸 위로 펴는 Popover, 폰은 시트다.
-   둘 다 body로 나가 편집 화면 같은 창 위에 뜬다 */
-function PickerTile({ tile, value, start, onChange, title }) {
-  const mobile = useIsMobile();
-  const [open, setOpen] = useState(false);
-  const picker = <ColorPicker value={value || start} onChange={onChange} label={title} />;
-  if (!mobile) {
-    return <Popover portal side="top" trigger={tile} label={title} panelClassName={styles.pop}>{picker}</Popover>;
-  }
-  return (
-    <>
-      {cloneElement(tile, { 'aria-haspopup': 'dialog', onClick: () => setOpen(true) })}
-      {typeof document !== 'undefined' && createPortal(
-        <LayerPopup isOpen={open} onClose={() => setOpen(false)} title={title} mobileType="sheet">{picker}</LayerPopup>,
-        document.body,
-      )}
-    </>
-  );
-}
 
 /* 사진 칸. 누르면 칸 위로 메뉴가 펴지고, 고르면 메뉴를 닫은 뒤 그 항목의 할 일을 부른다.
    칸 안은 불러오는 중이면 도는 표시, 사진이 있으면 썸네일, 없으면 ImagePlus */
@@ -98,7 +62,7 @@ export default function ColorPalette({
         <SelectTile key={c.value} size={size} label={label + ' ' + c.label} selected={value === c.value} fill={c.value} onClick={() => onChange?.(c.value)} />
       ))}
       {tile && (picker
-        ? <PickerTile tile={tile} value={value} start={opt.start || '#ffffff'} onChange={onChange} title={opt.title || label + ' 색'} />
+        ? <ColorPickerPopup trigger={tile} value={value || opt.start || '#ffffff'} onChange={onChange} title={opt.title || label + ' 색'} />
         : customTile(tile))}
     </SelectRow>
   );
