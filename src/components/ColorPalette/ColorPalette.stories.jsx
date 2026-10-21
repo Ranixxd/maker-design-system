@@ -2,6 +2,9 @@ import { useState } from 'react';
 import ColorPalette from './ColorPalette';
 import SelectTile from '../SelectTile/SelectTile';
 
+/* 스토리용 사진: 분홍 바탕에 하늘색 동그라미 */
+const PHOTO = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><rect width="40" height="40" fill="#fde2ea"/><circle cx="20" cy="20" r="11" fill="#7cc4f5"/></svg>');
+
 const COLORS = [
   { value: '#ffffff', label: '하양' },
   { value: '#1f1f1f', label: '검정' },
@@ -33,6 +36,11 @@ export default {
   브라우저 기본 선택기(\`input type="color"\`)는 쓰지 않는다
 - \`customTile={(tile) => …}\`은 선택기를 쓰는 쪽이 직접 띄워야 할 때만 쓴다. 새로 쓰는 곳은 \`picker\`를 쓴다
 - \`leading\`: 줄 맨 앞에 서 있고 넘어가지 않는 칸. 색이 아닌 선택지(투명 등)를 둔다. 투명은 \`SelectTile fill="transparent"\`
+- \`photo\`: 색 대신 사진을 바탕으로 깔 수 있는 줄(프로필 사진 배경, 음식 짤 바탕)은 **맨 앞에 사진 칸을 고정한다**(2026-10-21). 이때 투명 칸은 두지 않는다.
+  \`{ src, selected, loading, label, menu: [{ icon, label, onClick }] }\`. 칸 안은 불러오는 중이면 도는 표시, \`src\`가 있으면 썸네일, 없으면 \`ImagePlus\`다.
+  누르면 칸 위로 메뉴(\`Popover\` + \`MenuItem\`)가 펴지고, 고르면 메뉴를 닫은 뒤 그 항목의 \`onClick\`을 부른다.
+  **메뉴 항목·차례·아이콘과 할 일은 쓰는 쪽이 넘긴다.** 덕꾸 앱의 같은 메뉴와 차례·아이콘을 같게 둔다(지금은 내 사진 \`Image\` / 만들던 배경화면 \`Wallpaper\` / 배경 만들기에서 만들기 \`Brush\`).
+  팔레트는 칸 모양·메뉴 여닫기·불러오는 중·썸네일만 맡는다. 사진을 쓰는 동안은 \`value\`를 \`null\`로 두어 색 타일이 고른 상태가 되지 않게 한다. \`photo\`가 있으면 \`leading\`은 무시한다
 - \`align="center"\`: 남을 때 가운데로 모은다. 편집 화면 판 위로 떠오르는 띠처럼 도구 줄과 가운데를 맞출 때 쓴다(SelectRow와 같다)
 - \`label\`은 낭독기가 읽는 이름 앞말이다. "배경"이면 "배경 분홍", "배경 색 직접 고르기"
 
@@ -77,6 +85,31 @@ export const Leading = {
       <div style={{ width: 375 }}>
         <ColorPalette colors={COLORS} value={v} onChange={setV} label="바탕" picker={{ start: '#ffffff' }}
           leading={<SelectTile label="바탕 투명" fill="transparent" selected={v === null} onClick={() => setV(null)} />} />
+      </div>
+    );
+  },
+};
+
+export const Photo = {
+  name: '사진 칸 + 메뉴',
+  render: () => {
+    const [v, setV] = useState('#ffffff');
+    const [src, setSrc] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const use = () => setSrc(PHOTO);
+    const load = () => { setLoading(true); setTimeout(() => { setLoading(false); use(); }, 1500); };
+    return (
+      <div style={{ width: 375 }}>
+        <ColorPalette colors={COLORS} value={src ? null : v} label="바탕" picker={{ start: '#ffffff' }}
+          onChange={(c) => { setV(c); setSrc(null); }}
+          photo={{
+            src, loading, selected: !!src,
+            menu: [
+              { icon: 'Image', label: '내 사진', onClick: use },
+              { icon: 'Wallpaper', label: '만들던 배경화면', onClick: load },
+              { icon: 'Brush', label: '배경 만들기에서 만들기', onClick: () => {} },
+            ],
+          }} />
       </div>
     );
   },

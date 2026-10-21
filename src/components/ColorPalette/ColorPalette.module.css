@@ -6,3 +6,19 @@
   padding: var(--spacing-4);
   z-index: var(--z-modal);
 }
+
+/* 사진 칸 메뉴는 패널 여백·폭을 MenuItem에 맡긴다. 겹은 .pop과 같은 까닭으로 창과 같은 겹이다 */
+.menuPop {
+  z-index: var(--z-modal);
+}
+
+/* 사진을 불러오는 동안 사진 칸에 도는 표시(앱은 같은 자리에 ActivityIndicator) */
+.spin {
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-border-default);
+  border-top-color: var(--color-icon-secondary);
+  animation: paletteSpin 0.8s linear infinite;
+}
+@keyframes paletteSpin { to { transform: rotate(360deg); } }
