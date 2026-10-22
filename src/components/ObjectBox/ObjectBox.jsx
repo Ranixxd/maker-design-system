@@ -38,6 +38,7 @@ export default function ObjectBox({
   can,              // { resize, rotate, handles } 끌기와 같은 것을 넘긴다
   actions = [],     // 도구 줄 단추 [{ id, icon: 'eraser'|'copy'|'layerUp'|'layerDown'|'flip'|'trash', label, disabled }]
   onAction,
+  barSide = 'below', // 도구 줄을 먼저 앉힐 쪽 'below' | 'above'. 판 아래 끝에 고정한 개체(짤 자막)는 above
   dragging = false, // 끄는 동안 도구 줄을 숨긴다
   guide = null,     // { x, y } 붙은 축에 판 가운데 점선
   className,
@@ -99,7 +100,7 @@ export default function ObjectBox({
   const dots = (showCorners ? pts : []).concat(showRot ? [rp] : []);
 
   /* 도구 줄. 끄는 동안 숨기고, 놓으면 돌아간 상자(회전 점까지)를 감싸는 네모의 아래 → 위 → 바탕 맨 위 순으로 앉힌다.
-     상자가 바탕 밖으로 나가면 보이는 데까지만 감싼다 */
+     barSide가 above면 위 → 아래 → 바탕 맨 위 순이다. 상자가 바탕 밖으로 나가면 보이는 데까지만 감싼다 */
   let bar = null;
   if (!dragging && actions.length) {
     const n = actions.length;
@@ -107,11 +108,11 @@ export default function ObjectBox({
     const vis = (showRot ? [...pts, rp] : pts).map((p) => ({ x: clamp(p.x, g.bl, g.br), y: clamp(p.y, g.bt, g.bb) }));
     const l = Math.min(...vis.map((p) => p.x)), r = Math.max(...vis.map((p) => p.x));
     const t = Math.min(...vis.map((p) => p.y)) - DOT_R, b = Math.max(...vis.map((p) => p.y)) + DOT_R;
-    let y = b + BAR_GAP;
-    if (y + bh > g.bb - BAR_EDGE) {
-      y = t - BAR_GAP - bh;
-      if (y < g.bt + BAR_EDGE) y = g.bt + BAR_EDGE;
-    }
+    const below = b + BAR_GAP, above = t - BAR_GAP - bh;
+    const fitsBelow = below + bh <= g.bb - BAR_EDGE, fitsAbove = above >= g.bt + BAR_EDGE;
+    let y;
+    if (barSide === 'above') y = fitsAbove ? above : fitsBelow ? below : g.bt + BAR_EDGE;
+    else y = fitsBelow ? below : fitsAbove ? above : g.bt + BAR_EDGE;
     const x = clamp((l + r) / 2 - bw / 2, g.bl + BAR_EDGE, Math.max(g.bl + BAR_EDGE, g.br - BAR_EDGE - bw));
     bar = { x, y };
   }
