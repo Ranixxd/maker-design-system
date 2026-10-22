@@ -42,6 +42,8 @@ const SNAP_CLOSE_RATIO = 0.85;
 /* 열려 있는 창을 연 순서대로 쌓아 둔다. Esc는 맨 위 창 하나만 받는다(2026-09-18).
    창 위에 시트가 뜨는 자리(말풍선 만들기 위 QnA)에서 Esc 한 번에 둘 다 닫히지 않게 한다 */
 const openStack = [];
+/* 뒤 화면 스크롤을 잠근 창 수. 마지막 창이 닫힐 때만 잠금을 푼다 */
+let scrollLocks = 0;
 
 function rubberBand(value, min, max) {
   if (value > max) return max + (value - max) * 0.12;
@@ -131,10 +133,15 @@ export default function LayerPopup({
     return () => document.removeEventListener('keydown', handler);
   }, [isOpen, onClose, closeable]);
 
-  // Body scroll lock
+  /* 뒤 화면 스크롤 잠금. 창 위에 창이 떴다 닫혀도(편집 창 위 직접 쓰기 시트) 아래 창이 열려 있는 동안은 풀지 않는다 */
   useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    if (!isOpen) return undefined;
+    scrollLocks += 1;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      scrollLocks -= 1;
+      if (!scrollLocks) document.body.style.overflow = '';
+    };
   }, [isOpen]);
 
   const measureH = () => {
