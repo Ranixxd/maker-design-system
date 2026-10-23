@@ -9,8 +9,12 @@ import styles from './MediaCard.module.css';
    ratio는 서비스마다 다르다 — 배경화면은 2/3, 테마 목록은 4/5다. 그림 크기가 목록의 인상을
    정하므로 부품이 하나로 못 박지 않고 쓰는 쪽이 정한다.
 
-   누르는 방식도 둘이다. href를 주면 링크(a)다 — 제 주소를 가진 페이지로 가고 크롤러가 따라간다.
-   onClick만 주면 단추(button)다 — 같은 화면에서 창을 연다 */
+   늘 링크(a)다(2026-10-23 사용자). 카드마다 제 주소를 가진 페이지가 있고, 크롤러가 목록에서 그 페이지로 따라간다.
+   전에는 onClick만 주면 단추였는데 쓰는 곳이 모두 링크가 되어 걷었다.
+   onOpen을 함께 주면 그냥 누를 때 페이지를 새로 열지 않고 onOpen이 같은 화면에서 연다.
+   새 탭 열기(Ctrl·⌘·Shift·Alt, 가운데 단추)와 꾹 눌러 주소 복사는 링크대로 둔다. 쓰는 쪽 세 곳이 같은 코드를 따로 들고 있던 것을 여기로 모았다 */
+const 그냥누름 = (e) => !e.defaultPrevented && e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey;
+
 export default function MediaCard({
   src,
   alt = '',
@@ -20,18 +24,19 @@ export default function MediaCard({
   lines = 2,                       // 제목을 몇 줄까지 보일지. 1이면 한 줄 말줄임
   badge,                           // 그림 왼쪽 위에 얹는 표(오늘 올라왔어요 점 등)
   meta,                            // 제목 아래 줄(좋아요·이어 만든 수, 작성자 등)
-  href,
-  onClick,
+  href,                            // 카드가 가리키는 페이지 주소. 꼭 준다
+  onOpen,                          // 그냥 누를 때 같은 화면에서 여는 함수. 없으면 주소로 간다
   className,
   ...props
 }) {
-  const Tag = href ? 'a' : 'button';
   const 제목클래스 = [titleClass, styles.title, lines === 1 ? styles.oneLine : styles.clamp]
     .filter(Boolean).join(' ');
+  const onClick = onOpen ? (e) => { if (!그냥누름(e)) return; e.preventDefault(); onOpen(); } : undefined;
 
   return (
-    <Tag
-      {...(href ? { href } : { type: 'button', onClick })}
+    <a
+      href={href}
+      onClick={onClick}
       className={[styles.card, className].filter(Boolean).join(' ')}
       {...props}
     >
@@ -49,6 +54,6 @@ export default function MediaCard({
           {meta && <div className={styles.meta}>{meta}</div>}
         </div>
       )}
-    </Tag>
+    </a>
   );
 }
