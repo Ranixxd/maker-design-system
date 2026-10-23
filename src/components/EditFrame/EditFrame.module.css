@@ -1,19 +1,15 @@
 /* LayerPopup이 먼저 붙인 머리·본문·발판 여백을 이기려고 창 이름(.frame)을 함께 짚는다.
    빌드마다 CSS가 합쳐지는 순서가 달라 같은 무게로 두면 어느 쪽이 이길지 모른다 */
 
-/* PC는 가운데 창을 480×760으로 못 박는다. 판이 남는 자리를 차지해 창 아래가 비지 않는다 */
-@media (min-width: 768px) {
-  .frame {
-    width: min(480px, calc(100vw - var(--spacing-8)));
-    height: min(760px, calc(100vh - var(--spacing-16)));
-    max-height: none;
-  }
-}
+/* PC도 폰처럼 화면 전체를 쓰는 페이지다(2026-10-24 사용자, LayerPopup desktopType="page").
+   전에는 가운데 창을 480×760으로 못 박았다. 판은 넓어져도 최대 크기(--edit-canvas-max-w) 안에서 가운데 선다.
+   커지거나 서서히 나타나는 등장 효과도 없다(LayerPopup still). 창이 아니라 순수한 페이지처럼 바로 선다(2026-10-24 사용자) */
 
 /* 머리는 판이 창을 꽉 채우는 작업 화면이라 다른 창의 20px 여백보다 좁다.
    머리·본문·아래 자리 사이에 선을 긋지 않는다. 본문 바탕(면)으로 갈린다(2026-10-10 사용자) */
+/* 위아래는 4px다(2026-10-24 사용자, 12px에서 줄임). 단추(48px)가 누르는 자리를 이미 갖고 있어 머리가 56px이 된다 */
 .frame .head {
-  padding: var(--spacing-3) var(--spacing-3) var(--spacing-3) var(--spacing-4);
+  padding: var(--spacing-1) var(--spacing-3) var(--spacing-1) var(--spacing-4);
 }
 
 .frame .body {

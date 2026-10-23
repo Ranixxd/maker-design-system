@@ -64,6 +64,11 @@ export default function LayerPopup({
   toolbar,                // 머리 아래 늘 보이는 자리(찾기칸·분류 탭). 스크롤되지 않고 본문만 스크롤된다
   footer,                 // 본문 아래에 늘 보이는 자리(주요 단추). 본문만 스크롤된다
   mobileType = 'sheet',   // 'sheet' | 'page'
+  /* 넓은 화면(768px 이상)의 모양. 'modal' 가운데 창 | 'page' 화면 전체.
+     편집 화면(EditFrame)은 PC에서도 화면 전체를 쓴다(2026-10-24 사용자) */
+  desktopType = 'modal',
+  /* 등장 효과(덮개 fadeIn, 창 scaleIn·slideUp)를 끈다. 창이 아니라 페이지처럼 바로 서야 하는 편집 화면이 쓴다(2026-10-24 사용자) */
+  still = false,
 
   // Sheet-only props
   initialSnap = 'auto',   // 'auto' | 10 | 50 | 90
@@ -262,7 +267,7 @@ export default function LayerPopup({
 
   const panelClass = isSheet
     ? styles.sheet
-    : (isMobile && mobileType === 'page') ? styles.page : styles.modal;
+    : (isMobile ? mobileType === 'page' : desktopType === 'page') ? styles.page : styles.modal;
 
   // Inline style: only set height when we have a fixed value (not auto)
   const sheetStyle = isSheet
@@ -274,7 +279,7 @@ export default function LayerPopup({
 
   return (
     <div
-      className={[styles.overlay, dim ? null : styles.clear].filter(Boolean).join(' ')}
+      className={[styles.overlay, dim ? null : styles.clear, still && styles.still].filter(Boolean).join(' ')}
       onPointerDown={(e) => { downOnOverlay.current = e.target === e.currentTarget; }}
       onClick={(e) => {
         const fromOverlay = downOnOverlay.current && e.target === e.currentTarget;
@@ -284,7 +289,7 @@ export default function LayerPopup({
     >
       <div
         ref={panelRef}
-        className={[styles.panel, panelClass, className].filter(Boolean).join(' ')}
+        className={[styles.panel, panelClass, still && styles.still, className].filter(Boolean).join(' ')}
         style={sheetStyle}
         role="dialog"
         aria-modal="true"

@@ -5,7 +5,7 @@ import styles from './EditFrame.module.css';
 /* 편집 화면의 틀. [편집 취소 | 편집 완료] 머리, 회색 바탕 위 판, 판 위 둥근 단추 두 자리, 아래 고정 자리.
    판 안에서 무슨 일이 일어나는지와 아래에 무엇을 둘지는 쓰는 쪽이 정한다.
 
-   폰은 화면을 꽉 채우는 페이지, PC는 가운데 창(480×760)이다. 한 흐름에서 이어 여는 편집 화면이
+   폰도 PC도 화면을 꽉 채우는 페이지다(2026-10-24 사용자, 전에는 PC가 가운데 480×760 창). 한 흐름에서 이어 여는 편집 화면이
    같은 크기로 떠야 같은 창이 옮겨 간 것처럼 보인다(말풍선 만들기 → 이미지 만들기) */
 export default function EditFrame({
   isOpen,
@@ -31,6 +31,8 @@ export default function EditFrame({
       isOpen={isOpen}
       onClose={onCancel}
       mobileType="page"
+      desktopType="page"
+      still
       className={[styles.frame, className].filter(Boolean).join(' ')}
       headerClassName={styles.head}
       bodyClassName={styles.body}

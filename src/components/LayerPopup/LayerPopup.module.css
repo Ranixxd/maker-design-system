@@ -1,6 +1,8 @@
+/* --layer-page-top: 덮개와 페이지가 시작하는 높이. 처음 값 0(화면 맨 위). 쓰는 쪽이 공통 헤더 아래부터 창을 세워야 할 때
+   그 높이를 넣는다(짤 편집기 주소, 2026-10-24 사용자: 주소를 가진 페이지는 공통 헤더가 보여야 한다) */
 .overlay {
   position: fixed;
-  inset: 0;
+  inset: var(--layer-page-top, 0px) 0 0 0;
   background-color: var(--color-bg-overlay);
   display: flex;
   align-items: center;
@@ -46,7 +48,7 @@
 /* ── Mobile full page ── */
 .page {
   position: fixed;
-  inset: 0;
+  inset: var(--layer-page-top, 0px) 0 0 0;
   border-radius: 0;
   /* 등장은 PC 모달과 같은 scaleIn이다(2026-09-17). 화면 전체가 아래에서 밀려 올라오면
      시트처럼 끌어내려 닫을 수 있을 것 같은데 그렇지 않아 어색했다 */
@@ -177,3 +179,7 @@
   from { transform: translateY(100%); }
   to   { transform: translateY(0); }
 }
+
+/* 등장 효과 없음(still). 덮개도 창도 바로 선다. 두 이름을 함께 짚어 .overlay·.page의 animation보다 세게 건다 */
+.overlay.still,
+.panel.still { animation: none; }

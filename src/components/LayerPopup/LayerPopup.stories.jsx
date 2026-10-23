@@ -14,6 +14,9 @@ export default {
 
 **분기 기준**
 - PC (≥768px) → 중앙 **모달** (scaleIn 애니메이션)
+- PC (≥768px) + \`desktopType="page"\` → **풀 페이지**. 편집 화면(EditFrame)이 쓴다. 편집은 몰입하는 일이라 PC도 화면 전체다(2026-10-24 사용자)
+- CSS 변수 \`--layer-page-top\` → 덮개와 페이지가 그 높이부터 선다(처음 값 0). 주소를 가진 페이지에서 공통 헤더를 남겨야 할 때 쓰는 쪽이 헤더 높이를 넣는다(짤 편집기, 2026-10-24 사용자)
+- \`still\` → 등장 효과(덮개 fadeIn, 창 scaleIn·slideUp) 없이 바로 선다. 편집 화면처럼 창이 아니라 페이지로 보여야 할 때(2026-10-24 사용자)
 - Mobile (<768px) + \`mobileType="sheet"\` → **바텀 시트** (핸들 드래그 가능)
 - Mobile (<768px) + \`mobileType="page"\` → **풀 페이지** (PC 모달과 같은 scaleIn)
 
