@@ -1,0 +1,28 @@
+/* 어둡게 덮는다. 흐리게(blur) 하지 않는다. 덮개 너머 편집 화면이 비쳐야 힌트가 된다.
+   덮을 자리는 쓰는 쪽이 area로 정한다(편집 화면 머리 아래 몸통). 없으면 화면 전체 */
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-system);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-16) var(--spacing-4) var(--spacing-6);
+  background: var(--color-bg-overlay);
+}
+
+/* 상자를 판 자리에 얹을 때는 가운데 맞춤과 여백을 쓰지 않는다 */
+.placed { display: block; padding: 0; }
+
+/* 왼쪽 위. 상세 페이지 뒤로 가기와 같은 자리 감각(위 여백 spacing-4, 왼쪽 spacing-4) */
+.scrim .back {
+  position: absolute;
+  top: var(--spacing-4);
+  left: var(--spacing-4);
+}
+
+/* 자리를 받지 않을 때 상자는 폰에서 좌우 여백 안을 다 쓰고, 넓은 화면에서는 400px로 가운데 선다 */
+.scrim .zone {
+  max-width: 400px;
+  max-height: 100%;
+}
