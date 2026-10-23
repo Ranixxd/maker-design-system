@@ -32,6 +32,7 @@ export { default as ToolButton } from './components/ToolButton/index.js';
 export { default as Icon } from './components/Icon/index.js';
 export { default as IconButton } from './components/IconButton/index.js';
 export { default as LayerPopup } from './components/LayerPopup/index.js';
+export { default as LoadingScrim } from './components/LoadingScrim/index.js';
 export { default as LinkBanner, linkBannerClip } from './components/LinkBanner/index.js';
 export { default as ListItem } from './components/ListItem/index.js';
 export { default as MenuItem } from './components/MenuItem/index.js';
