@@ -49,9 +49,11 @@
   opacity: 0.5;
 }
 
+/* 로딩도 비활성이라 disabled와 같이 흐리게 한다(2026-10-23 사용자) */
 .btn[data-loading] {
   pointer-events: none;
   cursor: default;
+  opacity: 0.5;
 }
 
 /* ── Size ── */
