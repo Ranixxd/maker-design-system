@@ -3,10 +3,12 @@
    흰 블러 딤이다(--color-bg-overlay-blur / --blur-overlay). 겹침은 모달 토큰이라 붙는 줄(--z-sticky)과 헤더 위에 선다.
    [⋯] 팝오버는 딤 안에서 그려지므로(Popover portal 꺼짐) 그 위에 선다. 위에 뜨는 신고 창은 같은 토큰이고 DOM에서 뒤에 온다
 
-   세 칸의 안쪽 여백은 하나다(2026-10-24 사용자). 위아래 --viewer-pad-y, 좌우 --viewer-pad-x */
+   세 칸의 안쪽 여백은 하나다(2026-10-24 사용자). 위아래 --viewer-pad-y, 좌우 --viewer-pad-x.
+   바디 속 줄 사이 간격도 하나다(2026-10-25 사용자). --viewer-gap */
 .dim {
   --viewer-pad-y: var(--spacing-3);
   --viewer-pad-x: var(--spacing-4);
+  --viewer-gap: var(--spacing-4);
   position: fixed;
   inset: 0;
   z-index: var(--z-modal-scrim);
@@ -36,8 +38,9 @@
   padding: var(--viewer-pad-y) var(--viewer-pad-x);
 }
 
-/* 바디 속 묶음. 저장 안내 > 그림 > 내용 > 지표를 쌓아 바디 가운데에 세운다(480px까지).
-   그림 크기는 ImageViewer.jsx가 이 칸의 너비·높이에서 나머지 줄을 뺀 자리로 잰다. 사이 간격은 각 줄의 margin이다 */
+/* 바디 속 묶음. 저장 안내 > 그림 > 내용을 쌓아 바디 가운데에 세운다(480px까지).
+   그림 크기는 ImageViewer.jsx가 이 칸의 너비·높이에서 나머지 줄을 뺀 자리로 잰다.
+   사이 간격은 둘째 줄부터 위 margin(--viewer-gap)이다. gap이 아닌 것은 덧붙는 것(.extra)을 빼려고다 */
 .stage {
   inline-size: min(100%, 480px);
   min-height: 0;
@@ -46,15 +49,28 @@
   align-items: center;
   justify-content: center;
 }
+.stage > * {
+  margin: 0;
+}
+.stage > * + * {
+  margin-block-start: var(--viewer-gap);
+}
 
 /* 저장하는 방법은 그림 위에 둔다. 보고 나서 알면 한 번 더 찾아 올라와야 한다.
    너비는 푸터 단추처럼 묶음 너비(480px까지)를 다 쓴다(2026-10-24 사용자) */
 .hint {
   flex: 0 0 auto;
   inline-size: 100%;
-  margin: 0 0 var(--spacing-5);
   color: var(--color-text-secondary);
   text-align: center;
+}
+
+/* 그림 칸. 그림과 바닥 그늘(지표)을 겹친다. 그늘이 그림 반경 밖으로 새지 않게 자른다 */
+.figure {
+  flex: 0 0 auto;
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
 
 /* 그림. 크기는 ImageViewer.jsx가 원본 비율로 박는다. 재기 전에는 숨긴다.
@@ -70,31 +86,49 @@
   user-select: auto;
 }
 
-/* 내용(짤 제목 등). 지표보다 한 단 진하다 */
-.caption {
-  flex: 0 0 auto;
-  inline-size: 100%;
-  margin: var(--spacing-4) 0 0;
-  color: var(--color-text-default);
+/* 지표(👀 · ♥ 등)는 그림 바닥 그늘 위에 흰 글로 선다(2026-10-25 사용자, 덕꾸 앱 ImageVeil과 같다).
+   그늘은 바닥이 가장 진하고 위로 옅어진다. 색은 덮개 토큰이고, 진하기는 그 토큰의 2/3까지다(그대로는 그림을 너무 가린다).
+   곧게 옅어지면 그늘이 시작하는 줄이 보여서, 위쪽 절반은 천천히 짙어지게 꺾는다. 키 96, 글은 좌우·아래 16 */
+.veil {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  box-sizing: border-box;
+  min-block-size: calc(var(--spacing-12) * 2);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin: 0;
+  padding: 0 var(--spacing-4) var(--spacing-4);
+  background: linear-gradient(to bottom,
+    transparent,
+    color-mix(in srgb, var(--color-bg-overlay) 20%, transparent) 50%,
+    color-mix(in srgb, var(--color-bg-overlay) 67%, transparent));
+  color: var(--color-text-oninverse);
   text-align: center;
+  pointer-events: none;
 }
 
-/* 지표(👀 · ♥ 등). 내용 바로 아래 8px, 내용이 없으면 그림 아래 16px */
+/* 그림이 없을 때의 지표(지워진 짤). 그림 자리에 한 줄로 선다 */
 .meta {
   flex: 0 0 auto;
-  margin: var(--spacing-2) 0 0;
   color: var(--color-text-secondary);
   text-align: center;
   letter-spacing: 0.2px;
 }
-.image + .meta,
-.hint + .meta {
-  margin-block-start: var(--spacing-4);
+
+/* 내용(짤 제목 등). 지표보다 한 단 진하다 */
+.caption {
+  flex: 0 0 auto;
+  inline-size: 100%;
+  color: var(--color-text-default);
+  text-align: center;
 }
 
-/* 덧붙는 것(떠 있는 스티커 등). 그림 크기 셈에 넣지 않는다 */
-.extra {
+/* 덧붙는 것(떠 있는 스티커 등). 그림 크기 셈에도 사이 간격에도 넣지 않는다 */
+.stage > .extra {
   flex: 0 0 auto;
+  margin-block-start: 0;
 }
 
 /* 푸터. 화면 아래에 붙고, 단추는 바디 너비(480px까지)로 선다 */

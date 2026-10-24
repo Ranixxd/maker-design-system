@@ -7,7 +7,8 @@ import styles from './ImageViewer.module.css';
    세 칸이다. 상단 기능바(왼쪽 lead, 오른쪽 닫기) · 바디 · 푸터(단추).
    바디는 기능바와 푸터를 뺀 남은 높이를 다 쓰고, 푸터 단추는 화면 아래로 내려간다. 흰 블러 딤이다.
 
-   바디 속은 이 차례로 정해져 있다: 저장 안내 > 그림 > 내용 > 지표.
+   바디 속은 이 차례로 정해져 있다: 저장 안내 > 그림(지표는 그림 바닥 그늘 위) > 내용. 사이 간격은 16 하나다(2026-10-25 사용자).
+   그림이 없으면 지표는 그림 자리에 한 줄로 선다. 덕꾸 앱 짤 상세(ImageVeil)와 같다.
    그림은 바디의 남은 높이·너비 안에 원본 비율로 들어가게 크기를 잰다(키우지는 않는다).
    저장 안내와 내용은 묶음 너비(480px까지)를 다 쓴다. 묶음 전체가 바디 가운데에 선다.
 
@@ -17,9 +18,9 @@ import styles from './ImageViewer.module.css';
    src·alt: 그림. 없으면 그림 없이 내용만 선다(지워진 그림 등)
    imageClassName: 그림의 테두리·반경·바탕(배경화면처럼 틀이 있는 그림)
    caption: 그림 아래 내용 한 줄(짤 제목 등)
-   meta: 내용 아래 지표 한 줄(👀 · ♥ 등)
+   meta: 그림 바닥 그늘 위 지표 한 줄(👀 · ♥ 등)
    footer: 바디 아래 단추 줄. 단추는 줄 너비로 선다
-   children: 지표 아래에 덧붙는 것(떠 있는 스티커 등). 크기 셈에 넣지 않는다
+   children: 내용 아래에 덧붙는 것(떠 있는 스티커 등). 크기 셈에 넣지 않는다
    escBlocked: 이 창 위에 다른 창(신고 창 등)이 떠 있는 동안 true. 그동안 Esc는 그 창 몫이다 */
 export default function ImageViewer({
   label,
@@ -58,20 +59,21 @@ export default function ImageViewer({
     return () => { root.style.overflow = before; };
   }, []);
 
-  /* 그림 크기 재기. 바디(stage)의 너비·높이에서 안내·내용·지표와 사이 간격을 뺀 자리에 원본 비율로 넣는다 */
+  /* 그림 크기 재기. 바디(stage)의 너비·높이에서 안내·내용과 사이 간격을 뺀 자리에 원본 비율로 넣는다 */
   const stageRef = useRef(null);
+  const figureRef = useRef(null);
   const imgRef = useRef(null);
   const [size, setSize] = useState(null);
   const measure = useCallback(() => {
     const stage = stageRef.current, img = imgRef.current;
     if (!stage || !img || !img.naturalWidth) return;
-    const others = [...stage.children].filter((el) => el !== img && el.dataset.flow !== 'off');
-    /* 사이 간격은 각 줄의 margin이다(안내 아래 20, 그림 아래 16, 내용 아래 8) */
-    const outer = (el) => {
+    const others = [...stage.children].filter((el) => el !== figureRef.current && el.dataset.flow !== 'off');
+    /* 사이 간격은 둘째 줄부터 위 margin이다. 그림 칸의 margin도 센다 */
+    const margins = (el) => {
       const s = getComputedStyle(el);
-      return el.getBoundingClientRect().height + parseFloat(s.marginTop) + parseFloat(s.marginBottom);
+      return parseFloat(s.marginTop) + parseFloat(s.marginBottom);
     };
-    const used = others.reduce((s, el) => s + outer(el), 0);
+    const used = others.reduce((s, el) => s + el.getBoundingClientRect().height + margins(el), margins(figureRef.current));
     const W = stage.clientWidth, H = Math.max(0, stage.clientHeight - used);
     const k = Math.min(1, W / img.naturalWidth, H / img.naturalHeight);
     const next = { w: Math.floor(img.naturalWidth * k), h: Math.floor(img.naturalHeight * k) };
@@ -101,12 +103,14 @@ export default function ImageViewer({
       <div className={styles.body}>
         <div ref={stageRef} className={styles.stage}>
           {hint && <p className={`text-body-sm ${styles.hint}`} onClick={멈춤}>{hint}</p>}
-          {src && (
-            <img ref={imgRef} className={[styles.image, imageClassName].filter(Boolean).join(' ')} src={src} alt={alt}
-              style={size ? { width: size.w, height: size.h } : { width: 0, height: 0, visibility: 'hidden' }} onLoad={measure} onClick={멈춤} />
-          )}
+          {src ? (
+            <div ref={figureRef} className={styles.figure} onClick={멈춤}>
+              <img ref={imgRef} className={[styles.image, imageClassName].filter(Boolean).join(' ')} src={src} alt={alt}
+                style={size ? { width: size.w, height: size.h } : { width: 0, height: 0, visibility: 'hidden' }} onLoad={measure} />
+              {meta && size && <p className={`text-label-md ${styles.veil}`}>{meta}</p>}
+            </div>
+          ) : meta && <p className={`text-body-sm ${styles.meta}`} onClick={멈춤}>{meta}</p>}
           {caption && <p className={`text-body-md ${styles.caption}`} onClick={멈춤}>{caption}</p>}
-          {meta && <p className={`text-body-sm ${styles.meta}`} onClick={멈춤}>{meta}</p>}
           {children && <div data-flow="off" className={styles.extra} onClick={멈춤}>{children}</div>}
         </div>
       </div>
