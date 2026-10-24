@@ -15,8 +15,7 @@ import styles from './Title.module.css';
            별도 요소라 여기 넣지 않는다. 쓰는 쪽이 배치한다
    - description: 제목 아래 설명 한 줄
 
-   가운데 정렬일 때 제목 글자는 늘 정중앙이다. 아이콘·단추는 글자 오른쪽에 매달리고 자리를 차지하지 않는다.
-   창마다 아이콘이 있고 없고에 따라 제목이 흔들리지 않게 하려는 것이다 */
+   가운데 정렬일 때는 제목 글자와 아이콘·단추가 한 덩어리로 가운데에 선다. 아이콘·단추도 자리를 차지한다(2026-10-25 주인장) */
 const TEXT = { lg: 'text-heading-md', md: 'text-heading-sm', sm: 'text-heading-xs' };
 
 export default function Title({
