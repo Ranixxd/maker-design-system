@@ -63,7 +63,7 @@ export const CommonIcons = {
       'Menu', 'MoreHorizontal', 'User', 'LogOut',
       'Folder', 'FolderPlus', 'Astroid', 'RotateCcw',
       'CircleHelp', 'Search', 'ImagePlus', 'Eraser',
-      'ArrowLeft', 'ArrowUp', 'ArrowUpDown', 'Siren',
+      'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowUpDown', 'Siren',
       'Wallpaper', 'Brush', 'Smile', 'LayersArrowUp', 'LayersArrowDown', 'Copy',
     ];
     return (

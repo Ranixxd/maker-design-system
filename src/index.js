@@ -42,6 +42,8 @@ export { default as TextField } from './components/TextField/index.js';
 export { default as UploadField } from './components/UploadField/index.js';
 export { default as DropZone } from './components/DropZone/index.js';
 export { default as DropScrim } from './components/DropScrim/index.js';
+export { default as ImageViewer } from './components/ImageViewer/index.js';
+export { default as Carousel } from './components/Carousel/index.js';
 export { default as Title } from './components/Title/index.js';
 export { default as Thumbnail } from './components/Thumbnail/index.js';
 export { default as SelectRow } from './components/SelectRow/index.js';

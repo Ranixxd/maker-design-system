@@ -1,0 +1,115 @@
+/* 그림 뷰어 스크림(ImageViewer.jsx). 상단 기능바 · 바디 · 푸터 세 칸이다.
+
+   흰 블러 딤이다(--color-bg-overlay-blur / --blur-overlay). 겹침은 모달 토큰이라 붙는 줄(--z-sticky)과 헤더 위에 선다.
+   [⋯] 팝오버는 딤 안에서 그려지므로(Popover portal 꺼짐) 그 위에 선다. 위에 뜨는 신고 창은 같은 토큰이고 DOM에서 뒤에 온다
+
+   세 칸의 안쪽 여백은 하나다(2026-10-24 사용자). 위아래 --viewer-pad-y, 좌우 --viewer-pad-x */
+.dim {
+  --viewer-pad-y: var(--spacing-3);
+  --viewer-pad-x: var(--spacing-4);
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal-scrim);
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-overlay-blur);
+  backdrop-filter: blur(var(--blur-overlay));
+  -webkit-backdrop-filter: blur(var(--blur-overlay));
+}
+
+/* 상단 기능바. 우상단 닫기, 좌상단에는 있으면 보조 기능 */
+.topBar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  padding: var(--viewer-pad-y) var(--viewer-pad-x);
+}
+.spacer { flex: 1; }
+
+/* 바디. 기능바와 푸터를 뺀 남은 높이를 다 쓴다. 저장 안내와 그림을 가운데에 세운다 */
+.body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding: var(--viewer-pad-y) var(--viewer-pad-x);
+}
+
+/* 바디 속 묶음. 저장 안내 > 그림 > 내용 > 지표를 쌓아 바디 가운데에 세운다(480px까지).
+   그림 크기는 ImageViewer.jsx가 이 칸의 너비·높이에서 나머지 줄을 뺀 자리로 잰다. 사이 간격은 각 줄의 margin이다 */
+.stage {
+  inline-size: min(100%, 480px);
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 저장하는 방법은 그림 위에 둔다. 보고 나서 알면 한 번 더 찾아 올라와야 한다.
+   너비는 푸터 단추처럼 묶음 너비(480px까지)를 다 쓴다(2026-10-24 사용자) */
+.hint {
+  flex: 0 0 auto;
+  inline-size: 100%;
+  margin: 0 0 var(--spacing-5);
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+/* 그림. 크기는 ImageViewer.jsx가 원본 비율로 박는다. 재기 전에는 숨긴다.
+   -webkit-touch-callout은 꾹 눌렀을 때 저장 메뉴가 뜨게 하는 스위치다. 이 창의 유일한 저장 길이라 켜 둔다 */
+.image {
+  flex: 0 0 auto;
+  display: block;
+  box-sizing: border-box;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  -webkit-touch-callout: default;
+  -webkit-user-select: auto;
+  user-select: auto;
+}
+
+/* 내용(짤 제목 등). 지표보다 한 단 진하다 */
+.caption {
+  flex: 0 0 auto;
+  inline-size: 100%;
+  margin: var(--spacing-4) 0 0;
+  color: var(--color-text-default);
+  text-align: center;
+}
+
+/* 지표(👀 · ♥ 등). 내용 바로 아래 8px, 내용이 없으면 그림 아래 16px */
+.meta {
+  flex: 0 0 auto;
+  margin: var(--spacing-2) 0 0;
+  color: var(--color-text-secondary);
+  text-align: center;
+  letter-spacing: 0.2px;
+}
+.image + .meta,
+.hint + .meta {
+  margin-block-start: var(--spacing-4);
+}
+
+/* 덧붙는 것(떠 있는 스티커 등). 그림 크기 셈에 넣지 않는다 */
+.extra {
+  flex: 0 0 auto;
+}
+
+/* 푸터. 화면 아래에 붙고, 단추는 바디 너비(480px까지)로 선다 */
+.footer {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  padding: var(--viewer-pad-y) var(--viewer-pad-x) calc(var(--viewer-pad-y) + env(safe-area-inset-bottom));
+}
+.footerInner {
+  inline-size: min(100%, 480px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+.footerInner > * {
+  inline-size: 100%;
+}

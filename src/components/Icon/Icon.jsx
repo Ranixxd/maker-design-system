@@ -38,6 +38,8 @@ import {
   Smile,
   /* 판 위 개체 도구 줄(ObjectBox)의 복사 (2026-10-21). 카톡테마 메이커 프로필 사진 파츠 */
   Copy,
+  /* 캐러셀의 다음 칸으로 (2026-10-24). 이전은 ArrowLeft */
+  ArrowRight,
 } from 'lucide-react';
 
 const ICONS = {
@@ -49,7 +51,7 @@ const ICONS = {
   User, LogOut,
   Folder, FolderPlus, Astroid, RotateCcw,
   CircleHelp, Search, ImagePlus, Eraser,
-  ArrowLeft, ArrowUp, ArrowUpDown, Siren,
+  ArrowLeft, ArrowRight, ArrowUp, ArrowUpDown, Siren,
   Wallpaper, Brush, Smile,
   LayersArrowUp, LayersArrowDown, Copy,
 };
