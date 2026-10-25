@@ -15,11 +15,14 @@ const TextField = forwardRef(function TextField({
   hint,
   type = 'text',
   invalid = false,
+  error,                // 칸 아래 빨간 글자 한 줄. 주면 invalid도 켜진다. hint는 그 아래에 그대로 선다(2026-10-25)
   multiline = false,
   rows = 6,
   action,               // 칸 안 오른쪽 끝 둥근 단추 { icon, 'aria-label', onClick }. 한 줄 칸에서만 선다(2026-10-13)
   ...inputProps
 }, ref) {
+  const bad = invalid || !!error;
+  const errorId = error && id ? `${id}-error` : undefined;
   return (
     <div className={styles.field}>
       {label && (
@@ -39,8 +42,9 @@ const TextField = forwardRef(function TextField({
         value={value}
         onChange={onChange}
         aria-required={required || undefined}
-        data-invalid={invalid || undefined}
-        aria-invalid={invalid || undefined}
+        data-invalid={bad || undefined}
+        aria-invalid={bad || undefined}
+        aria-describedby={errorId}
         {...inputProps}
       />
       ) : (
@@ -54,8 +58,9 @@ const TextField = forwardRef(function TextField({
         value={value}
         onChange={onChange}
         aria-required={required || undefined}
-        data-invalid={invalid || undefined}
-        aria-invalid={invalid || undefined}
+        data-invalid={bad || undefined}
+        aria-invalid={bad || undefined}
+        aria-describedby={errorId}
         {...inputProps}
       />
       {action && (
@@ -66,6 +71,10 @@ const TextField = forwardRef(function TextField({
         </button>
       )}
       </div>
+      )}
+      {error && (
+        /* 칠 때 바로 뜨는 말이라 낭독기에도 바로 읽힌다 */
+        <div id={errorId} role="alert" className={`text-body-sm ${styles.error}`}>{error}</div>
       )}
       {hint && (
         /* 여러 줄과 목록을 받는다. span이면 안에 ul을 둘 수 없다 */

@@ -87,6 +87,11 @@
   color: var(--color-text-secondary);
 }
 
+/* 에러 문구. hint와 같은 글자·자리이고 색만 critical이다 */
+.error {
+  color: var(--color-text-critical);
+}
+
 /* 규칙이 여럿이면 목록으로 적는다. 점이 있어야 줄줄이 이어진 문장이 아니라
    따로 읽을 항목으로 보인다 */
 .hint ul {

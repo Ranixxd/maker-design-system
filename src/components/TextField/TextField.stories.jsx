@@ -43,7 +43,8 @@ export default {
 **주의**
 - \`id\`를 반드시 넘긴다. label의 \`htmlFor\`와 연결되어 레이블 클릭 시 포커스가 이동한다.
 - 값 검증(필수값 미입력 등)은 필드 하단이 아니라 Toast로 안내하는 것이 현재 패턴이다.
-- \`invalid\` — 어느 칸이 문제인지 칸 자체에 표시한다. 빨간 테두리(\`--color-border-critical\`) + 옅은 빨간 바탕(\`--color-bg-critical-subtle\`). 안내 문구는 여전히 Toast나 창 위 안내로 한다. 카톡테마 메이커 내보내기 창이 필수칸을 비웠을 때 쓴다 (2026-09-17 더함).
+- \`invalid\` — 어느 칸이 문제인지 칸 자체에 표시한다. 빨간 테두리(\`--color-border-critical\`) + 옅은 빨간 바탕(\`--color-bg-critical-subtle\`). 빈 필수칸처럼 칸만 짚으면 될 때 쓰고, 안내 문구는 Toast나 창 위 안내로 한다. 카톡테마 메이커 내보내기 창이 필수칸을 비웠을 때 쓴다 (2026-09-17 더함).
+- \`error\` — 그 칸에서 **치는 순간** 알려야 할 말(못 쓰는 글자를 쳤을 때 등). 칸 바로 아래 한 줄, \`text-body-sm\` + \`--color-text-critical\`. 주면 \`invalid\`도 켜진다. \`hint\`는 지우지 않고 그 아래에 둔다(규칙 설명은 계속 읽혀야 한다). 낭독기에는 \`role="alert"\`와 \`aria-describedby\`로 알린다. 말이 필요 없어지면 쓰는 쪽이 \`error\`를 걷는다 (2026-10-25 더함, 카톡테마 메이커 테마명·제작자 칸 "입력할 수 없는 기호예요.").
 
 **그 밖의 속성** (2026-09-17 더함)
 - \`ref\`는 input에 붙는다(창을 열자마자 포커스).
@@ -79,6 +80,7 @@ export default {
     hint: { control: 'text' },
     required: { control: 'boolean' },
     invalid: { control: 'boolean' },
+    error: { control: 'text' },
     disabled: { control: 'boolean' },
     type: { control: 'radio', options: ['text', 'password', 'email', 'number'] },
   },
@@ -144,6 +146,13 @@ export const Invalid = {
   name: '잘못 입력',
   render: Controlled,
   args: { id: 'sb-invalid', label: '테마명', required: true, invalid: true, placeholder: '테마 이름을 입력해요' },
+};
+
+export const WithError = {
+  name: '에러 문구',
+  render: Controlled,
+  args: { id: 'sb-error', label: '제작자', required: true, value: '기니', error: '입력할 수 없는 기호예요.',
+    hint: '기니님의 테마를 활용했어요.' },
 };
 
 export const Disabled = {
