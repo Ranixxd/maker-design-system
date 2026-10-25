@@ -1,4 +1,5 @@
 import DropScrim from './DropScrim';
+import Button from '../Button/Button';
 
 export default {
   title: 'Components/DropScrim',
@@ -30,11 +31,13 @@ PC 가운데 창이면 창 안만 덮어, 창 밖 어둡기(LayerPopup 덮개)�
 | \`label\` | 상자 가운데 글 |
 | \`frame\` | 상자를 얹을 자리 \`{ left, top, width, height }\`(화면 기준 px). 없으면 가운데 |
 | \`area\` | 덮을 자리 \`{ left, top, width, height, radius }\`(화면 기준 px). 편집 화면 머리 아래 몸통. 없으면 화면 전체 |
+| \`actions\` | 사진 말고 다른 길로 시작하는 단추(찌그러진 얼굴의 [또는 이모지 넣기]). \`frame\`이 있으면 판 바로 아래 가운데, 없으면 상자 아래 가운데. 비우면 없다 |
 | \`backLabel\` / \`onBack\` | 왼쪽 위 글자 붙은 뒤로 가기. 편집기에서는 쓰지 않는다 |
 | \`onPick\` | 고르거나 놓은 파일 한 장. 받으면 쓰는 쪽이 덮개를 닫는다 |
 
 **감싸는 쪽이 지킬 것**
 편집 화면(EditFrame)을 먼저 연 뒤에 얹는다. 덮개는 \`--z-system\`에 선다. 사진을 받기 전에는 편집 화면의 [편집 완료]를 막는다(\`doneDisabled\`).
+\`actions\` 단추는 \`Button\` \`secondary\` \`sm\`이다(상자보다 눈에 덜 띄게). 단추가 창(LayerPopup)을 띄우면 창이 떠 있는 동안 덮개를 걷는다. 덮개가 창보다 위에 선다.
         `,
       },
     },
@@ -49,4 +52,13 @@ export const Default = {
       <DropScrim {...args} />
     </div>
   ),
+};
+
+export const WithActions = {
+  name: '다른 길 단추',
+  args: {
+    ...Default.args,
+    actions: <Button variant="secondary" size="sm">또는 이모지 넣기</Button>,
+  },
+  render: Default.render,
 };
