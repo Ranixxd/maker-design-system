@@ -72,8 +72,9 @@
   color: var(--color-icon-onprimary);
 }
 
+/* Button secondary와 같은 bg-tertiary다(2026-10-27 사용자). bg-secondary는 흰 바탕에서 단추로 안 읽혔다 */
 .secondary {
-  background-color: var(--color-bg-secondary);
+  background-color: var(--color-bg-tertiary);
   color: var(--color-text-default);
 }
 

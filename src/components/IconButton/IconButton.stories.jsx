@@ -22,7 +22,7 @@ export default {
 |---|---|
 | \`neutral\` | 배경 없음. Topbar·닫기 버튼 등 기본형. 상태는 아이콘 색(옅어짐) |
 | \`neutral-weak\` | 배경 없음, 아이콘이 두 톤 옅다(icon-tertiary). 목록 줄의 지우기처럼 내용 곁의 보조 동작. 상태는 아이콘 색(진해짐) |
-| \`secondary\` | bg-secondary 배경. 중간 강조 |
+| \`secondary\` | bg-tertiary 배경. 중간 강조. Button secondary와 같은 면이다 |
 | \`primary\` | bg-primary 배경. 가장 강한 강조 |
 | \`outline\` | 흰 바탕에 얇은 테두리(border-default). **대체제다** |
 
