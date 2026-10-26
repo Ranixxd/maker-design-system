@@ -42,6 +42,8 @@ import {
   ArrowRight,
   /* 카톡테마 메이커 편집기 단추(EditFab)의 테마모드·쉽게시작, 배경 만들기의 모양섞기, 작성자 SNS 새 탭 열기 (2026-10-26). 웹이 lucide-react로 바로 그리던 것을 옮겨 왔다 */
   Moon, Sun, WandSparkles, Shuffle, SquareArrowOutUpRight,
+  /* 카톡테마 메이커 말풍선 만들기의 도구 줄(말풍선·크기 가이드)과 자르기 도구(기본과 위치 맞추기·자동 자르기), 글자 자리 손잡이 (2026-10-26) */
+  MessageCirclePlus, Scan, ScanSquare, RulerDimensionLine, MoveVertical, MoveHorizontal,
   createLucideIcon,
 } from 'lucide-react';
 
@@ -63,6 +65,7 @@ const ICONS = {
   Wallpaper, Brush, Smile,
   LayersArrowUp, LayersArrowDown, Copy,
   Moon, Sun, WandSparkles, Shuffle, SquareArrowOutUpRight,
+  MessageCirclePlus, Scan, ScanSquare, RulerDimensionLine, MoveVertical, MoveHorizontal,
 };
 
 /* sm 20 / md 24 (2026-09-18, 16 / 20에서 한 단계씩 키웠다). 폰에서 알아보기 작았다 */

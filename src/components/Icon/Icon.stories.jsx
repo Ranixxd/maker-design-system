@@ -82,6 +82,7 @@ export const CommonIcons = {
       'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowUpDown', 'Siren',
       'Wallpaper', 'Brush', 'Smile', 'LayersArrowUp', 'LayersArrowDown', 'Copy',
       'Moon', 'Sun', 'WandSparkles', 'Shuffle', 'SquareArrowOutUpRight',
+      'MessageCirclePlus', 'Scan', 'ScanSquare', 'RulerDimensionLine', 'MoveVertical', 'MoveHorizontal',
     ];
     return (
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24 }}>
