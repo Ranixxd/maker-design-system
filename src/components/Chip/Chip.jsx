@@ -33,7 +33,7 @@ export default function Chip({
     <span className={[styles.removable, className].filter(Boolean).join(' ')}>
       {chip}
       <button type="button" className={styles.remove} aria-label={removeLabel} onClick={onRemove}>
-        <Icon name="X" size="sm" className={styles.removeIcon} />
+        <Icon name="X" size="sm" strokeWidth={2} className={styles.removeIcon} />
       </button>
     </span>
   );

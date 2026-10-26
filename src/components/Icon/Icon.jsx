@@ -65,13 +65,20 @@ const ICONS = {
 /* sm 20 / md 24 (2026-09-18, 16 / 20에서 한 단계씩 키웠다). 폰에서 알아보기 작았다 */
 const SIZES = { sm: 20, md: 24 };
 
+/* 크기별 실제 굵기(화면 px): md 2, sm 1.5 (2026-10-26 사용자). 루시드 strokeWidth는 24칸 그림판 단위라
+   그대로 2를 주면 20px에서 2×20/24 ≈ 1.67px로 보여 크기마다 굵기가 갈렸다. 그래서 실제 px를 24칸 단위로 바꿔 넘긴다(sm 1.8).
+   루시드 absoluteStrokeWidth를 켜지 않은 것은 쓰는 쪽이 넘기는 strokeWidth의 뜻(24칸 단위)을 바꾸지 않으려서다.
+   CSS로 크기를 줄인 곳(SearchField 지우기 X 12px 등)은 그 크기에서 맞는 값을 24칸 단위로 넘긴다 */
+const STROKE_PX = { sm: 1.5, md: 2 };
+const strokeOf = (size) => (STROKE_PX[size] * 24) / SIZES[size];
+
 export default function Icon({ name, size = 'md', className, style, color, ...props }) {
   const LucideIcon = ICONS[name];
   if (!LucideIcon) return null;
   return (
     <LucideIcon
       size={SIZES[size]}
-      strokeWidth={2}
+      strokeWidth={strokeOf(size)}
       color={color ?? 'currentColor'}
       className={className}
       style={style}

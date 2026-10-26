@@ -16,10 +16,11 @@ const BAR_EDGE = 8;  // 바탕 끝과 도구 줄 사이
 const BTN = 36;
 const PAD = 4;       // 도구 줄 안쪽 여백·사이(spacing-1)
 
-/* 좌우 반전. 루시드 flip-horizontal-2가 위아래 삼각형으로 바뀌어 세로선과 좌우 삼각형을 직접 그린다 */
+/* 좌우 반전. 루시드 flip-horizontal-2가 위아래 삼각형으로 바뀌어 세로선과 좌우 삼각형을 직접 그린다.
+   옆 단추의 Icon sm과 같은 실제 1.5px가 되게 24칸 단위 1.8을 준다(1.5 × 24/20) */
 function FlipH() {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="m3 7 5 5-5 5V7" /><path d="m21 7-5 5 5 5V7" /><path d="M12 20V4" />
     </svg>
   );

@@ -26,7 +26,7 @@ export default function EditFab({
       title={showLabel ? undefined : label}
       {...props}
     >
-      {iconNode || (icon && <Icon name={icon} size="sm" className={styles.icon} />)}
+      {iconNode || (icon && <Icon name={icon} size="sm" strokeWidth={2} className={styles.icon} />)}
       {showLabel && <span className={`text-label-xs ${styles.text}`} aria-hidden="true">{label}</span>}
     </button>
   );

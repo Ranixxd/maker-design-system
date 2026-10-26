@@ -14,7 +14,7 @@ export default function CornerButton({
 }) {
   return (
     <button type="button" aria-label={label} className={[styles.btn, className].filter(Boolean).join(' ')} {...props}>
-      <Icon name={icon} size="sm" className={styles.icon} />
+      <Icon name={icon} size="sm" strokeWidth={2} className={styles.icon} />
     </button>
   );
 }

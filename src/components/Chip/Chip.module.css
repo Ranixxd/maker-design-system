@@ -66,4 +66,5 @@
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
+/* 굵기는 24칸 단위 2를 넘겨 지금 굵기(실제 약 1.17px)를 지킨다. Icon sm 기본을 그대로 줄이면 1.05px로 가늘어진다(2026-10-26) */
 .removeIcon { width: 14px; height: 14px; flex: none; }

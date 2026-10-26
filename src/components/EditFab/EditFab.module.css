@@ -19,7 +19,8 @@
   transition: color var(--motion-duration-short) var(--motion-easing-standard);
 }
 
-/* 아이콘은 sm(20)보다 한 단계 작게 둔다. 단추 속이 꽉 차 보이면 판 위에서 눈에 먼저 든다 */
+/* 아이콘은 sm(20)보다 한 단계 작게 둔다. 단추 속이 꽉 차 보이면 판 위에서 눈에 먼저 든다.
+   굵기는 24칸 단위 2를 넘겨 실제 1.5px로 둔다. iconNode로 받는 루시드(24칸 2)와 같은 굵기다(2026-10-26) */
 .icon { width: 18px; height: 18px; }
 .fab > svg { width: 18px; height: 18px; display: block; }
 
