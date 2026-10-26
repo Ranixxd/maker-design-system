@@ -40,6 +40,8 @@ import {
   Copy,
   /* 캐러셀의 다음 칸으로 (2026-10-24). 이전은 ArrowLeft */
   ArrowRight,
+  /* 카톡테마 메이커 편집기 단추(EditFab)의 테마모드·쉽게시작, 배경 만들기의 모양섞기, 작성자 SNS 새 탭 열기 (2026-10-26). 웹이 lucide-react로 바로 그리던 것을 옮겨 왔다 */
+  Moon, Sun, WandSparkles, Shuffle, SquareArrowOutUpRight,
   createLucideIcon,
 } from 'lucide-react';
 
@@ -60,6 +62,7 @@ const ICONS = {
   ArrowLeft, ArrowRight, ArrowUp, ArrowUpDown, Siren,
   Wallpaper, Brush, Smile,
   LayersArrowUp, LayersArrowDown, Copy,
+  Moon, Sun, WandSparkles, Shuffle, SquareArrowOutUpRight,
 };
 
 /* sm 20 / md 24 (2026-09-18, 16 / 20에서 한 단계씩 키웠다). 폰에서 알아보기 작았다 */
