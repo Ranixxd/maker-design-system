@@ -20,8 +20,8 @@ export default {
 
 | variant | 설명 |
 |---|---|
-| \`neutral\` | 배경 없음. Topbar·닫기 버튼 등 기본형 |
-| \`neutral-weak\` | 배경 없음, 아이콘이 두 톤 옅다(icon-tertiary). 목록 줄의 지우기처럼 내용 곁의 보조 동작 |
+| \`neutral\` | 배경 없음. Topbar·닫기 버튼 등 기본형. 상태는 아이콘 색(옅어짐) |
+| \`neutral-weak\` | 배경 없음, 아이콘이 두 톤 옅다(icon-tertiary). 목록 줄의 지우기처럼 내용 곁의 보조 동작. 상태는 아이콘 색(진해짐) |
 | \`secondary\` | bg-secondary 배경. 중간 강조 |
 | \`primary\` | bg-primary 배경. 가장 강한 강조 |
 | \`outline\` | 흰 바탕에 얇은 테두리(border-default). **대체제다** |
@@ -38,8 +38,15 @@ export default {
 **로딩**
 \`loading\`을 주면 아이콘 자리에 스피너가 돌고 누를 수 없다. 흐려지지 않는다. 못 쓰는 버튼(disabled)이 아니라 일이 도는 중이다.
 
+**배경 없는 단추는 상태를 아이콘 색으로 보인다 (2026-10-26)**
+- \`neutral\`·\`neutral-weak\`는 hover·pressed 때 배경 오버레이를 얹지 않고 아이콘 색만 바뀐다. 면이 없는데 \`bg-hover\`를 얹으면 없던 상자가 생겨 보여서다.
+- \`neutral\`은 옅어진다: \`icon-default\` → hover \`icon-hover\` → pressed \`icon-pressed\`.
+- \`neutral-weak\`는 이미 옅어 더 옅어질 자리가 없어 거꾸로 진해진다: \`icon-tertiary\` → hover \`icon-secondary\` → pressed \`icon-default\`.
+- 면이 있는 \`primary\`·\`secondary\`·\`outline\`은 지금처럼 오버레이 한 겹이다. 포커스 링·disabled·loading은 그대로다.
+- 쓰는 쪽이 \`color\`를 덮어쓰면 상태색도 같이 사라지니 덮지 않는다. 아래 "상태 (배경 없는 단추)"에서 본다.
+
 **모바일 hover 처리**
-\`@media (hover: none)\` 환경(터치 디바이스)에서는 hover 오버레이가 표시되지 않는다.
+\`@media (hover: none)\` 환경(터치 디바이스)에서는 hover 오버레이(neutral 계열은 hover 아이콘 색)가 표시되지 않는다. 눌림은 보인다.
         `,
       },
     },
@@ -125,6 +132,37 @@ export const Loading = {
       <IconButton icon="Trash2" size="sm" variant="neutral-weak" aria-label="삭제 중" loading />
       <IconButton icon="Trash2" size="md" variant="neutral" aria-label="삭제 중" loading />
       <IconButton icon="Trash2" size="md" variant="primary" aria-label="삭제 중" loading />
+    </div>
+  ),
+};
+
+/* 스토리북에는 :hover를 고정하는 도구가 없어서, 위 두 줄은 상태 토큰을 직접 입혀 그린 견본이고
+   마지막 줄은 실제로 올리고 눌러 보는 단추다 */
+const stateRow = (variant, colors) => (
+  <div style={{ display: 'flex', gap: 'var(--spacing-2)', alignItems: 'center' }}>
+    <span className="text-label-sm" style={{ width: 96, color: 'var(--color-text-secondary)' }}>{variant}</span>
+    {colors.map(([label, color]) => (
+      <IconButton key={label} icon="X" size="md" variant={variant} aria-label={`${variant} ${label}`} style={color ? { color } : undefined} />
+    ))}
+  </div>
+);
+
+export const IconStates = {
+  name: '상태 (배경 없는 단추)',
+  parameters: {
+    controls: { disable: true },
+    docs: { description: { story: '배경 없는 neutral·neutral-weak는 hover·pressed를 배경이 아니라 아이콘 색으로 보인다(2026-10-26). 견본은 왼쪽부터 기본·hover·pressed. 마지막 줄은 직접 올리고 눌러 본다.' } },
+  },
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-3)' }}>
+      {stateRow('neutral', [['기본'], ['hover', 'var(--color-icon-hover)'], ['pressed', 'var(--color-icon-pressed)']])}
+      {stateRow('neutral-weak', [['기본'], ['hover', 'var(--color-icon-secondary)'], ['pressed', 'var(--color-icon-default)']])}
+      <div style={{ display: 'flex', gap: 'var(--spacing-2)', alignItems: 'center' }}>
+        <span className="text-label-sm" style={{ width: 96, color: 'var(--color-text-secondary)' }}>올려 보기</span>
+        <IconButton icon="X" size="md" variant="neutral" aria-label="neutral 올려 보기" data-testid="ib-neutral-live" />
+        <IconButton icon="X" size="md" variant="neutral-weak" aria-label="neutral-weak 올려 보기" data-testid="ib-weak-live" />
+        <IconButton icon="X" size="sm" variant="neutral" aria-label="neutral sm 올려 보기" />
+      </div>
     </div>
   ),
 };

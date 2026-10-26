@@ -27,6 +27,8 @@ export const color = {
   "textOncritical": "#ffffff",
   "textSuccess": "#0d99ff",
   "textBrand": "#c18bff",
+  "textPressed": "#757575",
+  "textAccentPressed": "#c18bff",
   "borderSubtle": "rgba(0, 0, 0, 0.08)",
   "borderDefault": "rgba(0, 0, 0, 0.12)",
   "borderStrong": "rgba(0, 0, 0, 0.40)",
@@ -42,7 +44,8 @@ export const color = {
   "iconOnaccent": "#ffffff",
   "iconOnprimary": "#ffffff",
   "iconOninverse": "#ffffff",
-  "iconCritical": "#dc3412"
+  "iconCritical": "#dc3412",
+  "iconPressed": "#999999"
 };
 
 export const spacing = {

@@ -10,7 +10,8 @@
   /* 2026-10-17 Button과 함께 한 단계씩 둥글게 했다. sm 8→12, md 12→16 */
   border-radius: var(--radius-lg);
   flex-shrink: 0;
-  transition: opacity var(--motion-duration-short) var(--motion-easing-standard);
+  transition: opacity var(--motion-duration-short) var(--motion-easing-standard),
+              color var(--motion-duration-short) var(--motion-easing-standard);
 }
 
 /* hover/pressed 오버레이 — Button과 동일한 패턴 */
@@ -27,7 +28,8 @@
 .btn:hover:not(:disabled):not([data-loading])::after  { background-color: var(--color-bg-hover); }
 .btn:active:not(:disabled):not([data-loading])::after { background-color: var(--color-bg-pressed); }
 /* 눌렀을 때 줄어들지 않는다(2026-09-19). 아이콘 단추는 닫기·더보기 같은 기능 단추라
-   CTA처럼 크게 반응할 까닭이 없다. 눌림은 위 배경 한 겹으로만 알린다 */
+   CTA처럼 크게 반응할 까닭이 없다. 눌림은 위 배경 한 겹으로만 알린다
+   (배경 없는 neutral·neutral-weak는 아이콘 색으로, 아래 Variant) */
 
 
 .btn:disabled {
@@ -87,6 +89,17 @@
   background-color: transparent;
   color: var(--color-icon-tertiary);
 }
+
+/* 배경 없는 두 단추는 상태를 아이콘 색으로 보인다(2026-10-26 사용자). Button neutral과 같은 까닭이다 —
+   면이 없는데 오버레이를 얹으면 없던 상자가 생겨 보였다. neutral은 옅어지고,
+   neutral-weak는 이미 gray-300이라 더 옅어질 자리가 없어 거꾸로 진해진다 */
+.neutral::after, .neutral-weak::after { display: none; }
+@media (hover: hover) {
+  .neutral:hover:not(:disabled):not([data-loading])      { color: var(--color-icon-hover); }
+  .neutral-weak:hover:not(:disabled):not([data-loading]) { color: var(--color-icon-secondary); }
+}
+.neutral:active:not(:disabled):not([data-loading])      { color: var(--color-icon-pressed); }
+.neutral-weak:active:not(:disabled):not([data-loading]) { color: var(--color-icon-default); }
 
 /* 흰 바탕에 얇은 테두리(2026-09-19).
    버튼은 되도록 primary·secondary·neutral 안에서 고른다. outline은 대체제다.

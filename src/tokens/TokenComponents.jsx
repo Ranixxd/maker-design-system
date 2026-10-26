@@ -226,6 +226,10 @@ export function TextColorTable() {
     { token: 'text-oncritical', palette: 'white',    desc: 'bg-critical 위 텍스트', border: true },
     { token: 'text-success',    palette: 'sky-500',  desc: '맞았다·잘됐다 (올바른 예시 제목). text-critical과 짝' },
     { token: 'text-brand',      palette: 'violet-400', desc: '로고 글자 같은 브랜드 큰 글자' },
+    { token: 'text-hover',      palette: 'gray-600', desc: '배경·테두리 없는 글자 단추(Button neutral)를 올렸을 때' },
+    { token: 'text-pressed',    palette: 'gray-500', desc: '배경·테두리 없는 글자 단추(Button neutral)를 눌렀을 때' },
+    { token: 'text-accent-hover',   palette: 'violet-500', desc: '배경·테두리 없는 강조 단추(Button accent)를 올렸을 때' },
+    { token: 'text-accent-pressed', palette: 'violet-400', desc: '배경·테두리 없는 강조 단추(Button accent)를 눌렀을 때' },
   ]} />;
 }
 
@@ -252,6 +256,8 @@ export function IconColorTable() {
     { token: 'icon-onprimary', palette: 'white',    desc: 'bg-primary 위 아이콘', border: true },
     { token: 'icon-oninverse', palette: 'white',    desc: 'bg-inverse 위 아이콘', border: true },
     { token: 'icon-critical',  palette: 'red-600',  desc: '크리티컬 아이콘' },
+    { token: 'icon-hover',     palette: 'gray-500', desc: '배경 없는 아이콘 단추(IconButton neutral)를 올렸을 때' },
+    { token: 'icon-pressed',   palette: 'gray-400', desc: '배경 없는 아이콘 단추(IconButton neutral)를 눌렀을 때' },
   ]} />;
 }
 

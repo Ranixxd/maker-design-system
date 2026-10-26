@@ -25,6 +25,8 @@ export declare const color: {
   readonly "textOncritical": "#ffffff";
   readonly "textSuccess": "#0d99ff";
   readonly "textBrand": "#c18bff";
+  readonly "textPressed": "#757575";
+  readonly "textAccentPressed": "#c18bff";
   readonly "borderSubtle": "rgba(0, 0, 0, 0.08)";
   readonly "borderDefault": "rgba(0, 0, 0, 0.12)";
   readonly "borderStrong": "rgba(0, 0, 0, 0.40)";
@@ -41,6 +43,7 @@ export declare const color: {
   readonly "iconOnprimary": "#ffffff";
   readonly "iconOninverse": "#ffffff";
   readonly "iconCritical": "#dc3412";
+  readonly "iconPressed": "#999999";
 };
 
 export declare const spacing: {

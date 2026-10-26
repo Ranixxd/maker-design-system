@@ -3,7 +3,7 @@
 //
 // 담는 것: 시멘틱 색(bg·text·border·icon), 간격, 반경, 타이포 역할, 움직임(시간·곡선), 그림자.
 // 팔레트(--color-gray-* 등)는 담지 않는다. 쓰는 쪽에서 팔레트를 못 부르게 하려는 것이다.
-// bg-hover도 뺀다. 앱에는 hover가 없다(눌림은 bg-pressed).
+// hover 토큰(bg-hover, text-hover, icon-hover 등)도 뺀다. 앱에는 hover가 없다(눌림은 *-pressed).
 import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -36,7 +36,7 @@ const px = (v) => {
 const color = {};
 for (const name of Object.keys(vars)) {
   const m = name.match(/^--color-((bg|text|border|icon)-[\w-]+)$/);
-  if (m && m[1] !== 'bg-hover') color[camel(m[1])] = resolve(name);
+  if (m && !m[1].endsWith('-hover')) color[camel(m[1])] = resolve(name);
 }
 
 const spacing = {};

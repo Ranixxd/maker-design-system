@@ -53,8 +53,15 @@ export default {
 - 그림에 뜻을 담지 않는다. 뜻은 글자가 전하고, 그림은 낭독기에서 빠진다(\`alt=""\`).
 - 로딩 중에는 글자와 함께 그림도 사라지고 스피너만 돈다.
 
+**배경·테두리 없는 단추는 상태를 글자색으로 보인다 (2026-10-26)**
+- \`neutral\`은 hover·pressed 때 배경 오버레이를 얹지 않고 글자가 한 단씩 옅어진다: \`text-default\` → hover \`text-hover\` → pressed \`text-pressed\`.
+- 같은 모양인 \`accent\`도 따른다: \`text-accent\` → hover \`text-accent-hover\` → pressed \`text-accent-pressed\`.
+- 면이 없는 단추에 \`bg-hover\`를 얹으면 없던 상자가 생겨 보여서다. 면이 있는 \`primary\`·\`secondary\`·\`quiet\`은 지금처럼 오버레이 한 겹이다.
+- 눌림 97% 축소, 포커스 링, disabled·loading은 다른 변형과 같다. 쓰는 쪽이 \`color\`를 덮어쓰면 상태색도 같이 사라지니 덮지 않는다.
+- 아래 "상태 (배경 없는 단추)"에서 세 상태를 나란히 본다.
+
 **모바일 hover 처리**
-\`@media (hover: none)\` 환경(터치 디바이스)에서는 hover 오버레이가 표시되지 않는다.
+\`@media (hover: none)\` 환경(터치 디바이스)에서는 hover 오버레이(neutral·accent는 hover 글자색)가 표시되지 않는다. 눌림은 보인다.
         `,
       },
     },
@@ -189,5 +196,34 @@ export const Quiet = {
       인물 배경은 ChatGPT로 지울 수 있어요.{' '}
       <Button variant="quiet">프롬프트 복사</Button>
     </p>
+  ),
+};
+
+/* 스토리북에는 :hover를 고정하는 도구가 없어서, 위 줄은 상태 토큰을 직접 입혀 그린 견본이고
+   아래 줄은 실제로 올리고 눌러 보는 단추다 */
+export const TextStates = {
+  name: '상태 (배경 없는 단추)',
+  parameters: {
+    controls: { disable: true },
+    docs: { description: { story: '배경·테두리 없는 neutral·accent는 hover·pressed를 배경이 아니라 글자색으로 보인다(2026-10-26). 윗줄은 기본·hover·pressed 색을 입힌 견본, 아랫줄은 직접 올리고 눌러 보는 단추다.' } },
+  },
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-3)' }}>
+      <div style={{ display: 'flex', gap: 'var(--spacing-3)', alignItems: 'center', flexWrap: 'wrap' }}>
+        <Button variant="neutral" size="md">기본</Button>
+        <Button variant="neutral" size="md" style={{ color: 'var(--color-text-hover)' }}>hover</Button>
+        <Button variant="neutral" size="md" style={{ color: 'var(--color-text-pressed)' }}>pressed</Button>
+      </div>
+      <div style={{ display: 'flex', gap: 'var(--spacing-3)', alignItems: 'center', flexWrap: 'wrap' }}>
+        <Button variant="accent" size="md">기본</Button>
+        <Button variant="accent" size="md" style={{ color: 'var(--color-text-accent-hover)' }}>hover</Button>
+        <Button variant="accent" size="md" style={{ color: 'var(--color-text-accent-pressed)' }}>pressed</Button>
+      </div>
+      <div style={{ display: 'flex', gap: 'var(--spacing-3)', alignItems: 'center', flexWrap: 'wrap' }}>
+        <Button variant="neutral" size="md" data-testid="neutral-live">올려 보기</Button>
+        <Button variant="neutral" size="sm">올려 보기 sm</Button>
+        <Button variant="accent" size="md">올려 보기 accent</Button>
+      </div>
+    </div>
   ),
 };
