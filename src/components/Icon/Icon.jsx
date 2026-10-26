@@ -8,7 +8,7 @@
 import {
   Home, Palette, Bell, Settings,
   ChevronRight, ChevronLeft, ChevronDown,
-  X, Plus, Minus, Check, Info,
+  Minus, Check, Info,
   Upload, Download, Pencil, Trash2,
   Image, Layers, Menu, MoreHorizontal,
   User, LogOut,
@@ -40,7 +40,13 @@ import {
   Copy,
   /* 캐러셀의 다음 칸으로 (2026-10-24). 이전은 ArrowLeft */
   ArrowRight,
+  createLucideIcon,
 } from 'lucide-react';
+
+/* 획이 엇갈리는 X·Plus는 두 path를 한 path로 합쳐 다시 만든다. 루시드 원본은 획마다 따로 칠해
+   아이폰 사파리에서 위 획 가장자리가 아래 획을 밝게 끊는 일이 있었다. 한 path는 한 번에 칠해 이음매가 없다 */
+const X = createLucideIcon('x', [['path', { d: 'M18 6 6 18M6 6l12 12', key: 'x' }]]);
+const Plus = createLucideIcon('plus', [['path', { d: 'M5 12h14M12 5v14', key: 'plus' }]]);
 
 const ICONS = {
   Home, Palette, Bell, Settings,
