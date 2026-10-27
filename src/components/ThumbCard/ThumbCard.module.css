@@ -22,3 +22,6 @@
   min-height: var(--spacing-10);
 }
 .caption { color: var(--color-text-default); }
+/* 끝의 [⋯](IconButton sm 36, 아이콘 20)는 단추 안 여백 때문에 점이 그림 칸 오른쪽 끝보다 11쯤 안쪽에 선다.
+   8만큼 밖으로 빼 점 끝이 그림 칸 끝에서 3쯤 안쪽에 서게 맞춘다. 딱 맞추면 둥근 모서리 때문에 튀어 보인다(덕꾸 앱과 같은 보정) */
+.trailing { display: inline-flex; margin-inline-end: calc(-1 * var(--spacing-2)); }

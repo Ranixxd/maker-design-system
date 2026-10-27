@@ -11,7 +11,7 @@ export default function ThumbCard({ children, caption, trailing, size = 120, lab
       </button>
       <div className={styles.foot}>
         <span className={`text-label-sm ${styles.caption}`}>{caption}</span>
-        {trailing}
+        {trailing && <span className={styles.trailing}>{trailing}</span>}
       </div>
     </div>
   );
