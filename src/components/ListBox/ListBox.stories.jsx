@@ -9,11 +9,11 @@ export default {
       description: {
         component: `목록 상자(2026-10-27, 덕꾸 앱 ListBox를 옮겼다).
 
-흰 면에 \`border-default\` 1, 둥글기 \`radius-2xl\`, 안쪽 4. **어느 바탕 위에서나 쓴다.** 줄 사이에 선을 긋지 않는다.
+흰 면에 \`border-default\` 1, 둥글기 \`radius-lg\`, 안쪽 4. **어느 바탕 위에서나 쓴다.** 줄 사이에 선을 긋지 않는다.
 
 ### 줄 (ListBoxItem)
 
-- 줄은 투명하고, **누르는 동안만** \`bg-pressed\`. 줄 둥글기는 \`radius-xl\`(상자 24 − 안쪽 4)
+- 줄은 투명하고, **누르는 동안만** \`bg-pressed\`. 줄 둥글기는 \`radius-md\`(상자 16 − 안쪽 4). 2xl이면 위 레이블과 왼쪽 선이 어긋나 보여 두 단 낮췄다(2026-10-28)
 - 이름은 \`label-md\` 하나. 날짜처럼 딸린 것은 \`sub\`로 이름 아래(\`label-sm\` secondary, 이름과 4 띄운다)
 - 끝의 [⋯]는 \`trailing\`. 줄 단추 밖에 따로 선다(단추 안에 단추를 넣을 수 없다)
 
