@@ -52,7 +52,7 @@ export const Default = {
   render: () => (
     <Demo label="사이드 메뉴">
       <div style={{ padding: 'var(--spacing-4)' }}>
-        <MenuItem label="카톡테마 만들기" />
+        <MenuItem size="lg" label="카톡테마 만들기" />
       </div>
     </Demo>
   ),
@@ -63,8 +63,8 @@ export const RightSide = {
   render: () => (
     <Demo side="right" label="사이드 메뉴">
       <div style={{ padding: 'var(--spacing-4)' }}>
-        <MenuItem label="첫번째" />
-        <MenuItem label="두번째" />
+        <MenuItem size="lg" label="첫번째" />
+        <MenuItem size="lg" label="두번째" />
       </div>
     </Demo>
   ),
@@ -75,7 +75,7 @@ export const WithClose = {
   render: () => (
     <Demo showClose label="사이드 메뉴">
       <div style={{ padding: 'var(--spacing-4)' }}>
-        <MenuItem label="카톡테마 만들기" />
+        <MenuItem size="lg" label="카톡테마 만들기" />
       </div>
     </Demo>
   ),

@@ -18,13 +18,19 @@ ListItem과 겹쳐 보이지만 자리가 다르다 — ListItem은 화면을 �
 행간도 single이 맞다. \`md\`는 \`text-label-md\`(15px), 서랍용 \`lg\`는
 \`text-label-lg\`(17px)를 쓴다.
 
-### 아이콘은 언제 다나
+### 앞 아이콘은 달지 않는다 (2026-10-27)
 
-**한 무리에 기능이 넷 이상 모일 때만 단다.** 그때는 글자만으로 훑기 어려워
-아이콘이 서로를 가려내는 표가 된다.
+덕꾸 앱과 같게 글자만 둔다. 고를 것이 그림이면(말풍선 썸네일, 배경 비율 상자) 그 그림만 \`leading\`에 둔다.
 
-**셋 이하의 단순한 무리에는 달지 않아도 된다.** 오히려 글자가 아이콘 폭만큼
-밀려, 같은 패널 안의 다른 줄과 왼쪽이 어긋난다.
+### 여백과 눌림 (md)
+
+md 줄은 좌우 여백도 눌림·hover 면도 없다. 글자가 패널의 본문 여백 선(Popover 좌우 20)에 그대로 선다.
+줄마다 밖으로 빼거나 들이지 않는다. 위아래 12, 줄 높이는 적어도 48.
+서랍의 lg 줄은 예전처럼 4px 물러난 둥근 면이 hover·눌림 때 어두워진다.
+
+### 이름에 딸린 것 (sub)
+
+날짜처럼 이름에 딸린 것은 끝(trailing)이 아니라 \`sub\`로 이름 아래에 둔다(\`text-label-sm\` secondary).
 
 ### 링크 줄 (href)
 
@@ -41,8 +47,7 @@ ListItem과 겹쳐 보이지만 자리가 다르다 — ListItem은 화면을 �
 안에서만 끝나는 일(초기화, 로그아웃, 닫기)에는 쓰지 않는다. 아무 데나 붉히면
 정작 지우는 자리에서 붉은색이 눈에 안 들어온다.
 
-critical은 **글자와 아이콘만** 붉다. hover 배경은 일반과 같다 — 손이 지나가다
-얹히는 것만으로 경고가 켜지면 정작 누를 때의 무게가 닳는다.
+critical은 **글자만** 붉다. 배경까지 붉히면 정작 누를 때의 무게가 닳는다.
 
 `,
       },
@@ -50,13 +55,12 @@ critical은 **글자와 아이콘만** 붉다. hover 배경은 일반과 같다 
   },
   argTypes: {
     variant: { control: 'radio', options: ['normal', 'critical'] },
-    icon: { control: 'text' },
   },
   decorators: [
     (Story) => (
       /* 실제로 놓이는 자리를 흉내낸다 — 패널 안이라야 폭과 여백이 제대로 보인다 */
       <div style={{
-        minWidth: 180, padding: 4, borderRadius: 12,
+        minWidth: 180, padding: '4px 20px', borderRadius: 12,
         background: 'var(--color-bg-default)',
         boxShadow: 'var(--shadow-overlay)',
       }}>
@@ -67,37 +71,26 @@ critical은 **글자와 아이콘만** 붉다. hover 배경은 일반과 같다 
 };
 
 export const Default = { args: { label: '로그아웃' } };
-export const 아이콘 = { name: '아이콘', args: { label: '내려받기', icon: 'Download' } };
+/* 날짜처럼 이름에 딸린 것은 이름 아래에 */
+export const Sub = { name: '이름 아래 날짜', args: { label: '봄 테마', sub: '10월 27일' } };
 
 /* DB에서 지워지는 일이라 critical이 맞는 자리다 */
-export const Critical = { args: { label: '계정 지우기', icon: 'Trash2', variant: 'critical' } };
+export const Critical = { args: { label: '계정 지우기', variant: 'critical' } };
 
-export const Disabled = { args: { label: '내려받기', icon: 'Download', disabled: true } };
+export const Disabled = { args: { label: '내려받기', disabled: true } };
 
-/* 넷이 모였으니 아이콘을 단다 — 글자만으로는 훑기 어려운 개수다 */
-export const 넷이상 = {
-  name: '넷 이상 — 아이콘을 단다',
+/* 고를 것이 그림이면 그 그림만 앞에 둔다. 아이콘은 두지 않는다 */
+export const 그림 = {
+  name: '고를 것이 그림일 때',
   render: () => (
     <>
-      <MenuItem label="이름 바꾸기" icon="Pencil" />
-      <MenuItem label="내려받기" icon="Download" />
-      <MenuItem label="복제하기" icon="Plus" />
-      <MenuItem label="계정 지우기" icon="Trash2" variant="critical" />
+      <MenuItem label="정사각형" trailing="1:1"
+        leading={<span style={{ width: 20, height: 20, border: '1.5px solid var(--color-border-strong)', borderRadius: 2 }} />} />
+      <MenuItem label="와이드" trailing="16:9"
+        leading={<span style={{ width: 28, height: 16, border: '1.5px solid var(--color-border-strong)', borderRadius: 2 }} />} />
     </>
   ),
 };
-
-/* 둘뿐이라 아이콘이 필요 없다. 달면 글자가 밀려 위아래가 어긋나기만 한다 */
-export const 셋이하 = {
-  name: '셋 이하 — 아이콘 없이',
-  render: () => (
-    <>
-      <MenuItem label="이름 바꾸기" />
-      <MenuItem label="로그아웃" />
-    </>
-  ),
-};
-
 export const Sizes = {
   name: '크기',
   render: () => (

@@ -96,9 +96,9 @@ export const 계정메뉴 = {
       >
         {(close) => (
           /* 배경화면 메이커의 UserMenu와 같은 짜임 — 글자 시작점이 두 줄에서
-             어긋나지 않는지 여기서 본다. 메뉴 줄에 아이콘을 달면 그만큼 밀린다 */
+             어긋나지 않는지 여기서 본다. 둘 다 패널의 본문 여백 선에 선다 */
           <div style={{ minWidth: 176 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginInline: 4, paddingInline: 12 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <span className="text-label-md" style={{ flex: 1, color: 'var(--color-text-secondary)' }}>바다코끼리</span>
               <IconButton icon="Pencil" size="sm" aria-label="닉네임 바꾸기" onClick={close} />
             </div>

@@ -19,7 +19,7 @@ function PhotoTile({ src, selected, loading, label, menu, size }) {
         </SelectTile>
       )}>
       {(close) => menu.map((m) => (
-        <MenuItem key={m.label} icon={m.icon} label={m.label} onClick={() => { close(false); m.onClick?.(); }} />
+        <MenuItem key={m.label} label={m.label} onClick={() => { close(false); m.onClick?.(); }} />
       ))}
     </Popover>
   );
@@ -33,8 +33,8 @@ function PhotoTile({ src, selected, loading, label, menu, size }) {
      샘플 밖의 색이 고른 값이면 그 타일이 고른 상태가 되고 무지개 대신 그 색을 보인다.
      true 또는 { start, title }. start는 고른 색이 없을 때(null) 선택기가 열리는 값, title은 선택기 이름(기본 "<label> 색")
    - customTile: 무지개 타일을 받아 감싸는 함수. 선택기를 쓰는 쪽이 직접 띄울 때만 쓴다. picker가 있으면 무시한다
-   - photo: 주면 맨 앞(leading 자리)에 사진 칸이 고정된다(2026-10-21). { src, selected, loading, label, menu: [{ icon, label, onClick }] }.
-     메뉴 항목·차례·아이콘과 할 일은 쓰는 쪽이 넘긴다(앱과 같게). 사진을 쓰는 동안은 value를 null로 둔다. photo가 있으면 leading은 무시한다
+   - photo: 주면 맨 앞(leading 자리)에 사진 칸이 고정된다(2026-10-21). { src, selected, loading, label, menu: [{ label, onClick }] }.
+     메뉴 항목·차례와 할 일은 쓰는 쪽이 넘긴다(앱과 같게). 사진을 쓰는 동안은 value를 null로 둔다. photo가 있으면 leading은 무시한다
    - align: 'start' | 'center'. SelectRow와 같다
    - label: 낭독기가 읽는 이름 앞말(예: "배경"이면 "배경 분홍", "배경 색 직접 고르기") */
 export default function ColorPalette({
