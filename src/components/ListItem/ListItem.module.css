@@ -12,7 +12,8 @@
   text-decoration: none;
 }
 
-/* Clickable state */
+/* Clickable state. href를 주면 링크(a)로 선다(2026-10-28) */
+a.item { cursor: pointer; }
 button.item {
   cursor: pointer;
   transition: background-color var(--motion-duration-short-3) var(--motion-easing-standard);
@@ -42,20 +43,25 @@ button.item:active {
   padding: 0 var(--spacing-3);
 }
 
-/* ── Box ── */
+/* ── Box ── 옵션 카드(2026-10-28, 덕꾸 앱 OptionCard와 같다). 흰 면, border-default 1, 둥글기 2xl, 안쪽 16.
+   오른쪽 그림(media)이 있으면 높이 120 이상으로 서서 위아래가 넉넉하다 */
 .box {
+  box-sizing: border-box;
   padding: var(--spacing-4);
   border: 1px solid var(--color-border-default);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-2xl);
+  background-color: var(--color-bg-default);
   align-items: flex-start;
   transition: border-color var(--motion-duration-short-3) var(--motion-easing-standard),
               background-color var(--motion-duration-short-3) var(--motion-easing-standard);
 }
 
-/* 카드 제목은 목록 줄보다 한 단 굵다. 카드는 "고르는 것"이라 제목이 먼저 읽혀야 한다.
-   제목과 설명은 목록 줄보다 넉넉히 띄운다. 카드는 한 줄이 아니라 한 덩이로 읽히는 자리다 */
-.box .label { font-weight: var(--font-weight-semibold); }
-.box .content { gap: var(--spacing-2); }
+/* 카드 제목은 heading-xs(목록 줄보다 한 단 굵다), 설명은 body-sm secondary이고 줄을 넘긴다.
+   카드는 "고르는 것"이라 제목이 먼저 읽혀야 한다. 한 줄이 아니라 한 덩이로 읽히는 자리라 둘을 넉넉히 띄운다 */
+.box .label { font-weight: var(--font-weight-semibold); line-height: var(--line-height-heading); white-space: normal; }
+.box .sub { white-space: normal; }
+.box .content { gap: var(--spacing-2); align-self: center; }
+.box:has(.media) { min-height: 120px; }
 
 /* 카드에는 hover·눌림 표시를 두지 않는다(2026-09-18 사용자). 고르는 카드라 이미 눌러야 할 것으로 읽힌다 */
 button.box:hover, button.box:active { border-color: var(--color-border-default); background-color: transparent; }

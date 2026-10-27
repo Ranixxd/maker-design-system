@@ -86,3 +86,34 @@
   padding: var(--spacing-3) var(--spacing-5) calc(var(--spacing-5) + env(safe-area-inset-bottom));
 }
 .footInner { display: flex; flex-direction: column; gap: var(--spacing-2); }
+
+/* 빈 캔버스(empty) 동안 아래 자리를 흐리게 가리는 흰 덮개(bg-default 70%). 아래 자리는 inert라 누를 수 없다 */
+.footCover {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--color-bg-default) 70%, transparent);
+  pointer-events: none;
+}
+
+/* 빈 캔버스 점선 상자. 240×160, 둥글기 2xl, border-strong 점선 1.5. 누르는 동안·파일을 끌어 올린 동안 bg-pressed */
+.empty {
+  box-sizing: border-box;
+  width: 240px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-1);
+  padding: var(--spacing-4);
+  border: 1.5px dashed var(--color-border-strong);
+  border-radius: var(--radius-2xl);
+  background: transparent;
+  color: var(--color-text-default);
+  font-family: inherit;
+  cursor: pointer;
+}
+.empty:active, .empty[data-over] { background-color: var(--color-bg-pressed); }
+.emptyGuide { color: var(--color-text-secondary); }
+/* 상자 메뉴는 편집 화면(페이지 창) 위에 떠야 한다. 팝오버 기본 층(anchored)은 창 아래라 눌리지 않는다(ColorPalette 사진 메뉴와 같다) */
+.emptyMenu { z-index: var(--z-modal); }
