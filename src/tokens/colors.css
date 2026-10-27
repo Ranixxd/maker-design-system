@@ -157,10 +157,10 @@
        (예전 border-overlay 자리. 그 토큰은 이때 걷었다)
      - strong: 기본 구분선 사이에서도 강한 구분이 필요할 때, 가이드의 그림 테두리처럼 선이 디자인으로 보일 때
      어두운 면 위에서는 셋 다 거의 안 보인다. 그곳은 border-oninverse를 쓴다
-     2026-10-27 사용자: 셋 다 한 단씩 연하게 했다(subtle 8→4%, default 12→8%, strong 40→20%). 선이 앞에 나서 보였다 */
-  --color-border-subtle:  var(--color-black-alpha-04);
-  --color-border-default: var(--color-black-alpha-08);
-  --color-border-strong:  var(--color-black-alpha-20);
+     2026-10-27 사용자: 셋 다 한 단씩 연하게 했다가(4·8·20%) 2026-10-28 사용자가 되돌렸다(8·12·40%) */
+  --color-border-subtle:  var(--color-black-alpha-08);
+  --color-border-default: var(--color-black-alpha-12);
+  --color-border-strong:  var(--color-black-alpha-40);
   /* 고른 항목의 테두리(미리보기 칸, 견본, 칩). bg-primary와 같은 단계다. accent는 뉴트럴과 구분되는
      강조가 필요할 때 쓰는 색이라, 고른 표시에는 과하다 (2026-10-01 사용자) */
   --color-border-primary: var(--color-gray-900);
