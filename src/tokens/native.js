@@ -29,9 +29,9 @@ export const color = {
   "textBrand": "#c18bff",
   "textPressed": "#757575",
   "textAccentPressed": "#c18bff",
-  "borderSubtle": "rgba(0, 0, 0, 0.08)",
-  "borderDefault": "rgba(0, 0, 0, 0.12)",
-  "borderStrong": "rgba(0, 0, 0, 0.40)",
+  "borderSubtle": "rgba(0, 0, 0, 0.04)",
+  "borderDefault": "rgba(0, 0, 0, 0.08)",
+  "borderStrong": "rgba(0, 0, 0, 0.20)",
   "borderPrimary": "#111111",
   "borderFocus": "#111111",
   "borderAccent": "#9642e2",
@@ -186,5 +186,5 @@ export const shadow = {
   "md": "0 4px 12px rgba(0, 0, 0, 0.08)",
   "lg": "0 8px 24px rgba(0, 0, 0, 0.12)",
   "overlay": "0 16px 48px rgba(0, 0, 0, 0.16)",
-  "overlayUp": "0 -8px 24px rgba(0, 0, 0, 0.12)"
+  "overlayUp": "0 -4px 12px rgba(0, 0, 0, 0.08)"
 };

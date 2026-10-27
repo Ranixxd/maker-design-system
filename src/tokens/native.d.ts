@@ -27,9 +27,9 @@ export declare const color: {
   readonly "textBrand": "#c18bff";
   readonly "textPressed": "#757575";
   readonly "textAccentPressed": "#c18bff";
-  readonly "borderSubtle": "rgba(0, 0, 0, 0.08)";
-  readonly "borderDefault": "rgba(0, 0, 0, 0.12)";
-  readonly "borderStrong": "rgba(0, 0, 0, 0.40)";
+  readonly "borderSubtle": "rgba(0, 0, 0, 0.04)";
+  readonly "borderDefault": "rgba(0, 0, 0, 0.08)";
+  readonly "borderStrong": "rgba(0, 0, 0, 0.20)";
   readonly "borderPrimary": "#111111";
   readonly "borderFocus": "#111111";
   readonly "borderAccent": "#9642e2";
@@ -104,5 +104,5 @@ export declare const shadow: {
   readonly "md": "0 4px 12px rgba(0, 0, 0, 0.08)";
   readonly "lg": "0 8px 24px rgba(0, 0, 0, 0.12)";
   readonly "overlay": "0 16px 48px rgba(0, 0, 0, 0.16)";
-  readonly "overlayUp": "0 -8px 24px rgba(0, 0, 0, 0.12)";
+  readonly "overlayUp": "0 -4px 12px rgba(0, 0, 0, 0.08)";
 };
