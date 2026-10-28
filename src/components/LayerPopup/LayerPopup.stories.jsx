@@ -67,7 +67,7 @@ PC(≥768px)는 이 구분 없이 가운데 모달이다.
 | 값 | 설명 |
 |---|---|
 | \`'auto'\` | 콘텐츠 높이에 맞춤. 최대 90% 초과 불가 (기본값) |
-| \`10\` | 화면의 10% 높이로 열림 |
+| \`20\` | 화면의 20% 높이로 열림 |
 | \`50\` | 화면의 50% 높이로 열림 |
 | \`90\` | 화면의 90% 높이로 열림 |
 
@@ -75,13 +75,13 @@ PC(≥768px)는 이 구분 없이 가운데 모달이다.
 | 값 | 설명 |
 |---|---|
 | \`[]\`·없음 | 스냅 없음. 내용 높이(auto)로 열린다. 위로 끌어도 늘어나지 않고, 놓으면 내용 높이로 돌아간다 |
-| \`[10, 50, 90]\` | 끈 방향의 다음 스냅 포인트로 이동 (8px만 끌어도 넘어간다) |
+| \`[20, 50, 90]\` | 끈 방향의 다음 스냅 포인트로 이동 (8px만 끌어도 넘어간다) |
 
 #### 닫힘 여부 (closeable)
 | 값 | 설명 |
 |---|---|
 | \`true\` | 드래그로 닫힘. ESC 키, 오버레이 클릭으로도 닫힘 (기본값) |
-| \`false\` | 드래그로 닫히지 않음. 최소 10%가 바닥. X 버튼으로만 닫힘 |
+| \`false\` | 드래그로 닫히지 않음. 최소 20%가 바닥. X 버튼으로만 닫힘 |
 
 #### 끄는 방향으로 스냅 (2026-09-18, 값은 2026-09-19·2026-09-20에 더 민감하게)
 \`snapPoints\`가 있으면 손잡이를 **조금만(8px) 끌어도** 끈 방향의 다음 스냅으로 넘어간다. 가장 가까운 스냅으로만 붙이면 반 넘게 끌어야 바뀌어 둔했다.
@@ -134,16 +134,16 @@ PC(≥768px)는 이 구분 없이 가운데 모달이다.
     },
     initialSnap: {
       control: 'select',
-      options: ['auto', 10, 50, 90],
+      options: ['auto', 20, 50, 90],
       description: '시트 오픈 시 초기 높이 (% 또는 auto)',
     },
     snapPoints: {
       control: 'object',
-      description: '[] = 스냅 없음 | [10,50,90] 등 배열 = 드래그 후 해당 포인트로 스냅',
+      description: '[] = 스냅 없음 | [20,50,90] 등 배열 = 드래그 후 해당 포인트로 스냅',
     },
     closeable: {
       control: 'boolean',
-      description: 'false이면 드래그로 닫히지 않으며 최소 10% 유지',
+      description: 'false이면 드래그로 닫히지 않으며 최소 20% 유지',
     },
     dim: {
       control: 'boolean',
@@ -188,38 +188,38 @@ export const Default = {
 
 // ── initialSnap ────────────────────────────────────────
 export const Snap50 = {
-  name: 'initialSnap=50, snapPoints=[10,50,90]',
+  name: 'initialSnap=50, snapPoints=[20,50,90]',
   render: Demo,
   args: {
     title: '50% 오픈',
     mobileType: 'sheet',
     initialSnap: 50,
-    snapPoints: [10, 50, 90],
+    snapPoints: [20, 50, 90],
     closeable: true,
   },
   parameters: {
     docs: {
       description: {
-        story: '50%로 열리고, 위아래로 조금만 끌어도 끈 방향의 다음 스냅(10/50/90%)으로 이동한다.',
+        story: '50%로 열리고, 위아래로 조금만 끌어도 끈 방향의 다음 스냅(20/50/90%)으로 이동한다.',
       },
     },
   },
 };
 
-export const Snap10 = {
-  name: 'initialSnap=10 (Peek)',
+export const Snap20 = {
+  name: 'initialSnap=20 (Peek)',
   render: Demo,
   args: {
     title: '미리보기',
     mobileType: 'sheet',
-    initialSnap: 10,
-    snapPoints: [10, 90],
+    initialSnap: 20,
+    snapPoints: [20, 90],
     closeable: true,
   },
   parameters: {
     docs: {
       description: {
-        story: '10%로 열려 일부만 노출(peek). 위로 드래그하면 90%로 확장.',
+        story: '20%로 열려 일부만 노출(peek). 위로 드래그하면 90%로 확장.',
       },
     },
   },
@@ -233,14 +233,14 @@ export const Persistent = {
     title: '항상 떠있는 시트',
     mobileType: 'sheet',
     initialSnap: 50,
-    snapPoints: [10, 50, 90],
+    snapPoints: [20, 50, 90],
     closeable: false,
   },
   parameters: {
     docs: {
       description: {
         story: `
-드래그로 닫히지 않는다. 최소 10%까지만 내려가고 그 아래로는 내려가지 않는다.
+드래그로 닫히지 않는다. 최소 20%까지만 내려가고 그 아래로는 내려가지 않는다.
 X 버튼으로만 닫힌다. 오버레이 클릭도 무효.
         `,
       },

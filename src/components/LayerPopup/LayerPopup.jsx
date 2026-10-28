@@ -71,9 +71,9 @@ export default function LayerPopup({
   still = false,
 
   // Sheet-only props
-  initialSnap = 'auto',   // 'auto' | 10 | 50 | 90
-  snapPoints = null,       // null = 스냅없이 자유드래그 | Array<10|50|90>
-  closeable = true,        // false = 드래그로 닫히지 않음, 최소 10%
+  initialSnap = 'auto',   // 'auto' | 20 | 50 | 90
+  snapPoints = null,       // null = 스냅없이 자유드래그 | Array<20|50|90>
+  closeable = true,        // false = 드래그로 닫히지 않음, 최소 20%
 
   /* 뒤를 어둡게 덮을지. false면 덮개가 투명해 뒤가 그대로 보인다(바깥을 누르면 닫히는 것은 같다).
      고르는 동안 뒤 화면이 바뀌는 것을 봐야 하는 창에 쓴다(색 선택기, 2026-09-18) */
@@ -104,7 +104,7 @@ export default function LayerPopup({
   const downOnOverlay = useRef(false);
 
   const isSheet = isMobile && mobileType === 'sheet';
-  const minH = closeable ? 0 : 10;
+  const minH = closeable ? 0 : 20;
 
   // Reset state on open
   useEffect(() => {
@@ -208,8 +208,8 @@ export default function LayerPopup({
       onClose();
       return;
     }
-    if (!closeable && h < 10) {
-      setHeightPct(10);
+    if (!closeable && h < 20) {
+      setHeightPct(20);
       return;
     }
     setHeightPct(drag.current.startH);
