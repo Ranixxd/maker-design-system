@@ -95,6 +95,12 @@
   color: var(--color-text-default);
 }
 
+/* 되돌릴 수 없는 일(계정 삭제 등)을 실행하는 단추. 그 화면의 마지막 단추 하나에만 쓴다(2026-10-29 사용자) */
+.critical {
+  background-color: var(--color-bg-critical);
+  color: var(--color-text-oncritical);
+}
+
 .neutral {
   background-color: transparent;
   color: var(--color-text-default);

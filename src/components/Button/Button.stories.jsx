@@ -17,6 +17,7 @@ export default {
 - \`neutral\` — 강조가 불필요한 액션 (예: "더보기", "건너뛰기").
 - \`accent\` — neutral과 함께 쓰이며 다음 프로세스 진행을 유도. accent 색상으로 시선을 끈다.
 - **그림자를 넣지 않는다** (2026-09-25). 쓰는 쪽이 \`box-shadow\`를 따로 얹지 않는다. 배경에 묻히면 그림자가 아니라 variant를 바꾼다(IconButton이면 \`outline\`).
+- \`critical\` — **되돌릴 수 없는 일을 실행하는 단추** (2026-10-29). 계정 삭제처럼 지우면 돌아오지 않는 것. 그 화면의 마지막 단추 하나에만 쓰고, 무엇이 사라지는지 단추 앞에서 먼저 알린다. 되돌릴 수 있는 지우기·빼기에는 쓰지 않는다.
 - \`quiet\` — **흐름 밖의 부가 기능에만** (2026-09-18). 프롬프트 복사, 모르겠어요(안내 부르기)처럼 주된 일이 아닌 것. 흰 바탕에 얇은 테두리이고 sm보다 한 단 작아(26px) 글 줄에 섞여도 튀지 않는다. 주된 일을 이 모양으로 두면 정작 눌러야 하는 것이 눈에 안 들어온다.
 
 **나란히 놓인 버튼 (2026-09-25)**
@@ -69,7 +70,7 @@ export default {
   argTypes: {
     variant: {
       control: 'radio',
-      options: ['primary', 'secondary', 'neutral', 'accent', 'quiet'],
+      options: ['primary', 'secondary', 'neutral', 'accent', 'quiet', 'critical'],
       description: '버튼 스타일 계층',
     },
     size: {
@@ -129,6 +130,17 @@ export const Accent = {
   },
 };
 
+export const Critical = {
+  args: { variant: 'critical', size: 'md', children: '계정 삭제' },
+  parameters: {
+    docs: {
+      description: {
+        story: '되돌릴 수 없는 일을 실행하는 단추. bg-critical 바탕에 text-oncritical 글자.',
+      },
+    },
+  },
+};
+
 export const Small = {
   args: { variant: 'primary', size: 'sm', children: '완료' },
   parameters: {
@@ -181,6 +193,7 @@ export const AllVariants = {
       <Button variant="secondary" size="md">Secondary</Button>
       <Button variant="neutral" size="md">Neutral</Button>
       <Button variant="accent" size="md">Accent</Button>
+      <Button variant="critical" size="md">Critical</Button>
       <Button variant="primary" size="sm">Small</Button>
       <Button variant="primary" size="md" disabled>Disabled</Button>
       <Button variant="primary" size="md" loading>Loading</Button>
