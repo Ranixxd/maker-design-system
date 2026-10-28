@@ -54,6 +54,7 @@ export default {
 - 사진이 있어야 시작하는 편집은 편집 화면을 바로 열고 판 자리에 점선 상자를 둔다. 따로 사진 고르는 화면·덮개를 두지 않는다
 - 상자 240×160, 둥글기 \`radius-2xl\`, \`border-strong\` 점선 1.5. 가운데 만들기 이름(\`heading-xs\`)과 안내(\`body-md\` secondary, 기본 "사진을 올려주세요"). 누르는 동안 \`bg-pressed\`
 - 누르면 사진 고르기가 열린다. \`more\`가 있으면 [내 사진]과 그 줄을 고르는 팝오버가 먼저 뜬다. PC에서는 파일을 끌어다 놓아도 받는다
+- 사진 없이도 시작하는 길이 있으면 \`alt\`로 아래에 두 번째 상자를 둔다(2026-10-29, 음식 짤의 "또는 표정 넣기 :3"). 같은 폭·점선에 이름(\`heading-xs\`) 한 줄, 틈 8. 누르면 \`alt.onClick\`이 판을 연다
 - 그동안 아래 자리는 흰 덮개(\`bg-default\` 70%)로 흐리게 가리고 누를 수 없다(inert). [편집 완료]도 꺼진다
 - 빈 캔버스 동안 여는 창(이모지 넣기 등)은 이 틀 밖에 둔다. 틀 안에 두면 판 자리와 함께 숨거나 키보드에 가린다
 
@@ -144,5 +145,15 @@ export const 빈캔버스 = {
     <EditFrame isOpen title="글자 넣기" onCancel={() => {}} onDone={() => {}}
       empty={{ title: '글자 넣기', onPick: () => {} }}
       footer={<p className="text-body-sm" style={{ margin: 0 }}>도구 줄</p>} />
+  ),
+};
+
+/* 사진 없이 시작하는 두 번째 상자(alt)를 단 모습 */
+export const 빈캔버스두길 = {
+  name: '빈 캔버스 두 길',
+  render: () => (
+    <EditFrame isOpen title="음식 짤" onCancel={() => {}} onDone={() => {}}
+      empty={{ title: '음식 짤', onPick: () => {}, alt: { title: '또는 표정 넣기 :3', onClick: () => {} } }}
+      footer={<p className="text-body-sm" style={{ margin: 0 }}>바탕 줄</p>} />
   ),
 };

@@ -115,5 +115,7 @@
 }
 .empty:active, .empty[data-over] { background-color: var(--color-bg-pressed); }
 .emptyGuide { color: var(--color-text-secondary); }
+/* 두 번째 상자(alt). 폭과 점선은 같고 높이는 이름 한 줄만큼이다 */
+.emptyAlt { height: auto; }
 /* 상자 메뉴는 편집 화면(페이지 창) 위에 떠야 한다. 팝오버 기본 층(anchored)은 창 아래라 눌리지 않는다(ColorPalette 사진 메뉴와 같다) */
 .emptyMenu { z-index: var(--z-modal); }
