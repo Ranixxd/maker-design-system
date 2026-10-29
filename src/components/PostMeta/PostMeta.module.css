@@ -18,7 +18,7 @@
   color: var(--color-text-default);
   overflow-wrap: anywhere;
 }
-/* 내용과 게시 시간은 같은 글자(text-body-md secondary)다 */
+/* 내용과 게시 시간은 같은 글자(text-body-sm secondary)다. 닉네임 줄과 같은 크기 */
 .body,
 .time {
   margin: 0;

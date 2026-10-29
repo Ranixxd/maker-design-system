@@ -27,9 +27,9 @@ export default function PostMeta({
     <div className={[styles.meta, className].filter(Boolean).join(' ')}>
       {묶음1 && (
         <div className={styles.head}>
-          {title && <TitleTag className={`text-heading-sm ${styles.title}`}>{title}</TitleTag>}
-          {body && <p className={`text-body-md ${styles.body}`}>{body}</p>}
-          {time && <p className={`text-body-md ${styles.time}`}>{time}</p>}
+          {title && <TitleTag className={`text-heading-xs ${styles.title}`}>{title}</TitleTag>}
+          {body && <p className={`text-body-sm ${styles.body}`}>{body}</p>}
+          {time && <p className={`text-body-sm ${styles.time}`}>{time}</p>}
         </div>
       )}
       <div className={styles.author}>

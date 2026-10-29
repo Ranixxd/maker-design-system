@@ -19,7 +19,7 @@ export default {
 
 **규칙**
 - 묶음 사이는 20px, 묶음 안 줄 사이는 모두 8px. 선은 긋지 않는다. 여백만으로 가른다
-- 제목 \`text-heading-sm\`. 내용과 게시 시간은 같은 글자 \`text-body-md\` secondary(내용은 줄바꿈 그대로)
+- 제목 \`text-heading-xs\`. 내용과 게시 시간은 작성자 줄과 같은 \`text-body-sm\` secondary(내용은 줄바꿈 그대로)
 - 작성자 줄 \`text-body-sm\`. 닉네임·SNS는 default, 나머지는 secondary. 최애는 \`Badge\`
 - 지표는 작성자 줄과 같은 \`text-body-sm\` secondary. 숫자도 굵게 쓰지 않는다(쓰는 쪽도 \`<b>\`를 넣지 않는다)
 - \`avatar\`가 \`undefined\`면 사진 자리를 두지 않는다(사진을 보이지 않는 기간·서비스). 빈 글자면 \`avatarFallback\` 그림
