@@ -29,7 +29,7 @@ function EmptyBox({ title, description = '사진을 올려주세요', accept = '
       onDragLeave={() => setOver(false)}
       onDrop={(e) => { e.preventDefault(); setOver(false); take(e.dataTransfer.files && e.dataTransfer.files[0]); }}>
       <span className="text-heading-xs">{title}</span>
-      <span className={`text-body-md ${styles.emptyGuide}`}>{description}</span>
+      {description && <span className={`text-body-md ${styles.emptyGuide}`}>{description}</span>}
     </button>
   );
   return (
@@ -75,7 +75,7 @@ export default function EditFrame({
   fabOffset = 0,        // 판 위 단추를 이만큼(px) 올린다. 아래 자리에서 띠가 판 위로 떠올라 단추를 덮을 때
   footer,               // 아래 고정 자리. 메인 기능(도구 줄·탭·입력 칸)
   stageRef,             // 판을 세우는 바탕. 판 밖을 눌러도 끌기·고르기를 받아야 하는 편집(짤 만들기)이 쓴다
-  empty,                // 빈 캔버스 { title, description, accept, onPick(file), onReject, more: [{ label, onClick }], alt: { title, onClick } }. 주면 판 대신 점선 상자가 서고
+  empty,                // 빈 캔버스 { title, description(''이면 안내 줄 없이 이름만), accept, onPick(file), onReject, more: [{ label, onClick }], alt: { title, onClick } }. 주면 판 대신 점선 상자가 서고
                         // 아래 자리는 흰 덮개로 가려 누를 수 없고 [편집 완료]도 꺼진다
   children,             // 판
   className,
