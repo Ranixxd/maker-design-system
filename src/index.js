@@ -24,6 +24,7 @@ export { default as Drawer } from './components/Drawer/index.js';
 export { default as EditCanvas, checkerClass } from './components/EditCanvas/index.js';
 export { default as EditFab } from './components/EditFab/index.js';
 export { default as EditFrame } from './components/EditFrame/index.js';
+export { default as EditTray } from './components/EditTray/index.js';
 export { default as EmptyState } from './components/EmptyState/index.js';
 export { default as SearchField } from './components/SearchField/index.js';
 export { default as SegmentedControl } from './components/SegmentedControl/index.js';
