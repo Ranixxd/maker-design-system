@@ -24,7 +24,7 @@ export default function Chip({
       {...props}
     >
       {leading && <span className={styles.leading}>{leading}</span>}
-      <span className={`text-label-sm ${styles.label}`}>{children}</span>
+      <span className={`text-label-md ${styles.label}`}>{children}</span>
     </button>
   );
   if (!onRemove) return chip;

@@ -26,7 +26,7 @@ const TextField = forwardRef(function TextField({
   return (
     <div className={styles.field}>
       {label && (
-        <label htmlFor={id} className={`text-label-sm ${styles.label}`}>
+        <label htmlFor={id} className={`text-label-md ${styles.label}`}>
           {label}
           {/* 점은 눈으로만 보인다. 낭독기에는 input의 aria-required로 알린다 */}
           {required && <span className={styles.req} aria-hidden="true" />}
