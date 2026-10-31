@@ -323,6 +323,7 @@ export function SemanticSpacingTable() {
     { token: '--section-gap',      value: '32px', desc: '섹션 간 간격' },
     { token: '--component-gap',    value: '16px', desc: '컴포넌트 간 간격' },
     { token: '--item-gap',         value: '8px',  desc: '리스트 아이템 간 간격' },
+    { token: '--card-gap',         value: '8px',  desc: '썸네일 카드 옆 사이' },
   ];
   return (
     <table style={{ width: '100%', borderCollapse: 'collapse' }}>
