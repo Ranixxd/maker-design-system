@@ -95,7 +95,7 @@
   pointer-events: none;
 }
 
-/* 빈 캔버스 점선 상자. 240×160, 둥글기 2xl, border-strong 점선 1.5. 누르는 동안·파일을 끌어 올린 동안 bg-pressed */
+/* 빈 캔버스 점선 상자. 240×160, 둥글기 2xl, border-default 점선 1.5. 누르는 동안·파일을 끌어 올린 동안 bg-pressed */
 .empty {
   box-sizing: border-box;
   width: 240px;
@@ -106,7 +106,7 @@
   justify-content: center;
   gap: var(--spacing-1);
   padding: var(--spacing-4);
-  border: 1.5px dashed var(--color-border-strong);
+  border: 1.5px dashed var(--color-border-default);
   border-radius: var(--radius-2xl);
   background: transparent;
   color: var(--color-text-default);
