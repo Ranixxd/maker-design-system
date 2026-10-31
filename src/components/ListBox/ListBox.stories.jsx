@@ -9,7 +9,7 @@ export default {
       description: {
         component: `목록 상자(2026-10-27, 덕꾸 앱 ListBox를 옮겼다).
 
-흰 면에 \`border-default\` 1, 둥글기 \`radius-lg\`, 안쪽 4. **어느 바탕 위에서나 쓴다.** 줄 사이에 선을 긋지 않는다.
+흰 면에 \`border-strong\` 1, 둥글기 \`radius-lg\`, 안쪽 4. **어느 바탕 위에서나 쓴다.** 줄 사이에 선을 긋지 않는다.
 
 ### 줄 (ListBoxItem)
 

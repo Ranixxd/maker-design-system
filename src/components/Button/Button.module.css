@@ -131,7 +131,7 @@
    주된 일을 이 모양으로 두면 정작 눌러야 하는 것이 눈에 안 들어온다 */
 .quiet {
   background-color: var(--color-bg-default);
-  border: 1px solid var(--color-border-default);
+  border: 1px solid var(--color-border-strong);
   color: var(--color-text-default);
 }
 /* 크기를 함께 주더라도 quiet의 키가 이긴다 */

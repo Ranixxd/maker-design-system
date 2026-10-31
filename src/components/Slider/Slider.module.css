@@ -18,14 +18,14 @@
   border-radius: var(--radius-full);
   background: linear-gradient(to right,
     var(--color-bg-primary) 0 var(--p),
-    var(--color-bg-tertiary) var(--p) 100%);
+    var(--color-border-strong) var(--p) 100%);
 }
 .slider::-moz-range-track {
   height: 4px;
   border-radius: var(--radius-full);
   background: linear-gradient(to right,
     var(--color-bg-primary) 0 var(--p),
-    var(--color-bg-tertiary) var(--p) 100%);
+    var(--color-border-strong) var(--p) 100%);
 }
 
 /* 손잡이 20px. 막대(4px) 가운데에 오게 webkit은 -8px 올린다 */

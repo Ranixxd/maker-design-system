@@ -24,7 +24,7 @@ export default {
 | \`neutral-weak\` | 배경 없음, 아이콘이 두 톤 옅다(icon-tertiary). 목록 줄의 지우기처럼 내용 곁의 보조 동작. 상태는 아이콘 색(진해짐) |
 | \`secondary\` | bg-tertiary 배경. 중간 강조. Button secondary와 같은 면이다 |
 | \`primary\` | bg-primary 배경. 가장 강한 강조 |
-| \`outline\` | 흰 바탕에 얇은 테두리(border-default). **대체제다** |
+| \`outline\` | 흰 바탕에 얇은 테두리(border-strong). **대체제다** |
 
 **variant 고르기**
 되도록 \`primary\`·\`secondary\`·\`neutral\` 안에서 고른다. \`outline\`은 neutral로는 버튼이라는 것이
