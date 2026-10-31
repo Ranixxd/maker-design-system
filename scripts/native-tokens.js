@@ -47,7 +47,7 @@ for (const name of Object.keys(vars)) {
 
 const layout = {};
 for (const name of ['--global-padding-t', '--global-padding-b', '--global-padding-l', '--global-padding-r',
-  '--section-gap', '--component-gap', '--item-gap']) {
+  '--section-gap', '--component-gap', '--item-gap', '--card-gap']) {
   layout[camel(name.slice(2))] = px(resolve(name));
 }
 

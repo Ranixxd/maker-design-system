@@ -67,6 +67,7 @@ export declare const layout: {
   readonly "sectionGap": 32;
   readonly "componentGap": 16;
   readonly "itemGap": 8;
+  readonly "cardGap": 8;
 };
 
 export declare const radius: {

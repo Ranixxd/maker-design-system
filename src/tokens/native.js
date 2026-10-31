@@ -68,7 +68,8 @@ export const layout = {
   "globalPaddingR": 20,
   "sectionGap": 32,
   "componentGap": 16,
-  "itemGap": 8
+  "itemGap": 8,
+  "cardGap": 8
 };
 
 export const radius = {

@@ -21,4 +21,5 @@
   --section-gap:   32px;
   --component-gap: 16px;
   --item-gap:       8px;
+  --card-gap:       var(--spacing-2);
 }
