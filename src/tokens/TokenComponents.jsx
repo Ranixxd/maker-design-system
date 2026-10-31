@@ -235,9 +235,9 @@ export function TextColorTable() {
 
 export function BorderColorTable() {
   return <SemanticColorTable rows={[
-    { token: 'border-subtle',  palette: 'black-alpha-04', desc: '썸네일과 배경의 구분. 썸네일의 고유 색상을 방해하지 않게 옅다', border: true },
-    { token: 'border-default', palette: 'black-alpha-08', desc: '가장 기본적인 구분선. 섹션과 섹션 사이의 구분', border: true },
-    { token: 'border-strong',  palette: 'black-alpha-20', desc: '인터랙션이 가능한 form 계열의 테두리', border: true },
+    { token: 'border-subtle',  palette: 'black-alpha-04', desc: '약한 구분. 이미지를 덜 방해해야 하는 썸네일 계열', border: true },
+    { token: 'border-default', palette: 'black-alpha-08', desc: '가장 기본적으로 쓰는 구분선', border: true },
+    { token: 'border-strong',  palette: 'black-alpha-20', desc: '면적이 작아 default로는 구분이 희미한 요소나 강한 구분. 예: 라디오, 체크박스', border: true },
     { token: 'border-primary', palette: 'gray-900', desc: '고른 항목의 테두리 (미리보기 칸, 견본, 칩)', border: true },
     { token: 'border-focus',   palette: 'gray-900', desc: '커서가 있는 입력칸의 테두리, 키보드 포커스 링', border: true },
     { token: 'border-accent',  palette: 'violet-600',  desc: '선택·활성 상태의 테두리, 강조 안내선' },
