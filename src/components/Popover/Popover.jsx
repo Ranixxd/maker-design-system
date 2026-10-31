@@ -152,9 +152,13 @@ export default function Popover({
     const 스크롤 = (e) => { if (!panelRef.current?.contains(e.target)) 재고고치기(); };
     window.addEventListener('resize', 재고고치기);
     window.addEventListener('scroll', 스크롤, true);
+    /* 연 뒤에 내용이 바뀌어 패널 크기가 달라져도 다시 잰다(메뉴에서 색 고르기로 넘어갈 때). 재 둔 자리는 연 때의 크기 기준이다 */
+    const 크기 = portal && panelRef.current && typeof ResizeObserver !== 'undefined' ? new ResizeObserver(재고고치기) : null;
+    if (크기) 크기.observe(panelRef.current);
     return () => {
       window.removeEventListener('resize', 재고고치기);
       window.removeEventListener('scroll', 스크롤, true);
+      크기?.disconnect();
     };
   }, [open, side, align, portal]);
 
