@@ -43,12 +43,12 @@ button.item:active {
   padding: 0 var(--spacing-3);
 }
 
-/* ── Box ── 옵션 카드(2026-10-28, 덕꾸 앱 OptionCard와 같다). 흰 면, border-default 1, 둥글기 2xl, 안쪽 16.
+/* ── Box ── 옵션 카드(2026-10-28, 덕꾸 앱 OptionCard와 같다). 흰 면, border-strong 1, 둥글기 2xl, 안쪽 16.
    오른쪽 그림(media)이 있으면 높이 120 이상으로 서서 위아래가 넉넉하다 */
 .box {
   box-sizing: border-box;
   padding: var(--spacing-4);
-  border: 1px solid var(--color-border-default);
+  border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-2xl);
   background-color: var(--color-bg-default);
   align-items: flex-start;
@@ -64,7 +64,7 @@ button.item:active {
 .box:has(.media) { min-height: 120px; }
 
 /* 카드에는 hover·눌림 표시를 두지 않는다(2026-09-18 사용자). 고르는 카드라 이미 눌러야 할 것으로 읽힌다 */
-button.box:hover, button.box:active { border-color: var(--color-border-default); background-color: transparent; }
+button.box:hover, button.box:active { border-color: var(--color-border-strong); background-color: transparent; }
 
 /* ── Slots ── */
 .leading {
@@ -119,7 +119,7 @@ button.box:hover, button.box:active { border-color: var(--color-border-default);
 @media (hover: none) {
   button.item:hover { background-color: transparent; }
   button.box:hover {
-    border-color: var(--color-border-default);
+    border-color: var(--color-border-strong);
     background-color: transparent;
   }
 }
