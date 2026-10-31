@@ -30,7 +30,7 @@ export const color = {
   "textPressed": "#757575",
   "textAccentPressed": "#c18bff",
   "borderSubtle": "rgba(0, 0, 0, 0.04)",
-  "borderDefault": "rgba(0, 0, 0, 0.08)",
+  "borderDefault": "rgba(0, 0, 0, 0.12)",
   "borderStrong": "rgba(0, 0, 0, 0.20)",
   "borderPrimary": "#111111",
   "borderFocus": "#111111",
