@@ -77,7 +77,7 @@ export const CommonIcons = {
       'ChevronDown', 'X', 'Plus', 'Minus', 'Check', 'Info',
       'Upload', 'Download', 'Pencil', 'Trash2', 'Image', 'Layers',
       'Menu', 'MoreHorizontal', 'User', 'LogOut',
-      'Folder', 'FolderPlus', 'Astroid', 'RotateCcw',
+      'Folder', 'FolderPlus', 'Astroid', 'RotateCcw', 'Undo2',
       'CircleHelp', 'Search', 'ImagePlus', 'Eraser',
       'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowUpDown', 'Siren',
       'Wallpaper', 'Brush', 'Smile', 'LayersArrowUp', 'LayersArrowDown', 'Copy',

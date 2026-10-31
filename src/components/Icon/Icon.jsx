@@ -13,7 +13,7 @@ import {
   Image, Layers, Menu, MoreHorizontal,
   User, LogOut,
   /* 카톡테마 메이커 더보기 메뉴 (2026-09-17) */
-  Folder, FolderPlus, Astroid, RotateCcw,
+  Folder, FolderPlus, Astroid, RotateCcw, Undo2,
   /* 제목 옆 도움말 (2026-09-17) */
   CircleHelp,
   /* 찾기칸 (2026-09-18) */
@@ -59,7 +59,7 @@ const ICONS = {
   Upload, Download, Pencil, Trash2,
   Image, Layers, Menu, MoreHorizontal,
   User, LogOut,
-  Folder, FolderPlus, Astroid, RotateCcw,
+  Folder, FolderPlus, Astroid, RotateCcw, Undo2,
   CircleHelp, Search, ImagePlus, Eraser,
   ArrowLeft, ArrowRight, ArrowUp, ArrowUpDown, Siren,
   Wallpaper, Brush, Smile,
