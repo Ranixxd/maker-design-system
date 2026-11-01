@@ -1,3 +1,4 @@
+import Spinner from '../Spinner/Spinner';
 import styles from './LoadingScrim.module.css';
 
 /* 기다리는 동안 덮는 흐린 덮개. 가운데에 도는 표시 하나만 띄운다. label은 화면에 안 보이고 읽어 주는 기능만 읽는다.
@@ -8,7 +9,7 @@ export default function LoadingScrim({ isOpen = true, fullscreen = false, label 
   if (!isOpen) return null;
   return (
     <div className={[styles.scrim, fullscreen && styles.fullscreen, className].filter(Boolean).join(' ')} role="status" aria-label={label} {...props}>
-      <span className={styles.spin} aria-hidden="true" />
+      <Spinner size="md" />
     </div>
   );
 }

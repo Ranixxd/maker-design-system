@@ -17,17 +17,3 @@
   z-index: var(--z-system);
   border-radius: 0;
 }
-
-/* 도는 표시. 사진 칸(ColorPalette)과 같은 모양을 판 크기에 맞게 키웠다 */
-.spin {
-  width: 24px;
-  height: 24px;
-  border-radius: var(--radius-full);
-  border: 2.5px solid var(--color-border-default);
-  border-top-color: var(--color-icon-secondary);
-  animation: scrimSpin 0.8s linear infinite;
-}
-@keyframes scrimSpin { to { transform: rotate(360deg); } }
-@media (prefers-reduced-motion: reduce) {
-  .spin { animation-duration: 2.4s; }
-}
