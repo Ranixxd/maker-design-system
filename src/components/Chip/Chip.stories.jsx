@@ -24,6 +24,10 @@ export default {
 ×는 칩 글자색을 따르고(고른 칩이면 흰색) 누름 영역은 24다. \`removeLabel\`에 무엇을 지우는지 적는다.
 칩 모서리에 ×를 걸치면(CornerButton) 옆 칩과 붙어 잘못 누르기 쉬웠다(사용자). 칩에는 CornerButton을 쓰지 않는다
 
+**색 점 칩**(\`swatch\`, 2026-11-02): 색으로 거르는 칩은 이모지 대신 글자 앞에 색 점을 둔다. 하트 이모지는 여덟 색 남짓이라 베이지·남색·민트를 못 나타낸다.
+점의 칠은 그림 내용의 색이라 쓰는 쪽이 값을 준다(토큰이 아니다). 바탕에 묻히는 흰색이 있어 점에는 늘 \`border-subtle\` 테두리가 선다.
+\`leading\`과 함께 주지 않는다. 처음 쓰는 곳은 배경화면 자랑 색 필터다
+
 **여러 개를 늘어놓고 하나를 고르는 줄은 \`ChipGroup\`이다**(2026-10-14). 간격·넘기기·끝 여백을 그 부품이 갖는다.
 그 밖에 손으로 늘어놓을 때는 부모가 \`display:flex; gap: var(--spacing-1)\`로 줄을 만들고,
 넘치면 \`overflow-x:auto\`로 굴린다. Chip 자신은 줄바꿈하지 않는다.
@@ -66,6 +70,21 @@ export const WithLeading = {
       <Chip leading="💛">노랑</Chip>
     </div>
   ),
+};
+
+export const WithSwatch = {
+  name: '색 점',
+  parameters: { controls: { disable: true } },
+  render: () => {
+    const [on, setOn] = useState(new Set(['분홍색']));
+    const items = [['흰색', '#FFFFFF'], ['베이지색', '#EAD9BC'], ['분홍색', '#F5A3C0'], ['남색', '#1F2D6B']];
+    const flip = (n) => { const s = new Set(on); s.has(n) ? s.delete(n) : s.add(n); setOn(s); };
+    return (
+      <div style={{ display: 'flex', gap: 'var(--spacing-1)' }}>
+        {items.map(([n, c]) => <Chip key={n} swatch={c} selected={on.has(n)} onClick={() => flip(n)}>{n}</Chip>)}
+      </div>
+    );
+  },
 };
 
 export const Removable = {

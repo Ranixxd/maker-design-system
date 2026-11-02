@@ -11,6 +11,7 @@ export default function Chip({
   children,
   selected = false,
   leading,              // 글자 앞 작은 그림(이모지 등)
+  swatch,               // 글자 앞 색 점(CSS 색 값). 색으로 거르는 칩에 쓴다(2026-11-02). leading과 함께 주지 않는다
   onRemove,             // 주면 칩 안 오른쪽에 ×가 선다(2026-10-13). 칩을 지우는 일만 한다
   removeLabel,          // × 낭독기 이름(예: "레이어 2 지우기")
   className,
@@ -23,6 +24,7 @@ export default function Chip({
       aria-pressed={selected}
       {...props}
     >
+      {swatch && <span className={styles.swatch} style={{ background: swatch }} aria-hidden="true" />}
       {leading && <span className={styles.leading}>{leading}</span>}
       <span className={`text-label-sm ${styles.label}`}>{children}</span>
     </button>
