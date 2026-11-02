@@ -65,3 +65,46 @@
   min-width: 0;
   color: var(--color-text-secondary);
 }
+
+/* 상자 카드. 그림과 글을 한 상자로 묶어, 좌우 여백이 좁은 격자에서도 글이 상자 안쪽 선에 선다.
+   면과 테두리는 늘 같은 색이다. 쓰는 쪽이 그림에서 뽑은 색(--media-card-tint)을 준다. 안 주면 회색(bg-tertiary) 상자다.
+   그 색 위에 글이 서므로 쓰는 쪽은 text-default가 읽히는 밝기로 준다 */
+.boxed {
+  --media-card-box: var(--media-card-tint, var(--color-bg-tertiary));
+  gap: 0;
+  border: 1px solid var(--media-card-box); /* @token-ok 면과 같은 색 */
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--media-card-box);
+}
+.boxed .figure {
+  border: 0;
+  border-radius: 0;
+}
+/* 그림 아래 끝을 상자 색으로 흐려 면과 이어지게 한다. 그림과 상자 색이 안 어울려도 경계가 튀지 않는다.
+   진하기를 곧게 올리면 시작과 끝에 선이 보여 천천히 시작해 천천히 끝나게(ease-in-out) 단을 나눈다 */
+.boxed .figure::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  height: var(--spacing-12);
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    color-mix(in srgb, var(--media-card-box) 4%, transparent) 15%,
+    color-mix(in srgb, var(--media-card-box) 15%, transparent) 30%,
+    color-mix(in srgb, var(--media-card-box) 33%, transparent) 45%,
+    color-mix(in srgb, var(--media-card-box) 55%, transparent) 60%,
+    color-mix(in srgb, var(--media-card-box) 76%, transparent) 75%,
+    color-mix(in srgb, var(--media-card-box) 92%, transparent) 90%,
+    var(--media-card-box) 100%
+  );
+  pointer-events: none;
+}
+.boxed .body {
+  padding: var(--spacing-2);
+}
+.boxed .meta {
+  color: var(--color-text-default);
+}

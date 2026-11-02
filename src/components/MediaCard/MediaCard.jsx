@@ -26,10 +26,18 @@ export default function MediaCard({
   meta,                            // 제목 아래 줄(좋아요·이어 만든 수, 작성자 등)
   href,                            // 카드가 가리키는 페이지 주소. 꼭 준다
   onOpen,                          // 그냥 누를 때 같은 화면에서 여는 함수. 없으면 주소로 간다
+  boxed = false,                   // 그림과 글을 한 상자로 묶는다
+  size = 'md',                     // 상자 카드의 크기. md(격자·목록 줄), sm(좁은 줄). 제목은 늘 한 줄 말줄임이다
+  tint,                            // 상자의 면·테두리 색. 없으면 회색 상자
+  imgProps,                        // 그림(img)에 그대로 붙는 속성. 그림에서 색을 읽을 때 쓴다
   className,
+  style,
   ...props
 }) {
-  const 제목클래스 = [titleClass, styles.title, lines === 1 ? styles.oneLine : styles.clamp]
+  /* 상자 카드는 크기가 제목 글자를 정하고 한 줄로 못 박는다. 쓰는 곳마다 줄 수가 갈리지 않게 한다 */
+  const 글자 = boxed ? (size === 'sm' ? 'text-label-xs' : 'text-label-sm') : titleClass;
+  const 줄 = boxed ? 1 : lines;
+  const 제목클래스 = [글자, styles.title, 줄 === 1 ? styles.oneLine : styles.clamp]
     .filter(Boolean).join(' ');
   const onClick = onOpen ? (e) => { if (!그냥누름(e)) return; e.preventDefault(); onOpen(); } : undefined;
 
@@ -37,17 +45,18 @@ export default function MediaCard({
     <a
       href={href}
       onClick={onClick}
-      className={[styles.card, className].filter(Boolean).join(' ')}
+      className={[styles.card, boxed && styles.boxed, className].filter(Boolean).join(' ')}
+      style={boxed && tint ? { ...style, '--media-card-tint': tint } : style}
       {...props}
     >
       <figure className={styles.figure} style={{ aspectRatio: ratio }}>
-        <img className={styles.image} src={src} alt={alt} loading="lazy" decoding="async" />
+        <img className={styles.image} src={src} alt={alt} loading="lazy" decoding="async" {...imgProps} />
         {badge && <span className={styles.badge}>{badge}</span>}
       </figure>
       {(title || meta) && (
         <div className={styles.body}>
           {title && (
-            <span className={제목클래스} style={lines > 1 ? { '--media-card-lines': lines } : undefined}>
+            <span className={제목클래스} style={줄 > 1 ? { '--media-card-lines': 줄 } : undefined}>
               {title}
             </span>
           )}
