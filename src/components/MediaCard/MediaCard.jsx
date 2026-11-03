@@ -23,6 +23,7 @@ export default function MediaCard({
   titleClass = 'text-heading-xs',  // 제목 글자. 서비스마다 크기가 다르다
   lines = 2,                       // 제목을 몇 줄까지 보일지. 1이면 한 줄 말줄임
   badge,                           // 그림 왼쪽 위에 얹는 표(오늘 올라왔어요 점 등)
+  strip,                           // 그림 틀 아래 끝에 붙는 띠(PaletteStrip 등)
   meta,                            // 제목 아래 줄(좋아요·이어 만든 수, 작성자 등)
   href,                            // 카드가 가리키는 페이지 주소. 꼭 준다
   onOpen,                          // 그냥 누를 때 같은 화면에서 여는 함수. 없으면 주소로 간다
@@ -52,6 +53,7 @@ export default function MediaCard({
       <figure className={styles.figure} style={{ aspectRatio: ratio }}>
         <img className={styles.image} src={src} alt={alt} loading="lazy" decoding="async" {...imgProps} />
         {badge && <span className={styles.badge}>{badge}</span>}
+        {strip && <span className={styles.strip}>{strip}</span>}
       </figure>
       {(title || meta) && (
         <div className={styles.body}>

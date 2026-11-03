@@ -1,0 +1,53 @@
+/* 칸은 모두 같은 폭이다. 색 하나가 넓으면 그 색이 주인공처럼 읽힌다 */
+.strip {
+  display: flex;
+  inline-size: 100%;
+  overflow: hidden;
+}
+
+.band {
+  flex: 1 1 0;
+  min-inline-size: 0;
+}
+
+/* 목록 카드 아래. 색만 읽히면 되는 높이다 */
+.sm {
+  block-size: var(--spacing-3);
+}
+
+/* 포스터 띠. 그림 아래 한 덩이로 붙어 색 조합이 그림만큼 눈에 든다 */
+.lg {
+  block-size: calc(var(--spacing-16) * 2);
+}
+
+.code {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+}
+.pick {
+  cursor: pointer;
+}
+.pick:hover {
+  filter: brightness(0.94);
+}
+
+/* 색 코드는 아래 왼쪽에서 위로 읽는다. 칸이 좁아도 코드 일곱 자가 들어간다 */
+.hex {
+  position: absolute;
+  inset-block-end: var(--spacing-3);
+  inset-inline-start: 50%;
+  transform: translateX(-50%) rotate(180deg);
+  writing-mode: vertical-rl;
+  white-space: nowrap;
+}
+
+/* 칸의 색은 사용자가 고른 것이라 테마를 따라 바뀌지 않는다. 글자색도 칸의 밝기로 고른다 */
+.onLight .hex {
+  color: rgba(0, 0, 0, 0.72); /* @token-ok 사용자 색 위 글자. 칸 밝기를 따른다 */
+}
+.onDark .hex {
+  color: rgba(255, 255, 255, 0.92); /* @token-ok 사용자 색 위 글자. 칸 밝기를 따른다 */
+}
