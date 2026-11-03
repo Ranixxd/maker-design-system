@@ -70,6 +70,7 @@ export default function EditFrame({
   cancelProps,          // 머리 단추에 더 붙일 속성(id 등). 옮겨 온 코드·점검이 단추를 이름으로 찾는 곳에서 쓴다
   doneProps,
   hint,                 // 판 위 안내 한 줄
+  below,                // 판 아래 한 줄. 판에만 걸리는 켜고 끄기(시선 집중 등)
   fabStart,             // 판 아래 왼쪽 둥근 단추(EditFab)
   fabEnd,               // 판 아래 오른쪽 둥근 단추(EditFab)
   fabOffset = 0,        // 판 위 단추를 이만큼(px) 올린다. 아래 자리에서 띠가 판 위로 떠올라 단추를 덮을 때
@@ -106,6 +107,7 @@ export default function EditFrame({
         <div className={styles.board}>
           {hint && !empty && <p className={`text-body-sm ${styles.hint}`}>{hint}</p>}
           {empty ? <EmptyBox {...empty} /> : children}
+          {below && !empty && <div className={styles.below}>{below}</div>}
         </div>
         {fabStart && <div className={`${styles.fabSlot} ${styles.fabStart}`}>{fabStart}</div>}
         {fabEnd && <div className={`${styles.fabSlot} ${styles.fabEnd}`}>{fabEnd}</div>}

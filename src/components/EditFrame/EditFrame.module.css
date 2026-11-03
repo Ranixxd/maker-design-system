@@ -43,6 +43,17 @@
   container-type: size;
 }
 
+/* 판 아래 한 줄. 안내와 짝으로 판 바로 밑에 띄운다. 아래 비운 56 안에 든다(한 줄 높이 44까지) */
+.below {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  margin-top: var(--spacing-3);
+  display: flex;
+  justify-content: center;
+}
+
 .hint {
   position: absolute;
   left: 0;

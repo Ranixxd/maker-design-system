@@ -80,8 +80,8 @@ export function createObjectDrag(board, surfaces) {
   }
 
   function down(e) {
-    /* 도구 줄 단추는 제 일을 한다 */
-    if (e.target.closest && e.target.closest('button, [data-obox-bar]')) return;
+    /* 도구 줄 단추와 판 둘레의 단추·스위치(EditFrame below 등)는 제 일을 한다 */
+    if (e.target.closest && e.target.closest('button, label, input, [data-obox-bar]')) return;
     if (ptrs.size >= 2) return;
     e.preventDefault();
     try { e.currentTarget.setPointerCapture(e.pointerId); } catch (_) { /* 못 잡아도 된다 */ }

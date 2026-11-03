@@ -5,6 +5,7 @@ import EditFab from '../EditFab/EditFab';
 import Button from '../Button/Button';
 import ToolButton from '../ToolButton/ToolButton';
 import Chip from '../Chip/Chip';
+import Switch from '../Switch/Switch';
 
 export default {
   title: 'Components/EditFrame',
@@ -26,6 +27,9 @@ export default {
   - 편집 화면이 여러 장 이어지는 흐름에서 다음 편집 화면으로 넘기는 단추는 [다음]이다(냉장고 얼굴 맞추기 → 판, 2026-10-03). 마지막 화면은 [편집 완료]
   - 단추에 id 같은 속성을 더 달려면 \`cancelProps\`·\`doneProps\`
 - **판:** 본문(\`bg-tertiary\`) 한가운데. 판 바로 위에 안내 한 줄(\`hint\`)을 둘 수 있다
+- **판 아래 한 줄:** \`below\`. 판 바로 밑 가운데, 틈 12. 판 그림에만 걸리는 켜고 끄기(\`Switch\` 하나 등)를 둔다. 캔버스 내용을 고치거나 더하는 도구는 아래 고정 자리(\`footer\`)다(2026-11-03 사용자)
+  - 높이는 44까지(판 아래 비운 56 안). 두 줄을 두지 않는다. 빈 캔버스 동안은 숨는다
+  - 둥근 단추(\`fabStart\`·\`fabEnd\`)와 같은 높이에 선다. 둘을 같이 쓰면 줄 폭이 양 끝 단추 사이(본문 폭 − 2 × (16 + 36 + 8))를 넘지 않게 한다
 - **판 위 둥근 단추:** \`fabStart\`·\`fabEnd\`에 \`EditFab\`을 하나씩. 부가 기능만 둔다
 - **안내와 둥근 단추는 띄워 둔다(absolute).** 있다가 없어져도 판이 움직이지 않는다. 판 둘레에 다른 글·단추를 더 둘 때도 띄운다. 판과 같은 줄에 흐르게 두면 숨길 때 판이 움직인다
 - **아래 고정 자리:** \`footer\`. 선 없이 자리만 내준다. 캔버스 내용을 고치거나 더하는 도구(도구 줄·탭·입력 칸)가 여기 온다. 없으면 비워 둔다
@@ -156,4 +160,16 @@ export const 빈캔버스두길 = {
       empty={{ title: '음식 짤', onPick: () => {}, alt: { title: '또는 표정 넣기 :3', onClick: () => {} } }}
       footer={<p className="text-body-sm" style={{ margin: 0 }}>바탕 줄</p>} />
   ),
+};
+
+export const Below = {
+  name: '판 아래 한 줄 (찌그러진 얼굴의 시선 집중)',
+  render: () => {
+    const [on, setOn] = useState(false);
+    return (
+      <Demo below={<Switch checked={on} onChange={setOn}>시선 집중</Switch>} footer={<div style={{ height: 32, display: 'grid', placeItems: 'center', color: 'var(--color-text-tertiary)' }}>세기 밀대</div>}>
+        <Board ratio={3 / 4}>판</Board>
+      </Demo>
+    );
+  },
 };
