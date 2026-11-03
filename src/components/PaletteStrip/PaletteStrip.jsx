@@ -35,7 +35,7 @@ export default function PaletteStrip({ colors, size = 'sm', codes = false, onPic
           <Band key={i} {...(onPick ? { type: 'button', 'aria-label': hex + ' 복사', onClick: () => onPick(hex) } : {})}
             className={[styles.band, styles.code, onPick && styles.pick, 밝은가(hex) ? styles.onLight : styles.onDark].filter(Boolean).join(' ')}
             style={{ background: hex }}>
-            <span className={`text-heading-sm ${styles.hex}`}>{hex}</span>
+            <span className={`text-heading-xs ${styles.hex}`}>{hex}</span>
           </Band>
         );
       })}
