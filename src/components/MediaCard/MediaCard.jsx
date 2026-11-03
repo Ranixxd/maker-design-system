@@ -24,6 +24,7 @@ export default function MediaCard({
   lines = 2,                       // 제목을 몇 줄까지 보일지. 1이면 한 줄 말줄임
   badge,                           // 그림 왼쪽 위에 얹는 표(오늘 올라왔어요 점 등)
   strip,                           // 그림 틀 아래 끝에 붙는 띠(PaletteStrip 등)
+  square = false,                  // 그림 틀의 모서리를 둥글리지 않는다
   meta,                            // 제목 아래 줄(좋아요·이어 만든 수, 작성자 등)
   href,                            // 카드가 가리키는 페이지 주소. 꼭 준다
   onOpen,                          // 그냥 누를 때 같은 화면에서 여는 함수. 없으면 주소로 간다
@@ -46,7 +47,7 @@ export default function MediaCard({
     <a
       href={href}
       onClick={onClick}
-      className={[styles.card, boxed && styles.boxed, className].filter(Boolean).join(' ')}
+      className={[styles.card, boxed && styles.boxed, square && styles.square, className].filter(Boolean).join(' ')}
       style={boxed && tint ? { ...style, '--media-card-tint': tint } : style}
       {...props}
     >
