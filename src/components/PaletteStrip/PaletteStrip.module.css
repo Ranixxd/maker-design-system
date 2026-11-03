@@ -34,11 +34,13 @@
   filter: brightness(0.94);
 }
 
-/* 색 코드는 아래 왼쪽에서 위로 읽는다. 칸이 좁아도 코드 일곱 자가 들어간다 */
+/* 색 코드는 아래에서 위로 읽는다. 칸이 좁아도 코드 일곱 자가 들어간다.
+   띠 아래 끝에서 20px 띄운다. 12px이면 틀 가장자리에 붙어 보였다(2026-11-03 사용자).
+   세로쓰기라 논리 속성(inset-block-end)은 아래가 아니라 옆을 가리킨다. 자리는 물리 속성으로 잡는다 */
 .hex {
   position: absolute;
-  inset-block-end: var(--spacing-3);
-  inset-inline-start: 50%;
+  bottom: var(--spacing-5);
+  left: 50%;
   transform: translateX(-50%) rotate(180deg);
   writing-mode: vertical-rl;
   white-space: nowrap;
