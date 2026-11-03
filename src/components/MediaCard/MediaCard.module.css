@@ -43,11 +43,13 @@
   border-radius: 0;
 }
 
-/* 그림 틀 아래 끝에 붙는 띠. 틀의 모서리 안에 들어 그림과 한 덩이로 보인다 */
+/* 그림 틀 아래 끝에 붙는 띠. 틀의 모서리 안에 들어 그림과 한 덩이로 보인다.
+   그림과 띠 사이에 틀과 같은 선을 둔다. 그림 끝 색과 띠 색이 비슷하면 경계가 안 보인다(2026-11-03 사용자) */
 .strip {
   position: absolute;
   inset-inline: 0;
   inset-block-end: 0;
+  border-block-start: 1px solid var(--color-border-subtle);
 }
 
 .body {
