@@ -1,0 +1,21 @@
+/* 점(·) 양옆 8px, 아이콘과 숫자 사이 4px. 글자 크기·색은 감싸는 쪽이 정한다 */
+.line {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+  min-inline-size: 0;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+
+/* 글줄(13px) 속 아이콘은 14px. 굵기는 24칸 단위 2를 넘겨 약 1.17px(Chip 지우기 ×, SNS 링크 아이콘과 같다) */
+.icon {
+  width: 14px;
+  height: 14px;
+  flex: none;
+}

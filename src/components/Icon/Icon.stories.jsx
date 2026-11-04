@@ -83,6 +83,7 @@ export const CommonIcons = {
       'Wallpaper', 'Brush', 'Smile', 'LayersArrowUp', 'LayersArrowDown', 'Copy',
       'Moon', 'Sun', 'WandSparkles', 'Shuffle', 'SquareArrowOutUpRight',
       'MessageCirclePlus', 'Scan', 'ScanSquare', 'RulerDimensionLine', 'MoveVertical', 'MoveHorizontal',
+      'Heart',
     ];
     return (
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24 }}>

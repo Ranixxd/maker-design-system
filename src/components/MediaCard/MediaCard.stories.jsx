@@ -1,4 +1,5 @@
 import MediaCard from './MediaCard';
+import StatLine from '../StatLine/StatLine';
 
 export default {
   title: 'Components/MediaCard',
@@ -20,7 +21,7 @@ export default {
 | \`badge\` | 그림 왼쪽 위에 얹는 표(오늘 올라왔어요 점 등) |
 | \`square\` | 그림 틀의 모서리를 둥글리지 않는다(2026-11-03). 배경화면 자랑처럼 그림을 인쇄물·포스터로 보이는 목록에 쓴다. 상자 카드(\`boxed\`)와는 함께 쓰지 않는다 |
 | \`strip\` | 그림 틀 아래 끝에 붙는 띠(\`PaletteStrip\`, 2026-11-03). 틀의 모서리 안에서 그림 아래쪽을 덮고, 그림과의 사이에 틀과 같은 \`border-subtle\` 선이 선다. 그림은 \`cover\`라 가려지는 것은 잘려 나가던 끝이다 |
-| \`meta\` | 제목 아래 줄(좋아요·이어 만든 수, 작성자 등) |
+| \`meta\` | 제목 아래 줄(좋아요·이어 만든 수, 작성자 등). 좋아요·이어 만든 수는 \`text-label-sm\` 안에 \`StatLine\`을 넣는다(2026-11-04. 전에는 ❤️·📥 글자) |
 | \`href\` | 카드가 가리키는 페이지 주소. **꼭 준다.** 카드는 늘 링크(a)다. 크롤러가 목록에서 그 페이지로 따라간다 |
 | \`onOpen\` | 그냥 누를 때 페이지를 새로 열지 않고 같은 화면에서 연다(목록 위 상세 등). 새 탭 열기(Ctrl·⌘·Shift·Alt, 가운데 단추)와 꾹 눌러 주소 복사는 링크대로 간다. 없으면 주소로 간다 |
 | \`boxed\` | 그림과 글을 한 상자로 묶는다. 글이 상자 안쪽(8px)에 서서, 좌우 여백이 좁은 격자에서도 글과 섹션 제목이 어긋나 보이지 않는다. 그림의 테두리는 상자 테두리가 대신한다. 그림 아래 48px은 상자 색으로 천천히 흐려져 면과 이어진다 |
@@ -72,7 +73,7 @@ export const WithMeta = {
         href="#"
         title="여기가 헤네시스인지 카톡인지"
         ratio="4 / 5"
-        meta={<span className="text-label-sm">❤️ 12 · 📥 34</span>}
+        meta={<span className="text-label-sm"><StatLine likes={12} takes={34} /></span>}
       />
     </div>
   ),
@@ -86,10 +87,10 @@ export const Boxed = {
       alignItems: 'start', columnGap: 'var(--card-gap)', width: 343 }}>
       <MediaCard src={그림} href="#" title="먼작귀 랏코 & 치이카와 테마" ratio="4 / 5"
         boxed tint="rgb(227 255 193)"
-        meta={<span className="text-label-sm">❤️ 1 · 📥 1</span>} />
+        meta={<span className="text-label-sm"><StatLine likes={1} takes={1} /></span>} />
       <MediaCard src={그림} href="#" title="색을 아직 못 뽑은 카드" ratio="4 / 5"
         boxed
-        meta={<span className="text-label-sm">❤️ 3 · 📥 8</span>} />
+        meta={<span className="text-label-sm"><StatLine likes={3} takes={8} /></span>} />
     </div>
   ),
 };
@@ -115,7 +116,7 @@ export const Grid = {
       alignItems: 'start', gap: 'var(--spacing-4)' }}>
       {['곰인형이 되.', '여기가 헤네시스인지 카톡인지', '난 수련회 안 가'].map((t) => (
         <MediaCard key={t} src={그림} href="#" title={t} ratio="4 / 5"
-          meta={<span className="text-label-sm">❤️ 3 · 📥 8</span>} />
+          meta={<span className="text-label-sm"><StatLine likes={3} takes={8} /></span>} />
       ))}
     </div>
   ),

@@ -45,6 +45,7 @@ export { default as ThumbCard } from './components/ThumbCard/index.js';
 export { default as MenuItem } from './components/MenuItem/index.js';
 export { default as Popover } from './components/Popover/index.js';
 export { default as PostMeta } from './components/PostMeta/index.js';
+export { default as StatLine } from './components/StatLine/index.js';
 export { default as TextField } from './components/TextField/index.js';
 export { default as UploadField } from './components/UploadField/index.js';
 export { default as ImageViewer } from './components/ImageViewer/index.js';
