@@ -30,12 +30,17 @@ function toHex6(v) {
    네모·막대·hex 칸은 판 안의 색(pick)만 바꾼다. 끄는 대로 뒤 화면을 다시 그리면 폰에서 버벅였다.
    전에는 끄는 대로 onChange였다.
    적용하면 감싼 창(LayerPopup 시트·Popover)을 닫는다(2026-10-21 주인장). 창 밖에 두면 닫을 것이 없다.
-   [적용]은 끄지 않는다. 색이 그대로면 onChange 없이 창만 닫는다(2026-10-21 주인장) */
+   [적용]은 끄지 않는다. 색이 그대로면 onChange 없이 창만 닫는다(2026-10-21 주인장).
+
+   ── 고른 색이 아직 없는 자리는 empty(2026-11-04 사용자) ──
+   사진이 든 칸처럼 value가 지금 색이 아니라 처음 보여 줄 색일 뿐인 자리. 그 색 그대로 [적용]해도 고른 것이라 onChange를 부른다.
+   value가 지금 색인 자리(위 규칙)와 가르지 않으면 기본색을 고른 것이 사라진다 */
 export default function ColorPicker({
   value,
   onChange,
   label = '색상',
   className,
+  empty = false,
 }) {
   const hex = toHex6(value) || '#000000';
   /* 판 안에서 고르는 중인 색. 바깥 값이 바뀌면 따라간다 */
@@ -61,7 +66,7 @@ export default function ColorPicker({
   };
   const closeOverlay = useOverlayClose();
   const apply = (v) => {
-    if (v !== hex) onChange?.(v);
+    if (empty || v !== hex) onChange?.(v);
     closeOverlay?.();
   };
 
