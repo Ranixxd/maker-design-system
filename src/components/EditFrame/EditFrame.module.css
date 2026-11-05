@@ -97,6 +97,11 @@
   padding: var(--spacing-3) var(--spacing-5) calc(var(--spacing-5) + env(safe-area-inset-bottom));
 }
 .footInner { display: flex; flex-direction: column; gap: var(--spacing-2); }
+/* 아래 자리 높이 옮기기(FootSize). 속 높이를 재어 붙이고, 바뀌면 판 위 단추 올리기(fabSlot)와 같은 빠르기로 따라간다.
+   그동안 판은 남은 자리만큼 함께 커지고 작아진다. 옮기는 동안만 넘침을 자른다 */
+.footSize { transition: height var(--motion-duration-medium-2) var(--motion-easing-standard); }
+.footSize[data-moving] { overflow: hidden; }
+@media (prefers-reduced-motion: reduce) { .footSize { transition: none; } }
 
 /* 빈 캔버스(empty) 동안 아래 자리를 흐리게 가리는 흰 덮개(bg-default 70%). 아래 자리는 inert라 누를 수 없다 */
 .footCover {

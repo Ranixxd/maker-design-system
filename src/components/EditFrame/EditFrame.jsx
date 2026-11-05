@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import LayerPopup from '../LayerPopup/LayerPopup';
 import Button from '../Button/Button';
 import Popover from '../Popover/Popover';
@@ -55,6 +55,44 @@ function EmptyBox({ title, description = '사진을 올려주세요', accept = '
   );
 }
 
+/* 아래 자리의 높이를 재어 붙인다. 속이 바뀌어 높이가 달라지면 그 높이로 부드럽게 옮겨 간다(2026-11-06 사용자).
+   처음 잴 때는 옮기지 않는다. 옮기는 동안만 넘침을 자른다(커지는 동안 속이 판 위로 비치지 않게).
+   판 위로 떠오르는 띠는 아래 자리(.foot)에 붙어 있어 이 자르기에 걸리지 않는다 */
+function FootSize({ inert, children }) {
+  const wrap = useRef(null);
+  const inner = useRef(null);
+  /* 높이와 자르기는 React를 거치지 않고 잰 자리에서 바로 붙인다. 상태로 두면 한 프레임 늦어 커질 때 속이 판 위로 한 번 비친다 */
+  useLayoutEffect(() => {
+    const box = wrap.current, el = inner.current;
+    if (!box || !el || typeof ResizeObserver === 'undefined') return undefined;
+    let last = null, timer = 0;
+    const settle = () => { clearTimeout(timer); delete box.dataset.moving; };
+    const measure = () => {
+      const h = el.offsetHeight;
+      if (h === last) return;
+      if (last !== null) {
+        box.dataset.moving = '';
+        clearTimeout(timer);
+        /* 끝 신호(transitionend)가 안 오는 때(동작 줄이기 등)를 위해 시간으로도 푼다. 옮기는 시간(300ms)보다 넉넉히 */
+        timer = setTimeout(settle, 450);
+      }
+      last = h;
+      box.style.height = h + 'px';
+    };
+    const done = (e) => { if (e.target === box) settle(); };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    box.addEventListener('transitionend', done);
+    return () => { ro.disconnect(); box.removeEventListener('transitionend', done); clearTimeout(timer); };
+  }, []);
+  return (
+    <div ref={wrap} className={styles.footSize}>
+      <div ref={inner} className={styles.footInner} inert={inert}>{children}</div>
+    </div>
+  );
+}
+
 /* 편집 화면의 틀. [편집 취소 | 편집 완료] 머리, 회색 바탕 위 판, 판 위 둥근 단추 두 자리, 아래 고정 자리.
    판 안에서 무슨 일이 일어나는지와 아래에 무엇을 둘지는 쓰는 쪽이 정한다.
 
@@ -97,7 +135,7 @@ export default function EditFrame({
       headerEnd={<Button variant="accent" {...doneProps} onClick={onDone} disabled={doneDisabled || !!empty}>{doneLabel}</Button>}
       footer={footer ? (
         <>
-          <div className={styles.footInner} inert={empty ? true : undefined}>{footer}</div>
+          <FootSize inert={empty ? true : undefined}>{footer}</FootSize>
           {empty && <div className={styles.footCover} aria-hidden="true" />}
         </>
       ) : undefined}

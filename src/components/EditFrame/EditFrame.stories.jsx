@@ -33,6 +33,7 @@ export default {
 - **판 위 둥근 단추:** \`fabStart\`·\`fabEnd\`에 \`EditFab\`을 하나씩. 부가 기능만 둔다
 - **안내와 둥근 단추는 띄워 둔다(absolute).** 있다가 없어져도 판이 움직이지 않는다. 판 둘레에 다른 글·단추를 더 둘 때도 띄운다. 판과 같은 줄에 흐르게 두면 숨길 때 판이 움직인다
 - **아래 고정 자리:** \`footer\`. 선 없이 자리만 내준다. 캔버스 내용을 고치거나 더하는 도구(도구 줄·탭·입력 칸)가 여기 온다. 없으면 비워 둔다
+  - 속이 바뀌어 높이가 달라지면(칩마다 줄 수가 다를 때) 틀이 높이를 재어 \`medium-2\`·standard로 부드럽게 옮겨 간다(2026-11-06 사용자). 판은 남은 자리만큼 함께 커지고 작아진다. 쓰는 쪽은 할 일이 없다. 동작 줄이기 설정이면 바로 바뀐다
 
 **쓰는 쪽이 정하는 것**
 - 판의 크기와 비율, 판 안에서 일어나는 일
@@ -160,6 +161,30 @@ export const 빈캔버스두길 = {
       empty={{ title: '음식 짤', onPick: () => {}, alt: { title: '또는 표정 넣기 :3', onClick: () => {} } }}
       footer={<p className="text-body-sm" style={{ margin: 0 }}>바탕 줄</p>} />
   ),
+};
+
+/* 칩마다 아래 자리 속 높이가 다를 때. 틀이 높이를 재어 부드럽게 옮기고 판도 따라 커지고 작아진다 */
+export const FootHeight = {
+  name: '아래 자리 높이가 바뀔 때',
+  render: () => {
+    const [tab, setTab] = useState('short');
+    const rows = tab === 'short' ? 1 : 4;
+    return (
+      <Demo open footer={(
+        <>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 'var(--spacing-1)' }}>
+            <Chip selected={tab === 'short'} onClick={() => setTab('short')}>한 줄</Chip>
+            <Chip selected={tab === 'tall'} onClick={() => setTab('tall')}>네 줄</Chip>
+          </div>
+          {Array.from({ length: rows }, (_, i) => (
+            <div key={i} style={{ height: 40, display: 'grid', placeItems: 'center', color: 'var(--color-text-tertiary)' }}>줄 {i + 1}</div>
+          ))}
+        </>
+      )}>
+        <Board>판</Board>
+      </Demo>
+    );
+  },
 };
 
 export const Below = {
