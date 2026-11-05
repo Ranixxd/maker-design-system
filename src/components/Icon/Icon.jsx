@@ -46,6 +46,8 @@ import {
   MessageCirclePlus, Scan, ScanSquare, RulerDimensionLine, MoveVertical, MoveHorizontal,
   /* 좋아요 지표 (2026-11-04). 글 상세 메타 묶음(PostMeta)과 목록 카드의 지표 줄(StatLine). 이어 만들기는 Download */
   Heart,
+  /* 카톡테마 메이커 음식 짤의 얼굴 크기·팔 간격·다리 간격 슬라이더 이름 앞 (2026-11-05) */
+  ScanFace, BicepsFlexed, Footprints,
   createLucideIcon,
 } from 'lucide-react';
 
@@ -69,6 +71,7 @@ const ICONS = {
   Moon, Sun, WandSparkles, Shuffle, SquareArrowOutUpRight,
   MessageCirclePlus, Scan, ScanSquare, RulerDimensionLine, MoveVertical, MoveHorizontal,
   Heart,
+  ScanFace, BicepsFlexed, Footprints,
 };
 
 /* sm 20 / md 24 (2026-09-18, 16 / 20에서 한 단계씩 키웠다). 폰에서 알아보기 작았다 */
