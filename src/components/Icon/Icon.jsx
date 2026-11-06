@@ -44,8 +44,8 @@ import {
   Moon, Sun, WandSparkles, Shuffle, SquareArrowOutUpRight,
   /* 카톡테마 메이커 말풍선 만들기의 도구 줄(말풍선·크기 가이드)과 자르기 도구(기본과 위치 맞추기·자동 자르기), 글자 자리 손잡이 (2026-10-26) */
   MessageCirclePlus, Scan, ScanSquare, RulerDimensionLine, MoveVertical, MoveHorizontal,
-  /* 좋아요 지표 (2026-11-04). 글 상세 메타 묶음(PostMeta)과 목록 카드의 지표 줄(StatLine). 이어 만들기는 Download */
-  Heart,
+  /* 좋아요·이어 만들기 지표. 글 상세 메타 묶음(PostMeta)과 목록 카드의 지표 줄(StatLine) */
+  Heart, Repeat,
   /* 카톡테마 메이커 음식 짤의 얼굴 크기·팔 간격·다리 간격 슬라이더 이름 앞 (2026-11-05) */
   ScanFace, BicepsFlexed, Footprints,
   createLucideIcon,
@@ -70,7 +70,7 @@ const ICONS = {
   LayersArrowUp, LayersArrowDown, Copy,
   Moon, Sun, WandSparkles, Shuffle, SquareArrowOutUpRight,
   MessageCirclePlus, Scan, ScanSquare, RulerDimensionLine, MoveVertical, MoveHorizontal,
-  Heart,
+  Heart, Repeat,
   ScanFace, BicepsFlexed, Footprints,
 };
 

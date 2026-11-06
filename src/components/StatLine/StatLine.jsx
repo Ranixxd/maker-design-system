@@ -5,7 +5,7 @@ import styles from './StatLine.module.css';
    아이콘은 글줄 속 14px이고 글자 색을 따른다. 글자 크기·색은 감싸는 쪽이 정한다. 규칙은 StatLine.stories.jsx 설명에 있다 */
 
 /* 이어 만들기 아이콘. 바꾸려면 여기만 고친다 */
-export const TAKE_ICON = 'Download';
+export const TAKE_ICON = 'Repeat';
 
 export default function StatLine({
   likes = 0,     // 좋아요 수

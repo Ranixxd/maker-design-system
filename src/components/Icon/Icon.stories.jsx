@@ -83,7 +83,7 @@ export const CommonIcons = {
       'Wallpaper', 'Brush', 'Smile', 'LayersArrowUp', 'LayersArrowDown', 'Copy',
       'Moon', 'Sun', 'WandSparkles', 'Shuffle', 'SquareArrowOutUpRight',
       'MessageCirclePlus', 'Scan', 'ScanSquare', 'RulerDimensionLine', 'MoveVertical', 'MoveHorizontal',
-      'Heart',
+      'Heart', 'Repeat',
       'ScanFace', 'BicepsFlexed', 'Footprints',
     ];
     return (

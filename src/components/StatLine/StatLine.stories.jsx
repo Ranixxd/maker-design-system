@@ -12,7 +12,7 @@ export default {
 \`PostMeta\`에는 \`likes\`·\`takes\`·\`takesLabel\` 값을 넘기면 PostMeta가 이 줄을 그린다. 카드에는 \`meta\`에 이 부품을 넣는다.
 
 **이모지가 아니라 픽토그램이다**(2026-11-04 사용자). ❤️·📥 같은 색 이모지는 글줄에서 콘텐츠보다 튀어 \`Icon\`으로 바꿨다.
-좋아요는 \`Heart\`, 이어 만들기는 \`Download\`다. 이어 만들기 아이콘 이름은 \`StatLine.jsx\`의 \`TAKE_ICON\` 한 곳에서 정한다.
+좋아요는 \`Heart\`, 이어 만들기는 \`Repeat\`다. 이어 만들기 아이콘 이름은 \`StatLine.jsx\`의 \`TAKE_ICON\` 한 곳에서 정한다.
 클릭을 부르는 자리(\`BottomCta\`의 좋아요 단추)와 좋아요를 눌렀을 때 터지는 하트는 이 줄이 아니라 이모지 그대로다.
 
 **규칙**
