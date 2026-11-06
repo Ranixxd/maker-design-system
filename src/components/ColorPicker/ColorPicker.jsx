@@ -42,6 +42,7 @@ export default function ColorPicker({
   label = '색상',
   className,
   empty = false,
+  onCopy,
 }) {
   const hex = toHex6(value) || '#000000';
   /* 판 안에서 고르는 중인 색. 바깥 값이 바뀌면 따라간다 */
@@ -67,7 +68,8 @@ export default function ColorPicker({
   };
   /* 복사는 hex 칸에 보이는 여섯 자리만(# 없이) 담는다. 붙여넣을 칸이 #을 따로 붙이는 곳이 많다(2026-11-07 주인장).
      눌렀다는 표시는 아이콘이 잠깐 체크로 바뀌는 것이다.
-     클립보드 API가 막힌 자리(비보안 페이지·웹뷰)는 칸의 글자를 골라 옛 복사 명령으로 담는다. 그것도 안 되면 표시를 바꾸지 않는다 */
+     클립보드 API가 막힌 자리(비보안 페이지·웹뷰)는 칸의 글자를 골라 옛 복사 명령으로 담는다. 그것도 안 되면 표시를 바꾸지 않는다.
+     onCopy는 담은 뒤 한 번 부른다(쓰는 쪽이 센다) */
   const [copied, setCopied] = useState(false);
   const copiedT = useRef(null);
   const inputRef = useRef(null);
@@ -78,6 +80,7 @@ export default function ColorPicker({
     catch { inputRef.current?.select(); ok = document.execCommand('copy'); }
     if (!ok) return;
     setCopied(true);
+    onCopy?.();
     clearTimeout(copiedT.current);
     copiedT.current = setTimeout(() => setCopied(false), 1500);
   };

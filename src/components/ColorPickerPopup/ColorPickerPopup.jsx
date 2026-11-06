@@ -28,7 +28,8 @@ function useIsMobile() {
    - trigger: 여는 요소. ref를 받을 수 있어야 한다. 없으면 open으로만 연다(메뉴에서 여는 곳). 그때는 늘 LayerPopup이다
    - open·onOpenChange: 밖에서 열고 닫을 때. 안 주면 스스로 든다
    - onOpen: 열릴 때 한 번 부른다(그 칸을 고른 칸으로 삼기 등)
-   - empty: 고른 색이 아직 없는 자리. ColorPicker에 그대로 넘긴다 */
+   - empty: 고른 색이 아직 없는 자리. ColorPicker에 그대로 넘긴다
+   - onCopy: hex 칸의 [복사]로 담은 뒤 한 번. ColorPicker에 그대로 넘긴다 */
 export default function ColorPickerPopup({
   trigger,
   value,
@@ -38,6 +39,7 @@ export default function ColorPickerPopup({
   onOpenChange,
   onOpen,
   empty = false,
+  onCopy,
   side = 'top',
   align = 'end',
 }) {
@@ -51,7 +53,7 @@ export default function ColorPickerPopup({
   onOpenRef.current = onOpen;
   const onPopover = useCallback((o) => { if (o) onOpenRef.current?.(); }, []);
 
-  const picker = <ColorPicker value={value} onChange={onChange} label={title} empty={empty} />;
+  const picker = <ColorPicker value={value} onChange={onChange} label={title} empty={empty} onCopy={onCopy} />;
 
   if (trigger && !mobile) {
     return (
