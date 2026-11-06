@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
 import Button from '../Button/index.js';
+import IconButton from '../IconButton/index.js';
 import { useOverlayClose } from '../overlayClose.js';
 import styles from './ColorPicker.module.css';
 
@@ -64,6 +65,22 @@ export default function ColorPicker({
     setDraft(v.slice(1).toUpperCase());
     return v;
   };
+  /* 복사는 hex 칸에 보이는 여섯 자리만(# 없이) 담는다. 붙여넣을 칸이 #을 따로 붙이는 곳이 많다(2026-11-07 주인장).
+     눌렀다는 표시는 아이콘이 잠깐 체크로 바뀌는 것이다.
+     클립보드 API가 막힌 자리(비보안 페이지·웹뷰)는 칸의 글자를 골라 옛 복사 명령으로 담는다. 그것도 안 되면 표시를 바꾸지 않는다 */
+  const [copied, setCopied] = useState(false);
+  const copiedT = useRef(null);
+  const inputRef = useRef(null);
+  useEffect(() => () => clearTimeout(copiedT.current), []);
+  const copy = async () => {
+    let ok = true;
+    try { await navigator.clipboard.writeText(draft); }
+    catch { inputRef.current?.select(); ok = document.execCommand('copy'); }
+    if (!ok) return;
+    setCopied(true);
+    clearTimeout(copiedT.current);
+    copiedT.current = setTimeout(() => setCopied(false), 1500);
+  };
   const closeOverlay = useOverlayClose();
   const apply = (v) => {
     if (empty || v !== hex) onChange?.(v);
@@ -76,6 +93,7 @@ export default function ColorPicker({
         <label className={styles.hex}>
           <span className={`text-body-md ${styles.hash}`} aria-hidden="true">#</span>
           <input
+            ref={inputRef}
             className={`text-body-md ${styles.hexInput}`}
             value={draft}
             onChange={onDraft}
@@ -89,6 +107,7 @@ export default function ColorPicker({
             spellCheck={false}
             maxLength={6}
           />
+          <IconButton icon={copied ? 'Check' : 'Copy'} size="sm" variant="neutral-weak" aria-label="hex 코드 복사" onClick={copy} />
         </label>
         <Button variant="secondary" size="md" onClick={() => apply(pick)}>적용</Button>
       </div>
