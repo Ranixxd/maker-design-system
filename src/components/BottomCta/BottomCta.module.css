@@ -38,7 +38,7 @@
 /* icon으로 넘긴 그림은 높이를 이모지와 맞추고 너비는 그림 비율을 따른다 */
 .like img {
   display: block;
-  height: 26px; /* @token-ok 그림 크기 */
+  height: 36px; /* @token-ok 그림 크기 */
   width: auto;
   pointer-events: none;
 }
