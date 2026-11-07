@@ -15,13 +15,15 @@ export function SelectGrid({ columns = 3, label, className, children, ...props }
   );
 }
 
-/* ratio를 주면 그 비율(폭 / 높이)의 칸이 되고, 없으면 글자 한 줄 높이(64)다 */
-export function SelectGridItem({ selected = false, label, ratio, className, style, children, ...props }) {
+/* ratio를 주면 그 비율(폭 / 높이)의 칸이 되고, 없으면 글자 한 줄 높이(64)다.
+   order: 여러 개를 고르는 격자에서 고른 차례(1부터). 주면 칸 오른쪽 위에 번호 동그라미가 선다 */
+export function SelectGridItem({ selected = false, label, ratio, order, className, style, children, ...props }) {
   return (
-    <button type="button" aria-pressed={selected} aria-label={label}
+    <button type="button" aria-pressed={selected} aria-label={order ? `${label}, ${order}번째` : label}
       className={['text-label-lg', styles.item, ratio && styles.ratio, className].filter(Boolean).join(' ')}
       style={ratio ? { aspectRatio: String(ratio), ...style } : style} {...props}>
       {children}
+      {!!order && <span className={`text-label-sm ${styles.order}`} aria-hidden="true">{order}</span>}
     </button>
   );
 }

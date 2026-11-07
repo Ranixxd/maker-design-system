@@ -24,3 +24,21 @@
 .item:active { opacity: .7; }
 /* 고른 칸은 SelectTile과 같은 primary 2다 */
 .item[aria-pressed="true"] { box-shadow: inset 0 0 0 2px var(--color-border-primary); }
+
+/* 고른 차례 번호. 고른 테두리와 같은 primary 면에 흰 글자, 칸 오른쪽 위 */
+.item { position: relative; }
+.order { /* text-label-sm */
+  position: absolute;
+  top: var(--spacing-1);
+  right: var(--spacing-1);
+  min-width: 20px;
+  height: 20px;
+  padding: 0 var(--spacing-1);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-primary);
+  color: var(--color-text-onprimary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}

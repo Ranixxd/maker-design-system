@@ -85,6 +85,7 @@ export const CommonIcons = {
       'MessageCirclePlus', 'Scan', 'ScanSquare', 'RulerDimensionLine', 'MoveVertical', 'MoveHorizontal',
       'Heart', 'Repeat',
       'ScanFace', 'BicepsFlexed', 'Footprints',
+      'Cookie',
     ];
     return (
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24 }}>

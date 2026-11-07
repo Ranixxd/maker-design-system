@@ -20,6 +20,7 @@ export default {
 - 고른 칸은 \`border-primary\` 2. SelectTile과 같다
 - 둘레 여백은 담는 쪽이 준다. 시트 본문(\`global-padding\`)이 좌우를 준다
 - 분류가 있으면 시트 \`toolbar\`에 Chip 줄을 두고 격자를 갈아 끼운다
+- **여러 개 고르기**: 고른 차례가 뜻이 있으면 \`order\`(1부터)를 준다. 칸 오른쪽 위에 primary 면 번호 동그라미가 선다. 하나를 풀면 뒤 번호가 하나씩 당겨진다(차례는 쓰는 쪽이 셈한다). 낭독기 이름에 "n번째"가 붙는다
 
 **SelectTile과 가르는 법**: 판 위로 떠오르는 한 줄 띠에서 고르면 SelectTile(40·32 작은 칸), 시트를 열어 넓게 펼쳐 고르면 SelectGrid다.
         `,
@@ -38,6 +39,27 @@ export const Default = {
           {FACES.map((f) => (
             <SelectGridItem key={f} label={'표정 ' + f} selected={v === f} onClick={() => setV(f)}>{f}</SelectGridItem>
           ))}
+        </SelectGrid>
+      </div>
+    );
+  },
+};
+
+export const Ordered = {
+  name: '여러 개 고르기(차례 번호)',
+  render: () => {
+    const [picked, setPicked] = useState([FACES[2], FACES[0]]);
+    const toggle = (f) => setPicked((p) => (p.includes(f) ? p.filter((x) => x !== f) : [...p, f]));
+    return (
+      <div style={{ width: 343 }}>
+        <SelectGrid label="표정">
+          {FACES.map((f) => {
+            const i = picked.indexOf(f);
+            return (
+              <SelectGridItem key={f} label={'표정 ' + f} selected={i >= 0} order={i >= 0 ? i + 1 : undefined}
+                onClick={() => toggle(f)}>{f}</SelectGridItem>
+            );
+          })}
         </SelectGrid>
       </div>
     );

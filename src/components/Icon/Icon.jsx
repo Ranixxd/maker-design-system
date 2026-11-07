@@ -48,6 +48,8 @@ import {
   Heart, Repeat,
   /* 카톡테마 메이커 음식 짤의 얼굴 크기·팔 간격·다리 간격 슬라이더 이름 앞 (2026-11-05) */
   ScanFace, BicepsFlexed, Footprints,
+  /* 카톡테마 메이커 식사하기 도구 줄의 음식 바꾸기 (2026-11-07). 포크·나이프보다 음식 자체가 보이는 쿠키로 골랐다 */
+  Cookie,
   createLucideIcon,
 } from 'lucide-react';
 
@@ -72,6 +74,7 @@ const ICONS = {
   MessageCirclePlus, Scan, ScanSquare, RulerDimensionLine, MoveVertical, MoveHorizontal,
   Heart, Repeat,
   ScanFace, BicepsFlexed, Footprints,
+  Cookie,
 };
 
 /* sm 20 / md 24 (2026-09-18, 16 / 20에서 한 단계씩 키웠다). 폰에서 알아보기 작았다 */
