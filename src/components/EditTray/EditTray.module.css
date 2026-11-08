@@ -4,3 +4,8 @@
   gap: var(--spacing-6);
   margin-inline: calc(-1 * var(--spacing-5));
 }
+
+/* EditTrayBody height="max". 속을 한 칸에 겹쳐 가장 큰 높이를 쓴다. 안 고른 속은 자리만 차지한다 */
+.bodyMax { display: grid; }
+.bodyMax > * { grid-area: 1 / 1; min-width: 0; }
+.paneHidden { visibility: hidden; pointer-events: none; }

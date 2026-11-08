@@ -1,1 +1,1 @@
-export { default } from './EditTray';
+export { default, EditTrayBody } from './EditTray';
