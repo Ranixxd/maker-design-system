@@ -7,7 +7,7 @@
 
 /* EditTrayBody. 속을 한 칸에 겹쳐 가장 큰 높이를 쓴다. 안 고른 속은 자리만 차지한다.
    속마다 상한(--edit-tray-body-max)까지만 커지고 넘치면 그 속 안에서 세로로 넘긴다. 칸 높이는 상한을 넘지 않는다 */
-.body { display: grid; --edit-tray-body-max: 176px; }
+.body { display: grid; --edit-tray-body-max: 192px; }
 .body > * {
   grid-area: 1 / 1;
   min-width: 0;

@@ -14,7 +14,7 @@ export default function EditTray({ children, className, ...props }) {
    - value: 고른 칩, panes: { 칩 값: 속 }
    - 속을 모두 한 칸에 겹쳐 두고 가장 큰 높이에 고정한다. 칩을 바꿔도 아래 자리와 판이 움직이지 않는다.
      안 고른 속은 보이지도 눌리지도 않고 자리만 차지한다(늘 그려져 있어 안의 상태가 남는다)
-   - 높이는 상한(176)까지다. 속이 그보다 길면 그 속 안에서 세로로 넘긴다. 판이 너무 작아지지 않게 한다 */
+   - 높이는 상한(192)까지다. 속이 그보다 길면 그 속 안에서 세로로 넘긴다. 판이 너무 작아지지 않게 한다 */
 export function EditTrayBody({ value, panes, className, ...props }) {
   const cls = [styles.body, className].filter(Boolean).join(' ');
   return (
