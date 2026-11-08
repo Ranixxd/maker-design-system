@@ -15,7 +15,7 @@ export default function PostMeta({
   body,                  // 내용. 사람이 쓴 줄바꿈을 그대로 살린다
   time,                  // 게시 시간. 글자나 <time>
   likes,                 // 좋아요 수. likes·takes 중 하나라도 주면 지표 줄(StatLine)을 그린다
-  takes,                 // 이어 만든 수
+  takes,                 // 이어 만든 수. 안 주면 지표 줄에 좋아요만 선다
   takesLabel,            // 이어 만든 수 뒤에 붙는 말('명이 이어 만들었어요')
   stats,                 // 좋아요·이어 만들기가 아닌 지표. 쓰는 쪽이 그린다. 주면 likes·takes 대신 선다
   name,                  // 닉네임

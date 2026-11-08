@@ -9,7 +9,7 @@ export const TAKE_ICON = 'Repeat';
 
 export default function StatLine({
   likes = 0,     // 좋아요 수
-  takes = 0,     // 이어 만든 수
+  takes,         // 이어 만든 수. 안 주면 좋아요만 선다
   takesLabel,    // 이어 만든 수 뒤에 붙는 말('명이 이어 만들었어요'). 0이면 붙이지 않는다
   className,
 }) {
@@ -20,11 +20,15 @@ export default function StatLine({
         <Icon name="Heart" size="sm" strokeWidth={2} className={styles.icon} />
         <span>{likes}</span>
       </span>
-      <span aria-hidden="true">·</span>
-      <span className={styles.item} aria-label={말 ? undefined : `이어 만든 수 ${takes}`}>
-        <Icon name={TAKE_ICON} size="sm" strokeWidth={2} className={styles.icon} />
-        <span>{takes}{말}</span>
-      </span>
+      {takes != null && (
+        <>
+          <span aria-hidden="true">·</span>
+          <span className={styles.item} aria-label={말 ? undefined : `이어 만든 수 ${takes}`}>
+            <Icon name={TAKE_ICON} size="sm" strokeWidth={2} className={styles.icon} />
+            <span>{takes}{말}</span>
+          </span>
+        </>
+      )}
     </span>
   );
 }

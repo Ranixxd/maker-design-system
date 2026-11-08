@@ -19,7 +19,8 @@ export default {
 - 글자 크기·색은 감싸는 쪽이 정한다. \`PostMeta\` 안에서는 \`text-body-sm\` secondary, 목록 카드 아래에서는 \`text-label-sm\`이다. 숫자를 굵게 쓰지 않는다
 - 아이콘은 글줄 속 14px, 굵기는 24칸 단위 2(약 1.17px. \`Chip\` 지우기 ×, SNS 링크 아이콘과 같다). 색은 글자 색을 따른다(\`currentColor\`). 지표 글줄은 \`text-secondary\`라 \`icon-secondary\`와 같은 값이다
 - 아이콘과 숫자 사이 4px, 점(·) 양옆 8px
-- \`takesLabel\`은 이어 만든 수 뒤에 붙는 말이다('명이 이어 만들었어요', '명이 이 색으로 만들었어요'). 0이면 숫자만 선다
+- \`takes\`를 안 주면(\`undefined\`) 좋아요만 선다. 이어 만들기가 없는 글에 쓴다. 0은 "0"으로 선다
+- \`takesLabel\`은 이어 만든 수 뒤에 붙는 말이다('명이 이어 만들었어요'). 0이면 숫자만 선다
 - 읽어 주는 이름: 좋아요는 "좋아요 N", 이어 만들기는 말이 안 붙을 때 "이어 만든 수 N"
         `,
       },
@@ -41,6 +42,11 @@ export const WithLabel = {
 export const Zero = {
   name: '0일 때',
   args: { likes: 0, takes: 0, takesLabel: '명이 이어 만들었어요' },
+};
+
+export const LikesOnly = {
+  name: '좋아요만',
+  args: { likes: 12 },
 };
 
 export const InLabel = {

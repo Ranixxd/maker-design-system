@@ -14,7 +14,7 @@ export default {
 
 | prop | 쓰는 법 |
 |---|---|
-| \`children\` | 주 단추. **\`Button primary\` 하나**. 남은 폭을 다 쓴다 |
+| \`children\` | 주 단추. **\`Button primary\` 하나**. 남은 폭을 다 쓴다. 안 주면 좋아요 단추가 줄을 다 쓴다(그 글로 할 일이 좋아요뿐일 때) |
 | \`like\` | 주면 주 단추 왼쪽에 좋아요 단추가 선다. \`{ pressed, onClick, ref, icon }\`. \`icon\`은 단추 안 그림(\`<img>\`)이고 안 주면 ❤️다. 그림은 높이 36px(단추 높이 안에서 가장 크게), 너비는 비율대로. 숫자는 넣지 않는다. 숫자는 글의 지표 줄(\`PostMeta\` \`stats\`)에 둔다 |
 | \`position\` | \`fixed\` 페이지가 구르는 화면. \`sticky\` 제 칸이 구르는 화면에서 그 칸 맨 끝에 둔다 |
 | \`width\`·\`gutter\` | 단추 줄이 맞출 본문 줄 너비와 좌우 여백(px). 단추 가장자리가 본문 가장자리와 같은 선에 선다. 기본 488·16(520px 글 줄에서 좌우 16을 뺀 폭) |
@@ -39,7 +39,7 @@ export const Default = {
     <div style={{ height: 160, position: 'relative', overflow: 'auto' }}>
       <div style={{ height: 240 }} />
       <BottomCta position="sticky" like={{ pressed: false, onClick: () => {} }}>
-        <Button variant="primary">이 색으로 배경 만들기</Button>
+        <Button variant="primary">이 템플릿으로 테마 만들기</Button>
       </BottomCta>
     </div>
   ),
@@ -54,6 +54,17 @@ export const Liked = {
       <BottomCta position="sticky" like={{ pressed: true, onClick: () => {} }}>
         <Button variant="primary">이 템플릿으로 테마 만들기</Button>
       </BottomCta>
+    </div>
+  ),
+};
+
+export const LikeOnly = {
+  name: '좋아요만',
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div style={{ height: 160, position: 'relative', overflow: 'auto' }}>
+      <div style={{ height: 240 }} />
+      <BottomCta position="sticky" like={{ pressed: false, onClick: () => {} }} />
     </div>
   ),
 };
