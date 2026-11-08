@@ -22,8 +22,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  height: var(--spacing-6);
-  background: linear-gradient(to bottom, transparent, var(--color-bg-default));
+  height: var(--spacing-10);
+  background: linear-gradient(to bottom, transparent, var(--color-bg-default) 70%);
   pointer-events: none;
   opacity: 0;
   transition: opacity var(--motion-duration-short-2) var(--motion-easing-standard);
