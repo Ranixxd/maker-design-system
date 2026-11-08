@@ -30,3 +30,15 @@
    첫 칸과 끝 칸의 auto 여백은 남는 자리를 나눠 갖다가 넘치면 0이 된다 */
 .center .scroll > :first-child { margin-left: auto; }
 .center .scroll > :last-child { margin-right: auto; }
+
+/* columns: 한 줄 칸 수가 정해진 격자. 칸(SelectTile)이 줄 너비를 꽉 채우게 늘어난 정사각이다. 양 끝 여백 16, 칸·줄 사이 8 */
+.grid { padding-right: var(--spacing-4); }
+.grid .scroll {
+  display: grid;
+  grid-template-columns: repeat(var(--select-row-columns), minmax(0, 1fr));
+  gap: var(--spacing-2);
+  overflow: visible;
+}
+.grid .scroll::after { content: none; }
+.grid .scroll > button { width: 100%; }
+.grid .scroll > button > span:first-child { width: 100%; height: auto; aspect-ratio: 1; }
