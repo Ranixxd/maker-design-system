@@ -35,6 +35,10 @@
   padding-inline: var(--spacing-4);
   font-size: 22px; /* @token-ok 이모지 그림 크기 */
 }
+/* 주 단추 없이 좋아요만 서면 줄 가운데에 둔다 */
+.like:only-child {
+  margin-inline: auto;
+}
 /* icon으로 넘긴 그림은 높이를 이모지와 맞추고 너비는 그림 비율을 따른다 */
 .like img {
   display: block;
