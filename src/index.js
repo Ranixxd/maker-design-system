@@ -36,6 +36,7 @@ export { default as Icon } from './components/Icon/index.js';
 export { default as IconButton } from './components/IconButton/index.js';
 export { default as LayerPopup } from './components/LayerPopup/index.js';
 export { default as LoadingScrim } from './components/LoadingScrim/index.js';
+export { default as ScrollFade } from './components/ScrollFade/index.js';
 export { default as Spinner } from './components/Spinner/index.js';
 export { default as LinkBanner, linkBannerClip } from './components/LinkBanner/index.js';
 export { default as ListItem } from './components/ListItem/index.js';

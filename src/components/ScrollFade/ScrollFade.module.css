@@ -1,0 +1,14 @@
+/* 넘기는 칸 맨 끝에 서서 보이는 아래 끝에 붙는다. 제 높이만큼 위로 당겨 자리를 차지하지 않는다.
+   바탕은 칸 바탕(bg-default)이라 위는 투명에서 시작해 70% 지점부터 꽉 찬다 */
+.fade {
+  position: sticky;
+  bottom: 0;
+  flex: none;
+  height: var(--spacing-10);
+  margin-top: calc(-1 * var(--spacing-10));
+  background: linear-gradient(to bottom, transparent, var(--color-bg-default) 70%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--motion-duration-short-2) var(--motion-easing-standard);
+}
+.on { opacity: 1; }
