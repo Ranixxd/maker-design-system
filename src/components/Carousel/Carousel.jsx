@@ -53,9 +53,8 @@ export default function Carousel({
 
   return (
     <div className={[styles.root, rootClassName].filter(Boolean).join(' ')}>
-      {/* 넘친 쪽 끝을 흐리게 지운다(scroll fade). 더 있다는 것을 칸이 잘린 모양 대신 흐려지는 끝으로 알린다 */}
-      <div ref={ref} className={[className, edge.prev && styles.fadeStart, edge.next && styles.fadeEnd].filter(Boolean).join(' ')}
-        onScroll={measure} {...props}>{children}</div>
+      {/* 끝을 흐리게 지우지 않는다. 더 있다는 것은 끝 칸이 잘린 모양으로 보인다 */}
+      <div ref={ref} className={className} onScroll={measure} {...props}>{children}</div>
       {edge.prev && <EditFab icon="ArrowLeft" label={prevLabel} className={`${styles.arrow} ${styles.prev}`} onClick={() => go(-1)} />}
       {edge.next && <EditFab icon="ArrowRight" label={nextLabel} className={`${styles.arrow} ${styles.next}`} onClick={() => go(1)} />}
     </div>
