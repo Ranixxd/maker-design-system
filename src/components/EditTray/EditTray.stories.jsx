@@ -24,10 +24,10 @@ export default {
 
 **본문 높이(\`EditTrayBody\`)**
 - 칩 줄 밑 본문은 \`EditTrayBody\`에 \`value\`(고른 칩)와 \`panes\`(\`{ 칩 값: 속 }\`)로 넘긴다.
-- \`height="auto"\`(기본): 고른 속만 그린다. 높이는 속을 따르고, \`EditFrame\`이 재어 부드럽게 옮긴다. 판은 남은 자리만큼 커지고 작아진다. 보통은 이것을 쓴다.
-- \`height="max"\`: 속을 모두 한 칸에 겹쳐 두고 가장 큰 높이에 고정한다. 칩을 바꿔도 아래 자리와 판이 움직이지 않는다. 안 고른 속은 보이지도 눌리지도 않고 자리만 차지한다(\`visibility: hidden\` + \`inert\`). 속은 늘 그려져 있어 안의 상태가 남는다.
-- \`max\`는 칩 사이를 자주 오가 리플로우가 손을 방해할 때 쓴다. 판에서 개체를 고르면 칩이 저절로 넘어가는 편집기처럼, 끌던 판이 밀리면 안 되는 자리다.
-- \`max\`이면 가장 긴 속만큼 판이 늘 작아진다. 속 사이 높이 차가 크면 짧은 칩에서 빈자리가 크게 남으니, 그때는 \`auto\`를 두고 칩이 저절로 넘어가지 않게 하는 쪽을 먼저 본다.
+- **높이는 늘 가장 긴 속에 맞춘다.** 속을 모두 한 칸에 겹쳐 두어, 칩을 바꿔도 아래 자리와 판이 움직이지 않는다. 안 고른 속은 보이지도 눌리지도 않고 자리만 차지한다(\`visibility: hidden\` + \`inert\`). 속은 늘 그려져 있어 안의 상태가 남는다.
+- **높이 상한은 176이다.** 속이 그보다 길면 그 속 안에서 세로로 넘긴다. 아래 자리가 커지면 판(미리보기)이 그만큼 작아지므로, 판이 너무 작아지지 않게 막는다.
+- 짧은 칩에서는 아래에 빈자리가 남는다. 판이 흔들리지 않는 쪽을 고른 것이다.
+- 편집 화면은 크기를 끌어 바꿀 수 없다. 끌어서 높이를 바꾸는 바텀시트(\`LayerPopup\` sheet)와 다른 점이라, 높이는 이 부품이 정한다.
         `,
       },
     },
@@ -49,39 +49,34 @@ export const Default = {
   },
 };
 
-/* 칩마다 속 높이가 다를 때. 위 칸을 바꿔 auto와 max를 견준다 */
-const HEIGHT_TABS = [{ value: 'color', label: '색상' }, { value: 'size', label: '크기' }];
-function HeightDemo({ height }) {
-  const [tab, setTab] = useState('color');
-  const [color, setColor] = useState('#ffffff');
-  const [a, setA] = useState(40);
-  const [b, setB] = useState(60);
-  const [c, setC] = useState(20);
+/* 칩마다 속 높이가 다를 때. 높이는 가장 긴 속(상한 176)에 맞고, 칩을 바꿔도 그대로다. 「여럿」은 상한을 넘어 속 안에서 넘긴다 */
+const HEIGHT_TABS = [{ value: 'color', label: '색상' }, { value: 'size', label: '크기' }, { value: 'many', label: '여럿' }];
+const SLIDERS = ['가로', '세로', '기울기', '흐림', '밝기', '간격', '두께'];
+function Sliders({ names }) {
+  const [v, setV] = useState({});
   return (
-    <div style={{ padding: '0 var(--spacing-5)', border: '1px dashed var(--color-border-default)' }}>
-      <EditTray>
-        <ChipGroup items={HEIGHT_TABS} value={tab} onChange={setTab} label="꾸밀 곳" />
-        <EditTrayBody value={tab} height={height} panes={{
-          color: <ColorPalette label="배경" colors={COLORS} value={color} onChange={setColor} />,
-          size: (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-3)', padding: '0 var(--spacing-4)' }}>
-              <Slider label="가로" value={a} min={0} max={100} onChange={setA} />
-              <Slider label="세로" value={b} min={0} max={100} onChange={setB} />
-              <Slider label="기울기" value={c} min={0} max={100} onChange={setC} />
-            </div>
-          ),
-        }} />
-      </EditTray>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-3)', padding: '0 var(--spacing-4)' }}>
+      {names.map((n) => <Slider key={n} label={n} value={v[n] ?? 50} min={0} max={100} onChange={(x) => setV((o) => ({ ...o, [n]: x }))} />)}
     </div>
   );
 }
 
-export const BodyAuto = {
-  name: '본문 높이 auto (기본)',
-  render: () => <HeightDemo height="auto" />,
-};
-
-export const BodyMax = {
-  name: '본문 높이 max (칩을 바꿔도 높이 그대로)',
-  render: () => <HeightDemo height="max" />,
+export const Body = {
+  name: '본문 높이 (가장 긴 속, 상한 176)',
+  render: () => {
+    const [tab, setTab] = useState('color');
+    const [color, setColor] = useState('#ffffff');
+    return (
+      <div style={{ padding: '0 var(--spacing-5)', border: '1px dashed var(--color-border-default)' }}>
+        <EditTray>
+          <ChipGroup items={HEIGHT_TABS} value={tab} onChange={setTab} label="꾸밀 곳" />
+          <EditTrayBody value={tab} panes={{
+            color: <ColorPalette label="배경" colors={COLORS} value={color} onChange={setColor} />,
+            size: <Sliders names={SLIDERS.slice(0, 3)} />,
+            many: <Sliders names={SLIDERS} />,
+          }} />
+        </EditTray>
+      </div>
+    );
+  },
 };
