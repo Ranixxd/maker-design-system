@@ -148,7 +148,7 @@ export default function EditFrame({
       ) : undefined}
       {...props}
     >
-      <div className={styles.stage} ref={stageRef} style={fabOffset ? { '--edit-fab-offset': fabOffset + 'px' } : undefined}>
+      <div className={[styles.stage, !((hint && !empty) || below || fabStart || fabEnd) && styles.roomy].filter(Boolean).join(' ')} ref={stageRef} style={fabOffset ? { '--edit-fab-offset': fabOffset + 'px' } : undefined}>
         <div className={styles.board}>
           {hint && !empty && <p className={`text-body-sm ${styles.hint}`}>{hint}</p>}
           {empty ? <EmptyBox {...empty} /> : children}
