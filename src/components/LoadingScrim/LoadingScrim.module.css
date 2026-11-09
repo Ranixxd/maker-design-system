@@ -1,4 +1,4 @@
-/* 흐린 덮개(bg-overlay-blur + 흐림 24px, 가운데 도는 표시) */
+/* 흐린 덮개(bg-overlay-blur + 흐림 24px, 가운데 하얀 원에 얹은 도는 표시) */
 .scrim {
   position: absolute;
   inset: 0;
@@ -16,4 +16,12 @@
   position: fixed;
   z-index: var(--z-system);
   border-radius: 0;
+}
+
+/* 도는 표시 뒤 하얀 원. 덮개 아래가 사진·그림이어도 표시가 묻히지 않는다 */
+.disc {
+  display: flex;
+  padding: var(--spacing-2);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-default);
 }
