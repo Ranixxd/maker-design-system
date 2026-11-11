@@ -101,6 +101,12 @@
   color: var(--color-text-oncritical);
 }
 
+/* 돈을 내는 단추(구독하기, 결제하기). 기능 단추(primary)와 무게가 달라 색으로 가른다(2026-11-12 사용자) */
+.payment {
+  background-color: var(--color-bg-accent);
+  color: var(--color-text-onaccent);
+}
+
 .neutral {
   background-color: transparent;
   color: var(--color-text-default);
