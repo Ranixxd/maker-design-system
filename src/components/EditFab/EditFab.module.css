@@ -61,3 +61,11 @@
   cursor: default;
   opacity: 0.4;
 }
+
+/* 글자만 선 알약. 아이콘 쪽을 좁힐 까닭이 없어 좌우가 같다 */
+.textOnly { padding: 0 var(--spacing-3); }
+
+/* 도는 동안은 흐리게 하지 않고 아이콘·글자를 숨긴 채 그 자리에서 돈다. 크기가 그대로라 둘레가 흔들리지 않는다 */
+.loading:disabled { opacity: 1; }
+.loading > :not(.spinner) { visibility: hidden; }
+.spinner { position: absolute; top: 50%; left: 50%; margin: -8px 0 0 -8px; }
