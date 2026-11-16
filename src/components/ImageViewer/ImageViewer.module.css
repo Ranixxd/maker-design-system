@@ -125,6 +125,12 @@
   text-align: center;
 }
 
+/* 그림 아래 칸(광고 등). 안내처럼 묶음 너비를 다 쓰고, 그림은 이 칸을 뺀 자리에 맞춘다 */
+.below {
+  flex: 0 0 auto;
+  inline-size: 100%;
+}
+
 /* 덧붙는 것(떠 있는 스티커 등). 그림 크기 셈에도 사이 간격에도 넣지 않는다 */
 .stage > .extra {
   flex: 0 0 auto;

@@ -38,6 +38,7 @@ export { default as LayerPopup } from './components/LayerPopup/index.js';
 export { default as LoadingScrim } from './components/LoadingScrim/index.js';
 export { default as Spinner } from './components/Spinner/index.js';
 export { default as LinkBanner, linkBannerClip } from './components/LinkBanner/index.js';
+export { default as AdSlot } from './components/AdSlot/index.js';
 export { default as ListItem } from './components/ListItem/index.js';
 export { default as ListBox, ListBoxItem } from './components/ListBox/index.js';
 export { default as CreateCard } from './components/CreateCard/index.js';

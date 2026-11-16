@@ -18,6 +18,7 @@ import styles from './ImageViewer.module.css';
    src·alt: 그림. 없으면 그림 없이 내용만 선다(지워진 그림 등)
    imageClassName: 그림의 테두리·반경·바탕(배경화면처럼 틀이 있는 그림)
    caption: 그림 아래 내용 한 줄(짤 제목 등)
+   below: 그림(과 caption) 바로 아래 칸(광고 등). 묶음 너비로 서고 그림 크기 셈에 넣는다
    meta: 그림 바닥 그늘 위 지표 한 줄(👀 · ♥ 등)
    footer: 바디 아래 단추 줄. 단추는 줄 너비로 선다
    children: 내용 아래에 덧붙는 것(떠 있는 스티커 등). 크기 셈에 넣지 않는다
@@ -33,6 +34,7 @@ export default function ImageViewer({
   alt = '',
   imageClassName,
   caption,
+  below,
   meta,
   footer,
   className,
@@ -86,7 +88,7 @@ export default function ImageViewer({
     ro.observe(stage);
     return () => ro.disconnect();
   }, [measure]);
-  useLayoutEffect(() => { measure(); }, [measure, src, hint, caption, meta]);
+  useLayoutEffect(() => { measure(); }, [measure, src, hint, caption, below, meta]);
 
   /* 기능바·바디·푸터 안의 누름이 딤으로 새면 창이 닫힌다 */
   const 멈춤 = (e) => e.stopPropagation();
@@ -111,6 +113,7 @@ export default function ImageViewer({
             </div>
           ) : meta && <p className={`text-body-sm ${styles.meta}`} onClick={멈춤}>{meta}</p>}
           {caption && <p className={`text-body-md ${styles.caption}`} onClick={멈춤}>{caption}</p>}
+          {below && <div className={styles.below} onClick={멈춤}>{below}</div>}
           {children && <div data-flow="off" className={styles.extra} onClick={멈춤}>{children}</div>}
         </div>
       </div>
