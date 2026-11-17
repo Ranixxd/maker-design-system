@@ -7,8 +7,9 @@ import styles from './LinkBanner.module.css';
 
    href가 있으면 링크(a), onClick만 있으면 단추(button), 둘 다 없으면 갈 곳이 없는 띠(div)다.
    갈 곳이 없으면 > 를 그리지 않는다.
-   글은 한 줄이다. 넘칠 수 있는 조각만 linkBannerClip으로 감싸면 그 조각만 말줄임된다 */
-export default function LinkBanner({ href, onClick, children, className, ...props }) {
+   글은 한 줄이다. 넘칠 수 있는 조각만 linkBannerClip으로 감싸면 그 조각만 말줄임된다.
+   media는 글 앞에 붙는 작은 그림 묶음이다. wrap을 켜면 글이 여러 줄로 넘어간다 */
+export default function LinkBanner({ href, onClick, media, wrap = false, children, className, ...props }) {
   const Tag = href ? 'a' : onClick ? 'button' : 'div';
   const moves = Tag !== 'div';
   return (
@@ -19,7 +20,8 @@ export default function LinkBanner({ href, onClick, children, className, ...prop
       onClick={onClick}
       {...props}
     >
-      <span className={styles.text}>{children}</span>
+      {media && <span className={styles.media}>{media}</span>}
+      <span className={[styles.text, wrap && styles.wrap].filter(Boolean).join(' ')}>{children}</span>
       {moves && <ChevronRight size={14} aria-hidden="true" />}
     </Tag>
   );

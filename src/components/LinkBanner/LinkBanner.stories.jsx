@@ -20,6 +20,8 @@ export default {
 - 글은 한 줄이다. 넘칠 수 있는 조각만 \`linkBannerClip\`으로 감싼다. 그 조각만 말줄임되고, 감싸지 않은 앞뒤 글(이름, "테마를 활용했어요")은 잘리지 않는다.
 - 아무것도 감싸지 않은 긴 글은 말줄임 없이 잘린다. 길어질 수 있는 글이면 반드시 한 조각을 감싼다.
 - 강조할 자리가 아니라서 강조색을 쓰지 않는다.
+- \`media\`: 글 앞에 작은 그림 묶음을 둔다(그림 여러 장이면 나란히). 그림 크기는 쓰는 쪽이 정하고, 띠 높이는 그림을 따라 커진다.
+- \`wrap\`: 글이 한 줄에 다 들어가지 않는 안내 띠에 켠다. 글이 줄바꿈되고 낱말 중간에서 끊지 않는다. 이때는 \`linkBannerClip\`을 쓰지 않는다.
         `,
       },
     },
@@ -48,4 +50,15 @@ export const Clip = {
 export const Static = {
   name: '갈 곳이 없을 때',
   args: { children: '도토리님의 테마를 활용했어요' },
+};
+
+const 견본 = (색) => <span style={{ width: 32, height: 32, borderRadius: 8, background: 색 }} />; /* @token-ok 스토리용 그림 자리 */
+
+export const Media = {
+  name: '그림과 두 줄 글',
+  render: () => (
+    <LinkBanner href="#" wrap media={<>{견본('#fde7a0')}{견본('#fde4ef')}{견본('#e3fbe1')}</>}>
+      앱에서 더 많은 말풍선을 사용해 보세요. 글이 길면 다음 줄로 넘어가요
+    </LinkBanner>
+  ),
 };

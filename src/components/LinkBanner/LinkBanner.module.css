@@ -33,6 +33,27 @@ button.banner {
   white-space: pre;
 }
 
+/* wrap: 글을 줄바꿈한다. 낱말 중간에서 끊지 않는다 */
+.text.wrap {
+  display: block;
+  white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+/* 글 앞 그림 묶음. 그림 크기는 쓰는 쪽이 정한다 */
+.media {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+
+.media > * {
+  display: block;
+  flex: none;
+}
+
 .clip {
   flex: 0 1 auto;
   min-width: 0;
