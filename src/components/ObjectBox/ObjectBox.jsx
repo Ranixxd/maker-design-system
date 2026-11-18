@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import Icon from '../Icon/Icon';
+import { useRef } from 'react';
 import { DOT_R, LINE, canOf, handlePoints } from './objectGeometry.js';
 import styles from './ObjectBox.module.css';
+import { useOverlayRect, placeBar, BoxBar, clamp } from './boxOverlay.jsx';
 
 /* 판 위 개체의 선택 상자와 도구 줄. 끄는 셈은 useObjectDrag(React 판)나 createObjectDrag(캔버스 판)가 한다.
 
@@ -10,26 +10,6 @@ import styles from './ObjectBox.module.css';
 
    판(EditCanvas)과 같은 자리에 겹쳐 그린다. 판의 형제로 두면 판보다 큰 개체의 상자와 점이 판 밖으로 그대로 나온다.
    상자 선·점·대·가운데 점선은 한 장의 SVG에 그린다. 점을 CSS 테두리로 그리면 기기 픽셀에 맞춰 반올림돼 상자 선과 굵기가 달라 보인다 */
-
-const BAR_GAP = 12;  // 상자와 도구 줄 사이
-const BAR_EDGE = 8;  // 바탕 끝과 도구 줄 사이
-const BTN = 36;
-const PAD = 4;       // 도구 줄 안쪽 여백·사이(spacing-1)
-
-/* 좌우 반전. 루시드 flip-horizontal-2가 위아래 삼각형으로 바뀌어 세로선과 좌우 삼각형을 직접 그린다.
-   옆 단추의 Icon sm과 같은 실제 1.5px가 되게 24칸 단위 1.8을 준다(1.5 × 24/20) */
-function FlipH() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="m3 7 5 5-5 5V7" /><path d="m21 7-5 5 5 5V7" /><path d="M12 20V4" />
-    </svg>
-  );
-}
-const ICON_NAMES = { eraser: 'Eraser', layerUp: 'LayersArrowUp', layerDown: 'LayersArrowDown', copy: 'Copy', trash: 'Trash2' };
-
-const el = (x) => (x && 'current' in x ? x.current : x);
-const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
-const sameRect = (a, b) => a && b && ['l', 't', 'w', 'h', 'bl', 'bt', 'br', 'bb'].every((k) => Math.abs(a[k] - b[k]) < 0.01);
 
 export default function ObjectBox({
   canvas,           // 판 요소(EditCanvas). 이 자리에 겹친다
@@ -45,34 +25,7 @@ export default function ObjectBox({
   className,
 }) {
   const ref = useRef(null);
-  const [g, setG] = useState(null);
-
-  /* 판과 같은 자리·크기로 겹친다. 창이 뜨는 동안(scaleIn)은 겉보기 크기가 줄어 있어, 잰 값을 그 배율(z)로 나눠 제 크기로 되돌린다 */
-  const measure = useCallback(() => {
-    const host = ref.current, cv = el(canvas);
-    if (!host || !cv) return;
-    const op = host.offsetParent;
-    const cr = cv.getBoundingClientRect();
-    if (!cr.width) return;
-    const hr = op ? op.getBoundingClientRect() : cr;
-    const z = op && op.offsetWidth ? hr.width / op.offsetWidth : 1;
-    const sr = (el(stage) || op || cv).getBoundingClientRect();
-    const next = {
-      l: (cr.left - hr.left) / z, t: (cr.top - hr.top) / z, w: cr.width / z, h: cr.height / z,
-      bl: (sr.left - cr.left) / z, bt: (sr.top - cr.top) / z, br: (sr.right - cr.left) / z, bb: (sr.bottom - cr.top) / z,
-    };
-    setG((prev) => (sameRect(prev, next) ? prev : next));
-  }, [canvas, stage]);
-
-  useLayoutEffect(measure);
-  useEffect(() => {
-    const cv = el(canvas);
-    if (!cv || typeof ResizeObserver === 'undefined') return undefined;
-    const ro = new ResizeObserver(measure);
-    ro.observe(cv);
-    window.addEventListener('resize', measure);
-    return () => { ro.disconnect(); window.removeEventListener('resize', measure); };
-  }, [canvas, measure]);
+  const g = useOverlayRect(ref, canvas, stage);
 
   const pos = g ? { left: g.l, top: g.t, width: g.w, height: g.h } : { display: 'none' };
   if (!g || (!obj && !guide)) return <div ref={ref} className={[styles.box, className].filter(Boolean).join(' ')} style={pos} hidden />;
@@ -104,18 +57,10 @@ export default function ObjectBox({
      barSide가 above면 위 → 아래 → 바탕 맨 위 순이다. 상자가 바탕 밖으로 나가면 보이는 데까지만 감싼다 */
   let bar = null;
   if (!dragging && actions.length) {
-    const n = actions.length;
-    const bw = n * BTN + (n - 1) * PAD + PAD * 2, bh = BTN + PAD * 2;
     const vis = (showRot ? [...pts, rp] : pts).map((p) => ({ x: clamp(p.x, g.bl, g.br), y: clamp(p.y, g.bt, g.bb) }));
     const l = Math.min(...vis.map((p) => p.x)), r = Math.max(...vis.map((p) => p.x));
     const t = Math.min(...vis.map((p) => p.y)) - DOT_R, b = Math.max(...vis.map((p) => p.y)) + DOT_R;
-    const below = b + BAR_GAP, above = t - BAR_GAP - bh;
-    const fitsBelow = below + bh <= g.bb - BAR_EDGE, fitsAbove = above >= g.bt + BAR_EDGE;
-    let y;
-    if (barSide === 'above') y = fitsAbove ? above : fitsBelow ? below : g.bt + BAR_EDGE;
-    else y = fitsBelow ? below : fitsAbove ? above : g.bt + BAR_EDGE;
-    const x = clamp((l + r) / 2 - bw / 2, g.bl + BAR_EDGE, Math.max(g.bl + BAR_EDGE, g.br - BAR_EDGE - bw));
-    bar = { x, y };
+    bar = placeBar({ l, t, r, b }, g, actions.length, barSide);
   }
 
   return (
@@ -126,17 +71,7 @@ export default function ObjectBox({
         {showRot && <line className={styles.line} x1={tp.x} y1={tp.y} x2={rp.x} y2={rp.y} />}
         {dots.map((p, i) => <circle key={i} className={styles.dot} cx={p.x} cy={p.y} r={DOT_R - LINE / 2} />)}
       </svg>
-      {bar && (
-        <div className={styles.bar} role="toolbar" aria-label="고른 개체" data-obox-bar=""
-          style={{ transform: `translate(${bar.x}px, ${bar.y}px)` }}>
-          {actions.map((a) => (
-            <button key={a.id} type="button" className={styles.btn} aria-label={a.label} title={a.label}
-              disabled={!!a.disabled} onClick={() => onAction && onAction(a.id)}>
-              {a.icon === 'flip' ? <FlipH /> : <Icon name={ICON_NAMES[a.icon]} size="sm" />}
-            </button>
-          ))}
-        </div>
-      )}
+      {bar && <BoxBar actions={actions} onAction={onAction} at={bar} label="고른 개체" />}
     </div>
   );
 }

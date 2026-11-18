@@ -68,4 +68,5 @@ export { default as SelectTile, tileFillClass } from './components/SelectTile/in
 export { SelectGrid, SelectGridItem } from './components/SelectGrid/index.js';
 export { ToastProvider, useToast } from './components/Toast/index.js';
 /* 판 위 개체 상자와 그 끌기. 상자는 끌기가 돌려준 값을 받아야 뜻이 산다 */
+export { default as CropBox } from './components/CropBox/index.js';
 export { default as ObjectBox, useObjectDrag, createObjectDrag, boxHit, boxToWorld, snapAngle } from './components/ObjectBox/index.js';

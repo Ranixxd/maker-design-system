@@ -1,0 +1,36 @@
+/* 자르기 상자. 판과 같은 자리에 겹치고 넘친 것을 자르지 않는다(손잡이가 판 밖으로 나온다).
+   겹침은 ObjectBox와 같은 6이다. 판 위 둥근 단추(EditFrame fabSlot, 5)보다 위 */
+.box {
+  position: absolute;
+  z-index: 6;
+  pointer-events: none;
+}
+.box[hidden] { display: none; }
+
+.svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* 상자 밖 덮개. 판 안만 덮는다 */
+.dim { fill: var(--color-bg-overlay); }
+
+/* 상자 선은 ObjectBox 상자 선과 같은 1.5. 상자 안쪽에 그린다 */
+.line {
+  fill: none;
+  stroke: var(--color-border-accent);
+  stroke-width: 1.5;
+}
+
+/* 네 변 가운데 손잡이. 변 바깥에 붙는 각진 막대 */
+.handle { fill: var(--color-border-accent); }
+
+/* 덮개를 판 모서리 둥글기로 자르는 틀 */
+.dimWrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
