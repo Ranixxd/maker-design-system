@@ -30,7 +30,7 @@ function PhotoTile({ src, selected, loading, label, menu, size }) {
 
    - colors: 샘플 색 [{ value, label }]. value가 그중 하나면 그 타일이 고른 상태가 된다. null이면 아무것도 안 고른 상태
    - picker: 주면 맨 끝에 무지개 타일(색 직접 고르기)이 서고, 누르면 ColorPicker가 뜬다(2026-10-13).
-     샘플 밖의 색이 고른 값이면 그 타일이 고른 상태가 되고 무지개 대신 그 색을 보인다.
+     샘플 밖의 색이 고른 값이면 그 타일이 고른 상태가 된다. 색을 골라도 타일은 무지개 그대로다.
      true 또는 { start, title }. start는 고른 색이 없을 때(null) 선택기가 열리는 값, title은 선택기 이름(기본 "<label> 색")
    - customTile: 무지개 타일을 받아 감싸는 함수. 선택기를 쓰는 쪽이 직접 띄울 때만 쓴다. picker가 있으면 무시한다
    - photo: 주면 맨 앞(leading 자리)에 사진 칸이 고정된다(2026-10-21). { src, selected, loading, label, menu: [{ label, onClick }] }.
@@ -53,7 +53,7 @@ export default function ColorPalette({
   const custom = value != null && !colors.some((c) => c.value === value);
   const hasCustom = picker || customTile;
   const tile = hasCustom && (
-    <SelectTile size={size} label={label + ' 색 직접 고르기'} selected={custom} fill={custom ? value : 'rainbow'} />
+    <SelectTile size={size} label={label + ' 색 직접 고르기'} selected={custom} fill="rainbow" />
   );
   const opt = picker === true ? {} : picker || {};
   return (
