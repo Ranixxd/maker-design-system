@@ -1,0 +1,42 @@
+/* 글자와 가운뎃점 사이 8. 한 줄에 다 서는 갈래만 담아 넘기지도 줄을 바꾸지도 않는다 */
+.line {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: 0 var(--text-chip-inset);
+  white-space: nowrap;
+}
+
+/* 누르는 높이는 칩과 같은 32. 상자·밑줄 없이 글자 색만으로 고른 것을 가른다 */
+.item {
+  flex: 0 0 auto;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-text-tertiary);
+  font-family: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: color var(--motion-duration-short) var(--motion-easing-standard);
+}
+.item > span { line-height: 1; }
+
+/* 굵기는 그대로 둔다. 고를 때마다 폭이 바뀌면 옆 글자가 밀린다 */
+.on { color: var(--color-text-default); }
+
+/* 손가락에는 hover가 없다. 고른 것과 헷갈리지 않게 한 단계만 올린다 */
+@media (hover: hover) {
+  .item:hover:not(.on):not(:disabled) { color: var(--color-text-secondary); }
+}
+
+.item:disabled { opacity: 0.4; cursor: default; }
+
+.dot {
+  flex: none;
+  color: var(--color-text-tertiary);
+  line-height: 1;
+  user-select: none;
+}

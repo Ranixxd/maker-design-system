@@ -16,6 +16,7 @@ export { default as Button } from './components/Button/index.js';
 export { default as BottomCta } from './components/BottomCta/index.js';
 export { default as Chip } from './components/Chip/index.js';
 export { default as ChipGroup } from './components/ChipGroup/index.js';
+export { default as TextChipGroup } from './components/TextChipGroup/index.js';
 export { default as MediaCard } from './components/MediaCard/index.js';
 export { default as PaletteStrip } from './components/PaletteStrip/index.js';
 export { default as ColorPicker } from './components/ColorPicker/index.js';
