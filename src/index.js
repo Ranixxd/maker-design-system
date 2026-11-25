@@ -51,6 +51,7 @@ export { default as PostMeta } from './components/PostMeta/index.js';
 export { default as StatLine } from './components/StatLine/index.js';
 export { default as TextField } from './components/TextField/index.js';
 export { default as UploadField } from './components/UploadField/index.js';
+export { default as WaveFooter } from './components/WaveFooter/index.js';
 export { default as ImageViewer } from './components/ImageViewer/index.js';
 export { default as Carousel } from './components/Carousel/index.js';
 export { default as Title } from './components/Title/index.js';

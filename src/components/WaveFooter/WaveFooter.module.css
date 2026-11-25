@@ -1,0 +1,71 @@
+/* 글은 본문 폭에 두고, 물결과 바탕만 페이지 가로 끝까지 편다.
+   100vw는 데스크톱 스크롤바 폭까지 들어가 가로로 넘친다. 그래서 스크롤바를 뺀 페이지 폭(100cqw)을 쓴다.
+   본문 틀이 가운데 정렬이라 50% - 50cqw가 페이지 왼쪽 끝이다 */
+.foot {
+  --wave-h: 16px;
+  --wave-w: 120px;
+  --bleed-l: calc(50% - 50cqw);
+  position: relative;
+  isolation: isolate;
+  margin-top: var(--spacing-8);
+  padding-top: var(--wave-h);
+}
+
+/* cqw의 기준 폭. 안에서 스크롤되는 페이지는 그 스크롤 틀에 container-type: inline-size를 준다 */
+:global(body):has(.foot) { container-type: inline-size; }
+
+/* 큰 물결. 바탕과 같은 색 띠를 사인 곡선 아래만 남기고 가린다. 한 주기가 120px이고,
+   round로 폭에 맞춰 주기를 조금씩 늘이거나 줄여 양 끝이 늘 주기의 끝에서 끝난다 */
+.foot::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: var(--bleed-l);
+  width: 100cqw;
+  height: var(--wave-h);
+  background: var(--color-bg-tertiary);
+  --wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 16' preserveAspectRatio='none'%3E%3Cpath d='M0 8C20-1 40-1 60 8S100 17 120 8V16H0Z'/%3E%3C/svg%3E");
+  -webkit-mask: var(--wave) 0 0 / var(--wave-w) 100% round no-repeat;
+  mask: var(--wave) 0 0 / var(--wave-w) 100% round no-repeat;
+}
+
+/* 뮤트 바탕. 그림자로 아래를 늘려 페이지 아래 여백까지 채운다(그림자는 스크롤 길이를 늘리지 않는다) */
+.foot::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: var(--wave-h);
+  bottom: 0;
+  left: var(--bleed-l);
+  width: 100cqw;
+  background: var(--color-bg-tertiary);
+  box-shadow: 0 0 0 100vh var(--color-bg-tertiary);
+  clip-path: inset(0 0 -100vh 0);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  padding: var(--spacing-6) 0 var(--spacing-8);
+}
+
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  color: var(--color-text-secondary);
+  word-break: keep-all;
+}
+.prose p, .prose ul { margin: 0; }
+.prose ul { padding-left: var(--spacing-5); display: flex; flex-direction: column; gap: var(--spacing-1); }
+
+/* 소제목. 글자는 쓰는 쪽이 text-heading-xs 클래스로 준다 */
+.prose > h2, .prose > h3 { margin: var(--spacing-5) 0 0; color: var(--color-text-default); }
+.prose > h2:first-child, .prose > h3:first-child { margin-top: 0; }
+
+/* 글 사이에 낀 링크. 밑줄 없이 링크 색으로만 드러낸다. 글 안에 넣은 다른 부품의 링크는 건드리지 않는다 */
+.prose > p a, .prose > ul a {
+  color: var(--color-text-link);
+  text-decoration: none;
+}
