@@ -21,6 +21,7 @@ export { default as MediaCard } from './components/MediaCard/index.js';
 export { default as PaletteStrip } from './components/PaletteStrip/index.js';
 export { default as ColorPicker } from './components/ColorPicker/index.js';
 export { default as ColorPickerPopup } from './components/ColorPickerPopup/index.js';
+export { default as Disclosure } from './components/Disclosure/index.js';
 export { default as Divider } from './components/Divider/index.js';
 export { default as Dot } from './components/Dot/index.js';
 export { default as Drawer } from './components/Drawer/index.js';
