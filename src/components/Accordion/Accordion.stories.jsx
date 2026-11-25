@@ -22,6 +22,11 @@ export default {
 **여는 표시는 +다.** 열리면 세로줄이 사라져 -가 된다. 화살표를 돌리는 것보다
 지금 상태가 무엇인지 한눈에 갈린다.
 
+**크기는 둘이다.** 기본 \`md\`는 질문이 몇 개뿐이고 본문으로 읽히는 자리에 쓴다.
+\`sm\`은 페이지 맨 아래 푸터처럼 질문이 많이 쌓이는 곳이나 본문 곁의 보조 안내에 쓴다(2026-11-26).
+제목은 text-label-sm, 내용은 text-body-sm, 위아래 여백은 spacing-3, +는 16px로 줄어든다.
+한 목록 안에서는 크기를 섞지 않는다.
+
 **쓰지 않는 곳**: 눌러서 다른 화면으로 가는 것. 그건 ListItem이나 링크다.
         `,
       },
@@ -30,6 +35,7 @@ export default {
   argTypes: {
     title: { control: 'text' },
     defaultOpen: { control: 'boolean' },
+    size: { control: 'inline-radio', options: ['md', 'sm'] },
   },
 };
 
@@ -51,6 +57,20 @@ export const List = {
       <Accordion title="사이트 이용은 무료인가요">네, 무료예요.</Accordion>
       <Accordion title="만든 테마를 공유해도 되나요">네, 공유와 유료 판매 모두 가능해요.</Accordion>
       <Accordion title="테마는 몇 개까지 저장할 수 있나요">계정 하나에 3개까지 저장할 수 있어요.</Accordion>
+    </div>
+  ),
+};
+
+export const Small = {
+  name: '작은 크기(sm)',
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div>
+      <Accordion size="sm" title="사이트 이용은 무료인가요">네, 무료예요.</Accordion>
+      <Accordion size="sm" title="만든 테마를 공유해도 되나요">네, 공유와 유료 판매 모두 가능해요.</Accordion>
+      <Accordion size="sm" title="테마는 몇 개까지 저장할 수 있나요" defaultOpen>계정 하나에 3개까지 저장할 수 있어요.</Accordion>
+      <Accordion size="sm" title="아이폰은 어떻게 적용하나요">완료 화면에 나오는 순서대로 따라 하면 돼요.</Accordion>
+      <Accordion size="sm" title="다운로드 창이 안 떠요">휴대폰의 파일 앱에서 받은 파일을 살펴봐주세요.</Accordion>
     </div>
   ),
 };
