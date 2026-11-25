@@ -9,28 +9,19 @@ import styles from './Accordion.module.css';
    - 열림을 밖에서 쥐려면 open과 onToggle을 함께 준다. 안 주면 제 안에서 쥔다
 
    화살표 대신 +를 쓴다. 열리면 가로줄만 남아 -가 된다.
-   내용은 열지 않아도 DOM에 남긴다. 검색 엔진이 읽어야 하는 글이 들어오는 자리다
-
-   size: md(기본) | sm. sm은 제목·여백·+·내용을 한 단계씩 줄인다 */
-const TYPE = {
-  md: { head: 'text-heading-xs', body: 'text-body-md' },
-  sm: { head: 'text-label-sm', body: 'text-body-sm' },
-};
-
+   내용은 열지 않아도 DOM에 남긴다. 검색 엔진이 읽어야 하는 글이 들어오는 자리다 */
 export default function Accordion({
   title,
   children,
   open,
   onToggle,
   defaultOpen = false,
-  size = 'md',
   className,
   ...props
 }) {
   const [inner, setInner] = useState(defaultOpen);
   const isOpen = open === undefined ? inner : open;
   const id = useId();
-  const type = TYPE[size] || TYPE.md;
 
   const toggle = () => {
     if (onToggle) onToggle(!isOpen);
@@ -38,12 +29,12 @@ export default function Accordion({
   };
 
   return (
-    <div className={[styles.item, size === 'sm' && styles.sm, className].filter(Boolean).join(' ')} {...props}>
-      <button type="button" className={`${type.head} ${styles.head}`} aria-expanded={isOpen} aria-controls={id} onClick={toggle}>
+    <div className={[styles.item, className].filter(Boolean).join(' ')} {...props}>
+      <button type="button" className={`text-heading-xs ${styles.head}`} aria-expanded={isOpen} aria-controls={id} onClick={toggle}>
         <span className={styles.title}>{title}</span>
         <span className={[styles.icon, isOpen && styles.on].filter(Boolean).join(' ')} aria-hidden="true" />
       </button>
-      <div className={`${type.body} ${styles.body}`} id={id} hidden={!isOpen}>{children}</div>
+      <div className={`text-body-md ${styles.body}`} id={id} hidden={!isOpen}>{children}</div>
     </div>
   );
 }
