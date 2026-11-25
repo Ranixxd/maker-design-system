@@ -39,5 +39,13 @@
   word-break: keep-all;
 }
 
-.body p { margin: 0; }
-.body > * + * { margin-top: var(--spacing-3); }
+.body > p { margin: 0; }
+.body > p + p { margin-top: var(--spacing-3); }
+
+/* full: 줄 목록 안의 한 줄. 제목이 줄 끝까지 눌리고, 내용은 제목 줄 여백 바로 아래에 붙는다 */
+.full > .label {
+  display: flex;
+  padding: var(--spacing-3) 0;
+}
+
+.full > .body { margin-top: 0; }

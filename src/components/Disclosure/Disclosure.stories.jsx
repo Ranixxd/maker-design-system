@@ -18,8 +18,16 @@ export default {
 
 **여러 개를 늘어놓을 때**는 감싸는 요소가 사이를 spacing-4로 띄운다.
 
+**내용 자리에는 무엇이든 넣는다.** 글자는 text-body-sm·text-secondary를 물려받는다.
+바로 아래 문단(p)끼리는 사이가 spacing-3으로 벌어지고, 다른 요소는 간격을 건드리지 않는다.
+줄 목록이나 그림처럼 제 모양이 있는 것은 제 글자·색을 스스로 정한다.
+
+**자리는 둘이다.** 기본은 글자 크기만큼만 눌리는 한 줄로, 본문 곁 안내나 푸터에 선다.
+편집 패널처럼 줄이 이어진 목록 안에 설 때는 \`full\`을 준다. 제목이 줄 끝까지 눌리고
+위아래로 spacing-3을 띄워 옆 줄과 높이를 맞춘다. 줄 사이의 선은 목록이 긋는다.
+그 밖의 자리 맞춤(바깥 여백, 가운데 정렬)은 쓰는 쪽 className으로 한다.
+
 **내용은 닫혀 있어도 DOM에 남는다.** details 안에 두어 검색 엔진이 읽는다.
-안의 문단은 사이가 spacing-3으로 벌어진다.
 
 **쓰지 않는 곳**: 눌러서 다른 화면으로 가는 것(링크), 켜고 끄는 것(Switch).
         `,
@@ -29,6 +37,7 @@ export default {
   argTypes: {
     title: { control: 'text' },
     defaultOpen: { control: 'boolean' },
+    full: { control: 'boolean' },
   },
 };
 
@@ -60,6 +69,27 @@ export const List = {
       <Disclosure title="만든 테마를 공유해도 되나요">네, 공유와 유료 판매 모두 가능해요.</Disclosure>
       <Disclosure title="테마는 몇 개까지 저장할 수 있나요">계정 하나에 3개까지 저장할 수 있어요.</Disclosure>
       <Disclosure title="아이폰은 어떻게 적용하나요">완료 화면에 나오는 순서대로 따라 하면 돼요.</Disclosure>
+    </div>
+  ),
+};
+
+const Row = ({ children }) => (
+  <div className="text-body-md" style={{ padding: 'var(--spacing-2) 0', color: 'var(--color-text-default)' }}>{children}</div>
+);
+
+export const Full = {
+  name: '줄 목록 안(full)',
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div style={{ maxWidth: 360 }}>
+      <Row>채팅방 배경</Row>
+      <div style={{ borderTop: '1px solid var(--color-border-subtle)', borderBottom: '1px solid var(--color-border-subtle)' }}>
+        <Disclosure full title="더 많은 아이콘" defaultOpen>
+          <Row>알림 아이콘</Row>
+          <Row>설정 아이콘</Row>
+        </Disclosure>
+      </div>
+      <Row>말풍선</Row>
     </div>
   ),
 };
